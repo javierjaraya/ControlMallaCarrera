@@ -26,7 +26,7 @@ class Tipo_asignaturaDAO{
         while ($fila = $result->fetch_row()) {
             $tipo_asignatura = new Tipo_asignaturaDTO();
             $tipo_asignatura->setTa_id($fila[0]);
-            $tipo_asignatura->setTa_nombre($fila[1]);
+            $tipo_asignatura->setTa_nombre(utf8_encode($fila[1]));
             $tipo_asignaturas[$i] = $tipo_asignatura;
             $i++;
         }
@@ -41,7 +41,7 @@ class Tipo_asignaturaDAO{
         $tipo_asignatura = new Tipo_asignaturaDTO();
         while ($fila = $result->fetch_row()) {
             $tipo_asignatura->setTa_id($fila[0]);
-            $tipo_asignatura->setTa_nombre($fila[1]);
+            $tipo_asignatura->setTa_nombre(utf8_encode($fila[1]));
         }
         $this->conexion->desconectar();
         return $tipo_asignatura;
@@ -56,7 +56,7 @@ class Tipo_asignaturaDAO{
         while ($fila = $result->fetch_row()) {
             $tipo_asignatura = new Tipo_asignaturaDTO();
             $tipo_asignatura->setTa_id($fila[0]);
-            $tipo_asignatura->setTa_nombre($fila[1]);
+            $tipo_asignatura->setTa_nombre(utf8_encode($fila[1]));
             $tipo_asignaturas[$i] = $tipo_asignatura;
             $i++;
         }

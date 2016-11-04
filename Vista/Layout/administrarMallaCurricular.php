@@ -215,6 +215,46 @@ $usu_nombre = $_SESSION["usu_nombre"];
         </div>
         <!-- ./wrapper -->
 
+        <!-- modal -->
+        <div class="modal fade" id="modalNuevaAsignatura" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Agregar Asignatura</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="ta_id">Tipo:</label>
+                                        <select class="form-control" id="ta_id" name="ta_id"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asig_codigo">Codigo:</label>
+                                        <input type="text" class="form-control" id="asig_codigo" name="asig_codigo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asig_nombre">Nombre:</label>
+                                        <input type="text" class="form-control" id="asig_nombre" name="asig_nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asig_periodo">Periodo:</label>
+                                        <input type="text" class="form-control" id="asig_periodo" name="asig_periodo" value="" readonly>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <!-- jQuery 2.2.3 -->
         <script src="../../Files/Complementos/template_admin_lite/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
@@ -253,6 +293,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <script>
             $(function () {
                 obtenerMallasCurriculares();
+                obtenerTiposAsignaturas();
             });
 
             function obtenerMallasCurriculares() {
@@ -274,6 +315,27 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         select.add(option);
                     } else {
                         cargar();
+                    }
+                });
+            }
+            
+            function obtenerTiposAsignaturas(){
+                $.get("../Servlet/administrarTipo_asignatura.php", {accion: 'LISTADO'}, function (data) {
+                    var data = eval(data);
+                    var select = document.getElementById("ta_id");
+                    var count = 0;
+                    $.each(data, function (k, v) {
+                        var option = document.createElement("option");
+                        option.text = v.ta_nombre;
+                        option.value = v.ta_id;
+                        select.add(option);
+                        count++;
+                    });
+                    if (count == 0) {
+                        var option = document.createElement("option");
+                        option.text = "Seleccionar...";
+                        option.value = -1;
+                        select.add(option);
                     }
                 });
             }
@@ -351,8 +413,9 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 $('#tbody').append("</tr>");
             }
 
-            function agregarAsignatura(asig_periodo) {
-                console.log(asig_periodo);
+            function agregarAsignatura(asig_periodo) {                
+                $('#asig_periodo').val(asig_periodo);
+                $('#modalNuevaAsignatura').modal('show');
             }
         </script>
     </body>
