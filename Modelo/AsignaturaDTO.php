@@ -3,6 +3,7 @@ class AsignaturaDTO {
     public $asig_codigo;
     public $asig_nombre;
     public $asig_periodo;
+    public $asig_creditos;
     public $m_id;
     public $ta_id;
 
@@ -32,7 +33,15 @@ class AsignaturaDTO {
     function setAsig_periodo($asig_periodo) {
         $this->asig_periodo = $asig_periodo;
     }
+    
+    function getAsig_creditos() {
+        return $this->asig_creditos;
+    }
 
+    function setAsig_creditos($asig_creditos) {
+        $this->asig_creditos = $asig_creditos;
+    }
+   
     function getM_id() {
         return $this->m_id;
     }

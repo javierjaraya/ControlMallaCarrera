@@ -221,14 +221,14 @@ $usu_rut_editar = $_REQUEST['usu_rut'];
                                                 if (permiso != -1) {
                                                     $.post("../Servlet/administrarPermiso_usuario.php", $("#fm").serialize(), function (data) {                                                        
                                                         if (!data.success) {
-                                                            notificacion(data.errorMsg, 'danger');
+                                                            notificacion(data.errorMsg, 'danger','alert');
                                                         } else {
-                                                            notificacion(data.mensaje, 'success');
+                                                            notificacion(data.mensaje, 'success','alert');
                                                             //location.href = 'administrarPermisosUsuarios.php';
                                                         }
                                                     }, "json");
                                                 }else{
-                                                    notificacion('Debe seleccionar un permiso', 'info')
+                                                    notificacion('Debe seleccionar un permiso', 'info','alert')
                                                 }
                                                 e.preventDefault();
                                             });

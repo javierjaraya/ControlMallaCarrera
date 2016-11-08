@@ -2,6 +2,7 @@
 
 include_once 'Mantenedores/AsignaturaDAO.php';
 include_once 'Mantenedores/DocenteDAO.php';
+include_once 'Mantenedores/Grupo_electivoDAO.php';
 include_once 'Mantenedores/MallaDAO.php';
 include_once 'Mantenedores/PerfilDAO.php';
 include_once 'Mantenedores/Permiso_usuarioDAO.php';
@@ -13,6 +14,7 @@ class Contenedor {
     private static $instancia = NULL;
     private $asignaturaDAO;
     private $docenteDAO;
+    private $grupo_electivoDAO;
     private $mallaDAO;
     private $perfilDAO;
     private $permiso_usuarioDAO;
@@ -23,6 +25,7 @@ class Contenedor {
     public function Contenedor() {
         $this->asignaturaDAO = new AsignaturaDAO();
         $this->docenteDAO = new DocenteDAO();
+        $this->grupo_electivoDAO = new Grupo_electivoDAO();
         $this->mallaDAO = new MallaDAO();
         $this->perfilDAO = new PerfilDAO();
         $this->permiso_usuarioDAO = new Permiso_usuarioDAO();
@@ -42,6 +45,10 @@ class Contenedor {
         return $this->asignaturaDAO->findAll();
     }
 
+    public function getAllPosiblesPrerrequisitos($m_id, $asig_periodo) {
+        return $this->asignaturaDAO->findAllPosiblesPrerrequisitos($m_id, $asig_periodo);
+    }
+
     public function addAsignatura($asignatura) {
         return $this->asignaturaDAO->save($asignatura);
     }
@@ -56,6 +63,10 @@ class Contenedor {
 
     public function getAsignaturaByID($asig_codigo) {
         return $this->asignaturaDAO->findByID($asig_codigo);
+    }
+
+    public function getAsignaturasByM_Id($m_id){
+        return $this->asignaturaDAO->findByM_ID($m_id);
     }
 
     public function getAsignaturaLikeAtrr($cadena) {
@@ -85,6 +96,34 @@ class Contenedor {
     public function getDocenteLikeAtrr($cadena) {
         return $this->docenteDAO->findLikeAtrr($cadena);
     }
+    
+    public function getAllGrupo_electivos() {
+        return $this->grupo_electivoDAO->findAll();
+    }
+
+    public function addGrupo_electivo($grupo_electivo) {
+        return $this->grupo_electivoDAO->save($grupo_electivo);
+    }
+
+    public function removeGrupo_electivo($ge_codigo) {
+        return $this->grupo_electivoDAO->delete($ge_codigo);
+    }
+
+    public function updateGrupo_electivo($grupo_electivo) {
+        return $this->grupo_electivoDAO->update($grupo_electivo);
+    }
+
+    public function getGrupo_electivoByID($ge_codigo) {
+        return $this->grupo_electivoDAO->findByID($ge_codigo);
+    }
+    
+    public function getGrupo_electivoByM_Id($m_id){
+        return $this->grupo_electivoDAO->findByM_ID($m_id);
+    }
+
+    public function getGrupo_electivoLikeAtrr($cadena) {
+        return $this->grupo_electivoDAO->findLikeAtrr($cadena);
+    }
 
     public function getAllMallas() {
         return $this->mallaDAO->findAll();
@@ -108,6 +147,10 @@ class Contenedor {
 
     public function getMallaLikeAtrr($cadena) {
         return $this->mallaDAO->findLikeAtrr($cadena);
+    }
+    
+    public function cantidadMaximaAsignaturasEnSemestreByMalla($m_id){
+        return $this->mallaDAO->cantidadMaximaAsignaturasEnSemestre($m_id);
     }
 
     public function getAllPerfils() {

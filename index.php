@@ -96,7 +96,7 @@
                                         success: function (result){
                                             var result = eval('(' + result + ')');
                                             if (!result.success) {
-                                                notificacion(result.mensaje, 'danger')
+                                                notificacion(result.mensaje, 'danger','alert')
                                             } else {
                                                 location.href = result.pagina;
                                             }

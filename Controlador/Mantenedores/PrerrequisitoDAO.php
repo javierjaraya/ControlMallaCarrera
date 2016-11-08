@@ -69,8 +69,8 @@ class PrerrequisitoDAO{
 
     public function save($prerrequisito) {
         $this->conexion->conectar();
-        $query = "INSERT INTO prerrequisito (pre_id,asig_codigo,asig_codigo_prerrequisito)"
-                . " VALUES ( ".$prerrequisito->getPre_id()." ,  ".$prerrequisito->getAsig_codigo()." ,  ".$prerrequisito->getAsig_codigo_prerrequisito()." )";
+        $query = "INSERT INTO prerrequisito (asig_codigo,asig_codigo_prerrequisito)"
+                . " VALUES (".$prerrequisito->getAsig_codigo()." ,  ".$prerrequisito->getAsig_codigo_prerrequisito()." )";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;

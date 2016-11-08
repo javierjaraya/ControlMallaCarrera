@@ -196,9 +196,9 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 if (validar()) {
                     $.post("../Servlet/administrarMalla.php", $("#fm").serialize(), function (data) {
                         if (!data.success) {
-                            notificacion(data.errorMsg, 'danger');
+                            notificacion(data.errorMsg, 'danger','alert');
                         } else {
-                            notificacion(data.mensaje, 'success');
+                            notificacion(data.mensaje, 'success','alert');
                             location.href = 'administrarMallaCurricular.php';
                         }
                     }, "json");
@@ -211,19 +211,19 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 var m_fechaFin = document.getElementById("m_fechaFin").value;
                 var m_cantidadSemestres = document.getElementById("m_cantidadSemestres").value;
                 if(m_fechaInicio == ""){
-                    notificacion("Debe ingresar una fecha de inicio.", 'danger');
+                    notificacion("Debe ingresar una fecha de inicio.", 'danger','alert');
                     return false;
                 } else if(m_fechaFin == ""){
-                    notificacion("Debe ingresar una fecha de termino.", 'danger');
+                    notificacion("Debe ingresar una fecha de termino.", 'danger','alert');
                     return false;
                 } else if(m_fechaInicio > m_fechaFin){
-                    notificacion("La fecha de incio debe ser mayor a la de termino.", 'danger');
+                    notificacion("La fecha de incio debe ser mayor a la de termino.", 'danger','alert');
                     return false;
                 }  else if(m_fechaInicio == m_fechaFin){
-                    notificacion("La fecha de termino no puede ser igual a la de inicio.", 'danger');
+                    notificacion("La fecha de termino no puede ser igual a la de inicio.", 'danger','alert');
                     return false;
                 } else if(m_cantidadSemestres == ""){
-                    notificacion("Debe ingresar la cantidad de semestres.", 'danger');
+                    notificacion("Debe ingresar la cantidad de semestres.", 'danger','alert');
                     return false;
                 }
                 return true;
