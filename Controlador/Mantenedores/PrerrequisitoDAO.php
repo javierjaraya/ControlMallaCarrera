@@ -48,6 +48,24 @@ class PrerrequisitoDAO{
         $this->conexion->desconectar();
         return $prerrequisito;
     }
+    
+    public function findAllbyAsig_codigo($asig_codigo) {
+        $this->conexion->conectar();
+        $query = "SELECT * FROM prerrequisito WHERE asig_codigo =  ".$asig_codigo." ";
+        $result = $this->conexion->ejecutar($query);
+        $i = 0;
+        $prerrequisitos = array();
+        while ($fila = $result->fetch_row()) {
+            $prerrequisito = new PrerrequisitoDTO();
+            $prerrequisito->setPre_id($fila[0]);
+            $prerrequisito->setAsig_codigo($fila[1]);
+            $prerrequisito->setAsig_codigo_prerrequisito($fila[2]);
+            $prerrequisitos[$i] = $prerrequisito;
+            $i++;
+        }
+        $this->conexion->desconectar();
+        return $prerrequisitos;
+    }
 
     public function findLikeAtrr($cadena) {
         $this->conexion->conectar();

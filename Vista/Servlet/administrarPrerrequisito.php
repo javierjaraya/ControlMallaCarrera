@@ -74,5 +74,11 @@ if ($accion != null) {
         } else {
             echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
         }
+    } else if ($accion == "OBTENER_PRERREQUISITOS") {
+        $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+        
+        $prerrequisitos = $control->getAllPrerrequisitosByAsig_Codigo($asig_codigo);
+        $json = json_encode($prerrequisitos);
+        echo $json;
     }
 }

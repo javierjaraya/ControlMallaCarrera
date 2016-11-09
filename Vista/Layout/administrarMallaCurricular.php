@@ -73,14 +73,25 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 display: table-header-group;
                 vertical-align: middle;
                 border-color: inherit;
-                background-color: #81DAF5;
+                background-color: #46C7EF;//#81DAF5;
             }
             tbody>td {
-                background-color: #CEE3F6;
                 border-width: 2px;
                 border-style: solid; 
                 border-color: #fff;
                 text-align: center;
+                word-wrap:break-word;
+                width: 60px;
+            }
+
+            .recuadro-asig {
+                height: 80px;
+                background-color: #C1DEF8;
+                padding-top: 10px;
+                word-wrap: break-word;
+            }
+            .recuadro-asig a{
+                color: black;
             }
         </style>
 
@@ -378,7 +389,9 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             /* Guardar Malla/. */
                                             $("#fm").submit(function (e) {
                                                 if (validar()) {
+                                                    console.log("Guardando  " + $("#fm").serialize());
                                                     $.post("../Servlet/administrarMalla.php", $("#fm").serialize(), function (data) {
+                                                        console.log(data);
                                                         if (!data.success) {
                                                             notificacion(data.errorMsg, 'danger', 'alert');
                                                         } else {
@@ -445,9 +458,9 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                             $('#tbody').append("<td></td>");
                                                         } else {
                                                             if (data.asignatuas_malla[col][fila].ta_id == 3) {//Electivo
-                                                                $('#tbody').append("<td>" + data.asignatuas_malla[col][fila].ge_nombre + "</td>");
+                                                                $('#tbody').append("<td><div class='recuadro-asig'><a href='editarAsignatura.php?cod=" + data.asignatuas_malla[col][fila].ge_codigo + "&ta_a=" + data.asignatuas_malla[col][fila].ta_id + "'>" + data.asignatuas_malla[col][fila].ge_nombre + "<br>(" + data.asignatuas_malla[col][fila].ge_codigo + ")</a></div></td>");
                                                             } else {
-                                                                $('#tbody').append("<td>" + data.asignatuas_malla[col][fila].asig_nombre + "</td>");
+                                                                $('#tbody').append("<td><div class='recuadro-asig'><a href='editarAsignatura.php?cod=" + data.asignatuas_malla[col][fila].asig_codigo + "&ta_a=" + data.asignatuas_malla[col][fila].ta_id + "'>" + data.asignatuas_malla[col][fila].asig_nombre + "<br>(" + data.asignatuas_malla[col][fila].asig_codigo + ")</a></div></td>");
                                                             }
                                                         }
                                                     }
@@ -459,11 +472,11 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             function agregarAsignatura(asig_periodo) {
                                                 document.getElementById("fm-asignatura").reset();
                                                 $('#asig_periodo').val(asig_periodo);
-                                                
+
                                                 document.getElementById("row_prerrequisitos").style.display = 'block';
                                                 $('#n_prerrequisito').val(0);
                                                 $('#tabla_prerrequisito').html("");
-                                                
+
                                                 $('#modalNuevaAsignatura').modal('show');
                                             }
 

@@ -109,4 +109,25 @@ class MallaDAO {
         return $n_asignaturas;
     }
 
+    public function maxPeriodoUtilizadoByM_Id($m_id) {
+        $this->conexion->conectar();
+        $query = "SELECT (SELECT max(ge_periodo) FROM grupo_electivo WHERE  m_id =  " . $m_id . ") as ge_periodo, (SELECT max(asig_periodo) FROM asignatura WHERE  m_id =  " . $m_id . ") as asig_periodo";
+        $result = $this->conexion->ejecutar($query);
+        $ge_periodo = 0;
+        $asig_periodo = 0;
+        while ($fila = $result->fetch_row()) {
+            $ge_periodo = $fila[0];
+            $asig_periodo = $fila[1];
+        }
+        $this->conexion->desconectar();
+        
+        $max = 0;
+        if($ge_periodo > $asig_periodo){
+            $max = $ge_periodo;
+        }else{
+            $max = $asig_periodo;
+        }
+        return $max;
+    }
+
 }

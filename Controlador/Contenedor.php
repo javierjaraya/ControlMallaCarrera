@@ -152,6 +152,10 @@ class Contenedor {
     public function cantidadMaximaAsignaturasEnSemestreByMalla($m_id){
         return $this->mallaDAO->cantidadMaximaAsignaturasEnSemestre($m_id);
     }
+    
+    public function maxPeriodoUtilizadoByM_Id($m_id) {
+        return $this->mallaDAO->maxPeriodoUtilizadoByM_Id($m_id);
+    }
 
     public function getAllPerfils() {
         return $this->perfilDAO->findAll();
@@ -203,6 +207,10 @@ class Contenedor {
 
     public function getAllPrerrequisitos() {
         return $this->prerrequisitoDAO->findAll();
+    }
+    
+    public function getAllPrerrequisitosByAsig_Codigo($asig_codigo) {
+        return $this->prerrequisitoDAO->findAllbyAsig_codigo($asig_codigo);
     }
 
     public function addPrerrequisito($prerrequisito) {
