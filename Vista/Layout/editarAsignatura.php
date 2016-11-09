@@ -272,26 +272,26 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
             <div class="control-sidebar-bg"></div>
         </div>
         <!-- ./wrapper -->
-        
+
         <!-- modal -->
         <div class="modal fade" id="modalConfirmacionEliminarPrerrequisito" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Confirmacion</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h4>¿Esta seguro de eliminar el prerrequisito?, una vez eliminado no se podra recuperrar la informacion.</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </div>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirmacion</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>¿Esta seguro de eliminar el prerrequisito?, una vez eliminado no se podra recuperrar la informacion.</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        
+
 
         <!-- jQuery 2.2.3 -->
         <script src="../../Files/Complementos/template_admin_lite/plugins/jQuery/jquery-2.2.3.min.js"></script>
