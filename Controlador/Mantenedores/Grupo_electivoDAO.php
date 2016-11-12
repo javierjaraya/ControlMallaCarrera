@@ -114,7 +114,7 @@ class Grupo_electivoDAO{
                 . "  ge_creditos =  ".$grupo_electivo->getGe_creditos()." ,"
                 . "  m_id =  ".$grupo_electivo->getM_id()." "
                 . "  ta_id =  ".$grupo_electivo->getTa_id()." "
-                . " WHERE  ge_codigo =  ".$grupo_electivo->getGe_codigo()." ";
+                . " WHERE ge_codigo =  ".$grupo_electivo->getGe_codigo()." ";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;

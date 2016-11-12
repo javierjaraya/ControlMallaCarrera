@@ -117,16 +117,57 @@ if ($accion != null) {
         $asig_creditos = htmlspecialchars($_REQUEST['asig_creditos']);
         $m_id = htmlspecialchars($_REQUEST['m_id']);
         $ta_id = htmlspecialchars($_REQUEST['ta_id']);
+        $n_prerrequisito = 0;
+        if (isset($_REQUEST['n_prerrequisito'])) {
+            $n_prerrequisito = htmlspecialchars($_REQUEST['n_prerrequisito']);
+        }
 
-        $asignatura = new AsignaturaDTO();
-        $asignatura->setAsig_codigo($asig_codigo);
-        $asignatura->setAsig_nombre($asig_nombre);
-        $asignatura->setAsig_periodo($asig_periodo);
-        $asignatura->setAsig_creditos($asig_creditos);
-        $asignatura->setM_id($m_id);
-        $asignatura->setTa_id($ta_id);
+        $result;
+        if ($ta_id == 1) {//Normal
+            $asignatura = new AsignaturaDTO();
+            $asignatura->setAsig_codigo($asig_codigo);
+            $asignatura->setAsig_nombre($asig_nombre);
+            $asignatura->setAsig_periodo($asig_periodo);
+            $asignatura->setAsig_creditos($asig_creditos);
+            $asignatura->setM_id($m_id);
+            $asignatura->setTa_id($ta_id);
 
-        $result = $control->updateAsignatura($asignatura);
+            $result = $control->updateAsignatura($asignatura);
+
+            if ($result) {
+                for ($i = 0; $i <= $n_prerrequisito; $i++) {
+                    if (isset($_REQUEST['cod_prerrequisito_' . $i])) {
+                        $asig_codigo_prerrequisito = htmlspecialchars($_REQUEST['cod_prerrequisito_' . $i]);
+                        $prerrequisito = new PrerrequisitoDTO();
+                        $prerrequisito->setAsig_codigo($asig_codigo);
+                        $prerrequisito->setAsig_codigo_prerrequisito($asig_codigo_prerrequisito);
+
+                        $control->addPrerrequisito($prerrequisito);
+                    }
+                }
+            }
+        } else if ($ta_id == 2) {//Formacion Integral
+            $asignatura = new AsignaturaDTO();
+            $asignatura->setAsig_codigo($asig_codigo);
+            $asignatura->setAsig_nombre($asig_nombre);
+            $asignatura->setAsig_periodo($asig_periodo);
+            $asignatura->setAsig_creditos($asig_creditos);
+            $asignatura->setM_id($m_id);
+            $asignatura->setTa_id($ta_id);
+
+            $result = $control->updateAsignatura($asignatura);
+        } else if ($ta_id == 3) {//Electivo
+            $grupo_electivo = new Grupo_electivoDTO();
+            $grupo_electivo->setGe_codigo($asig_codigo);
+            $grupo_electivo->setGe_nombre($asig_nombre);
+            $grupo_electivo->setGe_periodo($asig_periodo);
+            $grupo_electivo->setGe_creditos($asig_creditos);
+            $grupo_electivo->setTa_id($ta_id);
+            $grupo_electivo->setM_id($m_id);
+
+            $result = $control->updateGrupo_electivo($grupo_electivo);
+        }
+
         if ($result) {
             echo json_encode(array(
                 'success' => true,
