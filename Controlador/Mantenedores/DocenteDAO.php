@@ -11,7 +11,15 @@ class DocenteDAO{
 
     public function delete($doc_id) {
         $this->conexion->conectar();
-        $query = "DELETE FROM docente WHERE  doc_id =  ".$doc_id." ";
+        $query = "DELETE FROM docente WHERE doc_id =  ".$doc_id." ";
+        $result = $this->conexion->ejecutar($query);
+        $this->conexion->desconectar();
+        return $result;
+    }
+    
+    public function deleteByAsig_Codigo($asig_codigo) {
+        $this->conexion->conectar();
+        $query = "DELETE FROM docente WHERE asig_codigo =  ".$asig_codigo." ";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;

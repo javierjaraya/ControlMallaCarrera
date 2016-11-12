@@ -84,6 +84,10 @@ class Contenedor {
     public function removeDocente($doc_id) {
         return $this->docenteDAO->delete($doc_id);
     }
+    
+    public function removeDocenteBy_Asig_codigo($asig_codigo) {
+        return $this->docenteDAO->deleteByAsig_Codigo($asig_codigo);
+    }
 
     public function updateDocente($docente) {
         return $this->docenteDAO->update($docente);
@@ -212,6 +216,10 @@ class Contenedor {
     public function getAllPrerrequisitosByAsig_Codigo($asig_codigo) {
         return $this->prerrequisitoDAO->findAllbyAsig_codigo($asig_codigo);
     }
+    
+    public function getAllPrerrequisitosByAsig_Codigo_Prerrequisito($asig_codigo_prerrequisito) {
+        return $this->prerrequisitoDAO->findAllbyAsig_codigo_prerrequisito($asig_codigo_prerrequisito);
+    }
 
     public function addPrerrequisito($prerrequisito) {
         return $this->prerrequisitoDAO->save($prerrequisito);
@@ -219,6 +227,14 @@ class Contenedor {
 
     public function removePrerrequisito($pre_id) {
         return $this->prerrequisitoDAO->delete($pre_id);
+    }
+    
+    public function removePrerrequisitoByAsig_Codigo($asig_codigo) {
+        return $this->prerrequisitoDAO->deleteByAsig_Codigo($asig_codigo);
+    }
+    
+    public function removePrerrequisitoByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo,$asig_codigo_prerrequisito) {
+        return $this->prerrequisitoDAO->deleteByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo,$asig_codigo_prerrequisito);
     }
 
     public function updatePrerrequisito($prerrequisito) {

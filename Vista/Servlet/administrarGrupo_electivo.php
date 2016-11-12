@@ -44,7 +44,7 @@ if ($accion != null) {
 
         $result = $control->removeGrupo_electivo($ge_codigo);
         if ($result) {
-            echo json_encode(array('success' => true, 'mensaje' => "Grupo_electivo borrado correctamente"));
+            echo json_encode(array('success' => true, 'mensaje' => "Grupo electivo borrado correctamente"));
         } else {
             echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
         }

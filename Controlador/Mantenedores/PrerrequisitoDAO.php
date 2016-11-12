@@ -16,6 +16,22 @@ class PrerrequisitoDAO{
         $this->conexion->desconectar();
         return $result;
     }
+    
+    public function deleteByAsig_Codigo($asig_codigo) {
+        $this->conexion->conectar();
+        $query = "DELETE FROM prerrequisito WHERE asig_codigo =  ".$asig_codigo;
+        $result = $this->conexion->ejecutar($query);
+        $this->conexion->desconectar();
+        return $result;
+    }
+    
+    public function deleteByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo,$asig_codigo_prerrequisito) {
+        $this->conexion->conectar();
+        $query = "DELETE FROM prerrequisito WHERE  asig_codigo =  ".$asig_codigo." AND asig_codigo_prerrequisito = ".$asig_codigo_prerrequisito;
+        $result = $this->conexion->ejecutar($query);
+        $this->conexion->desconectar();
+        return $result;
+    }
 
     public function findAll() {
         $this->conexion->conectar();
@@ -52,6 +68,24 @@ class PrerrequisitoDAO{
     public function findAllbyAsig_codigo($asig_codigo) {
         $this->conexion->conectar();
         $query = "SELECT * FROM prerrequisito WHERE asig_codigo =  ".$asig_codigo." ";
+        $result = $this->conexion->ejecutar($query);
+        $i = 0;
+        $prerrequisitos = array();
+        while ($fila = $result->fetch_row()) {
+            $prerrequisito = new PrerrequisitoDTO();
+            $prerrequisito->setPre_id($fila[0]);
+            $prerrequisito->setAsig_codigo($fila[1]);
+            $prerrequisito->setAsig_codigo_prerrequisito($fila[2]);
+            $prerrequisitos[$i] = $prerrequisito;
+            $i++;
+        }
+        $this->conexion->desconectar();
+        return $prerrequisitos;
+    }
+    
+    public function findAllbyAsig_codigo_prerrequisito($asig_codigo_prerrequisito) {
+        $this->conexion->conectar();
+        $query = "SELECT * FROM prerrequisito WHERE asig_codigo_prerrequisito =  ".$asig_codigo_prerrequisito." ";
         $result = $this->conexion->ejecutar($query);
         $i = 0;
         $prerrequisitos = array();

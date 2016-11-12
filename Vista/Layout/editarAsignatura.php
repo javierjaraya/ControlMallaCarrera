@@ -240,8 +240,8 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
 
                                     </div>
                                     <!-- /.box-body -->
-                                    <div class="box-footer" style="text-align: right;">    
-                                        <button class="btn btn-danger" name="remove_levels">Eliminar</button>
+                                    <div class="box-footer" style="text-align: right;" id="botonera">  
+                                        <a class="btn btn-danger" onclick="removeAsignatura()">Eliminar</a>
                                         <a class="btn btn-info" onclick="guardarAsignatura()">Guardar</a>
                                     </div>
                                     <!-- /.box-footer -->
@@ -277,7 +277,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
         <div class="modal fade" id="modalConfirmacionEliminarPrerrequisito" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color: #3c8dbc; color: #fff;" >
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Confirmacion</h4>
                     </div>
@@ -285,23 +285,33 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                         <h4>¿Esta seguro de eliminar el prerrequisito?, una vez eliminado no se podra recuperrar la informacion.</h4>
                     </div>
                     <div class="modal-footer">
+                        <input type="hidden" id="n_aux_conf" name="n_aux" value="">
+                        <input type="hidden" id="asig_codigo_prerrequisito_conf" name="asig_codigo_prerrequisito" value="">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmaEliminarPrerrequisitoGuardado()">Eliminar</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-
-        <div id="confirm" class="modal hide fade">
-            <div class="modal-body">
-                ¿Esta seguro de eliminar el prerrequisito?, una vez eliminado no se podra recuperrar la informacion.
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Eliminar</button>
-                <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
-            </div>
-        </div>
+        <!-- modal -->
+        <div class="modal fade" id="modalConfirmacionEliminarAsignatura" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #3c8dbc; color: #fff;" >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirmación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>¿Esta seguro de eliminar la asignatura?, una vez eliminada no se podra recuperrar la información.</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmaEliminarAsignatura()">Eliminar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
 
         <!-- jQuery 2.2.3 -->
@@ -341,212 +351,254 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
         <script src="../../Files/js/usabilidad.js"></script>
 
         <script>
-                                            $(function () {
-                                                obtenerDatosAsignatura();
-                                            });
+                            $(function () {
+                                obtenerDatosAsignatura();
+                            });
 
-                                            function obtenerDatosAsignatura() {
-                                                var asig_codigo = $('#asig_codigo').val();
-                                                var ta_id = $('#ta_id').val();
-                                                if (ta_id == 3) {
-                                                    $.get("../Servlet/administrarGrupo_electivo.php", {accion: 'BUSCAR_BY_ID', ge_codigo: asig_codigo}, function (data) {
-                                                        $('#asig_nombre').val(data.ge_nombre);
-                                                        $('#asig_creditos').val(data.ge_creditos);
-                                                        $('#text_asig_periodo').html(data.ge_periodo);
-                                                        $('#asig_periodo').val(data.ge_periodo);
-                                                        $('#text_m_id').html(data.m_id);
-                                                        $('#m_id').val(data.m_id);
-                                                        habilitarCampos();
-                                                    }, "json");
-                                                } else {
-                                                    $.get("../Servlet/administrarAsignatura.php", {accion: 'BUSCAR_BY_ID', asig_codigo: asig_codigo}, function (data) {
-                                                        $('#asig_nombre').val(data.asig_nombre);
-                                                        $('#asig_creditos').val(data.asig_creditos);
-                                                        $('#text_asig_periodo').html(data.asig_periodo);
-                                                        $('#asig_periodo').val(data.asig_periodo);
-                                                        $('#text_m_id').html(data.m_id);
-                                                        $('#m_id').val(data.m_id);
-                                                        habilitarCampos();
-                                                    }, "json");
-                                                }
+                            function obtenerDatosAsignatura() {
+                                var asig_codigo = $('#asig_codigo').val();
+                                var ta_id = $('#ta_id').val();
+                                if (ta_id == 3) {
+                                    $.get("../Servlet/administrarGrupo_electivo.php", {accion: 'BUSCAR_BY_ID', ge_codigo: asig_codigo}, function (data) {
+                                        $('#asig_nombre').val(data.ge_nombre);
+                                        $('#asig_creditos').val(data.ge_creditos);
+                                        $('#text_asig_periodo').html(data.ge_periodo);
+                                        $('#asig_periodo').val(data.ge_periodo);
+                                        $('#text_m_id').html(data.m_id);
+                                        $('#m_id').val(data.m_id);
+                                        habilitarCampos();
+                                    }, "json");
+                                } else {
+                                    $.get("../Servlet/administrarAsignatura.php", {accion: 'BUSCAR_BY_ID', asig_codigo: asig_codigo}, function (data) {
+                                        $('#asig_nombre').val(data.asig_nombre);
+                                        $('#asig_creditos').val(data.asig_creditos);
+                                        $('#text_asig_periodo').html(data.asig_periodo);
+                                        $('#asig_periodo').val(data.asig_periodo);
+                                        $('#text_m_id').html(data.m_id);
+                                        $('#m_id').val(data.m_id);
+                                        habilitarCampos();
+                                    }, "json");
+                                }
 
 
+                            }
+
+                            function habilitarCampos() {
+                                var ta_id = $('#ta_id').val();
+                                if (ta_id == 1) {//Normal
+                                    document.getElementById("row_prerrequisitos").style.display = 'block';
+                                    $('#n_prerrequisito').val(0);
+                                    $('#tabla_prerrequisito').html("");
+                                    obtenerPrerrequisitos();
+                                } else if (ta_id == 2) {//Formación Integral
+                                    document.getElementById("row_prerrequisitos").style.display = 'none';
+                                    $('#n_prerrequisito').val(0);
+                                    $('#tabla_prerrequisito').html("");
+                                } else if (ta_id == 3) {//Electivo
+                                    document.getElementById("row_prerrequisitos").style.display = 'none';
+                                    $('#n_prerrequisito').val(0);
+                                    $('#tabla_prerrequisito').html("");
+                                }
+                            }
+
+                            function obtenerPrerrequisitos() {
+                                var asig_codigo = $('#asig_codigo').val();
+                                $.get("../Servlet/administrarPrerrequisito.php", {accion: 'OBTENER_PRERREQUISITOS', asig_codigo: asig_codigo}, function (data) {
+                                    var data = eval(data);
+                                    $.each(data, function (k, v) {
+                                        mostrarPrerrequisitoGuardado(v.asig_codigo_prerrequisito);
+                                    });
+                                });
+                            }
+
+                            function mostrarPrerrequisitoGuardado(asig_codigo_prerrequisito) {
+                                var n_prerrequisito = $("#n_prerrequisito").val();
+                                var asig_periodo = $("#asig_periodo").val();
+                                var m_id = $('#m_id').val();
+
+                                var n_aux = n_prerrequisito;
+                                n_prerrequisito++;
+                                $("#n_prerrequisito").val(n_prerrequisito);
+                                $.get("../Servlet/administrarAsignatura.php", {accion: 'OBTENER_POSIBLES_PRERREQUISITOS', m_id: m_id, asig_periodo: asig_periodo}, function (data) {
+                                    var data = eval(data);
+
+                                    var select_html = "<tr id='tr_" + n_aux + "'><td><select class='form-control pull-right' id='cod_prerrequisito_" + n_aux + "' name='cod_prerrequisito_" + n_aux + "'  disabled='disabled'></select></td><td><center><a class='btn btn-danger' onclick='removePrerrequisitoGuardado(" + n_aux + "," + asig_codigo_prerrequisito + ")'><i class='fa fa-trash'></i></a></center></td></tr>"
+                                    $("#tabla_prerrequisito").append(select_html);
+
+                                    var count = 0;
+                                    var select = document.getElementById("cod_prerrequisito_" + n_aux);
+
+                                    $.each(data, function (k, v) {
+                                        var option = document.createElement("option");
+                                        option.text = v.asig_nombre;
+                                        option.value = v.asig_codigo;
+                                        select.add(option);
+                                        count++;
+                                    });
+                                    if (count == 0) {
+                                        var option = document.createElement("option");
+                                        option.text = "Seleccionar...";
+                                        option.value = -1;
+                                        select.add(option);
+                                    } else {
+                                        select.selectedIndex = asig_codigo_prerrequisito;
+                                        select.value = asig_codigo_prerrequisito;
+                                    }
+                                });
+                            }
+
+                            function addPrerrequisito() {
+                                var n_prerrequisito = $("#n_prerrequisito").val();
+                                var asig_periodo = $("#asig_periodo").val();
+                                var m_id = $('#m_id').val();
+
+                                var n_aux = n_prerrequisito;
+                                n_prerrequisito++;
+                                $("#n_prerrequisito").val(n_prerrequisito);
+                                $.get("../Servlet/administrarAsignatura.php", {accion: 'OBTENER_POSIBLES_PRERREQUISITOS', m_id: m_id, asig_periodo: asig_periodo}, function (data) {
+                                    var data = eval(data);
+
+                                    var select_html = "<tr id='tr_" + n_aux + "'><td><select class='form-control pull-right' id='cod_prerrequisito_" + n_aux + "' name='cod_prerrequisito_" + n_aux + "'></select></td><td><center><a class='btn btn-danger' onclick='removePrerrequisito(" + n_aux + ")'><i class='fa fa-trash'></i></a></center></td></tr>"
+                                    $("#tabla_prerrequisito").append(select_html);
+
+                                    var count = 0;
+                                    var select = document.getElementById("cod_prerrequisito_" + n_aux);
+                                    $.each(data, function (k, v) {
+                                        var option = document.createElement("option");
+                                        option.text = v.asig_nombre;
+                                        option.value = v.asig_codigo;
+                                        select.add(option);
+                                        count++;
+                                    });
+                                    if (count == 0) {
+                                        var option = document.createElement("option");
+                                        option.text = "Seleccionar...";
+                                        option.value = -1;
+                                        select.add(option);
+                                    }
+                                });
+                            }
+
+                            function removePrerrequisito(n_prerrequisito) {
+                                $("#tr_" + n_prerrequisito).remove();
+                            }
+
+                            /* ELIMINAR PRERREQUISITO GUARDADO*/
+                            function removePrerrequisitoGuardado(n_aux, asig_codigo_prerrequisito) {
+                                $('#n_aux_conf').val(n_aux);
+                                $('#asig_codigo_prerrequisito_conf').val(asig_codigo_prerrequisito)
+                                $('#modalConfirmacionEliminarPrerrequisito').modal('show');
+                            }
+
+                            function confirmaEliminarPrerrequisitoGuardado() {
+                                var n_aux = $('#n_aux_conf').val();
+                                var asig_codigo_prerrequisito = $('#asig_codigo_prerrequisito_conf').val();
+                                var asig_codigo = $('#asig_codigo').val();
+                                $.get("../Servlet/administrarPrerrequisito.php", {accion: 'BORRAR_BY_ASIG_CODIGO_ASIG_PRERREQUISITO', asig_codigo: asig_codigo, asig_codigo_prerrequisito: asig_codigo_prerrequisito}, function (data) {
+                                    $("#tr_" + n_aux).remove();
+                                    $('#modalConfirmacionEliminarPrerrequisito').modal('toggle');
+                                    if (!data.success) {
+                                        notificacion(data.errorMsg, 'danger', 'alert');
+                                    } else {
+                                        notificacion(data.mensaje, 'success', 'alert');
+                                    }
+                                }, "json");
+                            }
+                            /* FIN ELIMINAR PRERREQUISITO GUARDADO*/
+
+                            /* ELIMINAR ASIGNATURA*/
+                            function removeAsignatura() {
+                                $('#modalConfirmacionEliminarAsignatura').modal('show');
+                            }
+
+                            function confirmaEliminarAsignatura() {
+                                var asig_codigo = $('#asig_codigo').val();
+                                var ta_id = $('#ta_id').val();
+                                if (ta_id != 3) {
+                                    $.get("../Servlet/administrarAsignatura.php", {accion: 'BORRAR', asig_codigo: asig_codigo}, function (data) {
+                                        $('#modalConfirmacionEliminarAsignatura').modal('toggle');
+                                        if (!data.success) {
+                                            notificacion(data.errorMsg, 'danger', 'alert');
+                                        } else {
+                                            notificacion(data.mensaje, 'success', 'alert');
+                                            $("#botonera").html('<a class="btn btn-default" href="administrarMallaCurricular.php">Volver atrás</a>');
+                                        }
+                                    }, "json");
+                                } else {
+                                    $.get("../Servlet/administrarGrupo_electivo.php", {accion: 'BORRAR', ge_codigo: asig_codigo}, function (data) {
+                                        $('#modalConfirmacionEliminarAsignatura').modal('toggle');
+                                        if (!data.success) {
+                                            notificacion(data.errorMsg, 'danger', 'alert');
+                                        } else {
+                                            notificacion(data.mensaje, 'success', 'alert');
+                                            $("#botonera").html('<a class="btn btn-default" href="administrarMallaCurricular.php">Volver atrás</a>');
+                                        }
+                                    }, "json");
+                                }
+                            }
+
+                            /* Guardar asignatura/. */
+                            function guardarAsignatura() {
+                                if (validarAsignatura()) {
+                                    $.post("../Servlet/administrarAsignatura.php", $("#fm-asignatura").serialize(), function (data) {
+                                        if (!data.success) {
+                                            notificacion(data.errorMsg, 'danger', 'alert');
+                                        } else {
+                                            notificacion(data.mensaje, 'success', 'alert');
+                                            //$("#fm-asignatura")[0].reset();
+                                            $("#thead").empty();
+                                            $("#tbody").empty();
+                                            obtenerDatosAsignatura();
+                                        }
+                                    }, "json");
+                                }
+                            }
+
+                            function validarAsignatura() {
+                                var asig_nombre = $("#asig_nombre").val();
+                                var asig_creditos = $("#asig_creditos").val();
+                                var ta_id = $('#ta_id').val();
+
+                                if (asig_nombre == "") {
+                                    notificacion("Debe ingresar el nombre de la asignatura.", 'danger', 'alert');
+                                    return false;
+                                } else if (asig_creditos == "") {
+                                    notificacion("Debe ingresar la cantidad de creditos de la asignatura.", 'danger', 'alert');
+                                    return false;
+                                } else if (isNaN(asig_creditos)) {
+                                    notificacion("La cantidad de creditos debe ser un valor numerico.", 'danger', 'alert');
+                                    return false;
+                                } else if (asig_creditos == 0) {
+                                    notificacion("La cantidad de creditos debe ser mayor que cero.", 'danger', 'alert');
+                                    return false;
+                                }
+                                /*SOLO HABILITADO EL AGREGAR ASIGNATURAS NORMALES*/
+                                if (ta_id == 1) {//NORMAL
+                                    //Validar que no se repitan los asig_codigos de los prerrequisitos
+                                    var codigos = [];
+                                    var n_prerrequisito = $("#n_prerrequisito").val();
+                                    for (var i = 0; i <= n_prerrequisito; i++) {
+                                        if ($("#cod_prerrequisito_" + i).val() != "undefined") {
+                                            var cod = $("#cod_prerrequisito_" + i).val();
+                                            var res = codigos.indexOf(cod);
+                                            if (res == -1) {
+                                                codigos[cod] = cod;
+                                            } else {
+                                                notificacion("No se pueden repetir los prerrequisitos.", 'danger', 'alert');
+                                                return false;
                                             }
+                                        }
+                                    }
+                                } else if (ta_id == 2) {//FORMACION INTEGRAL
+                                    //notificacion("Aun no esta habilitado el agregar formaciones integrales.", 'info', 'modal-alert');                                                    
+                                } else if (ta_id == 3) {//ELECTIVO
+                                    //notificacion("Aun no esta habilitado el agregar electivos.", 'info', 'modal-alert');
+                                }
+                                return true;
+                            }
+                            /* ./Fin Guardar asignatura */
 
-                                            function habilitarCampos() {
-                                                var ta_id = $('#ta_id').val();
-                                                if (ta_id == 1) {//Normal
-                                                    document.getElementById("row_prerrequisitos").style.display = 'block';
-                                                    $('#n_prerrequisito').val(0);
-                                                    $('#tabla_prerrequisito').html("");
-                                                    obtenerPrerrequisitos();
-                                                } else if (ta_id == 2) {//Formación Integral
-                                                    document.getElementById("row_prerrequisitos").style.display = 'none';
-                                                    $('#n_prerrequisito').val(0);
-                                                    $('#tabla_prerrequisito').html("");
-                                                } else if (ta_id == 3) {//Electivo
-                                                    document.getElementById("row_prerrequisitos").style.display = 'none';
-                                                    $('#n_prerrequisito').val(0);
-                                                    $('#tabla_prerrequisito').html("");
-                                                }
-                                            }
 
-                                            function obtenerPrerrequisitos() {
-                                                var asig_codigo = $('#asig_codigo').val();
-                                                $.get("../Servlet/administrarPrerrequisito.php", {accion: 'OBTENER_PRERREQUISITOS', asig_codigo: asig_codigo}, function (data) {
-                                                    var data = eval(data);
-                                                    $.each(data, function (k, v) {
-                                                        mostrarPrerrequisitoGuardado(v.asig_codigo_prerrequisito);
-                                                    });
-                                                });
-                                            }
-
-                                            function mostrarPrerrequisitoGuardado(asig_codigo_prerrequisito) {
-                                                var n_prerrequisito = $("#n_prerrequisito").val();
-                                                var asig_periodo = $("#asig_periodo").val();
-                                                var m_id = $('#m_id').val();
-
-                                                var n_aux = n_prerrequisito;
-                                                n_prerrequisito++;
-                                                $("#n_prerrequisito").val(n_prerrequisito);
-                                                $.get("../Servlet/administrarAsignatura.php", {accion: 'OBTENER_POSIBLES_PRERREQUISITOS', m_id: m_id, asig_periodo: asig_periodo}, function (data) {
-                                                    var data = eval(data);
-
-                                                    var select_html = "<tr id='tr_" + n_aux + "'><td><select class='form-control pull-right' id='cod_prerrequisito_" + n_aux + "' name='cod_prerrequisito_" + n_aux + "'  disabled='disabled'></select></td><td><center><a class='btn btn-danger' onclick='removePrerrequisitoGuardado(" + n_aux + "," + asig_periodo + "," + asig_codigo_prerrequisito + ")'><i class='fa fa-trash'></i></a></center></td></tr>"
-                                                    $("#tabla_prerrequisito").append(select_html);
-
-                                                    var count = 0;
-                                                    var select = document.getElementById("cod_prerrequisito_" + n_aux);
-
-                                                    $.each(data, function (k, v) {
-                                                        var option = document.createElement("option");
-                                                        option.text = v.asig_nombre;
-                                                        option.value = v.asig_codigo;
-                                                        select.add(option);
-                                                        count++;
-                                                    });
-                                                    if (count == 0) {
-                                                        var option = document.createElement("option");
-                                                        option.text = "Seleccionar...";
-                                                        option.value = -1;
-                                                        select.add(option);
-                                                    } else {
-                                                        select.selectedIndex = asig_codigo_prerrequisito;
-                                                        select.value = asig_codigo_prerrequisito;
-                                                    }
-                                                });
-                                            }
-
-                                            function addPrerrequisito() {
-                                                var n_prerrequisito = $("#n_prerrequisito").val();
-                                                var asig_periodo = $("#asig_periodo").val();
-                                                var m_id = $('#m_id').val();
-
-                                                var n_aux = n_prerrequisito;
-                                                n_prerrequisito++;
-                                                $("#n_prerrequisito").val(n_prerrequisito);
-                                                $.get("../Servlet/administrarAsignatura.php", {accion: 'OBTENER_POSIBLES_PRERREQUISITOS', m_id: m_id, asig_periodo: asig_periodo}, function (data) {
-                                                    var data = eval(data);
-
-                                                    var select_html = "<tr id='tr_" + n_aux + "'><td><select class='form-control pull-right' id='cod_prerrequisito_" + n_aux + "' name='cod_prerrequisito_" + n_aux + "'></select></td><td><center><a class='btn btn-danger' onclick='removePrerrequisito(" + n_aux + ")'><i class='fa fa-trash'></i></a></center></td></tr>"
-                                                    $("#tabla_prerrequisito").append(select_html);
-
-                                                    var count = 0;
-                                                    var select = document.getElementById("cod_prerrequisito_" + n_aux);
-                                                    $.each(data, function (k, v) {
-                                                        var option = document.createElement("option");
-                                                        option.text = v.asig_nombre;
-                                                        option.value = v.asig_codigo;
-                                                        select.add(option);
-                                                        count++;
-                                                    });
-                                                    if (count == 0) {
-                                                        var option = document.createElement("option");
-                                                        option.text = "Seleccionar...";
-                                                        option.value = -1;
-                                                        select.add(option);
-                                                    }
-                                                });
-                                            }
-
-                                            function removePrerrequisito(n_prerrequisito) {
-                                                $("#tr_" + n_prerrequisito).remove();
-                                            }
-
-                                            function removePrerrequisitoGuardado(n_aux, asig_periodo, asig_codigo_prerrequisito) {
-                                                $('#modalConfirmacionEliminarPrerrequisito').modal('show');
-                                            }
-
-                                            /* Guardar asignatura/. */
-                                            function guardarAsignatura() {
-                                                if (validarAsignatura()) {
-                                                    $.post("../Servlet/administrarAsignatura.php", $("#fm-asignatura").serialize(), function (data) {
-                                                        if (!data.success) {
-                                                            notificacion(data.errorMsg, 'danger', 'alert');
-                                                        } else {
-                                                            notificacion(data.mensaje, 'success', 'alert');
-                                                            //$("#fm-asignatura")[0].reset();
-                                                            $("#thead").empty();
-                                                            $("#tbody").empty();
-                                                            obtenerDatosAsignatura();
-                                                        }
-                                                    }, "json");
-                                                }
-                                            }
-
-                                            function validarAsignatura() {
-                                                var asig_nombre = $("#asig_nombre").val();
-                                                var asig_creditos = $("#asig_creditos").val();
-                                                var ta_id = $('#ta_id').val();
-
-                                                if (asig_nombre == "") {
-                                                    notificacion("Debe ingresar el nombre de la asignatura.", 'danger', 'alert');
-                                                    return false;
-                                                } else if (asig_creditos == "") {
-                                                    notificacion("Debe ingresar la cantidad de creditos de la asignatura.", 'danger', 'alert');
-                                                    return false;
-                                                } else if (isNaN(asig_creditos)) {
-                                                    notificacion("La cantidad de creditos debe ser un valor numerico.", 'danger', 'alert');
-                                                    return false;
-                                                } else if (asig_creditos == 0) {
-                                                    notificacion("La cantidad de creditos debe ser mayor que cero.", 'danger', 'alert');
-                                                    return false;
-                                                }
-                                                /*SOLO HABILITADO EL AGREGAR ASIGNATURAS NORMALES*/
-                                                if (ta_id == 1) {//NORMAL
-                                                    //Validar que no se repitan los asig_codigos de los prerrequisitos
-                                                    var codigos = [];
-                                                    var n_prerrequisito = $("#n_prerrequisito").val();
-                                                    for (var i = 0; i <= n_prerrequisito; i++) {
-                                                        if ($("#cod_prerrequisito_" + i).val() != "undefined") {
-                                                            var cod = $("#cod_prerrequisito_" + i).val();
-                                                            var res = codigos.indexOf(cod);
-                                                            if (res == -1) {
-                                                                codigos[cod] = cod;
-                                                            } else {
-                                                                notificacion("No se pueden repetir los prerrequisitos.", 'danger', 'alert');
-                                                                return false;
-                                                            }
-                                                        }
-                                                    }
-                                                } else if (ta_id == 2) {//FORMACION INTEGRAL
-                                                    //notificacion("Aun no esta habilitado el agregar formaciones integrales.", 'info', 'modal-alert');                                                    
-                                                } else if (ta_id == 3) {//ELECTIVO
-                                                    //notificacion("Aun no esta habilitado el agregar electivos.", 'info', 'modal-alert');
-                                                }
-                                                return true;
-                                            }
-                                            /* ./Fin Guardar asignatura */
-
-                                            $('button[name="remove_levels"]').on('click', function (e) {
-                                                var $form = $(this).closest('form');
-                                                e.preventDefault();
-                                                $('#confirm').modal({backdrop: 'static', keyboard: false})
-                                                        .one('click', '#delete', function () {
-                                                            $form.trigger('submit'); // submit the form
-                                                        });
-                                                // .one() is NOT a typo of .on()
-                                            });
 
         </script>
     </body>

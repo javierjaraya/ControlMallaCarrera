@@ -44,6 +44,16 @@ if ($accion != null) {
         } else {
             echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
         }
+    } else if ($accion == "BORRAR_BY_ASIG_CODIGO_ASIG_PRERREQUISITO") {
+        $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+        $asig_codigo_prerrequisito = htmlspecialchars($_REQUEST['asig_codigo_prerrequisito']);
+
+        $result = $control->removePrerrequisitoByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo,$asig_codigo_prerrequisito);
+        if ($result) {
+            echo json_encode(array('success' => true, 'mensaje' => "Prerrequisito borrado correctamente"));
+        } else {
+            echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+        }
     } else if ($accion == "BUSCAR") {
         $cadena = htmlspecialchars($_REQUEST['cadena']);
         $prerrequisitos = $control->getPrerrequisitoLikeAtrr($cadena);

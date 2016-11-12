@@ -18,4 +18,5 @@ function notificacion(mensaje, tipo, contenedor) {
     }
     var alert = "<div class='alert "+class_alert+" alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>×</button><h4><i class='icon fa "+icon_alert+"'></i> Alert!</h4>"+mensaje+"</div>"
     $("#"+contenedor).html(alert);
+    $("#"+contenedor).delay(5000).hide(600);
 }

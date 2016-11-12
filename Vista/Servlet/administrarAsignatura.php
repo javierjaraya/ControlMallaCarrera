@@ -93,11 +93,33 @@ if ($accion != null) {
     } else if ($accion == "BORRAR") {
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
 
-        $result = $control->removeAsignatura($asig_codigo);
-        if ($result) {
-            echo json_encode(array('success' => true, 'mensaje' => "Asignatura borrado correctamente"));
+        //VALIDAD QUE NO SEA PRERREQUISITO DE ALGUNA ASIGNATURA
+        $continuidades = $control->getAllPrerrequisitosByAsig_Codigo_Prerrequisito($asig_codigo);
+        if (count($continuidades) == 0) {
+            //ELIMINAR ASIGNACION EN TABLA DOCENTE
+            $resultDocente = $control->removeDocenteBy_Asig_codigo($asig_codigo);
+            //ELIMINAR LOS PRERREQUISITOS DE LA ASIGNATURA
+            $resultPrerrequisito = $control->removePrerrequisitoByAsig_Codigo($asig_codigo);
+            
+            //PENDIENTE LOS PROGRAMAS BASICO, EXTENSO y DIDACTICO
+
+            $result = $control->removeAsignatura($asig_codigo);
+            if ($result) {
+                echo json_encode(array('success' => true, 'mensaje' => "Asignatura borrado correctamente"));
+            } else {
+                echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+            }
         } else {
-            echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+            $asignaturas = "";
+            $bandera = false;
+            foreach ($continuidades as $valor) {
+                if ($bandera) {
+                    $asignaturas = $asignaturas . ", ";
+                }
+                $asignaturas = $asignaturas . $valor->getAsig_codigo();
+                $bandera = true;
+            }
+            echo json_encode(array('errorMsg' => 'No se puede eliminar la asignatura, es prerrequisito de los siguientes codigo de asignatura: ' . $asignaturas));
         }
     } else if ($accion == "BUSCAR") {
         $cadena = htmlspecialchars($_REQUEST['cadena']);
