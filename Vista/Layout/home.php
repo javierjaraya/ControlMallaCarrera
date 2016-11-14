@@ -2,7 +2,7 @@
 <?php
 session_start();
 if ($_SESSION['autentificado'] != "SI") {
-    header("Location: ../../../index.php");
+    header("Location: ../../index.php");
 }
 $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
@@ -86,7 +86,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <small>Control panel</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>

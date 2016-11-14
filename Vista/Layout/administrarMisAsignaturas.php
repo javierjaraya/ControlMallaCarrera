@@ -82,12 +82,12 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Permisos de Usuarios
+                        Mis Asignaturas
                         <small>Control panel</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="active">Permisos Usuarios</li>
+                        <li class="active">Mis Asignaturas</li>
                     </ol>
                 </section>
 
@@ -98,32 +98,34 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Datos de todos los usuarios</h3>
+                                    <h3 class="box-title">Listado Asignaturas</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <table id="table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Rut</th>
-                                                <th>Nombres</th>
-                                                <th>Apellidos</th>
-                                                <th>Email</th>
-                                                <th>Permiso</th>
-                                                <th>Accion</th>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Periodo</th>
+                                                <th>Creditos</th>
+                                                <th>Cód. Malla</th>
+                                                <th>Tipo</th>
+                                                <th>Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
-                                            
+
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Rut</th>
-                                                <th>Nombres</th>
-                                                <th>Apellidos</th>
-                                                <th>Email</th>
-                                                <th>Permiso</th>
-                                                <th>Accion</th>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Periodo</th>
+                                                <th>Creditos</th>
+                                                <th>Cód. Malla</th>
+                                                <th>Tipo</th>
+                                                <th>Acción</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -170,22 +172,26 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <script src="../../Files/Complementos/template_admin_lite/dist/js/app.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="../../Files/Complementos/template_admin_lite/dist/js/demo.js"></script>
+        <!-- Usabilidad -->
+        <script src="../../Files/js/usabilidad.js"></script>
+
         <script>
             $(function () {
                 cargar();
             });
             function cargar() {
-                $.get("../Servlet/administrarUsuario.php", {accion: 'LISTADO'}, function (data) {
+                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_ELECTIVOS_BY_RUT_DOCENTE', }, function (data) {
                     var data = eval(data);
                     $.each(data, function (k, v) {
                         var contenido = "<tr>";
-                        contenido += "<td>" + v.usu_rut + "</td>";
-                        contenido += "<td>" + v.usu_nombres + "</td>";
-                        contenido += "<td>" + v.usu_apellidos + "</td>";
-                        contenido += "<td>" + v.usu_email + "</td>";
-                        contenido += "<td>" + v.per_nombre + "</td>";
+                        contenido += "<td>" + v.asig_codigo + "</td>";
+                        contenido += "<td>" + v.asig_nombre + "</td>";
+                        contenido += "<td>" + v.asig_periodo + "</td>";
+                        contenido += "<td>" + v.asig_codigos + "</td>";
+                        contenido += "<td>" + v.m_id + "</td>";
+                        contenido += "<td>" + v.ta_nombre + "</td>";
                         contenido += "<td>";
-                        contenido += "<button type='button' class='btn btn-warning btn-circle glyphicon glyphicon-pencil'  onclick='editar(" + v.usu_rut + ")'></button>";                        
+                        //contenido += "<button type='button' class='btn btn-warning btn-circle glyphicon glyphicon-pencil'  onclick='editar(" + v.usu_rut + ")'></button>";
                         contenido += "</td>";
                         contenido += "</tr>";
                         $("#tbody").append(contenido);
@@ -193,9 +199,9 @@ $usu_nombre = $_SESSION["usu_nombre"];
                     $("#table").DataTable();
                 });
             }
-            
+
             function editar(usu_rut) {
-                window.location = "editarPermisosUsuarios.php?usu_rut=" + usu_rut;
+                
             }
         </script>
     </body>

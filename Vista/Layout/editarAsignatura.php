@@ -2,7 +2,7 @@
 <?php
 session_start();
 if ($_SESSION['autentificado'] != "SI") {
-    header("Location: ../../../index.php");
+    header("Location: ../../index.php");
 }
 $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
@@ -145,7 +145,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                         <small>Editor</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                         <li><a href="administrarMallaCurricular.php"> Malla Curricular</a></li>
                         <li class="active">Asignatura</li>
                     </ol>

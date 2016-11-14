@@ -99,7 +99,7 @@ class MallaDAO {
 
     public function cantidadMaximaAsignaturasEnSemestre($m_id) {
         $this->conexion->conectar();
-        $query = "SELECT count(*) as n_asignaturas FROM asignatura WHERE m_id = " . $m_id . " GROUP BY asig_periodo ORDER BY n_asignaturas DESC LIMIT 0,1 ";
+        $query = "SELECT count(*) as n_asignaturas FROM asignatura WHERE ta_id != 3 AND m_id = " . $m_id . " GROUP BY asig_periodo ORDER BY n_asignaturas DESC LIMIT 0,1 ";
         $result = $this->conexion->ejecutar($query);
         $n_asignaturas = 0;
         while ($fila = $result->fetch_row()) {

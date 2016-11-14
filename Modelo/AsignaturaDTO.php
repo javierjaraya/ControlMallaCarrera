@@ -6,6 +6,8 @@ class AsignaturaDTO {
     public $asig_creditos;
     public $m_id;
     public $ta_id;
+    
+    public $ta_nombre;
 
     public function AsignaturaDTO(){
     }
@@ -57,5 +59,12 @@ class AsignaturaDTO {
     function setTa_id($ta_id) {
         return $this->ta_id = $ta_id;
     }
+    
+    function getTa_nombre() {
+        return $this->ta_nombre;
+    }
 
+    function setTa_nombre($ta_nombre) {
+        $this->ta_nombre = $ta_nombre;
+    }
 }

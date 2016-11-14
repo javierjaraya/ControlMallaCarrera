@@ -2,7 +2,7 @@
 <?php
 session_start();
 if ($_SESSION['autentificado'] != "SI") {
-    header("Location: ../../../index.php");
+    header("Location: ../../index.php");
 }
 $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
@@ -82,19 +82,80 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Dashboard
+                        Electivos
                         <small>Control panel</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="active">Electivos</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-                <!-- CONTENIDO AQUI -->    
+                    <!-- CONTENIDO AQUI -->    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div id="alert"></div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="m_id">Mallas Curriculares:</label>
+                                                <select class="form-control pull-right" id="m_id" name="m_id">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./box-body -->
+                                <div class="box-footer">                                    
+                                    <button class="btn btn-info pull-right" onclick="agregarElectivo()">Agregar Electivos</button>
+                                </div>
+                                <!-- /.box-footer -->
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row" id="row-listado-electivos">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Listado Electivos</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="table" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Periodo</th>
+                                                <th>Creditos</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Código</th>
+                                                <th>Nombre</th>
+                                                <th>Periodo</th>
+                                                <th>Creditos</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
                 </section>
                 <!-- /.content -->
             </div>
@@ -116,40 +177,242 @@ $usu_nombre = $_SESSION["usu_nombre"];
         </div>
         <!-- ./wrapper -->
 
+        <!-- modal -->
+        <div class="modal fade" id="modalNuevaAsignatura" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="fm-asignatura" method="POST">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Datos Electivo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="modal-alert"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="asig_codigo">Codigo:</label>
+                                        <input type="text" class="form-control" id="asig_codigo" name="asig_codigo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asig_nombre">Nombre:</label>
+                                        <input type="text" class="form-control" id="asig_nombre" name="asig_nombre">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asig_periodo">Periodo:</label>
+                                        <input type="number" class="form-control" id="asig_periodo" name="asig_periodo" min="1" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asig_creditos">Creditos:</label>
+                                        <input type="number" class="form-control" id="asig_creditos" min="1" name="asig_creditos" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="ta_id" name="ta_id" value="3">
+                            <input type="hidden" id="accion" name="accion">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- modal -->
+        <div class="modal fade" id="modalConfirmacionEliminarElectivo" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #3c8dbc; color: #fff;" >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirmación</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>¿Esta seguro de eliminar el electivo?, una vez eliminado no se podra recuperrar la información.</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="asig_codigo_remove" id="asig_codigo_remove" value="">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmaEliminarElectivo()">Eliminar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <!-- jQuery 2.2.3 -->
         <script src="../../Files/Complementos/template_admin_lite/plugins/jQuery/jquery-2.2.3.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="../../Files/Complementos/template_admin_lite/dist/js/jquery-ui.min.js"></script>
         <!-- Bootstrap 3.3.6 -->
         <script src="../../Files/Complementos/template_admin_lite/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Morris.js charts -->
-        <!--<script src="../../Files/Complementos/template_admin_lite/dist/js/raphael-min.js"></script>
-        <script src="../../Files/Complementos/template_admin_lite/plugins/morris/morris.min.js"></script>-->
-        <!-- Sparkline -->
-        <script src="../../Files/Complementos/template_admin_lite/plugins/sparkline/jquery.sparkline.min.js"></script>
-        <!-- jvectormap -->
-        <script src="../../Files/Complementos/template_admin_lite/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="../../Files/Complementos/template_admin_lite/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-        <!-- jQuery Knob Chart -->
-        <script src="../../Files/Complementos/template_admin_lite/plugins/knob/jquery.knob.js"></script>
-        <!-- daterangepicker -->
-        <script src="../../Files/Complementos/template_admin_lite/dist/js/moment.min.js"></script>
-        <script src="../../Files/Complementos/template_admin_lite/plugins/daterangepicker/daterangepicker.js"></script>
-        <!-- datepicker -->
-        <script src="../../Files/Complementos/template_admin_lite/plugins/datepicker/bootstrap-datepicker.js"></script>
-        <!-- Bootstrap WYSIHTML5 -->
-        <script src="../../Files/Complementos/template_admin_lite/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+        <!-- DataTables -->
+        <script src="../../Files/Complementos/template_admin_lite/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="../../Files/Complementos/template_admin_lite/plugins/datatables/dataTables.bootstrap.min.js"></script>
         <!-- Slimscroll -->
         <script src="../../Files/Complementos/template_admin_lite/plugins/slimScroll/jquery.slimscroll.min.js"></script>
         <!-- FastClick -->
         <script src="../../Files/Complementos/template_admin_lite/plugins/fastclick/fastclick.js"></script>
+
         <!-- AdminLTE App -->
         <script src="../../Files/Complementos/template_admin_lite/dist/js/app.min.js"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-        <!--<script src="../../Files/Complementos/template_admin_lite/dist/js/pages/dashboard.js"></script>-->
         <!-- AdminLTE for demo purposes -->
         <script src="../../Files/Complementos/template_admin_lite/dist/js/demo.js"></script>
         <!-- Usabilidad -->
         <script src="../../Files/js/usabilidad.js"></script>
+
+        <script>
+                            $(function () {
+                                document.getElementById('row-listado-electivos').style.display = 'none';
+                                obtenerMallasCurriculares();
+                            });
+
+                            function obtenerMallasCurriculares() {
+                                $.get("../Servlet/administrarMalla.php", {accion: 'LISTADO'}, function (data) {
+                                    var data = eval(data);
+                                    var select = document.getElementById("m_id");
+                                    var count = 0;
+                                    $.each(data, function (k, v) {
+                                        var option = document.createElement("option");
+                                        option.text = v.m_fechaInicio + " al " + v.m_fechaFin + " | n° Semestres = " + v.m_cantidadSemestres;
+                                        option.value = v.m_id;
+                                        select.add(option);
+                                        count++;
+                                    });
+                                    if (count == 0) {
+                                        var option = document.createElement("option");
+                                        option.text = "Seleccionar...";
+                                        option.value = -1;
+                                        select.add(option);
+                                        document.getElementById('row-listado-electivos').style.display = 'none';
+                                    } else {
+                                        cargar();
+                                    }
+                                });
+                            }
+
+                            function cargar() {
+                                var m_id = document.getElementById("m_id").value;
+                                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_ELECTIVOS_BY_M_ID', m_id: m_id}, function (data) {
+                                    var data = eval(data);
+                                    if (data.length > 0) {
+                                        document.getElementById('row-listado-electivos').style.display = 'block';
+                                        $("#thead").empty();
+                                        $("#tbody").empty();
+                                        $.each(data, function (k, v) {
+                                            var contenido = "<tr>";
+                                            contenido += "<td>" + v.asig_codigo + "</td>";
+                                            contenido += "<td>" + v.asig_nombre + "</td>";
+                                            contenido += "<td>" + v.asig_periodo + "</td>";
+                                            contenido += "<td>" + v.asig_creditos + "</td>";
+                                            contenido += "<td>";
+                                            contenido += "<button type='button' class='btn btn-warning btn-circle glyphicon glyphicon-pencil' onclick='editar(" + v.asig_codigo + ")'></button>&nbsp;";
+                                            contenido += "<button type='button' class='btn btn-danger btn-circle glyphicon glyphicon-trash' onclick='borrar(" + v.asig_codigo + ")'></button>";
+                                            contenido += "</td>";
+                                            contenido += "</tr>";
+                                            $("#tbody").append(contenido);
+                                        });
+                                        $("#table").DataTable();
+                                    }
+                                });
+                            }
+
+                            function agregarElectivo() {
+                                document.getElementById("fm-asignatura").reset();
+                                document.getElementById("asig_codigo").readOnly = false;
+                                $('#accion').val('AGREGAR_ELECTIVO');
+                                $('#modalNuevaAsignatura').modal('show');
+                            }
+
+                            function editar(asig_codigo) {
+                                document.getElementById("fm-asignatura").reset();
+                                document.getElementById("fm-asignatura").reset();
+                                document.getElementById("asig_codigo").readOnly = true;
+                                $('#accion').val('MODIFICAR_ELECTIVO');
+
+                                $.get("../Servlet/administrarAsignatura.php", {accion: 'BUSCAR_BY_ID', asig_codigo: asig_codigo}, function (data) {
+                                    var asig_codigo = $("#asig_codigo").val(data.asig_codigo);
+                                    var asig_nombre = $("#asig_nombre").val(data.asig_nombre);
+                                    var asig_periodo = $("#asig_periodo").val(data.asig_periodo);
+                                    var asig_creditos = $("#asig_creditos").val(data.asig_creditos);
+                                    $('#modalNuevaAsignatura').modal('show');
+                                }, 'json');
+                            }
+
+                            /* Guardar Electivo */
+                            $("#fm-asignatura").submit(function (e) {
+                                var m_id = $('#m_id').val();
+                                if (validarAsignatura()) {
+                                    $.post("../Servlet/administrarAsignatura.php", $("#fm-asignatura").serialize() + "&m_id=" + m_id, function (data) {
+                                        if (!data.success) {
+                                            notificacion(data.errorMsg, 'danger', 'modal-alert');
+                                        } else {
+                                            notificacion(data.mensaje, 'success', 'alert');
+                                            $('#modalNuevaAsignatura').modal('toggle');
+                                            $("#fm-asignatura")[0].reset();
+                                            cargar();
+                                        }
+                                    }, "json");
+                                }
+                                e.preventDefault();
+                            });
+
+                            function validarAsignatura() {
+                                var asig_codigo = $("#asig_codigo").val();
+                                var asig_nombre = $("#asig_nombre").val();
+                                var asig_periodo = $("#asig_periodo").val();
+                                var asig_creditos = $("#asig_creditos").val();
+                                var accion = $("#accion").val();
+
+                                if (asig_codigo == "" && accion == "AGREGAR_ELECTIVO") {
+                                    notificacion("Debe ingresar el codigo del electivo.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (isNaN(asig_codigo) && accion == "AGREGAR_ELECTIVO") {
+                                    notificacion("El codigo del electivo deben ser valores numericos.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (asig_nombre == "") {
+                                    notificacion("Debe ingresar el nombre del electivo.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (asig_periodo == "") {
+                                    notificacion("Debe ingresar el numero de periodo del electivo.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (isNaN(asig_periodo)) {
+                                    notificacion("El numero de periodo debe ser un valor numerico.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (asig_periodo == 0) {
+                                    notificacion("El numero de periodo debe ser mayor que cero.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (asig_creditos == "") {
+                                    notificacion("Debe ingresar la cantidad de creditos del electivo.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (isNaN(asig_creditos)) {
+                                    notificacion("La cantidad de creditos debe ser un valor numerico.", 'danger', 'modal-alert');
+                                    return false;
+                                } else if (asig_creditos == 0) {
+                                    notificacion("La cantidad de creditos debe ser mayor que cero.", 'danger', 'modal-alert');
+                                    return false;
+                                }
+                                return true;
+                            }
+                            /* Fin Guardar Electivo */
+
+                            function borrar(asig_codigo) {
+                                $("#asig_codigo_remove").val(asig_codigo);
+                                $('#modalConfirmacionEliminarElectivo').modal('show');
+                            }
+
+                            function confirmaEliminarElectivo() {
+                                var asig_codigo = $('#asig_codigo_remove').val();
+                                $.get("../Servlet/administrarAsignatura.php", {accion: 'BORRAR', asig_codigo: asig_codigo}, function (data) {
+                                    $('#modalConfirmacionEliminarElectivo').modal('toggle');
+                                    if (!data.success) {
+                                        notificacion(data.errorMsg, 'danger', 'alert');
+                                    } else {
+                                        notificacion(data.mensaje, 'success', 'alert');
+                                        cargar();
+                                    }
+                                }, "json");
+                            }
+
+
+        </script>
     </body>
 </html>

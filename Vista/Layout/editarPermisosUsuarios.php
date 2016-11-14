@@ -2,7 +2,7 @@
 <?php
 session_start();
 if ($_SESSION['autentificado'] != "SI") {
-    header("Location: ../../../index.php");
+    header("Location: ../../index.php");
 }
 $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
@@ -87,7 +87,7 @@ $usu_rut_editar = $_REQUEST['usu_rut'];
                         <!--<small>Control panel</small>-->
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                         <li><a href="administrarPermisosUsuarios.php">Permisos Usuarios</a></li>
                         <li class="active">Modificar Permiso</li>
                     </ol>

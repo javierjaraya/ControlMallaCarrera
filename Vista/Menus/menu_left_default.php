@@ -38,6 +38,18 @@
                     <li><a href="administrarMallaCurricular.php"><i class="fa fa-circle-o"></i>Ver Malla Curricular</a></li>
                 </ul>
             </li>
+            <li class="treeview"><!-- active -->
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Asignatuas</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="administrarMisAsignaturas.php"><i class="fa fa-circle-o"></i>Mis Asignaturas</a></li><!-- class="active" -->
+                    <li><a href="administrarElectivos.php"><i class="fa fa-circle-o"></i>Electivos</a></li>
+                </ul>
+            </li>
             <li><a href="administrarPermisosUsuarios.php"><i class="fa fa-book"></i> <span>Permisos Usuarios</span></a></li>
         </ul>
     </section>

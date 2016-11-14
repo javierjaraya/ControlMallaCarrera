@@ -44,6 +44,14 @@ class Contenedor {
     public function getAllAsignaturas() {
         return $this->asignaturaDAO->findAll();
     }
+    
+    public function getAllElectivosBy_m_id($m_id) {
+        return $this->asignaturaDAO->findAllElectivosBy_m_id($m_id);
+    }
+    
+    public function getAllElectivosBy_usu_rut($usu_rut) {
+        return $this->asignaturaDAO->findAllElectivosBy_usu_rut($usu_rut);
+    }
 
     public function getAllPosiblesPrerrequisitos($m_id, $asig_periodo) {
         return $this->asignaturaDAO->findAllPosiblesPrerrequisitos($m_id, $asig_periodo);
