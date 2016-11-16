@@ -48,6 +48,7 @@
                 <ul class="treeview-menu">
                     <li><a href="administrarMisAsignaturas.php"><i class="fa fa-circle-o"></i>Mis Asignaturas</a></li><!-- class="active" -->
                     <li><a href="administrarElectivos.php"><i class="fa fa-circle-o"></i>Electivos</a></li>
+                    <li><a href="administrarAsignarDocenteAsignatura.php"><i class="fa fa-circle-o"></i>Asignar Docente</a></li>
                 </ul>
             </li>
             <li><a href="administrarPermisosUsuarios.php"><i class="fa fa-book"></i> <span>Permisos Usuarios</span></a></li>

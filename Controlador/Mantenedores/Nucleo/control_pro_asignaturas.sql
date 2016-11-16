@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2016 a las 04:58:25
+-- Tiempo de generación: 16-11-2016 a las 04:08:07
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -48,7 +48,9 @@ INSERT INTO `asignatura` (`asig_codigo`, `asig_nombre`, `asig_periodo`, `asig_cr
 (630097, 'GestiÃ³n de Empresa I', 3, 4, 1, 1),
 (631045, 'Economia', 3, 4, 1, 1),
 (634065, 'IntroducciÃ³n a la Ingenieria', 1, 3, 1, 1),
-(634066, 'IntroducciÃ³n a la ProgramaciÃ³n', 1, 5, 1, 1);
+(634066, 'IntroducciÃ³n a la ProgramaciÃ³n', 1, 5, 1, 1),
+(634330, 'Desarrollo Avanzado de Interfaces WEB', 10, 3, 1, 3),
+(634360, 'Cloud Computing', 9, 3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -60,7 +62,14 @@ CREATE TABLE IF NOT EXISTS `docente` (
 `doc_id` int(11) NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `asig_codigo` int(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `docente`
+--
+
+INSERT INTO `docente` (`doc_id`, `usu_rut`, `asig_codigo`) VALUES
+(1, 9658063, 634066);
 
 -- --------------------------------------------------------
 
@@ -178,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `prerrequisito` (
 `pre_id` int(11) NOT NULL,
   `asig_codigo` int(6) NOT NULL,
   `asig_codigo_prerrequisito` int(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `prerrequisito`
@@ -187,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `prerrequisito` (
 INSERT INTO `prerrequisito` (`pre_id`, `asig_codigo`, `asig_codigo_prerrequisito`) VALUES
 (2, 240035, 240012),
 (3, 240036, 240013),
-(4, 241052, 240012),
+(6, 241052, 240012),
 (5, 241052, 240036);
 
 -- --------------------------------------------------------
@@ -322,7 +331,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `malla`
 --
@@ -337,7 +346,7 @@ MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `prerrequisito`
 --
 ALTER TABLE `prerrequisito`
-MODIFY `pre_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `pre_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tipo_asignatura`
 --

@@ -10,6 +10,11 @@ if ($accion != null) {
         $asignaturas = $control->getAllAsignaturas();
         $json = json_encode($asignaturas);
         echo $json;
+    } if ($accion == "LISTADO_BY_M_ID") {
+        $m_id = htmlspecialchars($_REQUEST['m_id']);
+        $asignaturas = $control->getAllAsignaturasBy_m_id($m_id);
+        $json = json_encode($asignaturas);
+        echo $json;
     } else if ($accion == "LISTADO_ELECTIVOS_BY_M_ID") {
         $m_id = htmlspecialchars($_REQUEST['m_id']);
         $electivos = $control->getAllElectivosBy_m_id($m_id);

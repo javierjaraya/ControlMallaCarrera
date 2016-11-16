@@ -45,6 +45,10 @@ class Contenedor {
         return $this->asignaturaDAO->findAll();
     }
     
+    public function getAllAsignaturasBy_m_id($m_id) {
+        return $this->asignaturaDAO->findAllBy_m_id($m_id);
+    }
+
     public function getAllElectivosBy_m_id($m_id) {
         return $this->asignaturaDAO->findAllElectivosBy_m_id($m_id);
     }
@@ -93,7 +97,11 @@ class Contenedor {
         return $this->docenteDAO->delete($doc_id);
     }
     
-    public function removeDocenteBy_Asig_codigo($asig_codigo) {
+    public function removeDocenteByUsu_Rut_Asig_Codigo($usu_rut, $asig_codigo) {
+        return $this->docenteDAO->deleteByUsu_Rut_Asig_Codigo($usu_rut, $asig_codigo);
+    }
+
+        public function removeDocenteBy_Asig_codigo($asig_codigo) {
         return $this->docenteDAO->deleteByAsig_Codigo($asig_codigo);
     }
 
@@ -103,6 +111,10 @@ class Contenedor {
 
     public function getDocenteByID($doc_id) {
         return $this->docenteDAO->findByID($doc_id);
+    }
+    
+    public function getDocenteByAsig_codigo($asig_codigo) {
+        return $this->docenteDAO->findByAsig_codigo($asig_codigo);
     }
 
     public function getDocenteLikeAtrr($cadena) {
