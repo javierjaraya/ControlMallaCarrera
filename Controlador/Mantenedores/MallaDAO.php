@@ -13,7 +13,7 @@ class MallaDAO {
 
     public function delete($m_id) {
         $this->conexion->conectar();
-        $query = "DELETE FROM malla WHERE  m_id =  " . $m_id . " ";
+        $query = "DELETE FROM malla WHERE  m_id =  '" . $m_id . "' ";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;
@@ -41,7 +41,7 @@ class MallaDAO {
 
     public function findByID($m_id) {
         $this->conexion->conectar();
-        $query = "SELECT * FROM malla WHERE  m_id =  " . $m_id . " ";
+        $query = "SELECT * FROM malla WHERE  m_id =  '" . $m_id . "' ";
         $result = $this->conexion->ejecutar($query);
         $malla = new MallaDTO();
         while ($fila = $result->fetch_row()) {
@@ -57,7 +57,7 @@ class MallaDAO {
 
     public function findLikeAtrr($cadena) {
         $this->conexion->conectar();
-        $query = "SELECT * FROM malla WHERE  upper(m_id) LIKE upper(" . $cadena . ")  OR  upper(m_fechaModificacion) LIKE upper('" . $cadena . "')  OR  upper(m_fechaInicio) LIKE upper('" . $cadena . "')  OR  upper(m_fechaFin) LIKE upper('" . $cadena . "') ";
+        $query = "SELECT * FROM malla WHERE  upper(m_id) LIKE upper('" . $cadena . "')  OR  upper(m_fechaModificacion) LIKE upper('" . $cadena . "')  OR  upper(m_fechaInicio) LIKE upper('" . $cadena . "')  OR  upper(m_fechaFin) LIKE upper('" . $cadena . "') ";
         $result = $this->conexion->ejecutar($query);
         $i = 0;
         $mallas = array();
@@ -77,8 +77,8 @@ class MallaDAO {
 
     public function save($malla) {
         $this->conexion->conectar();
-        $query = "INSERT INTO malla (m_fechaModificacion,m_fechaInicio,m_fechaFin,m_cantidadSemestres)"
-                . " VALUES ( now() , '" . $malla->getM_fechaInicio() . "' , '" . $malla->getM_fechaFin() . "' , " . $malla->getM_cantidadSemestres() . " )";
+        $query = "INSERT INTO malla (m_id, m_fechaModificacion,m_fechaInicio,m_fechaFin,m_cantidadSemestres)"
+                . " VALUES ('" . $malla->getM_id() . "' , now() , '" . $malla->getM_fechaInicio() . "' , '" . $malla->getM_fechaFin() . "' , " . $malla->getM_cantidadSemestres() . " )";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;
@@ -91,7 +91,7 @@ class MallaDAO {
                 . "  m_fechaInicio = '" . $malla->getM_fechaInicio() . "' ,"
                 . "  m_fechaFin = '" . $malla->getM_fechaFin() . "' ,"
                 . "  m_cantidadSemestres = " . $malla->getM_cantidadSemestres()
-                . " WHERE  m_id =  " . $malla->getM_id() . " ";
+                . " WHERE  m_id =  '" . $malla->getM_id() . "' ";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;
@@ -99,7 +99,7 @@ class MallaDAO {
 
     public function cantidadMaximaAsignaturasEnSemestre($m_id) {
         $this->conexion->conectar();
-        $query = "SELECT count(*) as n_asignaturas FROM asignatura WHERE ta_id != 3 AND m_id = " . $m_id . " GROUP BY asig_periodo ORDER BY n_asignaturas DESC LIMIT 0,1 ";
+        $query = "SELECT count(*) as n_asignaturas FROM asignatura WHERE ta_id != 3 AND m_id = '" . $m_id . "' GROUP BY asig_periodo ORDER BY n_asignaturas DESC LIMIT 0,1 ";
         $result = $this->conexion->ejecutar($query);
         $n_asignaturas = 0;
         while ($fila = $result->fetch_row()) {
@@ -111,7 +111,7 @@ class MallaDAO {
 
     public function maxPeriodoUtilizadoByM_Id($m_id) {
         $this->conexion->conectar();
-        $query = "SELECT (SELECT max(ge_periodo) FROM grupo_electivo WHERE  m_id =  " . $m_id . ") as ge_periodo, (SELECT max(asig_periodo) FROM asignatura WHERE  m_id =  " . $m_id . ") as asig_periodo";
+        $query = "SELECT (SELECT max(ge_periodo) FROM grupo_electivo WHERE  m_id =  '" . $m_id . "') as ge_periodo, (SELECT max(asig_periodo) FROM asignatura WHERE  m_id =  '" . $m_id . "') as asig_periodo";
         $result = $this->conexion->ejecutar($query);
         $ge_periodo = 0;
         $asig_periodo = 0;

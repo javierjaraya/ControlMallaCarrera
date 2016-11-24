@@ -254,7 +254,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <input type="text" class="form-control" id="asig_nombre" name="asig_nombre">
                                     </div>
                                     <div class="form-group">
-                                        <label for="asig_periodo">Periodo:</label>
+                                        <label for="asig_periodo">Semestre:</label>
                                         <input type="text" class="form-control" id="asig_periodo" name="asig_periodo" value="" readonly>
                                     </div>
                                     <div class="form-group">
@@ -340,7 +340,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                     var count = 0;
                                                     $.each(data, function (k, v) {
                                                         var option = document.createElement("option");
-                                                        option.text = v.m_fechaInicio + " al " + v.m_fechaFin + " | n° Semestres = " + v.m_cantidadSemestres;
+                                                        option.text = v.m_id;
                                                         option.value = v.m_id;
                                                         select.add(option);
                                                         count++;
@@ -380,6 +380,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             function cargar() {
                                                 var m_id = document.getElementById("m_id").value;
                                                 $.get("../Servlet/administrarMalla.php", {accion: 'BUSCAR_BY_ID', m_id: m_id}, function (data) {
+                                                    console.log(data);
                                                     $('#m_fechaInicio').val(data.malla.m_fechaInicio);
                                                     $('#m_fechaFin').val(data.malla.m_fechaFin);
                                                     $('#m_cantidadSemestres').val(data.malla.m_cantidadSemestres);
@@ -439,7 +440,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                         n_anio++;
                                                         anio = "Año " + n_anio;
                                                     }
-                                                    $('#thead').append("<td>" + anio + " Per. " + i + "</td>");
+                                                    $('#thead').append("<td>" + anio + " Sem. " + i + "</td>");
                                                 }
                                                 $('#thead').append("</tr>");
                                                 //TBODY

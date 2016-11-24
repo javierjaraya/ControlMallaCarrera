@@ -106,6 +106,17 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                 <form id="fm" class="form-horizontal">
                                     <div class="box-body">
                                         <div id="alert"></div>
+                                        <!-- Text -->
+                                        <div class="form-group">
+                                            <label for="m_id" class="col-sm-4 control-label">Código:</label>
+                                            <div class="input-group col-sm-7">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-navicon"></i>
+                                                </div>
+                                                <input type="text" class="form-control pull-right" id="m_id" name="m_id">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
                                         <!-- Date -->
                                         <div class="form-group">
                                             <label for="m_fechaInicio" class="col-sm-4 control-label">Fecha Inicio Periordo:</label>
@@ -207,10 +218,14 @@ $usu_nombre = $_SESSION["usu_nombre"];
             });
             
             function validar() {                
+                var m_id = document.getElementById("m_id").value;
                 var m_fechaInicio = document.getElementById("m_fechaInicio").value;
                 var m_fechaFin = document.getElementById("m_fechaFin").value;
                 var m_cantidadSemestres = document.getElementById("m_cantidadSemestres").value;
-                if(m_fechaInicio == ""){
+                if(m_id == ""){
+                    notificacion("Debe ingresar el código.", 'danger','alert');
+                    return false;
+                }else if(m_fechaInicio == ""){
                     notificacion("Debe ingresar una fecha de inicio.", 'danger','alert');
                     return false;
                 } else if(m_fechaFin == ""){

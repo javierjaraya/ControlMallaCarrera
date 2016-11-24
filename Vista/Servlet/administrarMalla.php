@@ -11,24 +11,31 @@ if ($accion != null) {
         $json = json_encode($mallas);
         echo $json;
     } else if ($accion == "AGREGAR") {
+        $m_id = htmlspecialchars($_REQUEST['m_id']);
         $m_fechaInicio = htmlspecialchars($_REQUEST['m_fechaInicio']);
         $m_fechaFin = htmlspecialchars($_REQUEST['m_fechaFin']);
         $m_cantidadSemestres = htmlspecialchars($_REQUEST['m_cantidadSemestres']);
 
-        $malla = new MallaDTO();
-        $malla->setM_fechaInicio($m_fechaInicio);
-        $malla->setM_fechaFin($m_fechaFin);
-        $malla->setM_cantidadSemestres($m_cantidadSemestres);
+        $object = $control->getMallaByID($m_id);
+        if (($object->getM_id() == null || $object->getM_id() == "")) {
+            $malla = new MallaDTO();
+            $malla->setM_id($m_id);
+            $malla->setM_fechaInicio($m_fechaInicio);
+            $malla->setM_fechaFin($m_fechaFin);
+            $malla->setM_cantidadSemestres($m_cantidadSemestres);
 
-        $result = $control->addMalla($malla);
+            $result = $control->addMalla($malla);
 
-        if ($result) {
-            echo json_encode(array(
-                'success' => true,
-                'mensaje' => "Malla creada correctamente"
-            ));
-        } else {
-            echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+            if ($result) {
+                echo json_encode(array(
+                    'success' => true,
+                    'mensaje' => "Malla creada correctamente"
+                ));
+            } else {
+                echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+            }
+        }else{
+            echo json_encode(array('errorMsg' => 'El código ingresado ya esta asociado a una malla, intente nuevamente.'));
         }
     } else if ($accion == "BORRAR") {
         $m_id = htmlspecialchars($_REQUEST['m_id']);

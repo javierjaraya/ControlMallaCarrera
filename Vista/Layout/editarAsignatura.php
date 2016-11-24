@@ -190,7 +190,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                                                     </div>
                                                     <div class="col-xs-12 col-lg-6">
                                                         <div class="form-group">
-                                                            <label class="col-sm-3 col-xs-12 blue">Periodo</label>
+                                                            <label class="col-sm-3 col-xs-12 blue">Semestre</label>
                                                             <input type="hidden" id="asig_periodo" name="asig_periodo" value="">
                                                             <label class="col-sm-9 col-xs-12" id='text_asig_periodo'></label>
                                                         </div>

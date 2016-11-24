@@ -12,6 +12,8 @@ if (($usu_run != null || $usu_run != "") && ($usu_password != null || $usu_passw
     $usuario = $control->getUsuarioByID($usu_run);
     if ($usuario->getUsu_rut() == $usu_run) {
         if ($usuario->getUsu_password() == md5($usu_password)) {//$usuario->getUsu_password() == sha1(base64_encode($usu_password))
+        //var_dump(sha1(base64_encode($usu_password)));
+        //if ($usuario->getUsu_password() == sha1(base64_encode($usu_password))) {//$usuario->getUsu_password() == sha1(base64_encode($usu_password))
             $permiso = $control->getPermiso_usuarioByID($usu_run);
             $perfil = $control->getPerfilByID($permiso->getPer_id());
             session_start();
@@ -20,7 +22,7 @@ if (($usu_run != null || $usu_run != "") && ($usu_password != null || $usu_passw
             $_SESSION["per_nombre"] = $perfil->getPer_nombre();
             $_SESSION["usu_run"] = $permiso->getUsu_rut();
             $_SESSION["usu_nombre"] = $usuario->getUsu_nombres();
-            
+
             if ($permiso->getPer_id() == 1) {
                 $pagina = "Vista/Layout/home.php";
             } else if ($permiso->getPer_id() == 2) {
@@ -28,7 +30,7 @@ if (($usu_run != null || $usu_run != "") && ($usu_password != null || $usu_passw
             } else if ($permiso->getPer_id() == 3) {
                 $pagina = "Vista/Layout/home.php";
             } else {
-                 $pagina = "index.php";//DEFAULT
+                $pagina = "index.php"; //DEFAULT
             }
             $success = true;
             $mensajes = "Iniciando... = ";

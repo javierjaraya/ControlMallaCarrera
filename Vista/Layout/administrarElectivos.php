@@ -132,7 +132,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             <tr>
                                                 <th>Código</th>
                                                 <th>Nombre</th>
-                                                <th>Periodo</th>
+                                                <th>Semestre</th>
                                                 <th>Creditos</th>
                                                 <th>Acción</th>
                                             </tr>
@@ -144,7 +144,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             <tr>
                                                 <th>Código</th>
                                                 <th>Nombre</th>
-                                                <th>Periodo</th>
+                                                <th>Semestre</th>
                                                 <th>Creditos</th>
                                                 <th>Acción</th>
                                             </tr>
@@ -199,7 +199,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <input type="text" class="form-control" id="asig_nombre" name="asig_nombre">
                                     </div>
                                     <div class="form-group">
-                                        <label for="asig_periodo">Periodo:</label>
+                                        <label for="asig_periodo">Semestre:</label>
                                         <input type="number" class="form-control" id="asig_periodo" name="asig_periodo" min="1" value="">
                                     </div>
                                     <div class="form-group">
@@ -372,13 +372,13 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                     notificacion("Debe ingresar el nombre del electivo.", 'danger', 'modal-alert');
                                     return false;
                                 } else if (asig_periodo == "") {
-                                    notificacion("Debe ingresar el numero de periodo del electivo.", 'danger', 'modal-alert');
+                                    notificacion("Debe ingresar el semestre del electivo.", 'danger', 'modal-alert');
                                     return false;
                                 } else if (isNaN(asig_periodo)) {
-                                    notificacion("El numero de periodo debe ser un valor numerico.", 'danger', 'modal-alert');
+                                    notificacion("El numero de semestre debe ser un valor numerico.", 'danger', 'modal-alert');
                                     return false;
                                 } else if (asig_periodo == 0) {
-                                    notificacion("El numero de periodo debe ser mayor que cero.", 'danger', 'modal-alert');
+                                    notificacion("El numero de semestre debe ser mayor que cero.", 'danger', 'modal-alert');
                                     return false;
                                 } else if (asig_creditos == "") {
                                     notificacion("Debe ingresar la cantidad de creditos del electivo.", 'danger', 'modal-alert');

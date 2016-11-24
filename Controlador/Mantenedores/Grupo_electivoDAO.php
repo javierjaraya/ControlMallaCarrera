@@ -57,7 +57,7 @@ class Grupo_electivoDAO{
     
     public function findByM_ID($m_id) {
         $this->conexion->conectar();
-        $query = "SELECT * FROM grupo_electivo WHERE  m_id =  " . $m_id . " ";
+        $query = "SELECT * FROM grupo_electivo WHERE  m_id =  '" . $m_id . "' ";
         $result = $this->conexion->ejecutar($query);
         $i = 0;
         $grupo_electivos = array();
@@ -78,7 +78,7 @@ class Grupo_electivoDAO{
 
     public function findLikeAtrr($cadena) {
         $this->conexion->conectar();
-        $query = "SELECT * FROM grupo_electivo WHERE  upper(ge_codigo) LIKE upper(".$cadena.")  OR  upper(ge_nombre) LIKE upper('".$cadena."')  OR  upper(ge_periodo) LIKE upper(".$cadena.")  OR  upper(ge_creditos) LIKE upper(".$cadena.")  OR  upper(m_id) LIKE upper(".$cadena.") ";
+        $query = "SELECT * FROM grupo_electivo WHERE  upper(ge_codigo) LIKE upper(".$cadena.")  OR  upper(ge_nombre) LIKE upper('".$cadena."')  OR  upper(ge_periodo) LIKE upper(".$cadena.")  OR  upper(ge_creditos) LIKE upper(".$cadena.")  OR  upper(m_id) LIKE upper('".$cadena."') ";
         $result = $this->conexion->ejecutar($query);
         $i = 0;
         $grupo_electivos = array();
@@ -100,7 +100,7 @@ class Grupo_electivoDAO{
     public function save($grupo_electivo) {
         $this->conexion->conectar();
         $query = "INSERT INTO grupo_electivo (ge_codigo,ge_nombre,ge_periodo,ge_creditos,m_id,ta_id)"
-                . " VALUES ( ".$grupo_electivo->getGe_codigo()." , '".$grupo_electivo->getGe_nombre()."' ,  ".$grupo_electivo->getGe_periodo()." ,  ".$grupo_electivo->getGe_creditos()." ,  ".$grupo_electivo->getM_id().",  ".$grupo_electivo->getTa_id()." )";
+                . " VALUES ( ".$grupo_electivo->getGe_codigo()." , '".$grupo_electivo->getGe_nombre()."' ,  ".$grupo_electivo->getGe_periodo()." ,  ".$grupo_electivo->getGe_creditos()." ,  '".$grupo_electivo->getM_id()."',  ".$grupo_electivo->getTa_id()." )";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;
@@ -112,7 +112,7 @@ class Grupo_electivoDAO{
                 . "  ge_nombre = '".$grupo_electivo->getGe_nombre()."' ,"
                 . "  ge_periodo =  ".$grupo_electivo->getGe_periodo()." ,"
                 . "  ge_creditos =  ".$grupo_electivo->getGe_creditos()." ,"
-                . "  m_id =  ".$grupo_electivo->getM_id()." "
+                . "  m_id =  '".$grupo_electivo->getM_id()."', "
                 . "  ta_id =  ".$grupo_electivo->getTa_id()." "
                 . " WHERE ge_codigo =  ".$grupo_electivo->getGe_codigo()." ";
         $result = $this->conexion->ejecutar($query);

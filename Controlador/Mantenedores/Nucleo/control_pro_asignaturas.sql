@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2016 a las 04:08:07
+-- Tiempo de generación: 24-11-2016 a las 04:16:59
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `asignatura` (
   `asig_nombre` varchar(45) NOT NULL,
   `asig_periodo` int(11) NOT NULL,
   `asig_creditos` int(11) NOT NULL,
-  `m_id` int(11) NOT NULL,
+  `m_id` varchar(11) NOT NULL,
   `ta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,17 +40,17 @@ CREATE TABLE IF NOT EXISTS `asignatura` (
 --
 
 INSERT INTO `asignatura` (`asig_codigo`, `asig_nombre`, `asig_periodo`, `asig_creditos`, `m_id`, `ta_id`) VALUES
-(240012, 'Calculo I', 1, 5, 1, 1),
-(240013, 'Ãlgebra I', 1, 5, 1, 1),
-(240035, 'Calculo II', 2, 5, 1, 1),
-(240036, 'Ãlgebra II', 2, 5, 1, 1),
-(241052, 'Fisica I', 3, 5, 1, 1),
-(630097, 'GestiÃ³n de Empresa I', 3, 4, 1, 1),
-(631045, 'Economia', 3, 4, 1, 1),
-(634065, 'IntroducciÃ³n a la Ingenieria', 1, 3, 1, 1),
-(634066, 'IntroducciÃ³n a la ProgramaciÃ³n', 1, 5, 1, 1),
-(634330, 'Desarrollo Avanzado de Interfaces WEB', 10, 3, 1, 3),
-(634360, 'Cloud Computing', 9, 3, 1, 3);
+(240012, 'Calculo I', 1, 5, '2957-1', 1),
+(240013, 'Ãlgebra I', 1, 5, '2957-1', 1),
+(240035, 'Calculo II', 2, 5, '2957-1', 1),
+(240036, 'Ãlgebra II', 2, 5, '2957-1', 1),
+(241052, 'Fisica I', 3, 5, '2957-1', 1),
+(630097, 'GestiÃ³n de Empresa I', 3, 4, '2957-1', 1),
+(631045, 'Economia', 3, 4, '2957-1', 1),
+(634065, 'IntroducciÃ³n a la Ingenieria', 1, 3, '2957-1', 1),
+(634066, 'IntroducciÃ³n a la ProgramaciÃ³n', 1, 5, '2957-1', 1),
+(634330, 'Desarrollo Avanzado de Interfaces WEB', 10, 3, '2957-1', 3),
+(634360, 'Cloud Computing', 9, 3, '2957-1', 3);
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `docente` (
 `doc_id` int(11) NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `asig_codigo` int(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `docente`
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `grupo_electivo` (
   `ge_nombre` varchar(45) NOT NULL,
   `ge_periodo` int(11) NOT NULL,
   `ge_creditos` int(11) NOT NULL,
-  `m_id` int(11) NOT NULL,
+  `m_id` varchar(11) NOT NULL,
   `ta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `grupo_electivo` (
 --
 
 INSERT INTO `grupo_electivo` (`ge_codigo`, `ge_nombre`, `ge_periodo`, `ge_creditos`, `m_id`, `ta_id`) VALUES
-(634092, 'Electivo I', 9, 3, 1, 3),
-(634093, 'Electivo II', 9, 3, 1, 3);
+(634092, 'Electivo I', 9, 3, '2957-1', 3),
+(634093, 'Electivo II', 9, 3, '2957-1', 3);
 
 -- --------------------------------------------------------
 
@@ -101,19 +101,19 @@ INSERT INTO `grupo_electivo` (`ge_codigo`, `ge_nombre`, `ge_periodo`, `ge_credit
 --
 
 CREATE TABLE IF NOT EXISTS `malla` (
-`m_id` int(11) NOT NULL,
+  `m_id` varchar(11) NOT NULL,
   `m_fechaModificacion` date NOT NULL,
   `m_fechaInicio` date NOT NULL,
   `m_fechaFin` date NOT NULL,
   `m_cantidadSemestres` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `malla`
 --
 
 INSERT INTO `malla` (`m_id`, `m_fechaModificacion`, `m_fechaInicio`, `m_fechaFin`, `m_cantidadSemestres`) VALUES
-(1, '2016-11-08', '2016-10-26', '2017-10-26', 10);
+('2957-1', '2016-11-08', '2016-10-26', '2017-10-26', 10);
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `tipo_asignatura` (
 --
 
 INSERT INTO `tipo_asignatura` (`ta_id`, `ta_nombre`) VALUES
-(1, 'Normal'),
+(1, 'Común'),
 (2, 'Formación Integral'),
 (3, 'Electivo');
 
@@ -331,12 +331,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `malla`
---
-ALTER TABLE `malla`
-MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
@@ -374,7 +369,7 @@ ADD CONSTRAINT `docente_ibfk_2` FOREIGN KEY (`asig_codigo`) REFERENCES `asignatu
 -- Filtros para la tabla `grupo_electivo`
 --
 ALTER TABLE `grupo_electivo`
-ADD CONSTRAINT `grupo_electivo_ibfk_1` FOREIGN KEY (`m_id`) REFERENCES `malla` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `grupo_electivo_ibfk_1` FOREIGN KEY (`m_id`) REFERENCES `malla` (`m_id`);
 
 --
 -- Filtros para la tabla `permiso_usuario`
