@@ -1,6 +1,7 @@
 
 
 function notificacion(mensaje, tipo, contenedor) {
+    $("#"+contenedor).css("display", "block");
     var class_alert = "alert-info";
     var icon_alert = 'fa-info';
     if (tipo == 'danger') {

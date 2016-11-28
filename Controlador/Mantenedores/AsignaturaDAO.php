@@ -54,7 +54,7 @@ class AsignaturaDAO {
             $asignatura->setAsig_creditos($fila[3]);
             $asignatura->setM_id($fila[4]);
             $asignatura->setTa_id($fila[5]);
-            $asignatura->setTa_nombre($fila[6]);
+            $asignatura->setTa_nombre(utf8_encode($fila[6]));
             $asignaturas[$i] = $asignatura;
             $i++;
         }

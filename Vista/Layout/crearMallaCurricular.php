@@ -153,7 +153,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                     </div>
                                     <!-- /.box-body -->
                                     <div class="box-footer">                                    
-                                        <button type="submit" class="btn btn-info pull-right">Guardar</button>
+                                        <button type="submit" class="btn btn-info pull-right"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
                                     </div>
                                     <!-- /.box-footer -->
                                     <input type="hidden" name="accion" id="accion" value="AGREGAR">

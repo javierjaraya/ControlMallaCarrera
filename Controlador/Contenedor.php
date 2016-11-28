@@ -7,6 +7,7 @@ include_once 'Mantenedores/MallaDAO.php';
 include_once 'Mantenedores/PerfilDAO.php';
 include_once 'Mantenedores/Permiso_usuarioDAO.php';
 include_once 'Mantenedores/PrerrequisitoDAO.php';
+include_once 'Mantenedores/Programa_basicoDAO.php';
 include_once 'Mantenedores/Tipo_asignaturaDAO.php';
 include_once 'Mantenedores/UsuarioDAO.php';
 
@@ -19,6 +20,7 @@ class Contenedor {
     private $perfilDAO;
     private $permiso_usuarioDAO;
     private $prerrequisitoDAO;
+    private $programa_basicoDAO;
     private $tipo_asignaturaDAO;
     private $usuarioDAO;
 
@@ -30,6 +32,7 @@ class Contenedor {
         $this->perfilDAO = new PerfilDAO();
         $this->permiso_usuarioDAO = new Permiso_usuarioDAO();
         $this->prerrequisitoDAO = new PrerrequisitoDAO();
+        $this->programa_basicoDAO = new Programa_basicoDAO();
         $this->tipo_asignaturaDAO = new Tipo_asignaturaDAO();
         $this->usuarioDAO = new UsuarioDAO();
     }
@@ -267,6 +270,38 @@ class Contenedor {
 
     public function getPrerrequisitoLikeAtrr($cadena) {
         return $this->prerrequisitoDAO->findLikeAtrr($cadena);
+    }
+
+    public function getAllPrograma_basicos() {
+        return $this->programa_basicoDAO->findAll();
+    }
+
+    public function addPrograma_basico($programa_basico) {
+        return $this->programa_basicoDAO->save($programa_basico);
+    }
+
+    public function removePrograma_basico($pb_id) {
+        return $this->programa_basicoDAO->delete($pb_id);
+    }
+    
+    public function removePrograma_basicoBorradorByAsigCodigo($asig_codigo) {
+        return $this->programa_basicoDAO->deleteBorradorByAsigCodigo($asig_codigo);
+    }
+
+    public function updatePrograma_basico($programa_basico) {
+        return $this->programa_basicoDAO->update($programa_basico);
+    }
+
+    public function getPrograma_basicoByID($pb_id) {
+        return $this->programa_basicoDAO->findByID($pb_id);
+    }
+    
+    public function getPrograma_basicosByAsig_Codigo($asig_codigo){
+        return $this->programa_basicoDAO->findByAsig_Codigo($asig_codigo);
+    }
+
+    public function getPrograma_basicoLikeAtrr($cadena) {
+        return $this->programa_basicoDAO->findLikeAtrr($cadena);
     }
 
     public function getAllTipo_asignaturas() {

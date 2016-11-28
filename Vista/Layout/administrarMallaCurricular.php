@@ -39,6 +39,8 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <link rel="stylesheet" href="../../Files/Complementos/template_admin_lite/plugins/daterangepicker/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="../../Files/Complementos/template_admin_lite/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <!-- bootstrap Select-->
+        <link rel="stylesheet" href="../../Files/Complementos/template_admin_lite/plugins/bootstrap-select-1.12.1/dist/css/bootstrap-select.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -154,7 +156,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="m_id">Mallas Curriculares:</label>
-                                                    <select class="form-control pull-right" id="m_id" name="m_id">
+                                                    <select class="form-control pull-right selectpicker" data-live-search="true" id="m_id" name="m_id">
                                                     </select>
                                                 </div>
                                             </div>
@@ -180,7 +182,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                     </div>
                                     <!-- ./box-body -->
                                     <div class="box-footer">                                    
-                                        <button type="submit" class="btn btn-info pull-right">Guardar cambios</button>
+                                        <button type="submit" class="btn btn-info pull-right"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar cambios</button>
                                     </div>
                                     <!-- /.box-footer -->
                                     <input type="hidden" name="accion" id="accion" value="ACTUALIZAR">
@@ -243,7 +245,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="ta_id">Tipo:</label>
-                                        <select class="form-control" id="ta_id" name="ta_id" onchange="cambiaTipoAsignatura(this.value)"></select>
+                                        <select class="form-control  selectpicker" data-live-search="true" id="ta_id" name="ta_id" onchange="cambiaTipoAsignatura(this.value)"></select>
                                     </div>
                                     <div class="form-group">
                                         <label for="asig_codigo">Codigo:</label>
@@ -285,7 +287,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <div class="modal-footer">
                             <input type="hidden" id="n_prerrequisito" name="n_prerrequisito" value="0">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar cambios</button>
                         </div>
                     </form>
                 </div><!-- /.modal-content -->
@@ -325,6 +327,8 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <!--<script src="../../Files/Complementos/template_admin_lite/dist/js/pages/dashboard.js"></script>-->
         <!-- AdminLTE for demo purposes -->
         <script src="../../Files/Complementos/template_admin_lite/dist/js/demo.js"></script>
+        <!-- bootstrap Select-->
+        <script src="../../Files/Complementos/template_admin_lite/plugins/bootstrap-select-1.12.1/dist/js/bootstrap-select.js"></script>
         <!-- Usabilidad -->
         <script src="../../Files/js/usabilidad.js"></script>
         <script>
@@ -353,6 +357,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                     } else {
                                                         cargar();
                                                     }
+                                                    $('#m_id').selectpicker('refresh');
                                                 });
                                             }
 
@@ -374,6 +379,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                         option.value = -1;
                                                         select.add(option);
                                                     }
+                                                    $('#ta_id').selectpicker('refresh');
                                                 });
                                             }
 
@@ -390,9 +396,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             /* Guardar Malla/. */
                                             $("#fm").submit(function (e) {
                                                 if (validar()) {
-                                                    console.log("Guardando  " + $("#fm").serialize());
                                                     $.post("../Servlet/administrarMalla.php", $("#fm").serialize(), function (data) {
-                                                        console.log(data);
                                                         if (!data.success) {
                                                             notificacion(data.errorMsg, 'danger', 'alert');
                                                         } else {

@@ -38,9 +38,9 @@
                     <li><a href="administrarMallaCurricular.php"><i class="fa fa-circle-o"></i>Ver Malla Curricular</a></li>
                 </ul>
             </li>
-            <li class="treeview"><!-- active -->
+            <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Asignatuas</span>
+                    <i class="fa fa-dashboard"></i> <span>Asignaturas</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -49,6 +49,19 @@
                     <li><a href="administrarMisAsignaturas.php"><i class="fa fa-circle-o"></i>Mis Asignaturas</a></li><!-- class="active" -->
                     <li><a href="administrarElectivos.php"><i class="fa fa-circle-o"></i>Electivos</a></li>
                     <li><a href="administrarAsignarDocenteAsignatura.php"><i class="fa fa-circle-o"></i>Asignar Docente</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>Programa Asignaturas</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="administrarProgramaBasicoAsignaturas.php"><i class="fa fa-circle-o"></i>Programa Basico</a></li><!-- class="active" -->
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Programa Extenso</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Programa Didactico</a></li>
                 </ul>
             </li>
             <li><a href="administrarPermisosUsuarios.php"><i class="fa fa-book"></i> <span>Permisos Usuarios</span></a></li>

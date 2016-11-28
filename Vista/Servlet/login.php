@@ -23,11 +23,11 @@ if (($usu_run != null || $usu_run != "") && ($usu_password != null || $usu_passw
             $_SESSION["usu_run"] = $permiso->getUsu_rut();
             $_SESSION["usu_nombre"] = $usuario->getUsu_nombres();
 
-            if ($permiso->getPer_id() == 1) {
+            if ($permiso->getPer_id() == 1) {//Docente
                 $pagina = "Vista/Layout/home.php";
-            } else if ($permiso->getPer_id() == 2) {
+            } else if ($permiso->getPer_id() == 2) {//Directiva
                 $pagina = "Vista/Layout/home.php";
-            } else if ($permiso->getPer_id() == 3) {
+            } else if ($permiso->getPer_id() == 3) {//Secretaria
                 $pagina = "Vista/Layout/home.php";
             } else {
                 $pagina = "index.php"; //DEFAULT
