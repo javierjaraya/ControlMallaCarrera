@@ -94,6 +94,7 @@ if ($accion != null) {
         $pb_ht_autonomas = htmlspecialchars($_REQUEST['pb_ht_autonomas']);
         $pb_hp_autonomas = htmlspecialchars($_REQUEST['pb_hp_autonomas']);
         $pb_hl_autonomas = htmlspecialchars($_REQUEST['pb_hl_autonomas']);
+        
         $pb_presentacion = htmlspecialchars($_REQUEST['pb_presentacion']);
         $pb_descriptor_competencias = htmlspecialchars($_REQUEST['pb_descriptor_competencias']);
         $pb_aprendizajes_previos = htmlspecialchars($_REQUEST['pb_aprendizajes_previos']);

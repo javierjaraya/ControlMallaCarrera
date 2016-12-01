@@ -329,10 +329,14 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                 var asig_codigo = document.getElementById("asig_codigo").value;
                                 window.location = "crearProgramaBasicoAsignaturas.php?asig_codigo=" + asig_codigo;
                             }
-                            
-                            
+
+
                             function editar(pb_id) {
                                 window.location = "editarProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
+                            }
+
+                            function ver(pb_id) {
+                                window.location = "verProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
                             }
         </script>
     </body>
