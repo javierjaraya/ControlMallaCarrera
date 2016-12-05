@@ -28,11 +28,11 @@ if ($accion != null) {
         $pb_ht_autonomas = htmlspecialchars($_REQUEST['pb_ht_autonomas']);
         $pb_hp_autonomas = htmlspecialchars($_REQUEST['pb_hp_autonomas']);
         $pb_hl_autonomas = htmlspecialchars($_REQUEST['pb_hl_autonomas']);
-        $pb_presentacion = htmlspecialchars($_REQUEST['pb_presentacion']);
-        $pb_descriptor_competencias = htmlspecialchars($_REQUEST['pb_descriptor_competencias']);
-        $pb_aprendizajes_previos = htmlspecialchars($_REQUEST['pb_aprendizajes_previos']);
-        $pb_biblio_fundamental = htmlspecialchars($_REQUEST['pb_biblio_fundamental']);
-        $pb_biblio_complementaria = htmlspecialchars($_REQUEST['pb_biblio_complementaria']);
+        $pb_presentacion = $_REQUEST['pb_presentacion'];
+        $pb_descriptor_competencias = $_REQUEST['pb_descriptor_competencias'];
+        $pb_aprendizajes_previos = $_REQUEST['pb_aprendizajes_previos'];
+        $pb_biblio_fundamental = $_REQUEST['pb_biblio_fundamental'];
+        $pb_biblio_complementaria = $_REQUEST['pb_biblio_complementaria'];
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
 
         session_start();
@@ -95,11 +95,11 @@ if ($accion != null) {
         $pb_hp_autonomas = htmlspecialchars($_REQUEST['pb_hp_autonomas']);
         $pb_hl_autonomas = htmlspecialchars($_REQUEST['pb_hl_autonomas']);
         
-        $pb_presentacion = htmlspecialchars($_REQUEST['pb_presentacion']);
-        $pb_descriptor_competencias = htmlspecialchars($_REQUEST['pb_descriptor_competencias']);
-        $pb_aprendizajes_previos = htmlspecialchars($_REQUEST['pb_aprendizajes_previos']);
-        $pb_biblio_fundamental = htmlspecialchars($_REQUEST['pb_biblio_fundamental']);
-        $pb_biblio_complementaria = htmlspecialchars($_REQUEST['pb_biblio_complementaria']);
+        $pb_presentacion = $_REQUEST['pb_presentacion'];
+        $pb_descriptor_competencias = $_REQUEST['pb_descriptor_competencias'];
+        $pb_aprendizajes_previos = $_REQUEST['pb_aprendizajes_previos'];
+        $pb_biblio_fundamental = $_REQUEST['pb_biblio_fundamental'];
+        $pb_biblio_complementaria = $_REQUEST['pb_biblio_complementaria'];
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
 
         session_start();
@@ -187,11 +187,11 @@ if ($accion != null) {
         $pb_ht_autonomas = htmlspecialchars($_REQUEST['pb_ht_autonomas']);
         $pb_hp_autonomas = htmlspecialchars($_REQUEST['pb_hp_autonomas']);
         $pb_hl_autonomas = htmlspecialchars($_REQUEST['pb_hl_autonomas']);
-        $pb_presentacion = htmlspecialchars($_REQUEST['pb_presentacion']);
-        $pb_descriptor_competencias = htmlspecialchars($_REQUEST['pb_descriptor_competencias']);
-        $pb_aprendizajes_previos = htmlspecialchars($_REQUEST['pb_aprendizajes_previos']);
-        $pb_biblio_fundamental = htmlspecialchars($_REQUEST['pb_biblio_fundamental']);
-        $pb_biblio_complementaria = htmlspecialchars($_REQUEST['pb_biblio_complementaria']);
+        $pb_presentacion = $_REQUEST['pb_presentacion'];
+        $pb_descriptor_competencias = $_REQUEST['pb_descriptor_competencias'];
+        $pb_aprendizajes_previos = $_REQUEST['pb_aprendizajes_previos'];
+        $pb_biblio_fundamental = $_REQUEST['pb_biblio_fundamental'];
+        $pb_biblio_complementaria = $_REQUEST['pb_biblio_complementaria'];
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
         $pb_fecha_modificacion = htmlspecialchars($_REQUEST['pb_fecha_modificacion']);
         $usu_rut = htmlspecialchars($_REQUEST['usu_rut']);

@@ -303,6 +303,7 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                         <a href="administrarProgramaBasicoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaBasico()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
                                         <button type="button" class="btn btn-info" onclick="crearProgramaBasicoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
+                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaBasicoAsignaturas.php?pb_id=<?= $pb_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>

@@ -271,6 +271,14 @@ class Contenedor {
     public function getPrerrequisitoLikeAtrr($cadena) {
         return $this->prerrequisitoDAO->findLikeAtrr($cadena);
     }
+    
+    public function getAllPerrequisitosByAsig_Codigo($asig_codigo){
+        return $this->prerrequisitoDAO->findAllPrerrequisitos_ByAsig_Codigo($asig_codigo);
+    }
+    
+    public function getAllCorrequisitosByAsig_Codigo($asig_codigo){
+        return $this->prerrequisitoDAO->findAllCorrequisitos_ByAsig_Codigo($asig_codigo);
+    }
 
     public function getAllPrograma_basicos() {
         return $this->programa_basicoDAO->findAll();

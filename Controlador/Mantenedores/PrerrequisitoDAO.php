@@ -1,6 +1,7 @@
 <?php
 include_once 'Nucleo/ConexionMySQL.php';
 include_once '../../Modelo/PrerrequisitoDTO.php';
+include_once '../../Modelo/AsignaturaDTO.php';
 
 class PrerrequisitoDAO{
     private $conexion;
@@ -99,6 +100,48 @@ class PrerrequisitoDAO{
         }
         $this->conexion->desconectar();
         return $prerrequisitos;
+    }
+    
+    public function findAllPrerrequisitos_ByAsig_Codigo($asig_codigo) {
+        $this->conexion->conectar();
+        $query = "SELECT a.* FROM prerrequisito p JOIN asignatura a ON p.asig_codigo_prerrequisito = a.asig_codigo WHERE p.asig_codigo = ".$asig_codigo." ";
+        $result = $this->conexion->ejecutar($query);
+        $i = 0;
+        $asignaturas = array();
+        while ($fila = $result->fetch_row()) {
+            $asignatura = new AsignaturaDTO();
+            $asignatura->setAsig_codigo($fila[0]);
+            $asignatura->setAsig_nombre($fila[1]);
+            $asignatura->setAsig_periodo($fila[2]);
+            $asignatura->setAsig_creditos($fila[3]);
+            $asignatura->setM_id($fila[4]);
+            $asignatura->setTa_id($fila[5]);
+            $asignaturas[$i] = $asignatura;
+            $i++;
+        }
+        $this->conexion->desconectar();
+        return $asignaturas;
+    }
+    
+    public function findAllCorrequisitos_ByAsig_Codigo($asig_codigo) {
+        $this->conexion->conectar();
+        $query = "SELECT a.* FROM prerrequisito p JOIN asignatura a ON p.asig_codigo = a.asig_codigo WHERE p.asig_codigo_prerrequisito = ".$asig_codigo." ";
+        $result = $this->conexion->ejecutar($query);
+        $i = 0;
+        $asignaturas = array();
+        while ($fila = $result->fetch_row()) {
+            $asignatura = new AsignaturaDTO();
+            $asignatura->setAsig_codigo($fila[0]);
+            $asignatura->setAsig_nombre($fila[1]);
+            $asignatura->setAsig_periodo($fila[2]);
+            $asignatura->setAsig_creditos($fila[3]);
+            $asignatura->setM_id($fila[4]);
+            $asignatura->setTa_id($fila[5]);
+            $asignaturas[$i] = $asignatura;
+            $i++;
+        }
+        $this->conexion->desconectar();
+        return $asignaturas;
     }
 
     public function findLikeAtrr($cadena) {
