@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2016 a las 04:16:59
+-- Tiempo de generación: 12-12-2016 a las 03:54:21
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -202,6 +202,129 @@ INSERT INTO `prerrequisito` (`pre_id`, `asig_codigo`, `asig_codigo_prerrequisito
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `programa_basico`
+--
+
+CREATE TABLE IF NOT EXISTS `programa_basico` (
+`pb_id` int(11) NOT NULL,
+  `pb_tipo_curso` varchar(45) DEFAULT NULL,
+  `pb_carrera` varchar(45) DEFAULT NULL,
+  `pb_departamento` varchar(45) DEFAULT NULL,
+  `pb_facultad` varchar(45) DEFAULT NULL,
+  `pb_nro_creditos` int(11) DEFAULT NULL,
+  `pb_horas_cronologicas` int(11) DEFAULT NULL,
+  `pb_horas_pedagogicas` int(11) DEFAULT NULL,
+  `pb_anio` int(11) DEFAULT NULL,
+  `pb_semestre` int(11) DEFAULT NULL,
+  `pb_hrs_presenciales` int(11) DEFAULT NULL,
+  `pb_ht_presenciales` int(11) DEFAULT NULL,
+  `pb_hp_presenciales` int(11) DEFAULT NULL,
+  `pb_hl_presenciales` int(11) DEFAULT NULL,
+  `pb_hrs_autonomas` int(11) DEFAULT NULL,
+  `pb_ht_autonomas` int(11) DEFAULT NULL,
+  `pb_hp_autonomas` int(11) DEFAULT NULL,
+  `pb_hl_autonomas` int(11) DEFAULT NULL,
+  `pb_presentacion` varchar(2000) DEFAULT NULL,
+  `pb_descriptor_competencias` varchar(2000) DEFAULT NULL,
+  `pb_aprendizajes_previos` varchar(100) DEFAULT NULL,
+  `pb_biblio_fundamental` varchar(500) DEFAULT NULL,
+  `pb_biblio_complementaria` varchar(500) DEFAULT NULL,
+  `asig_codigo` int(6) NOT NULL,
+  `pb_fecha_modificacion` datetime NOT NULL,
+  `usu_rut` int(11) NOT NULL,
+  `pb_borrador` int(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `programa_basico`
+--
+
+INSERT INTO `programa_basico` (`pb_id`, `pb_tipo_curso`, `pb_carrera`, `pb_departamento`, `pb_facultad`, `pb_nro_creditos`, `pb_horas_cronologicas`, `pb_horas_pedagogicas`, `pb_anio`, `pb_semestre`, `pb_hrs_presenciales`, `pb_ht_presenciales`, `pb_hp_presenciales`, `pb_hl_presenciales`, `pb_hrs_autonomas`, `pb_ht_autonomas`, `pb_hp_autonomas`, `pb_hl_autonomas`, `pb_presentacion`, `pb_descriptor_competencias`, `pb_aprendizajes_previos`, `pb_biblio_fundamental`, `pb_biblio_complementaria`, `asig_codigo`, `pb_fecha_modificacion`, `usu_rut`, `pb_borrador`) VALUES
+(2, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240013, '2016-11-25 22:47:06', 6482318, 1),
+(3, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240013, '2016-11-25 22:47:38', 6482318, 1),
+(4, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240013, '2016-11-25 22:48:17', 6482318, 1),
+(5, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240013, '2016-11-25 22:49:47', 6482318, 1),
+(6, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240013, '2016-11-25 22:50:47', 6482318, 1),
+(7, 'asdjlkj', 'lkjlk', 'ddasd', 'dsadsd', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Esuna asignatura de segundo aÃ±o, primer semestre. En ella se introducen las ecuacionesdiferenciales ordinarias, clasificadas por orden, lineales o no lineales.&amp;nbsp; Se estudian sistemas de ecuacionesdiferenciales ordinarias, se introducen algunos mÃ©todos de resoluciÃ³n de estasecuaciones. AdemÃ¡s, se pretende introducir aspectos elementales de modelamientomatemÃ¡tico de fenÃ³menos naturales. &lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Estaasignatura contribuye a las siguientes competencias especÃ­ficas:&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:3.0pt;margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1&quot;&gt;&lt;!--[if !supportLists]--&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol&quot;&gt;Â·&lt;span style=&quot;font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&', '&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Resolver problemas\r\nrelativos a la Ciencias de la IngenierÃ­a utilizando como herramienta de\r\nmodelamiento las ecuaciones diferenciales ordinarias. &amp;nbsp;&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Resultados de\r\naprendizaje:&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;ol style=&quot;margin-top:0cm&quot; start=&quot;1&quot; type=&quot;1&quot;&gt;\r\n &lt;li class=&quot;MsoNormal&quot; style=&quot;text-align:justify;mso-list:l0 level1 lfo1&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:\r\n     &amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Fundamenta la aplicaciÃ³n de un determinado mÃ©todo segÃºn\r\n     tipo de ecuaciÃ³n diferencial ordinaria para la resoluciÃ³n de problemas que\r\n     involucran ecuaciones diferenciales ordinarias.&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/li&gt;\r\n &lt;li class=&quot;MsoNormal&quot; style=&quot;text-align:justify;mso-list:l0 level1 lfo1&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-', '&lt;ul style=&quot;margin-top:0cm&quot; type=&quot;disc&quot;&gt;\r\n &lt;li class=&quot;MsoNormal&quo', '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none&quot;&gt;&lt;span lang=&quot;ES-MX&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;;\r\nmso-ansi-language:ES-MX&quot;&gt;Toledo, F. (2002). &lt;i&gt;Ecuaciones\r\nDiferenciales', '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none&quot;&gt;&lt;span style=&quot;font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;;\r\nmso-ansi-language:ES-CL&quot;&gt;Campbell, S. L, y Haberman, R. &lt;/span&gt;&lt;span lang=&quot;ES-MX&quot; ', 240035, '2016-11-27 16:03:22', 6482318, 0),
+(8, 'asdasd', 'IngenierÃ­a Civil en Informatica', 'jkh', 'kjlhkl', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'k{k', '{Ã±', 'kÃ±l', 'kÃ±', 'k{k{Ã±lk', 240035, '2016-11-27 19:12:45', 6482318, 0),
+(9, 'Obligatorio, FormaciÃ³n BÃ¡sica ', 'IngenierÃ­a Civil en Informatica', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240036, '2016-11-27 19:28:59', 6482318, 1),
+(10, 'Obligatorio, FormaciÃ³n BÃ¡sica ', 'IngenierÃ­a Civil en Informatica', 'Ciencias BÃ¡sicas, MatemÃ¡tica', 'Ciencias', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240036, '2016-11-27 19:29:40', 6482318, 1),
+(11, 'Obligatorio, FormaciÃ³n BÃ¡sica ', 'IngenierÃ­a Civil en Informatica', 'Ciencias BÃ¡sicas, MatemÃ¡tica', 'Ciencias', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240036, '2016-11-27 19:33:15', 6482318, 1),
+(12, 'Obligatorio, FormaciÃ³n BÃ¡sica ', 'IngenierÃ­a Civil en Informatica', 'Ciencias BÃ¡sicas, MatemÃ¡tica', 'Ciencias', 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240036, '2016-11-27 19:44:23', 6482318, 1),
+(13, 'Obligatorio, FormaciÃ³n BÃ¡sica ', 'IngenierÃ­a Civil en Informatica', 'Ciencias BÃ¡sicas, MatemÃ¡tica', 'Ciencias', 5, 170, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', '', 240036, '2016-11-27 19:44:36', 6482318, 1),
+(17, 'asdjlkj', 'lkjlk', 'ddasd', 'dsadsd', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Esuna asignatura de segundo aÃ±o, primer semestre. En ella se introducen las ecuacionesdiferenciales ordinarias, clasificadas por orden, lineales o no lineales.&amp;nbsp; Se estudian sistemas de ecuacionesdiferenciales ordinarias, se introducen algunos mÃ©todos de resoluciÃ³n de estasecuaciones. AdemÃ¡s, se pretende introducir aspectos elementales de modelamientomatemÃ¡tico de fenÃ³menos naturales. &lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Estaasignatura contribuye a las siguientes competencias especÃ­ficas:&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:3.0pt;margin-left:18.0pt;text-align:justify;text-indent:-18.0pt;mso-list:l0 level1 lfo1&quot;&gt;&lt;!--[if !supportLists]--&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol&quot;&gt;Â·&lt;span style=&quot;font-variant-numeric: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: &amp;quot;Times New Roman&amp;quot;;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;', '&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Resolver problemas\r\nrelativos a la Ciencias de la IngenierÃ­a utilizando como herramienta de\r\nmodelamiento las ecuaciones diferenciales ordinarias. &amp;nbsp;&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Resultados de\r\naprendizaje:&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;ol style=&quot;margin-top:0cm&quot; start=&quot;1&quot; type=&quot;1&quot;&gt;\r\n &lt;li class=&quot;MsoNormal&quot; style=&quot;text-align:justify;mso-list:l0 level1 lfo1&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:\r\n     &amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Fundamenta la aplicaciÃ³n de un determinado mÃ©todo segÃºn\r\n     tipo de ecuaciÃ³n diferencial ordinaria para la resoluciÃ³n de problemas que\r\n     involucran ecuaciones diferenciales ordinarias.&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/li&gt;\r\n &lt;li class=&quot;MsoNormal&quot; style=&quot;text-align:justify;mso-list:l0 level1 lfo1&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-', '&lt;ul style=&quot;margin-top:0cm&quot; type=&quot;disc&quot;&gt;\r\n &lt;li class=&quot;MsoNormal&amp', '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none&quot;&gt;&lt;span lang=&quot;ES-MX&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;;\r\nmso-ansi-language:ES-MX&quot;&gt;Toledo, F. (2002). &lt;i&gt;Ecuaciones\r\nDiferenciales', '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none&quot;&gt;&lt;span style=&quot;font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;;\r\nmso-ansi-language:ES-CL&quot;&gt;Campbell, S. L, y Haberman, R. &lt;/span&gt;&lt;span lang=&quot;ES-MX&quot; ', 240035, '2016-11-30 23:17:28', 6482318, 1),
+(22, 'asdjlkj', 'lkjlk', 'ddasd', 'dsadsd', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Esuna asignatura de segundo aÃ±o, primer semestre. En ella se introducen las ecuacionesdiferenciales ordinarias, clasificadas por orden, lineales o no lineales.&amp;nbsp; Se estudian sistemas de ecuacionesdiferenciales ordinarias, se introducen algunos mÃ©todos de resoluciÃ³n de estasecuaciones. AdemÃ¡s, se pretende introducir aspectos elementales de modelamientomatemÃ¡tico de fenÃ³menos naturales. &lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-bottom:3.0pt;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Estaasignatura contribuye a las siguientes competencias especÃ­ficas:&lt;/span&gt;&lt;/p&gt;', '&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Resolver problemas\r\nrelativos a la Ciencias de la IngenierÃ­a utilizando como herramienta de\r\nmodelamiento las ecuaciones diferenciales ordinarias. &amp;nbsp;&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Resultados de\r\naprendizaje:&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;p class=&quot;MsoNormal&quot; style=&quot;text-align:justify&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;&lt;o:p&gt;&amp;nbsp;&lt;/o:p&gt;&lt;/span&gt;&lt;/p&gt;\r\n\r\n&lt;ol style=&quot;margin-top:0cm&quot; start=&quot;1&quot; type=&quot;1&quot;&gt;\r\n &lt;li class=&quot;MsoNormal&quot; style=&quot;text-align:justify;mso-list:l0 level1 lfo1&quot;&gt;&lt;span lang=&quot;ES&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:\r\n     &amp;quot;Arial&amp;quot;,sans-serif&quot;&gt;Fundamenta la aplicaciÃ³n de un determinado mÃ©todo segÃºn\r\n     tipo de ecuaciÃ³n diferencial ordinaria para la resoluciÃ³n de problemas que\r\n     involucran ecuaciones diferenciales ordinarias.&lt;o:p&gt;&lt;/o:p&gt;&lt;/span&gt;&lt;/li&gt;\r\n &lt;li class=&quot;MsoNormal&quot; style=&quot;text-align:justify;mso-list:l0 level1 lfo1&quot;&gt;&lt;/li&gt;&lt;/ol&gt;', '&lt;ul style=&quot;margin-top:0cm&quot; type=&quot;disc&quot;&gt;\r\n &lt;/ul&gt;', '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none&quot;&gt;&lt;span lang=&quot;ES-MX&quot; style=&quot;font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;;\r\nmso-ansi-language:ES-MX&quot;&gt;Toledo, F. (2002). &lt;i&gt;Ecuaciones\r\nDiferenciales', '&lt;p class=&quot;MsoNormal&quot; style=&quot;margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none&quot;&gt;&lt;span style=&quot;font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:&amp;quot;Arial&amp;quot;,sans-serif;mso-bidi-font-family:&amp;quot;Times New Roman&amp;quot;;\r\nmso-ansi-language:ES-CL&quot;&gt;Campbell, S. L, y Haberman, R. &lt;/span&gt;&lt;/p&gt;', 240035, '2016-12-01 00:00:03', 6482318, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `programa_extenso`
+--
+
+CREATE TABLE IF NOT EXISTS `programa_extenso` (
+`pe_id` int(11) NOT NULL,
+  `pe_tipo_curso` varchar(45) DEFAULT NULL,
+  `pe_carrera` varchar(45) DEFAULT NULL,
+  `pe_departamento` varchar(45) DEFAULT NULL,
+  `pe_facultad` varchar(45) DEFAULT NULL,
+  `pe_nro_creditos` int(11) DEFAULT NULL,
+  `pe_horas_cronologicas` int(11) DEFAULT NULL,
+  `pe_horas_pedagogicas` int(11) DEFAULT NULL,
+  `pe_anio` int(11) DEFAULT NULL,
+  `pe_semestre` int(11) DEFAULT NULL,
+  `pe_hrs_presenciales` int(11) DEFAULT NULL,
+  `pe_ht_presenciales` int(11) DEFAULT NULL,
+  `pe_hp_presenciales` int(11) DEFAULT NULL,
+  `pe_hl_presenciales` int(11) DEFAULT NULL,
+  `pe_hrs_autonomas` int(11) DEFAULT NULL,
+  `pe_ht_autonomas` int(11) DEFAULT NULL,
+  `pe_hp_autonomas` int(11) DEFAULT NULL,
+  `pe_hl_autonomas` int(11) DEFAULT NULL,
+  `pe_presentacion` varchar(2000) DEFAULT NULL,
+  `pe_descriptor_competencias` varchar(2000) DEFAULT NULL,
+  `pe_aprendizajes_previos` varchar(2000) DEFAULT NULL,
+  `pe_fecha_inicio` date DEFAULT NULL,
+  `pe_fecha_fin` date DEFAULT NULL,
+  `pe_observacion` varchar(100) DEFAULT NULL,
+  `pe_biblio_fundamental` varchar(2000) DEFAULT NULL,
+  `pe_biblio_complementaria` varchar(2000) DEFAULT NULL,
+  `asig_codigo` int(6) NOT NULL,
+  `pe_fecha_modificacion` datetime NOT NULL,
+  `usu_rut` int(11) NOT NULL,
+  `pe_borrador` int(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `programa_extenso`
+--
+
+INSERT INTO `programa_extenso` (`pe_id`, `pe_tipo_curso`, `pe_carrera`, `pe_departamento`, `pe_facultad`, `pe_nro_creditos`, `pe_horas_cronologicas`, `pe_horas_pedagogicas`, `pe_anio`, `pe_semestre`, `pe_hrs_presenciales`, `pe_ht_presenciales`, `pe_hp_presenciales`, `pe_hl_presenciales`, `pe_hrs_autonomas`, `pe_ht_autonomas`, `pe_hp_autonomas`, `pe_hl_autonomas`, `pe_presentacion`, `pe_descriptor_competencias`, `pe_aprendizajes_previos`, `pe_fecha_inicio`, `pe_fecha_fin`, `pe_observacion`, `pe_biblio_fundamental`, `pe_biblio_complementaria`, `asig_codigo`, `pe_fecha_modificacion`, `usu_rut`, `pe_borrador`) VALUES
+(10, 'Prueba', 'IngenierÃ­a Civil en Informatica', 'Prueba', 'Prueba', 12, 12, 12, 121, 1212, 12, 12, 12, 12, 12, 12, 12, 12, 'Prueba <b>de prueba </b>exitoso&nbsp;<div><br></div><div style="text-align: center;">&nbsp;borrador</div><div style="text-align: center;"><br></div>', 'Prueba<br>', 'Prueba<br>', '2016-02-01', '2017-01-01', 'Prueba<br>', 'Prueba<br>', 'Prueba<br>', 240012, '2016-12-11 21:38:48', 6482318, 0),
+(11, 'Prueba', 'IngenierÃ­a Civil en Informatica', 'Prueba', 'Prueba', 12, 12, 12, 121, 1212, 12, 12, 12, 12, 12, 12, 12, 12, 'Prueba <b>de prueba </b>exitoso&nbsp;<div><br></div><div style="text-align: center;">&nbsp;borrador</div><div style="text-align: center;"><br></div>', 'Prueba<br>', 'Prueba<br>', '2016-02-01', '2017-01-01', 'Prueba<br>', 'Prueba<br>', 'Prueba<br>', 240012, '2016-12-11 22:19:27', 6482318, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `resultado_aprendizaje`
+--
+
+CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
+`ra_id` int(11) NOT NULL,
+  `ra_resultado_aprendizaje` varchar(1000) DEFAULT NULL,
+  `ra_metodologia` varchar(1000) DEFAULT NULL,
+  `ra_criterios_evaluacion` varchar(1000) DEFAULT NULL,
+  `ra_contenido_con_pro_act` varchar(1000) DEFAULT NULL,
+  `ra_ht_presenciales` int(11) DEFAULT NULL,
+  `ra_hp_presenciales` int(11) DEFAULT NULL,
+  `ra_ht_autonomas` int(11) DEFAULT NULL,
+  `ra_hp_autonomas` int(11) DEFAULT NULL,
+  `ra_evidencia_aprendizaje` varchar(1000) DEFAULT NULL,
+  `pe_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_asignatura`
 --
 
@@ -312,6 +435,24 @@ ALTER TABLE `prerrequisito`
  ADD PRIMARY KEY (`pre_id`), ADD KEY `pre_codAsignatura` (`asig_codigo`,`asig_codigo_prerrequisito`), ADD KEY `asig_codigo_prerrequisito` (`asig_codigo_prerrequisito`);
 
 --
+-- Indices de la tabla `programa_basico`
+--
+ALTER TABLE `programa_basico`
+ ADD PRIMARY KEY (`pb_id`), ADD KEY `asig_codigo` (`asig_codigo`,`usu_rut`), ADD KEY `usu_rut` (`usu_rut`);
+
+--
+-- Indices de la tabla `programa_extenso`
+--
+ALTER TABLE `programa_extenso`
+ ADD PRIMARY KEY (`pe_id`), ADD KEY `asig_codigo` (`asig_codigo`,`usu_rut`), ADD KEY `usu_rut` (`usu_rut`);
+
+--
+-- Indices de la tabla `resultado_aprendizaje`
+--
+ALTER TABLE `resultado_aprendizaje`
+ ADD PRIMARY KEY (`ra_id`), ADD KEY `pe_id` (`pe_id`);
+
+--
 -- Indices de la tabla `tipo_asignatura`
 --
 ALTER TABLE `tipo_asignatura`
@@ -342,6 +483,21 @@ MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 ALTER TABLE `prerrequisito`
 MODIFY `pre_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `programa_basico`
+--
+ALTER TABLE `programa_basico`
+MODIFY `pb_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT de la tabla `programa_extenso`
+--
+ALTER TABLE `programa_extenso`
+MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT de la tabla `resultado_aprendizaje`
+--
+ALTER TABLE `resultado_aprendizaje`
+MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `tipo_asignatura`
 --
@@ -384,6 +540,20 @@ ADD CONSTRAINT `permiso_usuario_ibfk_2` FOREIGN KEY (`usu_rut`) REFERENCES `usua
 ALTER TABLE `prerrequisito`
 ADD CONSTRAINT `prerrequisito_ibfk_1` FOREIGN KEY (`asig_codigo`) REFERENCES `asignatura` (`asig_codigo`),
 ADD CONSTRAINT `prerrequisito_ibfk_2` FOREIGN KEY (`asig_codigo_prerrequisito`) REFERENCES `asignatura` (`asig_codigo`);
+
+--
+-- Filtros para la tabla `programa_basico`
+--
+ALTER TABLE `programa_basico`
+ADD CONSTRAINT `programa_basico_ibfk_1` FOREIGN KEY (`usu_rut`) REFERENCES `usuario` (`usu_rut`),
+ADD CONSTRAINT `programa_basico_ibfk_2` FOREIGN KEY (`asig_codigo`) REFERENCES `asignatura` (`asig_codigo`);
+
+--
+-- Filtros para la tabla `programa_extenso`
+--
+ALTER TABLE `programa_extenso`
+ADD CONSTRAINT `programa_extenso_ibfk_1` FOREIGN KEY (`usu_rut`) REFERENCES `usuario` (`usu_rut`),
+ADD CONSTRAINT `programa_extenso_ibfk_2` FOREIGN KEY (`asig_codigo`) REFERENCES `asignatura` (`asig_codigo`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

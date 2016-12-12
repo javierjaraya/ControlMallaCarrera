@@ -4,8 +4,8 @@ ob_start(); //Iniciar Buffer
 include_once '../../Controlador/Contenedor.php';
 $control = Contenedor::getInstancia();
 
-$pb_id = htmlspecialchars($_REQUEST['pb_id']);
-$programa_extenso = $control->getPrograma_basicoByID($pb_id);
+$pe_id = htmlspecialchars($_REQUEST['pe_id']);
+$programa_extenso = $control->getPrograma_ExtensoByID($pe_id);
 
 $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
 
@@ -83,7 +83,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
                 height: 80px;
             }
             .alto-titulo{
-                height: 40px;
+                height: 30px;
             }
             .ancho-xl{
                 width: 150px;
@@ -112,7 +112,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
         <table class="table-sin_border margin-50">
             <tr>
                 <td class="center fondo alto-titulo" style="font-size: 13px;">
-                    <b>ESQUEMA B&Aacute;SICO<br>PROGRAMA DE ASIGNATURA</b>
+                    <!--<b>ESQUEMA EXTENSO<br>-->PROGRAMA DE ASIGNATURA</b>
                 </td>
             </tr>
         </table>
@@ -127,14 +127,14 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
                 <td class="alto-xs"><b>C&oacute;digo:</b>&nbsp;<?= utf8_decode($asignatura->getAsig_codigo()) ?></td>
             </tr>
             <tr>
-                <td class="alto-xs"><b>Tipo de Curso:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_tipo_curso()) ?></td>
+                <td class="alto-xs"><b>Tipo de Curso:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_tipo_curso()) ?></td>
             </tr>
         </table>
         <br>
         <table class="table margin-50">
-            <tr><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Carrera:</b><br>&nbsp;<?= utf8_decode($programa_extenso->getPb_carrera()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Departamento:</b><br>&nbsp;<?= utf8_decode($programa_extenso->getPb_departamento()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Facultad</b><br>&nbsp;<?= utf8_decode($programa_extenso->getPb_facultad()) ?></td></tr>
-            <tr><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>N Cr&eacute;ditos SCT:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_nro_creditos()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Total de hotas</b><br>Cronol&oacute;gicas:&nbsp;<?= utf8_decode($programa_extenso->getPb_horas_cronologicas()) ?><br>Pedag&oacute;gicas:&nbsp;<?= utf8_decode($programa_extenso->getPb_horas_pedagogicas()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>A&ntilde;o / semestre:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_anio()) ?>&nbsp;/&nbsp;<?= utf8_decode($programa_extenso->getPb_semestre()) ?></td></tr>
-            <tr><td colspan="3" class="alto-xl ancho-xx align-top-vert"><b>Horas presenciales:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_hrs_presenciales()) ?>&nbsp;Pedag&oacute;gicas<br><b>HT:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_ht_presenciales()) ?><br><b>HP:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_hp_presenciales()) ?><br><b>HL:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_hl_presenciales()) ?></td><td colspan="3" class="alto-xl ancho-xx align-top-vert"><b>Horas trabajo aut&oacute;nomas:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_hrs_autonomas()) ?>&nbsp;Pedag&oacute;gicas<br><b>HT:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_ht_autonomas()) ?><br><b>HP:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_hp_autonomas()) ?><br><b>HL:</b>&nbsp;<?= utf8_decode($programa_extenso->getPb_hl_autonomas()) ?></td></tr>
+            <tr><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Carrera:</b><br>&nbsp;<?= utf8_decode($programa_extenso->getPe_carrera()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Departamento:</b><br>&nbsp;<?= utf8_decode($programa_extenso->getPe_departamento()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Facultad</b><br>&nbsp;<?= utf8_decode($programa_extenso->getPe_facultad()) ?></td></tr>
+            <tr><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>N Cr&eacute;ditos SCT:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_nro_creditos()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>Total de hotas</b><br>Cronol&oacute;gicas:&nbsp;<?= utf8_decode($programa_extenso->getPe_horas_cronologicas()) ?><br>Pedag&oacute;gicas:&nbsp;<?= utf8_decode($programa_extenso->getPe_horas_pedagogicas()) ?></td><td colspan="2" class="alto-xm ancho-xl align-top-vert"><b>A&ntilde;o / semestre:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_anio()) ?>&nbsp;/&nbsp;<?= utf8_decode($programa_extenso->getPe_semestre()) ?></td></tr>
+            <tr><td colspan="3" class="alto-xl ancho-xx align-top-vert"><b>Horas presenciales:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_hrs_presenciales()) ?>&nbsp;Pedag&oacute;gicas<br><b>HT:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_ht_presenciales()) ?><br><b>HP:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_hp_presenciales()) ?><br><b>HL:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_hl_presenciales()) ?></td><td colspan="3" class="alto-xl ancho-xx align-top-vert"><b>Horas trabajo aut&oacute;nomas:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_hrs_autonomas()) ?>&nbsp;Pedag&oacute;gicas<br><b>HT:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_ht_autonomas()) ?><br><b>HP:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_hp_autonomas()) ?><br><b>HL:</b>&nbsp;<?= utf8_decode($programa_extenso->getPe_hl_autonomas()) ?></td></tr>
             <tr>
                 <td colspan="3" class="alto-xl align-top-vert"><b>Prerrequisitos:</b><br>
                     <?php
@@ -151,7 +151,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
                     }
                     ?>
                 </td>
-                <td colspan="3" class="align-top-vert"><b>Correquisitos:</b><br>
+                <td colspan="3" class=" align-top-vert"><b>Correquisitos:</b><br>
                     <?php
                     if (count($correquisitos) > 0) {
                         foreach ($correquisitos as $value) {
@@ -162,7 +162,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
                             echo "<br><br>";
                         }
                     } else {
-                        echo "No Tiene";
+                        echo "No Tiene.";
                     }
                     ?>
                 </td>
@@ -176,7 +176,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
         <table class="table margin-50">
             <tr>
                 <td class="alto-minimo align-top-vert">
-                    <?= utf8_decode($programa_extenso->getPb_presentacion()) ?>
+                    <?= utf8_decode($programa_extenso->getPe_presentacion()) ?>
                 </td>
             </tr>
         </table>
@@ -186,7 +186,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
         <table class="table margin-50">
             <tr>
                 <td class="alto-minimo align-top-vert">
-                    <?= utf8_decode($programa_extenso->getPb_descriptor_competencias()) ?>
+                    <?= utf8_decode($programa_extenso->getPe_descriptor_competencias()) ?>
                 </td>
             </tr>
         </table>
@@ -196,7 +196,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
         <table class="table margin-50">
             <tr>
                 <td class="alto-minimo align-top-vert">
-                    <?= utf8_decode($programa_extenso->getPb_aprendizajes_previos()) ?>
+                    <?= utf8_decode($programa_extenso->getPe_aprendizajes_previos()) ?>
                 </td>
             </tr>
         </table>
@@ -207,13 +207,13 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
             <tr>
                 <td class="alto-minimo align-top-vert">
                     <b>Fundamental</b><br>
-                    <?= utf8_decode($programa_extenso->getPb_biblio_fundamental()) ?>
+                    <?= utf8_decode($programa_extenso->getPe_biblio_fundamental()) ?>
                 </td>
             </tr>
             <tr>
                 <td class="alto-minimo align-top-vert">
                     <b>Complementaria</b><br>
-                    <?= utf8_decode($programa_extenso->getPb_biblio_complementaria()) ?>
+                    <?= utf8_decode($programa_extenso->getPe_biblio_complementaria()) ?>
                 </td>
             </tr>
         </table>

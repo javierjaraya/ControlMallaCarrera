@@ -60,7 +60,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="administrarProgramaBasicoAsignaturas.php"><i class="fa fa-circle-o"></i>Programa Basico</a></li><!-- class="active" -->
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Programa Extenso</a></li>
+                    <li><a href="administrarProgramaExtensoAsignaturas.php"><i class="fa fa-circle-o"></i>Programa Extenso</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i>Programa Didactico</a></li>
                 </ul>
             </li>

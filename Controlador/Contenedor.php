@@ -8,6 +8,7 @@ include_once 'Mantenedores/PerfilDAO.php';
 include_once 'Mantenedores/Permiso_usuarioDAO.php';
 include_once 'Mantenedores/PrerrequisitoDAO.php';
 include_once 'Mantenedores/Programa_basicoDAO.php';
+include_once 'Mantenedores/Programa_extensoDAO.php';
 include_once 'Mantenedores/Tipo_asignaturaDAO.php';
 include_once 'Mantenedores/UsuarioDAO.php';
 
@@ -21,6 +22,7 @@ class Contenedor {
     private $permiso_usuarioDAO;
     private $prerrequisitoDAO;
     private $programa_basicoDAO;
+    private $programa_extensoDAO;
     private $tipo_asignaturaDAO;
     private $usuarioDAO;
 
@@ -33,6 +35,7 @@ class Contenedor {
         $this->permiso_usuarioDAO = new Permiso_usuarioDAO();
         $this->prerrequisitoDAO = new PrerrequisitoDAO();
         $this->programa_basicoDAO = new Programa_basicoDAO();
+        $this->programa_extensoDAO = new Programa_extensoDAO();
         $this->tipo_asignaturaDAO = new Tipo_asignaturaDAO();
         $this->usuarioDAO = new UsuarioDAO();
     }
@@ -310,6 +313,38 @@ class Contenedor {
 
     public function getPrograma_basicoLikeAtrr($cadena) {
         return $this->programa_basicoDAO->findLikeAtrr($cadena);
+    }
+    
+    public function getAllPrograma_extensos() {
+        return $this->programa_extensoDAO->findAll();
+    }
+
+    public function addPrograma_extenso($programa_extenso) {
+        return $this->programa_extensoDAO->save($programa_extenso);
+    }
+
+    public function removePrograma_extenso($pe_id) {
+        return $this->programa_extensoDAO->delete($pe_id);
+    }
+    
+    public function removePrograma_extensoBorradorByAsigCodigo($asig_codigo) {
+        return $this->programa_extensoDAO->deleteBorradorByAsigCodigo($asig_codigo);
+    }
+
+    public function updatePrograma_extenso($programa_extenso) {
+        return $this->programa_extensoDAO->update($programa_extenso);
+    }
+
+    public function getPrograma_extensoByID($pe_id) {
+        return $this->programa_extensoDAO->findByID($pe_id);
+    }
+    
+    public function getPrograma_extensosByAsig_Codigo($asig_codigo) {
+        return $this->programa_extensoDAO->findByAsig_Codigo($asig_codigo);
+    }
+
+    public function getPrograma_extensoLikeAtrr($cadena) {
+        return $this->programa_extensoDAO->findLikeAtrr($cadena);
     }
 
     public function getAllTipo_asignaturas() {
