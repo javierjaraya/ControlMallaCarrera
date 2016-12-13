@@ -104,7 +104,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="m_id">Mallas Curriculares:</label>
-                                                <select class="form-control pull-right" id="m_id" name="m_id">
+                                                <select class="form-control pull-right" id="m_id" name="m_id" onchange="cargar()">
                                                 </select>
                                             </div>
                                         </div>
@@ -137,16 +137,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <tbody id="tbody">
 
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Código</th>
-                                                <th>Nombre</th>
-                                                <th>Tipo</th>
-                                                <th>Periodo</th>
-                                                <th>Creditos</th>
-                                                <th>Acción</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.box-body -->

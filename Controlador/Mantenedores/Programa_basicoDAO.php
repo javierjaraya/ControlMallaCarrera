@@ -260,25 +260,78 @@ class Programa_basicoDAO {
     }
 
     public function update($programa_basico) {
+        $pb_nro_creditos = $programa_basico->getPb_nro_creditos();
+        if($pb_nro_creditos == ""){
+            $pb_nro_creditos = 'null';
+        }
+        $pb_horas_cronologicas = $programa_basico->getPb_horas_cronologicas();
+        if($pb_horas_cronologicas == ""){
+            $pb_horas_cronologicas = 'null';
+        }
+        $pb_horas_pedagogicas = $programa_basico->getPb_horas_pedagogicas();
+        if($pb_horas_pedagogicas == ""){
+            $pb_horas_pedagogicas = 'null';
+        }
+        $pb_anio = $programa_basico->getPb_anio();
+        if($pb_anio == ""){
+            $pb_anio = 'null';
+        }
+        $pb_semestre = $programa_basico->getPb_semestre();
+        if($pb_semestre == ""){
+            $pb_semestre = 'null';
+        }
+        $pb_hrs_presenciales = $programa_basico->getPb_hrs_presenciales();
+        if($pb_hrs_presenciales == ""){
+            $pb_hrs_presenciales = 'null';
+        }
+        $pb_ht_presenciales = $programa_basico->getPb_ht_presenciales();
+        if($pb_ht_presenciales == ""){
+            $pb_ht_presenciales = 'null';
+        }
+        $pb_hp_presenciales = $programa_basico->getPb_hp_presenciales();
+        if($pb_hp_presenciales == ""){
+            $pb_hp_presenciales = 'null';
+        }
+        $pb_hl_presenciales = $programa_basico->getPb_hl_presenciales();
+        if($pb_hl_presenciales == ""){
+            $pb_hl_presenciales = 'null';
+        }
+        $pb_hrs_autonomas = $programa_basico->getPb_hrs_autonomas();
+        if($pb_hrs_autonomas == ""){
+            $pb_hrs_autonomas = 'null';
+        }
+        $pb_ht_autonomas = $programa_basico->getPb_ht_autonomas();
+        if($pb_ht_autonomas == ""){
+            $pb_ht_autonomas = 'null';
+        }
+        $pb_hp_autonomas = $programa_basico->getPb_hp_autonomas();
+        if($pb_hp_autonomas == ""){
+            $pb_hp_autonomas = 'null';
+        }
+        $pb_hl_autonomas = $programa_basico->getPb_hl_autonomas();
+        if($pb_hl_autonomas == ""){
+            $pb_hl_autonomas = 'null';
+        }
+        
         $this->conexion->conectar();
         $query = "UPDATE programa_basico SET "
                 . "  pb_tipo_curso = '" . $programa_basico->getPb_tipo_curso() . "' ,"
                 . "  pb_carrera = '" . $programa_basico->getPb_carrera() . "' ,"
                 . "  pb_departamento = '" . $programa_basico->getPb_departamento() . "' ,"
                 . "  pb_facultad = '" . $programa_basico->getPb_facultad() . "' ,"
-                . "  pb_nro_creditos =  " . $programa_basico->getPb_nro_creditos() . " ,"
-                . "  pb_horas_cronologicas =  " . $programa_basico->getPb_horas_cronologicas() . " ,"
-                . "  pb_horas_pedagogicas =  " . $programa_basico->getPb_horas_pedagogicas() . " ,"
-                . "  pb_anio =  " . $programa_basico->getPb_anio() . " ,"
-                . "  pb_semestre =  " . $programa_basico->getPb_semestre() . " ,"
-                . "  pb_hrs_presenciales =  " . $programa_basico->getPb_hrs_presenciales() . " ,"
-                . "  pb_ht_presenciales =  " . $programa_basico->getPb_ht_presenciales() . " ,"
-                . "  pb_hp_presenciales =  " . $programa_basico->getPb_hp_presenciales() . " ,"
-                . "  pb_hl_presenciales =  " . $programa_basico->getPb_hl_presenciales() . " ,"
-                . "  pb_hrs_autonomas =  " . $programa_basico->getPb_hrs_autonomas() . " ,"
-                . "  pb_ht_autonomas =  " . $programa_basico->getPb_ht_autonomas() . " ,"
-                . "  pb_hp_autonomas =  " . $programa_basico->getPb_hp_autonomas() . " ,"
-                . "  pb_hl_autonomas =  " . $programa_basico->getPb_hl_autonomas() . " ,"
+                . "  pb_nro_creditos =  " . $pb_nro_creditos . " ,"
+                . "  pb_horas_cronologicas =  " . $pb_horas_cronologicas . " ,"
+                . "  pb_horas_pedagogicas =  " . $pb_horas_pedagogicas . " ,"
+                . "  pb_anio =  " . $pb_anio . " ,"
+                . "  pb_semestre =  " . $pb_semestre . " ,"
+                . "  pb_hrs_presenciales =  " . $pb_hrs_presenciales . " ,"
+                . "  pb_ht_presenciales =  " . $pb_ht_presenciales . " ,"
+                . "  pb_hp_presenciales =  " . $pb_hp_presenciales . " ,"
+                . "  pb_hl_presenciales =  " . $pb_hl_presenciales . " ,"
+                . "  pb_hrs_autonomas =  " . $pb_hrs_autonomas . " ,"
+                . "  pb_ht_autonomas =  " . $pb_ht_autonomas . " ,"
+                . "  pb_hp_autonomas =  " . $pb_hp_autonomas . " ,"
+                . "  pb_hl_autonomas =  " . $pb_hl_autonomas . " ,"
                 . "  pb_presentacion = '" . $programa_basico->getPb_presentacion() . "' ,"
                 . "  pb_descriptor_competencias = '" . $programa_basico->getPb_descriptor_competencias() . "' ,"
                 . "  pb_aprendizajes_previos = '" . $programa_basico->getPb_aprendizajes_previos() . "' ,"
@@ -288,7 +341,7 @@ class Programa_basicoDAO {
                 . "  pb_fecha_modificacion = now() ,"
                 . "  usu_rut =  " . $programa_basico->getUsu_rut() . " ,"
                 . "  pb_borrador =  " . $programa_basico->getPb_borrador() . " "
-                . " WHERE  pb_id =  " . $programa_basico->getPb_id() . " ";
+                . " WHERE  pb_id =  " . $programa_basico->getPb_id() . " ";        
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;

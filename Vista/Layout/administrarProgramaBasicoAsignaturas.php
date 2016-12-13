@@ -112,7 +112,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="asig_codigo">Codigo Asignatura:</label>
+                                                <label for="asig_codigo">Asignatura:</label>
                                                 <select class="form-control pull-right selectpicker" data-live-search="true" id="asig_codigo" name="asig_codigo">
                                                 </select>
                                             </div>

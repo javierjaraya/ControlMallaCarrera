@@ -320,7 +320,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <a href="administrarProgramaExtensoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaExtenso()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
                                         <button type="button" class="btn btn-info" onclick="crearProgramaExtensoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
-                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaExtensoAsignaturas.php?pb_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
+                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>
@@ -415,7 +415,6 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                 $("#accion").val("AGREGAR_BORRADOR");
                                 quitarBarraHerramientasEditores();
                                 $.post("../Servlet/administrarPrograma_extenso.php", $("#fm-programa").serialize(), function (data) {
-                                    console.log(data);
                                     agregarBarraHerramientasEditores();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');

@@ -156,7 +156,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="m_id">Mallas Curriculares:</label>
-                                                    <select class="form-control pull-right selectpicker" data-live-search="true" id="m_id" name="m_id">
+                                                    <select class="form-control pull-right selectpicker" data-live-search="true" id="m_id" name="m_id" onchange="cargar()">
                                                     </select>
                                                 </div>
                                             </div>
@@ -386,7 +386,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             function cargar() {
                                                 var m_id = document.getElementById("m_id").value;
                                                 $.get("../Servlet/administrarMalla.php", {accion: 'BUSCAR_BY_ID', m_id: m_id}, function (data) {
-                                                    console.log(data);
                                                     $('#m_fechaInicio').val(data.malla.m_fechaInicio);
                                                     $('#m_fechaFin').val(data.malla.m_fechaFin);
                                                     $('#m_cantidadSemestres').val(data.malla.m_cantidadSemestres);
@@ -436,6 +435,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
 
                                             function generarTabla(data) {
                                                 //THEAD
+                                                $("#thead").empty();
                                                 $('#thead').append("<tr>");
                                                 var n_anio = 0;
                                                 var anio = "";
@@ -448,6 +448,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                 }
                                                 $('#thead').append("</tr>");
                                                 //TBODY
+                                                $("#tbody").empty();
                                                 $('#tbody').append("<tr>");
                                                 for (var i = 1; i <= data.malla.m_cantidadSemestres; i++) {
                                                     $('#tbody').append("<td><button type='button' class='btn btn-block btn-default btn-sm' onClick='agregarAsignatura(" + i + ")'><i class='fa  fa-plus'></i></button></td>");

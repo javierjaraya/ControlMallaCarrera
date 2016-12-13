@@ -370,46 +370,22 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                             var pb_presentacion_edit, pb_descriptor_competencias_edit, pb_aprendizajes_previos_edit, pb_biblio_fundamental_edit, pb_biblio_complementaria_edit;
                             //<![CDATA[
                             bkLib.onDomLoaded(function () {
-                                $("#pb_presentacion").empty();
-                                $("#pb_descriptor_competencias").empty();
-                                $("#pb_aprendizajes_previos").empty();
-                                $("#pb_biblio_fundamental").empty();
-                                $("#pb_biblio_complementaria").empty();
-
-                                $('#pb_presentacion').html("");
-                                $('#pb_descriptor_competencias').html("");
-                                $('#pb_aprendizajes_previos').html("");
-                                $('#pb_biblio_fundamental').html("");
-                                $('#pb_biblio_complementaria').html("");
-
-                                if (!pb_presentacion_edit) {
-                                    pb_presentacion_edit = new nicEditor({fullPanel: true}).panelInstance('pb_presentacion', {hasPanel: true});
-                                }
-                                if (!pb_descriptor_competencias_edit) {
-                                    pb_descriptor_competencias_edit = new nicEditor({fullPanel: true}).panelInstance('pb_descriptor_competencias', {hasPanel: true});
-                                }
-                                if (!pb_aprendizajes_previos_edit) {
-                                    pb_aprendizajes_previos_edit = new nicEditor({fullPanel: true}).panelInstance('pb_aprendizajes_previos', {hasPanel: true});
-                                }
-                                if (!pb_biblio_fundamental_edit) {
-                                    pb_biblio_fundamental_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_fundamental', {hasPanel: true});
-                                }
-                                if (!pb_biblio_complementaria_edit) {
-                                    pb_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_complementaria', {hasPanel: true});
-                                }
+                                agregarBarraHerramientasEditores();
                             });
                             //]]>
 
                             function crearBorradorProgramaBasico() {
                                 $("#accion").val("AGREGAR_BORRADOR");
+                                quitarBarraHerramientasEditores();
                                 $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
+                                    agregarBarraHerramientasEditores();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
                                     } else {
                                         notificacion(data.mensaje, 'success', 'alert');
                                     }
                                     location.href = "#alert";
-                                }, "json");
+                                });
                             }
 
                             function crearProgramaBasicoConfirmar() {
@@ -420,7 +396,9 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
 
                             function crearProgramaBasico() {
                                 $("#accion").val("AGREGAR");
+                                quitarBarraHerramientasEditores();
                                 $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
+                                    agregarBarraHerramientasEditores();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
                                     } else {
@@ -429,7 +407,6 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     $('#modalProgramaAsignaturaConfirmar').modal('toggle');
                                     location.href = "#alert";
                                 }, "json");
-
                             }
 
                             function validar() {
@@ -451,32 +428,11 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                 var pb_hp_autonomas = $("#pb_hp_autonomas").val();
                                 var pb_hl_autonomas = $("#pb_hl_autonomas").val();
 
-
-                                pb_presentacion_edit.removeInstance('pb_presentacion');
-                                pb_presentacion_edit = null;
                                 var pb_presentacion = $("#pb_presentacion").val();
-                                pb_presentacion_edit = new nicEditor({fullPanel: true}).panelInstance('pb_presentacion', {hasPanel: true});
-                                /* */
-                                pb_descriptor_competencias_edit.removeInstance('pb_descriptor_competencias');
-                                pb_descriptor_competencias_edit = null;
                                 var pb_descriptor_competencias = $("#pb_descriptor_competencias").val();
-                                pb_descriptor_competencias_edit = new nicEditor({fullPanel: true}).panelInstance('pb_descriptor_competencias', {hasPanel: true});
-                                /* */
-                                pb_aprendizajes_previos_edit.removeInstance('pb_aprendizajes_previos');
-                                pb_aprendizajes_previos_edit = null;
                                 var pb_aprendizajes_previos = $("#pb_aprendizajes_previos").val();
-                                pb_aprendizajes_previos_edit = new nicEditor({fullPanel: true}).panelInstance('pb_aprendizajes_previos', {hasPanel: true});
-                                /* */
-                                pb_biblio_fundamental_edit.removeInstance('pb_biblio_fundamental');
-                                pb_biblio_fundamental_edit = null;
                                 var pb_biblio_fundamental = $("#pb_biblio_fundamental").val();
-                                pb_biblio_fundamental_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_fundamental', {hasPanel: true});
-                                /* */
-                                pb_biblio_complementaria_edit.removeInstance('pb_biblio_complementaria');
-                                pb_biblio_complementaria_edit = null;
                                 var pb_biblio_complementaria = $("#pb_biblio_complementaria").val();
-                                pb_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_complementaria', {hasPanel: true});
-                                /* */
 
                                 if (pb_tipo_curso == "") {
                                     notificacion("Debe ingresar el tipo de curso", 'danger', 'alert');
@@ -721,6 +677,41 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     return false;
                                 }
                                 return true;
+                            }
+
+                            function quitarBarraHerramientasEditores() {
+                                pb_presentacion_edit.removeInstance('pb_presentacion');
+                                pb_presentacion_edit = null;
+
+                                pb_descriptor_competencias_edit.removeInstance('pb_descriptor_competencias');
+                                pb_descriptor_competencias_edit = null;
+
+                                pb_aprendizajes_previos_edit.removeInstance('pb_aprendizajes_previos');
+                                pb_aprendizajes_previos_edit = null;
+
+                                pb_biblio_fundamental_edit.removeInstance('pb_biblio_fundamental');
+                                pb_biblio_fundamental_edit = null;
+
+                                pb_biblio_complementaria_edit.removeInstance('pb_biblio_complementaria');
+                                pb_biblio_complementaria_edit = null;
+                            }
+
+                            function agregarBarraHerramientasEditores() {
+                                if (!pb_presentacion_edit) {
+                                    pb_presentacion_edit = new nicEditor({fullPanel: true}).panelInstance('pb_presentacion', {hasPanel: true});
+                                }
+                                if (!pb_descriptor_competencias_edit) {
+                                    pb_descriptor_competencias_edit = new nicEditor({fullPanel: true}).panelInstance('pb_descriptor_competencias', {hasPanel: true});
+                                }
+                                if (!pb_aprendizajes_previos_edit) {
+                                    pb_aprendizajes_previos_edit = new nicEditor({fullPanel: true}).panelInstance('pb_aprendizajes_previos', {hasPanel: true});
+                                }
+                                if (!pb_biblio_fundamental_edit) {
+                                    pb_biblio_fundamental_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_fundamental', {hasPanel: true});
+                                }
+                                if (!pb_biblio_complementaria_edit) {
+                                    pb_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_complementaria', {hasPanel: true});
+                                }
                             }
         </script>
     </body>

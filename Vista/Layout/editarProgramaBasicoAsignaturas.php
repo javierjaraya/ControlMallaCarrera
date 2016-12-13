@@ -397,10 +397,7 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                             function crearBorradorProgramaBasico() {
                                 $("#accion").val("AGREGAR_BORRADOR");
                                 quitarBarraHerramientasEditores();
-                                var valor_pb_presentacion = document.getElementById("pb_presentacion").value;
-                                console.log(valor_pb_presentacion);
                                 $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
-                                    console.log(data);
                                     agregarBarraHerramientasEditores();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
@@ -408,7 +405,7 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                         notificacion(data.mensaje, 'success', 'alert');
                                     }
                                     location.href = "#alert";
-                                });
+                                },"json");
                             }
 
                             function crearProgramaBasicoConfirmar() {
@@ -430,7 +427,6 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                     $('#modalProgramaAsignaturaConfirmar').modal('toggle');
                                     location.href = "#alert";
                                 }, "json");
-
                             }
 
                             function validar() {

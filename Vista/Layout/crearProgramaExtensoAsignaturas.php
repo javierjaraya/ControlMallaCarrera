@@ -48,12 +48,18 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
         <!-- bootstrap Select-->
         <link rel="stylesheet" href="../../Files/Complementos/template_admin_lite/plugins/bootstrap-select-1.12.1/dist/css/bootstrap-select.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <style type="text/css">
+            .group-resultado {
+                border: 1px solid #d0d0d0;
+                padding: 10px;
+                position: relative;
+                //height: 500px;
+                overflow: auto;
+            }
+            .label-group-resultado{
+                height: 60px;
+            }
+        </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -282,7 +288,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-primary">
@@ -290,29 +296,91 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                         <h3 class="box-title">III. RESULTADOS DE APRENDIZAJE</h3>
                                     </div>
                                     <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <div class="col-md-12">
-                                            <div class="form-group">                                                
-                                                <textarea id="" name="" rows="14" class="form-control"></textarea>
+                                    <div class="box-body" id="resultados-de-aprendizaje">
+                                        <div id="resultado_0" class="group-resultado">
+                                            <div class="col-md-2">
+                                                <div class="form-group">   
+                                                    <div class="label-group-resultado">
+                                                        <label for="ra_resultado_aprendizaje_0">Resultados de Aprendizaje</label>
+                                                    </div>
+                                                    <textarea id="ra_resultado_aprendizaje_0" name="ra_resultado_aprendizaje_0" rows="14" cols="7" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">   
+                                                    <div class="label-group-resultado">
+                                                        <label for="ra_metodologia_0">Metodologia</label>
+                                                    </div>
+                                                    <textarea id="ra_metodologia_0" name="ra_metodologia_0" rows="14" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">   
+                                                    <div class="label-group-resultado">
+                                                        <label for="ra_criterios_evaluacion_0">Criterios de Evaluación</label>
+                                                    </div>
+                                                    <textarea id="ra_criterios_evaluacion_0" name="ra_criterios_evaluacion_0" rows="14" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">   
+                                                    <div class="label-group-resultado">
+                                                        <label for="ra_contenido_con_pro_act_0">Contenidos conceptuales, procedimentales y actitudinales</label>
+                                                    </div>
+                                                    <textarea id="ra_contenido_con_pro_act_0" name="ra_contenido_con_pro_act_0" rows="14" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">   
+                                                    <div class="label-group-resultado">
+                                                        <label for="ra_evidencia_aprendizaje_0">Evidencias de Aprendizaje (proceso y producto)</label>
+                                                    </div>
+                                                    <textarea id="ra_evidencia_aprendizaje_0" name="ra_evidencia_aprendizaje_0" rows="14" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="label-group-resultado">
+                                                    <label>Tiempo Estimado</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ra_ht_presenciales_0">Horas Teoricas Presenciales:</label>
+                                                    <input type="number" class="form-control pull-right" id="ra_ht_presenciales_0" name="ra_ht_presenciales_0" min="0">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ra_hp_presenciales_0">Horas Practicas Presenciales:</label>
+                                                    <input type="number" class="form-control pull-right" id="ra_hp_presenciales_0" name="ra_hp_presenciales_0" min="0">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ra_ht_autonomas_0">Horas Teoricas Autonomas:</label>
+                                                    <input type="number" class="form-control pull-right" id="ra_ht_autonomas_0" name="ra_ht_autonomas_0" min="0">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="ra_hp_autonomas_0">Horas Practicas Autonomas:</label>
+                                                    <input type="number" class="form-control pull-right" id="ra_hp_autonomas_0" name="ra_hp_autonomas_0" min="0">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- ./box-body --> 
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" onclick="agregarResultadoAprendizaje()"><i class="glyphicon glyphicon-plus"></i>  Agregar Resultado de Aprendizaje</button>
+                                    </div>
+                                    <!-- ./box-footer --> 
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-primary">
                                     <div class="box-header">
-                                        <h3 class="box-title">V. Sistema de Evaluaci&oacute;n</h3>
+                                        <h3 class="box-title">IV. Sistema de Evaluaci&oacute;n</h3>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
                                         <div class="col-md-12">
                                             <div class="form-group">                                                
-                                                <textarea id="pe_sistema_evaluacion" name="pe_sistema_evaluacion" rows="14" class="form-control"></textarea>
+                                                <textarea id="pe_sistema_evaluacion" name="pe_sistema_evaluacion" rows="10" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -320,25 +388,25 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                 </div>
                             </div>
                         </div>
-                                    
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-primary">
                                     <div class="box-header">
-                                        <h3 class="box-title">VI. Bibliografia</h3>
+                                        <h3 class="box-title">V. Bibliografia</h3>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pe_biblio_fundamental">Fundamental</label>
-                                                <textarea id="pe_biblio_fundamental" name="pe_biblio_fundamental" rows="14" class="form-control"></textarea>
+                                                <textarea id="pe_biblio_fundamental" name="pe_biblio_fundamental" rows="10" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pe_biblio_complementaria">Complementaria</label>
-                                                <textarea id="pe_biblio_complementaria" name="pe_biblio_complementaria" rows="14" class="form-control"></textarea>
+                                                <textarea id="pe_biblio_complementaria" name="pe_biblio_complementaria" rows="10" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -424,54 +492,35 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
         <script src="../../Files/js/usabilidad.js"></script>
 
         <script type="text/javascript">
-                            var pe_presentacion_edit, pe_descriptor_competencias_edit, pe_aprendizajes_previos_edit, pe_biblio_fundamental_edit, pe_biblio_complementaria_edit, pe_observacion_edit;
+                            var cantidad_resultados_de_aprendizaje = 0;
+                            var resultados_de_aprendisaje = [];
+                            var metodologia = [];
+                            var criterio_evaluacion = [];
+                            var contenido_conceptual = [];
+                            var evidencias_aprendizaje = [];
+
+                            var pe_presentacion_edit, pe_descriptor_competencias_edit, pe_aprendizajes_previos_edit;
+                            var pe_sistema_evaluacion_edit;
+                            var pe_biblio_fundamental_edit, pe_biblio_complementaria_edit, pe_observacion_edit;
                             //<![CDATA[
                             bkLib.onDomLoaded(function () {
-                                $("#pe_presentacion").empty();
-                                $("#pe_descriptor_competencias").empty();
-                                $("#pe_aprendizajes_previos").empty();
-                                $("#pe_biblio_fundamental").empty();
-                                $("#pe_biblio_complementaria").empty();
-                                $("#pe_observacion").empty();
-
-                                $('#pe_presentacion').html("");
-                                $('#pe_descriptor_competencias').html("");
-                                $('#pe_aprendizajes_previos').html("");
-                                $('#pe_biblio_fundamental').html("");
-                                $('#pe_biblio_complementaria').html("");
-                                $('#pe_observacion').html("");
-
-                                if (!pe_presentacion_edit) {
-                                    pe_presentacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_presentacion', {hasPanel: true});
-                                }
-                                if (!pe_descriptor_competencias_edit) {
-                                    pe_descriptor_competencias_edit = new nicEditor({fullPanel: true}).panelInstance('pe_descriptor_competencias', {hasPanel: true});
-                                }
-                                if (!pe_aprendizajes_previos_edit) {
-                                    pe_aprendizajes_previos_edit = new nicEditor({fullPanel: true}).panelInstance('pe_aprendizajes_previos', {hasPanel: true});
-                                }
-                                if (!pe_biblio_fundamental_edit) {
-                                    pe_biblio_fundamental_edit = new nicEditor({fullPanel: true}).panelInstance('pe_biblio_fundamental', {hasPanel: true});
-                                }
-                                if (!pe_biblio_complementaria_edit) {
-                                    pe_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pe_biblio_complementaria', {hasPanel: true});
-                                }
-                                if (!pe_observacion_edit) {
-                                    pe_observacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_observacion', {hasPanel: true});
-                                }
+                                agregarBarraHerramientasEditores();
+                                agregarBarraHerramientaEditoresResultadoAPrendizaje(cantidad_resultados_de_aprendizaje);
                             });
                             //]]>
 
                             function crearBorradorProgramaExtenso() {
                                 $("#accion").val("AGREGAR_BORRADOR");
+                                quitarBarraHerramientasEditores();
                                 $.post("../Servlet/administrarPrograma_extenso.php", $("#fm-programa").serialize(), function (data) {
+                                    agregarBarraHerramientasEditores();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
                                     } else {
                                         notificacion(data.mensaje, 'success', 'alert');
                                     }
                                     location.href = "#alert";
-                                },"json");
+                                }, "json");
                             }
 
                             function crearProgramaExtensoConfirmar() {
@@ -482,7 +531,9 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
 
                             function crearProgramaExtenso() {
                                 $("#accion").val("AGREGAR");
+                                quitarBarraHerramientasEditores();
                                 $.post("../Servlet/administrarPrograma_extenso.php", $("#fm-programa").serialize(), function (data) {
+                                    agregarBarraHerramientasEditores();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
                                     } else {
@@ -491,7 +542,6 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     $('#modalProgramaAsignaturaConfirmar').modal('toggle');
                                     location.href = "#alert";
                                 }, "json");
-
                             }
 
                             function validar() {
@@ -515,37 +565,12 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                 var pe_fecha_inicio = $("#pe_fecha_inicio").val();
                                 var pe_fecha_fin = $("#pe_fecha_fin").val();
 
-
-                                pe_presentacion_edit.removeInstance('pe_presentacion');
-                                pe_presentacion_edit = null;
                                 var pe_presentacion = $("#pe_presentacion").val();
-                                pe_presentacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_presentacion', {hasPanel: true});
-                                /* */
-                                pe_descriptor_competencias_edit.removeInstance('pe_descriptor_competencias');
-                                pe_descriptor_competencias_edit = null;
                                 var pe_descriptor_competencias = $("#pe_descriptor_competencias").val();
-                                pe_descriptor_competencias_edit = new nicEditor({fullPanel: true}).panelInstance('pe_descriptor_competencias', {hasPanel: true});
-                                /* */
-                                pe_aprendizajes_previos_edit.removeInstance('pe_aprendizajes_previos');
-                                pe_aprendizajes_previos_edit = null;
                                 var pe_aprendizajes_previos = $("#pe_aprendizajes_previos").val();
-                                pe_aprendizajes_previos_edit = new nicEditor({fullPanel: true}).panelInstance('pe_aprendizajes_previos', {hasPanel: true});
-                                /* */
-                                pe_biblio_fundamental_edit.removeInstance('pe_biblio_fundamental');
-                                pe_biblio_fundamental_edit = null;
                                 var pe_biblio_fundamental = $("#pe_biblio_fundamental").val();
-                                pe_biblio_fundamental_edit = new nicEditor({fullPanel: true}).panelInstance('pe_biblio_fundamental', {hasPanel: true});
-                                /* */
-                                pe_biblio_complementaria_edit.removeInstance('pe_biblio_complementaria');
-                                pe_biblio_complementaria_edit = null;
                                 var pe_biblio_complementaria = $("#pe_biblio_complementaria").val();
-                                pe_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pe_biblio_complementaria', {hasPanel: true});
-                                /* */
-                                pe_observacion_edit.removeInstance('pe_observacion');
-                                pe_observacion_edit = null;
                                 var pe_observacion = $("#pe_observacion").val();
-                                pe_observacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_observacion', {hasPanel: true});
-                                /* */
 
                                 if (pe_tipo_curso == "") {
                                     notificacion("Debe ingresar el tipo de curso", 'danger', 'alert');
@@ -799,6 +824,182 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     return false;
                                 }
                                 return true;
+                            }
+
+                            function quitarBarraHerramientasEditores() {
+                                pe_presentacion_edit.removeInstance('pe_presentacion');
+                                pe_presentacion_edit = null;
+
+                                pe_descriptor_competencias_edit.removeInstance('pe_descriptor_competencias');
+                                pe_descriptor_competencias_edit = null;
+
+                                pe_aprendizajes_previos_edit.removeInstance('pe_aprendizajes_previos');
+                                pe_aprendizajes_previos_edit = null;
+
+                                pe_biblio_fundamental_edit.removeInstance('pe_biblio_fundamental');
+                                pe_biblio_fundamental_edit = null;
+
+                                pe_biblio_complementaria_edit.removeInstance('pe_biblio_complementaria');
+                                pe_biblio_complementaria_edit = null;
+
+                                pe_observacion_edit.removeInstance('pe_observacion');
+                                pe_observacion_edit = null;
+                            }
+
+                            function agregarBarraHerramientasEditores() {
+                                if (!pe_presentacion_edit) {
+                                    pe_presentacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_presentacion', {hasPanel: true});
+                                }
+                                if (!pe_descriptor_competencias_edit) {
+                                    pe_descriptor_competencias_edit = new nicEditor({fullPanel: true}).panelInstance('pe_descriptor_competencias', {hasPanel: true});
+                                }
+                                if (!pe_aprendizajes_previos_edit) {
+                                    pe_aprendizajes_previos_edit = new nicEditor({fullPanel: true}).panelInstance('pe_aprendizajes_previos', {hasPanel: true});
+                                }
+                                if (!pe_sistema_evaluacion_edit) {
+                                    pe_sistema_evaluacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_sistema_evaluacion', {hasPanel: true});
+                                }
+                                if (!pe_biblio_fundamental_edit) {
+                                    pe_biblio_fundamental_edit = new nicEditor({fullPanel: true}).panelInstance('pe_biblio_fundamental', {hasPanel: true});
+                                }
+                                if (!pe_biblio_complementaria_edit) {
+                                    pe_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pe_biblio_complementaria', {hasPanel: true});
+                                }
+                                if (!pe_observacion_edit) {
+                                    pe_observacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_observacion', {hasPanel: true});
+                                }
+                            }
+
+                            function agregarBarraHerramientaEditoresResultadoAPrendizaje(id) {
+                                var ra_resultado_aprendizaje_edit;
+                                var ra_metodologia_edit;
+                                var ra_criterios_evaluacion_edit;
+                                var ra_contenido_con_pro_act_edit;
+                                var ra_evidencia_aprendizaje_edit;
+
+                                if (!ra_resultado_aprendizaje_edit) {
+                                    ra_resultado_aprendizaje_edit = new nicEditor({fullPanel: true}).panelInstance('ra_resultado_aprendizaje_' + id, {hasPanel: true});
+                                }
+                                if (!ra_metodologia_edit) {
+                                    ra_metodologia_edit = new nicEditor({fullPanel: true}).panelInstance('ra_metodologia_' + id, {hasPanel: true});
+                                }
+                                if (!ra_criterios_evaluacion_edit) {
+                                    ra_criterios_evaluacion_edit = new nicEditor({fullPanel: true}).panelInstance('ra_criterios_evaluacion_' + id, {hasPanel: true});
+                                }
+                                if (!ra_contenido_con_pro_act_edit) {
+                                    ra_contenido_con_pro_act_edit = new nicEditor({fullPanel: true}).panelInstance('ra_contenido_con_pro_act_' + id, {hasPanel: true});
+                                }
+                                if (!ra_evidencia_aprendizaje_edit) {
+                                    ra_evidencia_aprendizaje_edit = new nicEditor({fullPanel: true}).panelInstance('ra_evidencia_aprendizaje_' + id, {hasPanel: true});
+                                }
+
+
+                                resultados_de_aprendisaje[id] = ra_resultado_aprendizaje_edit;
+                                metodologia[id] = ra_metodologia_edit;
+                                criterio_evaluacion[id] = ra_criterios_evaluacion_edit;
+                                contenido_conceptual[id] = ra_contenido_con_pro_act_edit;
+                                evidencias_aprendizaje[id] = ra_evidencia_aprendizaje_edit;
+                            }
+                            
+                            function quitarBarraHerramientaEditoresResultadoAPrendizaje(id) {
+                                resultados_de_aprendisaje[id].removeInstance('ra_resultado_aprendizaje_' + id);
+                                resultados_de_aprendisaje[id] = null;
+
+                                metodologia[id].removeInstance('ra_metodologia_' + id);
+                                metodologia[id] = null;
+
+                                criterio_evaluacion[id].removeInstance('ra_criterios_evaluacion_' + id);
+                                criterio_evaluacion[id] = null;
+
+                                contenido_conceptual[id].removeInstance('ra_contenido_con_pro_act_' + id);
+                                contenido_conceptual[id] = null;
+
+                                evidencias_aprendizaje[id].removeInstance('ra_evidencia_aprendizaje_' + id);
+                                evidencias_aprendizaje[id] = null;
+                            }
+
+                            function agregarResultadoAprendizaje() {
+                                cantidad_resultados_de_aprendizaje++;
+
+                                var contenido = "<div id='resultado_" + cantidad_resultados_de_aprendizaje + "' class='group-resultado'>"
+                                        + "<div class='col-md-2'>"
+                                        + "     <div class='form-group'>   "
+                                        + "        <div class='label-group-resultado'>"
+                                        + "        <label for='ra_resultado_aprendizaje_" + cantidad_resultados_de_aprendizaje + "'>Resultados de Aprendizaje</label>"
+                                        + "         </div>"
+                                        + "         <textarea id='ra_resultado_aprendizaje_" + cantidad_resultados_de_aprendizaje + "' name='ra_resultado_aprendizaje_" + cantidad_resultados_de_aprendizaje + "' rows='14' cols='7' class='form-control'></textarea>"
+                                        + "    </div>"
+                                        + "</div>"
+                                        + "<div class='col-md-2'>"
+                                        + "    <div class='form-group'>   "
+                                        + "        <div class='label-group-resultado'>"
+                                        + "        <label for='ra_metodologia_" + cantidad_resultados_de_aprendizaje + "'>Metodologia</label>"
+                                        + "         </div>"
+                                        + "        <textarea id='ra_metodologia_" + cantidad_resultados_de_aprendizaje + "' name='ra_metodologia_" + cantidad_resultados_de_aprendizaje + "' rows='14' class='form-control'></textarea>"
+                                        + "    </div>"
+                                        + "</div>"
+                                        + "<div class='col-md-2'>"
+                                        + "    <div class='form-group'>   "
+                                        + "        <div class='label-group-resultado'>"
+                                        + "        <label for='ra_criterios_evaluacion_" + cantidad_resultados_de_aprendizaje + "'>Criterios de Evaluación</label>"
+                                        + "         </div>"
+                                        + "        <textarea id='ra_criterios_evaluacion_" + cantidad_resultados_de_aprendizaje + "' name='ra_criterios_evaluacion_" + cantidad_resultados_de_aprendizaje + "' rows='14' class='form-control'></textarea>"
+                                        + "    </div>"
+                                        + "</div>"
+                                        + "<div class='col-md-2'>"
+                                        + "    <div class='form-group'>   "
+                                        + "        <div class='label-group-resultado'>"
+                                        + "        <label for='ra_contenido_con_pro_act_" + cantidad_resultados_de_aprendizaje + "'>Contenidos conceptuales, procedimentales y actitudinales</label>"
+                                        + "         </div>"
+                                        + "        <textarea id='ra_contenido_con_pro_act_" + cantidad_resultados_de_aprendizaje + "' name='ra_contenido_con_pro_act_" + cantidad_resultados_de_aprendizaje + "' rows='14' class='form-control'></textarea>"
+                                        + "    </div>"
+                                        + "</div>"
+                                        + "<div class='col-md-2'>"
+                                        + "    <div class='form-group'>   "
+                                        + "        <div class='label-group-resultado'>"
+                                        + "        <label for='ra_evidencia_aprendizaje_" + cantidad_resultados_de_aprendizaje + "'>Evidencias de Aprendizaje (proceso y producto)</label>"
+                                        + "         </div>"
+                                        + "        <textarea id='ra_evidencia_aprendizaje_" + cantidad_resultados_de_aprendizaje + "' name='ra_evidencia_aprendizaje_" + cantidad_resultados_de_aprendizaje + "' rows='14' class='form-control'></textarea>"
+                                        + "    </div>"
+                                        + "</div>"
+                                        + "<div class='col-md-2'>"
+                                        + "        <div class='label-group-resultado'>"
+                                        + "    <label>Tiempo Estimado</label>"
+                                        + "         </div>"
+                                        + "    <div class='form-group'>"
+                                        + "        <label for='ra_ht_presenciales_" + cantidad_resultados_de_aprendizaje + "'>Horas Teoricas Presenciales:</label>"
+                                        + "        <input type='number' class='form-control pull-right' id='ra_ht_presenciales_" + cantidad_resultados_de_aprendizaje + "' name='ra_ht_presenciales_" + cantidad_resultados_de_aprendizaje + "' min='0'>"
+                                        + "    </div>"
+                                        + "    <div class='form-group'>"
+                                        + "        <label for='ra_hp_presenciales_" + cantidad_resultados_de_aprendizaje + "'>Horas Practicas Presenciales:</label>"
+                                        + "        <input type='number' class='form-control pull-right' id='ra_hp_presenciales_" + cantidad_resultados_de_aprendizaje + "' name='ra_hp_presenciales_" + cantidad_resultados_de_aprendizaje + "' min='0'>"
+                                        + "    </div>"
+                                        + "    <div class='form-group'>"
+                                        + "        <label for='ra_ht_autonomas_" + cantidad_resultados_de_aprendizaje + "'>Horas Teoricas Autonomas:</label>"
+                                        + "        <input type='number' class='form-control pull-right' id='ra_ht_autonomas_" + cantidad_resultados_de_aprendizaje + "' name='ra_ht_autonomas_" + cantidad_resultados_de_aprendizaje + "' min='0'>"
+                                        + "    </div>"
+                                        + "    <div class='form-group'>"
+                                        + "        <label for='ra_hp_autonomas_" + cantidad_resultados_de_aprendizaje + "'>Horas Practicas Autonomas:</label>"
+                                        + "        <input type='number' class='form-control pull-right' id='ra_hp_autonomas_" + cantidad_resultados_de_aprendizaje + "' name='ra_hp_autonomas_" + cantidad_resultados_de_aprendizaje + "' min='0'>"
+                                        + "    </div>"
+                                        + "<div class='form-group'>"
+                                        + "        <div  style='height: 200px;position:relative;'>"
+                                        + "            <button class='btn btn-danger pull-right' style='position:absolute;bottom:5px;right:10px;' onclick='borrarResultadoAprendizaje(" + cantidad_resultados_de_aprendizaje + ")'><i class='glyphicon glyphicon - trash'></i> Borrar</button>"
+                                        + "        </div>"
+                                        + "    </div>"
+                                        + "</div>"
+                                        + "</div>";
+                                $("#resultados-de-aprendizaje").append(contenido);
+
+                                agregarBarraHerramientaEditoresResultadoAPrendizaje(cantidad_resultados_de_aprendizaje)
+                                //resultados_de_aprendisaje[cantidad_resultados_de_aprendizaje] = 
+                                /*for (i = 0; i < resultados_de_aprendisaje.length; i++) {
+                                 console.log(resultados_de_aprendisaje[i]);
+                                 }*/
+                            }
+                            
+                            function borrarResultadoAprendizaje(id){
+                                $("#resultado_"+id).remove();
                             }
         </script>
     </body>
