@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2016 a las 04:36:27
+-- Tiempo de generación: 15-12-2016 a las 00:15:14
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `docente` (
 `doc_id` int(11) NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `asig_codigo` int(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `docente`
@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `docente` (
 
 INSERT INTO `docente` (`doc_id`, `usu_rut`, `asig_codigo`) VALUES
 (2, 6482318, 240022),
+(3, 8918389, 634065),
 (1, 9658063, 634066);
 
 -- --------------------------------------------------------
@@ -299,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `programa_extenso` (
   `usu_rut` int(11) NOT NULL,
   `pe_borrador` int(1) NOT NULL,
   `pe_sistema_evaluacion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_estonian_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `programa_extenso`
@@ -313,7 +314,9 @@ INSERT INTO `programa_extenso` (`pe_id`, `pe_tipo_curso`, `pe_carrera`, `pe_depa
 (14, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 12, 12, 12, 12, 1, 21, 21, 21, 21, 21, 2, 12, 121, 'Texto de pre', 'Texto de pre<br>', 'Texto de pre<br>', '2016-01-02', '2017-01-01', 'vTexto de preTexto de pre', 'Texto de pre<br>', 'Texto de pre<br>', 240013, '2016-12-13 23:41:59', 6482318, 0, ''),
 (15, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 12, 12, 12, 12, 1, 21, 21, 21, 21, 21, 2, 12, 121, 'Texto de pre', 'Texto de pre<br>', 'Texto de pre<br>', '2016-01-02', '2017-01-01', 'vTexto de preTexto de pre', 'Texto de pre<br>', 'Texto de pre<br>', 240013, '2016-12-13 23:44:39', 6482318, 0, ''),
 (16, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 12, 12, 12, 12, 1, 21, 21, 21, 21, 21, 2, 12, 121, 'Texto de pre', 'Texto de pre<br>', 'Texto de pre<br>', '2016-01-02', '2017-01-01', 'vTexto de preTexto de pre', 'Texto de pre<br>', 'Texto de pre<br>', 240013, '2016-12-13 23:45:45', 6482318, 1, ''),
-(17, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 12, 12, 12, 12, 1, 21, 21, 21, 21, 21, 2, 12, 121, 'Texto de pre', 'Texto de pre<br>', 'Texto de pre<br>', '2016-01-02', '2017-01-01', 'vTexto de preTexto de pre', 'Texto de pre<br>', 'Texto de pre<br>', 240013, '2016-12-13 23:48:39', 6482318, 1, 'Texto de pre&lt;br&gt;');
+(17, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 12, 12, 12, 12, 1, 21, 21, 21, 21, 21, 2, 12, 121, 'Texto de pre', 'Texto de pre<br>', 'Texto de pre<br>', '2016-01-02', '2017-01-01', 'vTexto de preTexto de pre', 'Texto de pre<br>', 'Texto de pre<br>', 240013, '2016-12-13 23:48:39', 6482318, 1, 'Texto de pre&lt;br&gt;'),
+(18, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 12, 12, 12, 12, 1, 21, 21, 21, 21, 21, 2, 12, 121, 'Texto de prueba', 'Texto de pre<br>', 'Texto de pre<br>', '2016-01-02', '2017-01-01', 'vTexto de preTexto de pre', 'Texto de pre<br>', 'Texto de pre<br>', 240013, '2016-12-14 18:25:58', 6482318, 1, 'Texto de pre&lt;br&gt;'),
+(19, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 12, 12, 12, 12, 1, 21, 21, 21, 21, 21, 2, 12, 121, 'Texto de prueba', 'Texto de pre<br>', 'Texto de pre<br>', '2016-01-02', '2017-01-01', 'vTexto de preTexto de pre', 'Texto de pre<br>', 'Texto de pre<br>', 240013, '2016-12-14 18:26:39', 6482318, 1, 'Texto de pre&lt;br&gt;');
 
 -- --------------------------------------------------------
 
@@ -333,7 +336,7 @@ CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
   `ra_hp_autonomas` int(11) DEFAULT NULL,
   `ra_evidencia_aprendizaje` varchar(1000) DEFAULT NULL,
   `pe_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `resultado_aprendizaje`
@@ -351,7 +354,13 @@ INSERT INTO `resultado_aprendizaje` (`ra_id`, `ra_resultado_aprendizaje`, `ra_me
 (9, 'tetfdsdjg', 'jhg', 'khg', 'kjh', 1, 2, 4, 2, 'gkjhg', 16),
 (10, 'Texto de pre&lt;br&gt;', 'vTexto de pre', 'Texto de pre&lt;br&gt;', 'Texto de pre&lt;br&gt;', 1, 1, 2, 1, 'Texto de pre&lt;br&gt;', 17),
 (11, 'texto de prueba', 'texto de prueba&lt;br&gt;', 'texto de prueba&lt;br&gt;', 'texto de prueba&lt;br&gt;', 3, 2, 1, 1, 'texto de prueba&lt;br&gt;', 17),
-(12, 'tetfdsdjg', 'jhg', 'khg', 'kjh', 1, 2, 4, 2, 'gkjhg', 17);
+(12, 'tetfdsdjg', 'jhg', 'khg', 'kjh', 1, 2, 4, 2, 'gkjhg', 17),
+(13, 'Texto de pre&lt;br&gt;', 'vTexto de pre', 'Texto de pre&lt;br&gt;', 'Texto de pre&lt;br&gt;', 1, 1, 2, 1, 'Texto de pre&lt;br&gt;', 18),
+(14, 'texto de prueba&lt;br&gt;', 'texto de prueba&lt;br&gt;', 'texto de prueba&lt;br&gt;', 'texto de prueba&lt;br&gt;', 3, 2, 1, 1, 'texto de prueba&lt;br&gt;', 18),
+(15, 'kjh', 'jhg', 'khg', 'kjh', 1, 2, 4, 2, 'gkjhg', 18),
+(16, 'Texto de pre&lt;br&gt;', 'vTexto de pre', 'Texto de pre&lt;br&gt;', 'Texto de pre&lt;br&gt;', 1, 1, 2, 1, 'Texto de pre&lt;br&gt;', 19),
+(17, 'texto de prueba 2&lt;br&gt;', 'texto de prueba 2&lt;br&gt;', 'texto de prueba 2&lt;br&gt;', 'texto de prueba 2&lt;br&gt;', 3, 2, 1, 1, 'texto de prueba 2&lt;br&gt;', 19),
+(18, 'kjh', 'jhg', 'khg', 'kjh', 1, 2, 4, 2, 'gkjhg', 19);
 
 -- --------------------------------------------------------
 
@@ -394,30 +403,30 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO `usuario` (`usu_rut`, `usu_nombres`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_docente`) VALUES
 (6482318, 'JUAN FRANCISCO', 'ESCALONA SEPULVEDA', 'jescalon@ubiobio.cl', '893cf5c151e6309d622bbf0b07c79daf', 1),
-(7131066, 'ALFONSO ENRIQUE', 'RODRIGUEZ RIOS', 'alfonso@ubiobio.cl', 'ZD+iGie8jM/tf2a7/K/oOUmBWj0=', 1),
-(8906080, 'GILBERTO ANTONIO', 'GUTIERREZ RETAMAL', 'ggutierr@ubiobio.cl', 'pZwHJ0nBe7ZeNA1VJxHiLibER1k=', 1),
-(8918389, 'MARLENE ELENA ', 'ELENA MUÑOZ SEPULVEDA', 'marlene@ubiobio.cl', 'f7/7lz/9pTkfpORvoSmF/SyrMqA=', 1),
-(9426145, 'MARIA ANGELICA', 'CARO GUTIERREZ', 'mcaro@ubiobio.cl', 'eo4Evy3vvnNpq9nmX25RfCqFd+w=', 1),
-(9520261, 'SYLVIA MARCELA', 'PINTO FERNANDEZ', 'marcela@ubiobio.cl', 'NrfoEgk73FqdubjHEoyrELwR5KA=', 1),
-(9632094, 'IRMA ', 'BORQUEZ', 'iborquez@ubiobio.cl', 'BHxmFNawNTZhLppDhQUCZ2KQpgE=', 0),
-(9658063, 'MARIA ANTONIETA ', 'SOTO CHICO', 'msoto@ubiobio.cl', 'buAVab/kIwk5rkFCeNzqPxBmK1Q=', 1),
-(10680002, 'MIGUEL RODRIGO', 'PINCHEIRA CARO', 'mpincheir@ubiobio.cl', 'Agt8K65QBFiMWVpey9HCaqLMs6I=', 1),
-(12551754, 'LUIS DANIEL', 'GAJARDO DIAZ', 'lgajardo@ubiobio.cl', 'VogdMM6koOCLlReXbDvITQmetBk=', 1),
-(12907510, 'MARIO ANDRES', 'GAETE PRADENA', 'mario.gaete@sintec.cl', '8D7my8Sip6l0XYAUMdZF1xiXpA4=', 0),
-(12970102, 'CLAUDIO', 'MUÑOZ SEPULVEDA', 'clamunoz@ubiobio.cl', '604w+yGX0VivPpNYIabtCIStuyc=', 1),
-(12970221, 'VICTOR ANDRÉS ', 'CEBALLOS MUÑOZ', 'ceballos@ubiobio.cl', 'K0dvpaMkwd18cn1/u4igYNYZXWE=', 1),
-(13131344, 'MIGUEL', 'ROMERO VASQUEZ', 'miguel.romero@ubiobio.cl', 'JrZSKOQ3T6ihdkTLnHzJsiviTlM=', 1),
-(13256663, 'ALEJANDRA', 'FUENTES LAGOS', 'alejandra.fuentes.lagos@gmail.com', 'SKueL1Hg8X+g14Pji38oziOaN6k=', 1),
-(13828864, 'FABIÁN ADOLFO ', 'VILLAGRAN GUTIERREZ', 'fabo21@gmail.com', 'STg+P6X3srd+NX62G5z0xZySunI=', 1),
-(14030436, 'JUAN CARLOS', 'FIGUEROA DURÁN', 'juancarlosfigueroaduran@gmail.com', 'Erb922AaEQRe1ydO9Lip7SQRRaY=', 1),
-(15181008, 'CAROLA ANDREA ', 'FIGUEROA FLORES', 'cfigueroa@ubiobio.cl', 'qQq/OZmyQwtHM6/0tTOdBiisiF4=', 1),
-(15780544, 'FERNANDO ANDRES', 'SANTOLAYA FRANCO', 'fsantolaya@ubiobio.cl', 'AFqp3JWhXDqea8sj/3MKO7RBKMA=', 1),
-(16217315, 'JUAN JOSE', 'RAMIREZ LAMA', 'juaramir@ubiobio.cl', 'aB8CNYjIgr+ma4mkFlXKx9LLawE=', 0),
-(16228622, 'JOEL ALEJANDRO', 'FUENTES LÓPEZ', 'jfuentes@ubiobio.cl', 'fp6yPyZSs/Sq3Rl3Kanz0bX5TF0=', 1),
-(16251825, 'SERGIO ROCA MUNOZ', 'SERGIO ROCA MUNOZ', 'sroca@ubiobio.cl', 'FMh+6+KGvsdEtaJ9y9zjnNnMpZs=', 0),
-(16931250, 'DANIEL EDUARDO', 'ESPINOZA NÚÑEZ', 'deespino@egresados.ubiobio.cl', '83bS+Xjle2i7tRZG76V7wDKkjR4=', 0),
-(17060646, 'DIEGO FELIPE', 'SEPÚLVEDA BRIONES', 'diego.felipe.sepulveda.briones@gmail.com', 'FA3LhLo1v3qAjpyfzWSlL4hklqE=', 0),
-(17935210, 'CLAUDIO', 'TORRES FONSECA', 'torresfonseca.cl@gmail.com', 'hUrrvAmq320HpToANExFmqNarVo=', 1);
+(7131066, 'ALFONSO ENRIQUE', 'RODRIGUEZ RIOS', 'alfonso@ubiobio.cl', 'a66cfe73aac1e2ff10116081c2d910c3', 1),
+(8906080, 'GILBERTO ANTONIO', 'GUTIERREZ RETAMAL', 'ggutierr@ubiobio.cl', 'c48a3dc220cc64d99672071fb021d6af', 1),
+(8918389, 'MARLENE ELENA ', 'ELENA MUÑOZ SEPULVEDA', 'marlene@ubiobio.cl', '4303509f136fb8e54a0abd33f17da4f6', 1),
+(9426145, 'MARIA ANGELICA', 'CARO GUTIERREZ', 'mcaro@ubiobio.cl', '6cc32f9578e302908f372125a59dad28', 1),
+(9520261, 'SYLVIA MARCELA', 'PINTO FERNANDEZ', 'marcela@ubiobio.cl', 'c5265549057d7ac0e890206f2f135f5b', 1),
+(9632094, 'IRMA ', 'BORQUEZ', 'iborquez@ubiobio.cl', 'a159681ec5d001a6e9e912bf0b7abf6b', 0),
+(9658063, 'MARIA ANTONIETA ', 'SOTO CHICO', 'msoto@ubiobio.cl', '2b365511e4b247cbc766bd5deb72ae1e', 1),
+(10680002, 'MIGUEL RODRIGO', 'PINCHEIRA CARO', 'mpincheir@ubiobio.cl', '5f56ef2787acef2facd7cf556eddf0a9', 1),
+(12551754, 'LUIS DANIEL', 'GAJARDO DIAZ', 'lgajardo@ubiobio.cl', 'a2a63488e7d21aadde6be64fab952d4c', 1),
+(12907510, 'MARIO ANDRES', 'GAETE PRADENA', 'mario.gaete@sintec.cl', 'df72fba262b62daa0d128c3984d951ad', 0),
+(12970102, 'CLAUDIO', 'MUÑOZ SEPULVEDA', 'clamunoz@ubiobio.cl', '0f4ccb0726703154287f87bd559abc4d', 1),
+(12970221, 'VICTOR ANDRÉS ', 'CEBALLOS MUÑOZ', 'ceballos@ubiobio.cl', 'e32ce8657f3587b8badfb46f31e216ad', 1),
+(13131344, 'MIGUEL', 'ROMERO VASQUEZ', 'miguel.romero@ubiobio.cl', 'f445782a15674b0b0800c792c97cc707', 1),
+(13256663, 'ALEJANDRA', 'FUENTES LAGOS', 'alejandra.fuentes.lagos@gmail.com', '5acc15b7f6a73a0ecb92788d156b15ae', 1),
+(13828864, 'FABIÁN ADOLFO ', 'VILLAGRAN GUTIERREZ', 'fabo21@gmail.com', 'e511b39fc1c047573335f558252c0219', 1),
+(14030436, 'JUAN CARLOS', 'FIGUEROA DURÁN', 'juancarlosfigueroaduran@gmail.com', '585048ffed6e869fce27626d6d0737b3', 1),
+(15181008, 'CAROLA ANDREA ', 'FIGUEROA FLORES', 'cfigueroa@ubiobio.cl', 'bf8648d836fff20441cf7eb5dde2bc87', 1),
+(15780544, 'FERNANDO ANDRES', 'SANTOLAYA FRANCO', 'fsantolaya@ubiobio.cl', '9d69265511fd208ae293ab78d009b46b', 1),
+(16217315, 'JUAN JOSE', 'RAMIREZ LAMA', 'juaramir@ubiobio.cl', '5bb120d8c93b0ac3eec9693524309292', 0),
+(16228622, 'JOEL ALEJANDRO', 'FUENTES LÓPEZ', 'jfuentes@ubiobio.cl', '41ab9a5191d928ca6068a716a08be005', 1),
+(16251825, 'SERGIO ROCA MUNOZ', 'SERGIO ROCA MUNOZ', 'sroca@ubiobio.cl', '76d284a217295c9b4a60c115689bf6fa', 0),
+(16931250, 'DANIEL EDUARDO', 'ESPINOZA NÚÑEZ', 'deespino@egresados.ubiobio.cl', '7380da0ab819043f807a29100b6e2dc0', 0),
+(17060646, 'DIEGO FELIPE', 'SEPÚLVEDA BRIONES', 'diego.felipe.sepulveda.briones@gmail.com', '1340672e0879f01fd551b8cc5adb90f2', 0),
+(17935210, 'CLAUDIO', 'TORRES FONSECA', 'torresfonseca.cl@gmail.com', 'b5f39fbedd69c8af64564408cf5de0c5', 1);
 
 --
 -- Índices para tablas volcadas
@@ -503,7 +512,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
@@ -523,12 +532,12 @@ MODIFY `pb_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 -- AUTO_INCREMENT de la tabla `programa_extenso`
 --
 ALTER TABLE `programa_extenso`
-MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `resultado_aprendizaje`
 --
 ALTER TABLE `resultado_aprendizaje`
-MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `tipo_asignatura`
 --

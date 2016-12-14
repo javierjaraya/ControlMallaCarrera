@@ -26,6 +26,12 @@ if ($accion != null) {
         $electivos = $control->getAllElectivosBy_usu_rut($usu_rut);
         $json = json_encode($electivos);
         echo $json;
+    } else if ($accion == "LISTADO_BY_RUT") {
+        session_start();
+        $usu_rut = $_SESSION["usu_run"];
+        $asignaturas = $control->getAllAsignaturasBy_usu_rut($usu_rut);
+        $json = json_encode($asignaturas);
+        echo $json;
     } else if ($accion == "AGREGAR") {
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
         $asig_nombre = htmlspecialchars($_REQUEST['asig_nombre']);

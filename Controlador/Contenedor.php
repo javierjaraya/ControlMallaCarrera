@@ -58,6 +58,10 @@ class Contenedor {
     public function getAllAsignaturasBy_m_id($m_id) {
         return $this->asignaturaDAO->findAllBy_m_id($m_id);
     }
+    
+    public function getAllAsignaturasBy_usu_rut($usu_rut) {
+        return $this->asignaturaDAO->findAllBy_usu_rut($usu_rut);
+    }
 
     public function getAllElectivosBy_m_id($m_id) {
         return $this->asignaturaDAO->findAllElectivosBy_m_id($m_id);

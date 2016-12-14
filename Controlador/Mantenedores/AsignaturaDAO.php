@@ -61,6 +61,28 @@ class AsignaturaDAO {
         $this->conexion->desconectar();
         return $asignaturas;
     }
+    
+    public function findAllBy_usu_rut($usu_rut) {
+        $this->conexion->conectar();
+        $query = "SELECT A.asig_codigo,A.asig_nombre,A.asig_periodo,A.asig_creditos,A.m_id,A.ta_id,T.ta_nombre FROM asignatura A JOIN tipo_asignatura T ON A.ta_id = T.ta_id JOIN docente D ON A.asig_codigo = D.asig_codigo WHERE D.usu_rut = " . $usu_rut . " ";
+        $result = $this->conexion->ejecutar($query);
+        $i = 0;
+        $asignaturas = array();
+        while ($fila = $result->fetch_row()) {
+            $asignatura = new AsignaturaDTO();
+            $asignatura->setAsig_codigo($fila[0]);
+            $asignatura->setAsig_nombre($fila[1]);
+            $asignatura->setAsig_periodo($fila[2]);
+            $asignatura->setAsig_creditos($fila[3]);
+            $asignatura->setM_id($fila[4]);
+            $asignatura->setTa_id($fila[5]);
+            $asignatura->setTa_nombre(utf8_encode($fila[6]));
+            $asignaturas[$i] = $asignatura;
+            $i++;
+        }
+        $this->conexion->desconectar();
+        return $asignaturas;
+    }
 
     public function findAllElectivosBy_m_id($m_id) {
         $this->conexion->conectar();

@@ -117,17 +117,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <tbody id="tbody">
 
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Código</th>
-                                                <th>Nombre</th>
-                                                <th>Periodo</th>
-                                                <th>Creditos</th>
-                                                <th>Cód. Malla</th>
-                                                <th>Tipo</th>
-                                                <th>Acción</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.box-body -->
@@ -180,14 +169,15 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 cargar();
             });
             function cargar() {
-                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_ELECTIVOS_BY_RUT_DOCENTE', }, function (data) {
+                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_BY_RUT', }, function (data) {
+                    console.log(data);
                     var data = eval(data);
                     $.each(data, function (k, v) {
                         var contenido = "<tr>";
                         contenido += "<td>" + v.asig_codigo + "</td>";
                         contenido += "<td>" + v.asig_nombre + "</td>";
                         contenido += "<td>" + v.asig_periodo + "</td>";
-                        contenido += "<td>" + v.asig_codigos + "</td>";
+                        contenido += "<td>" + v.asig_creditos + "</td>";
                         contenido += "<td>" + v.m_id + "</td>";
                         contenido += "<td>" + v.ta_nombre + "</td>";
                         contenido += "<td>";

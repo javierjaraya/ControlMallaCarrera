@@ -26,7 +26,7 @@ if (($usu_run != null || $usu_run != "") && ($usu_password != null || $usu_passw
             if ($permiso->getPer_id() == 1) {//Docente
                 $pagina = "Vista/Layout/home.php";
             } else if ($permiso->getPer_id() == 2) {//Directiva
-                $pagina = "Vista/Layout/home.php";
+                $pagina = "Vista/Layout/administrarMallaCurricular.php";
             } else if ($permiso->getPer_id() == 3) {//Secretaria
                 $pagina = "Vista/Layout/home.php";
             } else {
