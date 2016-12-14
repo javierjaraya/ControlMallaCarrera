@@ -38,7 +38,7 @@ if ($accion != null) {
         $pe_biblio_complementaria = $_REQUEST['pe_biblio_complementaria'];
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
         $cantidad_resultados_aprendizaje = htmlspecialchars($_REQUEST['cantidad-resultados-aprendizaje']);
-        $pe_sistema_evaluacion = htmlspecialchars($_REQUEST['pe_sistema_evaluacion']);
+        $pe_sistema_evaluacion = $_REQUEST['pe_sistema_evaluacion'];
 
         session_start();
         $usu_rut = $_SESSION["usu_run"];
@@ -82,11 +82,11 @@ if ($accion != null) {
         //Guardar Resultados de Aprendizaje
         for ($i = 0; $i <= $cantidad_resultados_aprendizaje; $i++) {
             if (isset($_REQUEST['ra_resultado_aprendizaje_' . $i])) {
-                $ra_resultado_aprendizaje = htmlspecialchars($_REQUEST['ra_resultado_aprendizaje_' . $i]);
-                $ra_metodologia = htmlspecialchars($_REQUEST['ra_metodologia_' . $i]);
-                $ra_criterios_evaluacion = htmlspecialchars($_REQUEST['ra_criterios_evaluacion_' . $i]);
-                $ra_contenido_con_pro_act = htmlspecialchars($_REQUEST['ra_contenido_con_pro_act_' . $i]);
-                $ra_evidencia_aprendizaje = htmlspecialchars($_REQUEST['ra_evidencia_aprendizaje_' . $i]);
+                $ra_resultado_aprendizaje = $_REQUEST['ra_resultado_aprendizaje_' . $i];
+                $ra_metodologia = $_REQUEST['ra_metodologia_' . $i];
+                $ra_criterios_evaluacion = $_REQUEST['ra_criterios_evaluacion_' . $i];
+                $ra_contenido_con_pro_act = $_REQUEST['ra_contenido_con_pro_act_' . $i];
+                $ra_evidencia_aprendizaje = $_REQUEST['ra_evidencia_aprendizaje_' . $i];
                 $ra_ht_presenciales = htmlspecialchars($_REQUEST['ra_ht_presenciales_' . $i]);
                 $ra_hp_presenciales = htmlspecialchars($_REQUEST['ra_hp_presenciales_' . $i]);
                 $ra_ht_autonomas = htmlspecialchars($_REQUEST['ra_ht_autonomas_' . $i]);
@@ -135,21 +135,17 @@ if ($accion != null) {
         $pe_ht_autonomas = htmlspecialchars($_REQUEST['pe_ht_autonomas']);
         $pe_hp_autonomas = htmlspecialchars($_REQUEST['pe_hp_autonomas']);
         $pe_hl_autonomas = htmlspecialchars($_REQUEST['pe_hl_autonomas']);
-
         $pe_presentacion = $_REQUEST['pe_presentacion'];
         $pe_descriptor_competencias = $_REQUEST['pe_descriptor_competencias'];
         $pe_aprendizajes_previos = $_REQUEST['pe_aprendizajes_previos'];
-
         $pe_fecha_inicio = htmlspecialchars($_REQUEST['pe_fecha_inicio']);
         $pe_fecha_fin = htmlspecialchars($_REQUEST['pe_fecha_fin']);
-
         $pe_observacion = $_REQUEST['pe_observacion'];
         $pe_biblio_fundamental = $_REQUEST['pe_biblio_fundamental'];
         $pe_biblio_complementaria = $_REQUEST['pe_biblio_complementaria'];
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
-        $pe_sistema_evaluacion = htmlspecialchars($_REQUEST['pe_sistema_evaluacion']);
-        
         $cantidad_resultados_aprendizaje = htmlspecialchars($_REQUEST['cantidad-resultados-aprendizaje']);
+        $pe_sistema_evaluacion = $_REQUEST['pe_sistema_evaluacion'];
 
         session_start();
         $usu_rut = $_SESSION["usu_run"];
@@ -193,11 +189,11 @@ if ($accion != null) {
         //Guardar Resultados de Aprendizaje
         for ($i = 0; $i <= $cantidad_resultados_aprendizaje; $i++) {
             if (isset($_REQUEST['ra_resultado_aprendizaje_' . $i])) {
-                $ra_resultado_aprendizaje = htmlspecialchars($_REQUEST['ra_resultado_aprendizaje_' . $i]);
-                $ra_metodologia = htmlspecialchars($_REQUEST['ra_metodologia_' . $i]);
-                $ra_criterios_evaluacion = htmlspecialchars($_REQUEST['ra_criterios_evaluacion_' . $i]);
-                $ra_contenido_con_pro_act = htmlspecialchars($_REQUEST['ra_contenido_con_pro_act_' . $i]);
-                $ra_evidencia_aprendizaje = htmlspecialchars($_REQUEST['ra_evidencia_aprendizaje_' . $i]);
+                $ra_resultado_aprendizaje = $_REQUEST['ra_resultado_aprendizaje_' . $i];
+                $ra_metodologia = $_REQUEST['ra_metodologia_' . $i];
+                $ra_criterios_evaluacion = $_REQUEST['ra_criterios_evaluacion_' . $i];
+                $ra_contenido_con_pro_act = $_REQUEST['ra_contenido_con_pro_act_' . $i];
+                $ra_evidencia_aprendizaje = $_REQUEST['ra_evidencia_aprendizaje_' . $i];
                 $ra_ht_presenciales = htmlspecialchars($_REQUEST['ra_ht_presenciales_' . $i]);
                 $ra_hp_presenciales = htmlspecialchars($_REQUEST['ra_hp_presenciales_' . $i]);
                 $ra_ht_autonomas = htmlspecialchars($_REQUEST['ra_ht_autonomas_' . $i]);

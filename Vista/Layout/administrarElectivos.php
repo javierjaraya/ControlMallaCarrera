@@ -140,15 +140,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <tbody id="tbody">
 
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Código</th>
-                                                <th>Nombre</th>
-                                                <th>Semestre</th>
-                                                <th>Creditos</th>
-                                                <th>Acción</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.box-body -->
@@ -272,7 +263,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                     var count = 0;
                                     $.each(data, function (k, v) {
                                         var option = document.createElement("option");
-                                        option.text = v.m_fechaInicio + " al " + v.m_fechaFin + " | n° Semestres = " + v.m_cantidadSemestres;
+                                        option.text = v.m_id;
                                         option.value = v.m_id;
                                         select.add(option);
                                         count++;

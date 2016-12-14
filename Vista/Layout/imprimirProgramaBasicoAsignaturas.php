@@ -51,7 +51,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
                 margin-left: 50px;
             }
             .fondo{
-                background-color: #BDBDBD;
+                background-color: #DFDFDF;
             }
             .table-sin_border{
                 width: 600px;
@@ -171,7 +171,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
         <br>
         <table class="table-sin_border margin-50 arial-10"><tr><td><b>II. DESCRIPCI&Oacute;N</b></td></tr></table>
         <br>
-        <table class="table-sin_border margin-50 arial-10"><tr><td><b>II.1 Presentaci&oacute;n; Relaci&oacute;n de la Asigntatura con las Competencias del Perfil de Egreso</b></td></tr></table>
+        <table class="table-sin_border margin-50 arial-10"><tr><td><b>II.1 Presentaci&oacute;n: Relaci&oacute;n de la Asigntatura con las Competencias del Perfil de Egreso</b></td></tr></table>
         <br>
         <table class="table margin-50">
             <tr>

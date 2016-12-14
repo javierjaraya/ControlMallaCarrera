@@ -11,6 +11,8 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
 
 $perrequisitos = $control->getAllPerrequisitosByAsig_Codigo($programa_extenso->getAsig_codigo());
 $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->getAsig_codigo());
+
+$resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id);
 ?>
 <html>
     <head>
@@ -51,7 +53,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
                 margin-left: 50px;
             }
             .fondo{
-                background-color: #BDBDBD;
+                background-color: #DFDFDF;
             }
             .table-sin_border{
                 width: 600px;
@@ -121,7 +123,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
         <br>
         <table class="table  margin-50">
             <tr>
-                <td class="alto-xs"><b>Nombre asignatura:</b>&nbsp;<?= utf8_decode($asignatura->getAsig_nombre()) ?></td>
+                <td class="alto-xs"><b>Nombre asignatura:</b>&nbsp;<?= utf8_decode($asignatura->getAsig_nombre()) ?></td><td rowspan="3" class="align-top-vert"><b>Periodo de<br>Vigencia:</b><br>&nbsp;<?= substr(utf8_decode($programa_extenso->getPe_fecha_inicio()), 0, 4) ?>&nbsp;&nbsp;-&nbsp;&nbsp;<?= substr(utf8_decode($programa_extenso->getPe_fecha_fin()), 0, 4) ?></td>
             </tr>
             <tr>
                 <td class="alto-xs"><b>C&oacute;digo:</b>&nbsp;<?= utf8_decode($asignatura->getAsig_codigo()) ?></td>
@@ -171,7 +173,7 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
         <br>
         <table class="table-sin_border margin-50 arial-10"><tr><td><b>II. DESCRIPCI&Oacute;N</b></td></tr></table>
         <br>
-        <table class="table-sin_border margin-50 arial-10"><tr><td><b>II.1 Presentaci&oacute;n; Relaci&oacute;n de la Asigntatura con las Competencias del Perfil de Egreso</b></td></tr></table>
+        <table class="table-sin_border margin-50 arial-10"><tr><td><b>II.1 Presentaci&oacute;n: Relaci&oacute;n de la Asigntatura con las Competencias del Perfil de Egreso</b></td></tr></table>
         <br>
         <table class="table margin-50">
             <tr>
@@ -201,7 +203,46 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
             </tr>
         </table>
         <br><br>
-        <table class="table-sin_border margin-50 arial-10"><tr><td><b>III. BIBLIOGRAF&Iacute;A</b></td></tr></table>
+        <table class="table-sin_border margin-50 arial-10"><tr><td><b>III. RESULTADOS DE APRENDIZAJE</b></td></tr></table>
+        <br>
+        <table class="table margin-50">
+            <tr class="fondo"><td class="align-top-vert"><b>Resultados de<br>Aprendizaje</b></td><td class="align-top-vert"><b>Metodolog&iacute;a</b></td><td class="align-top-vert"><b>Criterios de<br>Evaluaci&oacute;n</b></td><td class="align-top-vert"><b>Contenidos<br>conceptuales,<br>procedimentales y<br>actitudinales.</b></td><td class="align-top-vert"><b>Tiempo<br>Estimado</b></td></tr>
+            <?php
+            foreach ($resultado_aprendizajes as $value) {
+                ?>
+                <tr>
+                    <td class="align-top-vert"><?= utf8_decode($value->getRa_resultado_aprendizaje()) ?></td>
+                    <td class="align-top-vert"><?= utf8_decode($value->getRa_metodologia()) ?></td>
+                    <td class="align-top-vert"><?= utf8_decode($value->getRa_criterios_evaluacion()) ?></td>
+                    <td class="align-top-vert"><?= utf8_decode($value->getRa_contenido_con_pro_act()) ?></td>
+                    <td class="align-top-vert"><b>Horas<br>Presenciales<br><br>HT:&nbsp;<?= $value->getRa_ht_presenciales() ?><br><br>HP:&nbsp;<?= $value->getRa_hp_presenciales() ?><br><br>Horas de<br>trabajo<br>ut&oacute;nomo<br><br>HT:&nbsp;<?= $value->getRa_ht_autonomas() ?><br><br>HP:&nbsp;<?= $value->getRa_hp_autonomas() ?></b></td>
+                </tr>
+            <?php }
+            ?>
+        </table>
+        <br><br>
+        <table class="table-sin_border margin-50 arial-10"><tr><td><b>IV. SISTEMA DE EVALUACI&Oacute;N</b></td></tr></table>
+        <br>
+        <table class="table margin-50">
+            <tr class="fondo"><td class="align-top-vert center"><b>Resultados de Aprendizaje</b></td><td class="align-top-vert center"><b>Evidencia de Aprendizaje<br>(proceso y producto)</b></td></tr>
+            <?php
+            foreach ($resultado_aprendizajes as $value) {
+                ?>
+                <tr>
+                    <td class="align-top-vert"><?= utf8_decode($value->getRa_resultado_aprendizaje()) ?></td>
+                    <td class="align-top-vert"><?= utf8_decode($value->getRa_evidencia_aprendizaje()) ?></td>
+                </tr>
+            <?php }
+            ?>
+            <tr>
+                <td class="alto-minimo align-top-vert" colspan="2">
+                    <b>La evaluaci&oacute;n de la asignatura considera:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;%)</b><br><br>
+                    <?= utf8_decode($programa_extenso->getPe_sistema_evaluacion()) ?>
+                </td>
+            </tr>
+        </table>
+        <br><br>
+        <table class="table-sin_border margin-50 arial-10"><tr><td><b>V. BIBLIOGRAF&Iacute;A</b></td></tr></table>
         <br>
         <table class="table margin-50">
             <tr>

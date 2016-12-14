@@ -51,12 +51,12 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
         <!-- bootstrap Select-->
         <link rel="stylesheet" href="../../Files/Complementos/template_admin_lite/plugins/bootstrap-select-1.12.1/dist/css/bootstrap-select.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <style type="text/css">
+            .borde-div{
+                border: 1px solid #d0d0d0;
+                padding: 10px;
+            }
+        </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -254,19 +254,25 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_presentacion">ll.1 Presentación: Relación de la Asignatura con las Competencias del Perfil de Egreso</label>
-                                                <textarea id="pb_presentacion" name="pb_presentacion" rows="14" class="form-control" readonly></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_presentacion() ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_descriptor_competencias">ll.2 Descriptor de competencias</label>
-                                                <textarea id="pb_descriptor_competencias" name="pb_descriptor_competencias" rows="14" class="form-control" value="<?= $programa_extenso->getPb_descriptor_competencias() ?>" readonly></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_descriptor_competencias() ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_aprendizajes_previos">ll.3 Aprendizajes Previos</label>
-                                                <textarea id="pb_aprendizajes_previos" name="pb_aprendizajes_previos" rows="14" class="form-control" value="<?= $programa_extenso->getPb_aprendizajes_previos() ?>" readonly></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_aprendizajes_previos() ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -285,13 +291,17 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_biblio_fundamental">Fundamental</label>
-                                                <textarea id="pb_biblio_fundamental" name="pb_biblio_fundamental" rows="14" class="form-control" value="<?= $programa_extenso->getPb_biblio_fundamental() ?>" readonly></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_biblio_fundamental() ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_biblio_complementaria">Complementaria</label>
-                                                <textarea id="pb_biblio_complementaria" name="pb_biblio_complementaria" rows="14" class="form-control" value="<?= $programa_extenso->getPb_biblio_complementaria() ?>" readonly></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_biblio_complementaria() ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -412,7 +422,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                             function crearProgramaBasicoConfirmar() {
                                 $('#modalProgramaAsignaturaConfirmar').modal('show');
                             }
-                            
+
                             function quitarBarraHerramientasEditores() {
                                 pb_presentacion_edit.removeInstance('pb_presentacion');
                                 pb_presentacion_edit = null;
@@ -447,12 +457,12 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                     pb_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_complementaria', {hasPanel: true});
                                 }
                             }
-                            
+
                             function editar() {
                                 var pb_id = $("#pb_id").val();
                                 window.location = "editarProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
                             }
-                            
+
                             function imprimir() {
                                 var pb_id = $("#pb_id").val();
                                 window.location = "imprimirProgramaBasicoAsignaturas.php?pb_id=" + pb_id;

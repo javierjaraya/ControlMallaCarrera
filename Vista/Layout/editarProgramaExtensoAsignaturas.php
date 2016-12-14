@@ -424,6 +424,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                     <div class="modal-footer">
                                         <input type="hidden" id="pe_id" name="pe_id" value="<?= $pe_id ?>">
                                         <input type="hidden" id="accion" name="accion" value="">
+                                        <input type="hidden" id="cantidad-resultados-aprendizaje" name="cantidad-resultados-aprendizaje" value="">
                                         <a href="administrarProgramaExtensoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaExtenso()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
                                         <button type="button" class="btn btn-info" onclick="crearProgramaExtensoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
@@ -534,35 +535,29 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                             function cargarResultadosAprendizaje() {
                                 var pe_id = $("#pe_id").val();
                                 $.get("../Servlet/administrarResultado_aprendizaje.php", {accion: "LISTADO_BY_PE_ID", pe_id: pe_id}, function (data) {
-                                    console.log(data);
-                                    var i = -1;
+                                    var i = 0;
                                     $.each(data, function (k, v) {
-                                        console.log(i);
-                                        i++;
                                         if(i != 0){
                                             agregarResultadoAprendizajeCargado();
                                         }
-                                        //quitarBarrraHerramientaTodosLosEditoresResultadoAprendizaje();
-                                        var n = cantidad_resultados_de_aprendizaje;
+                                        $("#cantidad-resultados-aprendizaje").val(i);
+                                        cantidad_resultados_de_aprendizaje = i;
                                         //LLenar datos
-                                        $("#ra_resultado_aprendizaje_"+n).html(v.ra_contenido_con_pro_act);
-                                        $("#ra_metodologia_"+n).html(v.ra_metodologia);
-                                        $("#ra_criterios_evaluacion_"+n).html(v.ra_criterios_evaluacion);
-                                        $("#ra_contenido_con_pro_act_"+n).html(v.ra_contenido_con_pro_act);
-                                        $("#ra_evidencia_aprendizaje_"+n).html(v.ra_evidencia_aprendizaje);
+                                        $("#ra_resultado_aprendizaje_"+i).html(v.ra_contenido_con_pro_act);
+                                        $("#ra_metodologia_"+i).html(v.ra_metodologia);
+                                        $("#ra_criterios_evaluacion_"+i).html(v.ra_criterios_evaluacion);
+                                        $("#ra_contenido_con_pro_act_"+i).html(v.ra_contenido_con_pro_act);
+                                        $("#ra_evidencia_aprendizaje_"+i).html(v.ra_evidencia_aprendizaje);
                                         
-                                        $("#ra_ht_presenciales_"+n).val(v.ra_ht_presenciales);
-                                        $("#ra_hp_presenciales_"+n).val(v.ra_hp_presenciales);
-                                        $("#ra_ht_autonomas_"+n).val(v.ra_ht_autonomas);
-                                        $("#ra_hp_autonomas_"+n).val(v.ra_hp_autonomas);
+                                        $("#ra_ht_presenciales_"+i).val(v.ra_ht_presenciales);
+                                        $("#ra_hp_presenciales_"+i).val(v.ra_hp_presenciales);
+                                        $("#ra_ht_autonomas_"+i).val(v.ra_ht_autonomas);
+                                        $("#ra_hp_autonomas_"+i).val(v.ra_hp_autonomas);
+                                        
+                                        agregarBarraHerramientaEditoresResultadoAPrendizaje(cantidad_resultados_de_aprendizaje);
+                                        
+                                        i++;
                                     });
-                                    
-                                    //$("#cantidad-resultados-aprendizaje").val(0);
-                                    //agregarBarraHerramientaEditoresResultadoAPrendizaje(cantidad_resultados_de_aprendizaje);
-//                                    
-//                                    agregarBarraHerramientasEditores();
-//                                    $("#cantidad-resultados-aprendizaje").val(0);
-                                    agregarBarraHerramientaTodosLosEditoresResultadoAprendizaje();
                                 }, "json");
                             }
 
