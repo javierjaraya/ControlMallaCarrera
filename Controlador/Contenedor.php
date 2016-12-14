@@ -9,10 +9,12 @@ include_once 'Mantenedores/Permiso_usuarioDAO.php';
 include_once 'Mantenedores/PrerrequisitoDAO.php';
 include_once 'Mantenedores/Programa_basicoDAO.php';
 include_once 'Mantenedores/Programa_extensoDAO.php';
+include_once 'Mantenedores/Resultado_aprendizajeDAO.php';
 include_once 'Mantenedores/Tipo_asignaturaDAO.php';
 include_once 'Mantenedores/UsuarioDAO.php';
 
 class Contenedor {
+
     private static $instancia = NULL;
     private $asignaturaDAO;
     private $docenteDAO;
@@ -23,6 +25,7 @@ class Contenedor {
     private $prerrequisitoDAO;
     private $programa_basicoDAO;
     private $programa_extensoDAO;
+    private $resultado_aprendizajeDAO;
     private $tipo_asignaturaDAO;
     private $usuarioDAO;
 
@@ -36,6 +39,7 @@ class Contenedor {
         $this->prerrequisitoDAO = new PrerrequisitoDAO();
         $this->programa_basicoDAO = new Programa_basicoDAO();
         $this->programa_extensoDAO = new Programa_extensoDAO();
+        $this->resultado_aprendizajeDAO = new Resultado_aprendizajeDAO();
         $this->tipo_asignaturaDAO = new Tipo_asignaturaDAO();
         $this->usuarioDAO = new UsuarioDAO();
     }
@@ -50,7 +54,7 @@ class Contenedor {
     public function getAllAsignaturas() {
         return $this->asignaturaDAO->findAll();
     }
-    
+
     public function getAllAsignaturasBy_m_id($m_id) {
         return $this->asignaturaDAO->findAllBy_m_id($m_id);
     }
@@ -58,7 +62,7 @@ class Contenedor {
     public function getAllElectivosBy_m_id($m_id) {
         return $this->asignaturaDAO->findAllElectivosBy_m_id($m_id);
     }
-    
+
     public function getAllElectivosBy_usu_rut($usu_rut) {
         return $this->asignaturaDAO->findAllElectivosBy_usu_rut($usu_rut);
     }
@@ -83,7 +87,7 @@ class Contenedor {
         return $this->asignaturaDAO->findByID($asig_codigo);
     }
 
-    public function getAsignaturasByM_Id($m_id){
+    public function getAsignaturasByM_Id($m_id) {
         return $this->asignaturaDAO->findByM_ID($m_id);
     }
 
@@ -102,12 +106,12 @@ class Contenedor {
     public function removeDocente($doc_id) {
         return $this->docenteDAO->delete($doc_id);
     }
-    
+
     public function removeDocenteByUsu_Rut_Asig_Codigo($usu_rut, $asig_codigo) {
         return $this->docenteDAO->deleteByUsu_Rut_Asig_Codigo($usu_rut, $asig_codigo);
     }
 
-        public function removeDocenteBy_Asig_codigo($asig_codigo) {
+    public function removeDocenteBy_Asig_codigo($asig_codigo) {
         return $this->docenteDAO->deleteByAsig_Codigo($asig_codigo);
     }
 
@@ -118,7 +122,7 @@ class Contenedor {
     public function getDocenteByID($doc_id) {
         return $this->docenteDAO->findByID($doc_id);
     }
-    
+
     public function getDocenteByAsig_codigo($asig_codigo) {
         return $this->docenteDAO->findByAsig_codigo($asig_codigo);
     }
@@ -126,7 +130,7 @@ class Contenedor {
     public function getDocenteLikeAtrr($cadena) {
         return $this->docenteDAO->findLikeAtrr($cadena);
     }
-    
+
     public function getAllGrupo_electivos() {
         return $this->grupo_electivoDAO->findAll();
     }
@@ -146,8 +150,8 @@ class Contenedor {
     public function getGrupo_electivoByID($ge_codigo) {
         return $this->grupo_electivoDAO->findByID($ge_codigo);
     }
-    
-    public function getGrupo_electivoByM_Id($m_id){
+
+    public function getGrupo_electivoByM_Id($m_id) {
         return $this->grupo_electivoDAO->findByM_ID($m_id);
     }
 
@@ -178,11 +182,11 @@ class Contenedor {
     public function getMallaLikeAtrr($cadena) {
         return $this->mallaDAO->findLikeAtrr($cadena);
     }
-    
-    public function cantidadMaximaAsignaturasEnSemestreByMalla($m_id){
+
+    public function cantidadMaximaAsignaturasEnSemestreByMalla($m_id) {
         return $this->mallaDAO->cantidadMaximaAsignaturasEnSemestre($m_id);
     }
-    
+
     public function maxPeriodoUtilizadoByM_Id($m_id) {
         return $this->mallaDAO->maxPeriodoUtilizadoByM_Id($m_id);
     }
@@ -238,11 +242,11 @@ class Contenedor {
     public function getAllPrerrequisitos() {
         return $this->prerrequisitoDAO->findAll();
     }
-    
+
     public function getAllPrerrequisitosByAsig_Codigo($asig_codigo) {
         return $this->prerrequisitoDAO->findAllbyAsig_codigo($asig_codigo);
     }
-    
+
     public function getAllPrerrequisitosByAsig_Codigo_Prerrequisito($asig_codigo_prerrequisito) {
         return $this->prerrequisitoDAO->findAllbyAsig_codigo_prerrequisito($asig_codigo_prerrequisito);
     }
@@ -254,13 +258,13 @@ class Contenedor {
     public function removePrerrequisito($pre_id) {
         return $this->prerrequisitoDAO->delete($pre_id);
     }
-    
+
     public function removePrerrequisitoByAsig_Codigo($asig_codigo) {
         return $this->prerrequisitoDAO->deleteByAsig_Codigo($asig_codigo);
     }
-    
-    public function removePrerrequisitoByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo,$asig_codigo_prerrequisito) {
-        return $this->prerrequisitoDAO->deleteByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo,$asig_codigo_prerrequisito);
+
+    public function removePrerrequisitoByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo, $asig_codigo_prerrequisito) {
+        return $this->prerrequisitoDAO->deleteByAsig_Codigo_Asig_Codigo_Prerrequisito($asig_codigo, $asig_codigo_prerrequisito);
     }
 
     public function updatePrerrequisito($prerrequisito) {
@@ -274,12 +278,12 @@ class Contenedor {
     public function getPrerrequisitoLikeAtrr($cadena) {
         return $this->prerrequisitoDAO->findLikeAtrr($cadena);
     }
-    
-    public function getAllPerrequisitosByAsig_Codigo($asig_codigo){
+
+    public function getAllPerrequisitosByAsig_Codigo($asig_codigo) {
         return $this->prerrequisitoDAO->findAllPrerrequisitos_ByAsig_Codigo($asig_codigo);
     }
-    
-    public function getAllCorrequisitosByAsig_Codigo($asig_codigo){
+
+    public function getAllCorrequisitosByAsig_Codigo($asig_codigo) {
         return $this->prerrequisitoDAO->findAllCorrequisitos_ByAsig_Codigo($asig_codigo);
     }
 
@@ -294,7 +298,7 @@ class Contenedor {
     public function removePrograma_basico($pb_id) {
         return $this->programa_basicoDAO->delete($pb_id);
     }
-    
+
     public function removePrograma_basicoBorradorByAsigCodigo($asig_codigo) {
         return $this->programa_basicoDAO->deleteBorradorByAsigCodigo($asig_codigo);
     }
@@ -306,15 +310,19 @@ class Contenedor {
     public function getPrograma_basicoByID($pb_id) {
         return $this->programa_basicoDAO->findByID($pb_id);
     }
-    
-    public function getPrograma_basicosByAsig_Codigo($asig_codigo){
+
+    public function getPrograma_basicosByAsig_Codigo($asig_codigo) {
         return $this->programa_basicoDAO->findByAsig_Codigo($asig_codigo);
     }
 
     public function getPrograma_basicoLikeAtrr($cadena) {
         return $this->programa_basicoDAO->findLikeAtrr($cadena);
     }
-    
+
+    public function getId_disponible_programa_extenso() {
+        return $this->programa_extensoDAO->id_disponible();
+    }
+
     public function getAllPrograma_extensos() {
         return $this->programa_extensoDAO->findAll();
     }
@@ -326,7 +334,7 @@ class Contenedor {
     public function removePrograma_extenso($pe_id) {
         return $this->programa_extensoDAO->delete($pe_id);
     }
-    
+
     public function removePrograma_extensoBorradorByAsigCodigo($asig_codigo) {
         return $this->programa_extensoDAO->deleteBorradorByAsigCodigo($asig_codigo);
     }
@@ -338,13 +346,41 @@ class Contenedor {
     public function getPrograma_extensoByID($pe_id) {
         return $this->programa_extensoDAO->findByID($pe_id);
     }
-    
+
     public function getPrograma_extensosByAsig_Codigo($asig_codigo) {
         return $this->programa_extensoDAO->findByAsig_Codigo($asig_codigo);
     }
 
     public function getPrograma_extensoLikeAtrr($cadena) {
         return $this->programa_extensoDAO->findLikeAtrr($cadena);
+    }
+
+    public function getAllResultado_aprendizajes() {
+        return $this->resultado_aprendizajeDAO->findAll();
+    }
+    
+    public function getAllResultado_aprendizajes_By_pe_id($pe_id) {
+        return $this->resultado_aprendizajeDAO->findAllBy_pe_id($pe_id);
+    }
+
+    public function addResultado_aprendizaje($resultado_aprendizaje) {
+        return $this->resultado_aprendizajeDAO->save($resultado_aprendizaje);
+    }
+
+    public function removeResultado_aprendizaje($ra_id) {
+        return $this->resultado_aprendizajeDAO->delete($ra_id);
+    }
+
+    public function updateResultado_aprendizaje($resultado_aprendizaje) {
+        return $this->resultado_aprendizajeDAO->update($resultado_aprendizaje);
+    }
+
+    public function getResultado_aprendizajeByID($ra_id) {
+        return $this->resultado_aprendizajeDAO->findByID($ra_id);
+    }
+
+    public function getResultado_aprendizajeLikeAtrr($cadena) {
+        return $this->resultado_aprendizajeDAO->findLikeAtrr($cadena);
     }
 
     public function getAllTipo_asignaturas() {
@@ -396,4 +432,5 @@ class Contenedor {
     }
 
 }
+
 ?>

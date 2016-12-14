@@ -293,7 +293,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                             <div class="col-md-12">
                                 <div class="box box-primary">
                                     <div class="box-header">
-                                        <h3 class="box-title">III. RESULTADOS DE APRENDIZAJE</h3>
+                                        <h3 class="box-title">III. Resultados de Aprendizajes</h3>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body" id="resultados-de-aprendizaje">
@@ -419,6 +419,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     <!-- ./box-body --> 
                                     <div class="modal-footer">
                                         <input type="hidden" id="accion" name="accion" value="">
+                                        <input type="hidden" id="cantidad-resultados-aprendizaje" name="cantidad-resultados-aprendizaje" value="">
                                         <a href="administrarProgramaExtensoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaExtenso()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
                                         <button type="button" class="btn btn-info" onclick="crearProgramaExtensoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
@@ -505,6 +506,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                             //<![CDATA[
                             bkLib.onDomLoaded(function () {
                                 agregarBarraHerramientasEditores();
+                                $("#cantidad-resultados-aprendizaje").val(0);
                                 agregarBarraHerramientaEditoresResultadoAPrendizaje(cantidad_resultados_de_aprendizaje);
                             });
                             //]]>
@@ -512,8 +514,10 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                             function crearBorradorProgramaExtenso() {
                                 $("#accion").val("AGREGAR_BORRADOR");
                                 quitarBarraHerramientasEditores();
+                                quitarBarrraHerramientaTodosLosEditoresResultadoAprendizaje();
                                 $.post("../Servlet/administrarPrograma_extenso.php", $("#fm-programa").serialize(), function (data) {
                                     agregarBarraHerramientasEditores();
+                                    agregarBarraHerramientaTodosLosEditoresResultadoAprendizaje();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
                                     } else {
@@ -524,16 +528,22 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                             }
 
                             function crearProgramaExtensoConfirmar() {
+                                quitarBarraHerramientasEditores();
+                                quitarBarrraHerramientaTodosLosEditoresResultadoAprendizaje();
                                 if (validar()) {
                                     $('#modalProgramaAsignaturaConfirmar').modal('show');
                                 }
+                                agregarBarraHerramientasEditores();
+                                agregarBarraHerramientaTodosLosEditoresResultadoAprendizaje();
                             }
 
                             function crearProgramaExtenso() {
                                 $("#accion").val("AGREGAR");
                                 quitarBarraHerramientasEditores();
+                                quitarBarrraHerramientaTodosLosEditoresResultadoAprendizaje();
                                 $.post("../Servlet/administrarPrograma_extenso.php", $("#fm-programa").serialize(), function (data) {
                                     agregarBarraHerramientasEditores();
+                                    agregarBarraHerramientaTodosLosEditoresResultadoAprendizaje();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
                                     } else {
@@ -568,6 +578,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                 var pe_presentacion = $("#pe_presentacion").val();
                                 var pe_descriptor_competencias = $("#pe_descriptor_competencias").val();
                                 var pe_aprendizajes_previos = $("#pe_aprendizajes_previos").val();
+                                var pe_sistema_evaluacion = $("#pe_sistema_evaluacion").val();
                                 var pe_biblio_fundamental = $("#pe_biblio_fundamental").val();
                                 var pe_biblio_complementaria = $("#pe_biblio_complementaria").val();
                                 var pe_observacion = $("#pe_observacion").val();
@@ -813,6 +824,115 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     return false;
                                 }
 
+                                //VALIDAR RESULTADOS DE APRENDIZAJE AQUI
+                                //resultados_de_aprendisaje[cantidad_resultados_de_aprendizaje] = 
+                                for (var i = 0; i < resultados_de_aprendisaje.length; i++) {
+                                    if ($("#ra_resultado_aprendizaje_" + i).length > 0) {
+                                        var ra_resultado_aprendizaje = $("#ra_resultado_aprendizaje_" + i).val();
+                                        var ra_metodologia = $("#ra_metodologia_" + i).val();
+                                        var ra_criterios_evaluacion = $("#ra_criterios_evaluacion_" + i).val();
+                                        var ra_contenido_con_pro_act = $("#ra_contenido_con_pro_act_" + i).val();
+                                        var ra_evidencia_aprendizaje = $("#ra_evidencia_aprendizaje_" + i).val();
+                                        var ra_ht_presenciales = $("#ra_ht_presenciales_" + i).val();
+                                        var ra_hp_presenciales = $("#ra_hp_presenciales_" + i).val();
+                                        var ra_ht_autonomas = $("#ra_ht_autonomas_" + i).val();
+                                        var ra_hp_autonomas = $("#ra_hp_autonomas_" + i).val();
+
+                                        if (ra_resultado_aprendizaje == "") {
+                                            notificacion("Debe llenar todos los resultados de aprendizaje del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_metodologia == "") {
+                                            notificacion("Debe llenar todas las metodologias del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_criterios_evaluacion == "") {
+                                            notificacion("Debe llenar todos los criterios de evaluación del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_contenido_con_pro_act == "") {
+                                            notificacion("Debe llenar todos contenidos conceptuales, procedimentales y actitudinales del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_evidencia_aprendizaje == "") {
+                                            notificacion("Debe llenar todas las evidencias de aprendizaje del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_ht_presenciales == "") {
+                                            notificacion("Debe ingresar todos las horas teoricas presenciales del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (isNaN(ra_ht_presenciales)) {
+                                            notificacion("Todas las horas teoricas presenciales deben ser valores numericos del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_ht_presenciales < 0) {
+                                            notificacion("Todas las horas teoricas presenciales deben ser mayor o igual a cero del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_hp_presenciales == "") {
+                                            notificacion("Debe ingresar todos las horas practicas presenciales del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (isNaN(ra_hp_presenciales)) {
+                                            notificacion("Todas las horas practicas presenciales deben ser valores numericos del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_hp_presenciales < 0) {
+                                            notificacion("Todas las horas practicas presenciales deben ser mayor o igual a cero del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_ht_autonomas == "") {
+                                            notificacion("Debe ingresar todos las horas teoricas autonomas del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (isNaN(ra_ht_autonomas)) {
+                                            notificacion("Todas las horas teoricas autonomas deben ser valores numericos del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_ht_autonomas < 0) {
+                                            notificacion("Todas las horas teoricas autonomas deben ser mayor o igual a cero del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_hp_autonomas == "") {
+                                            notificacion("Debe ingresar todos las horas practicas autonomas del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (isNaN(ra_hp_autonomas)) {
+                                            notificacion("Todas las horas practicas autonomas deben ser valores numericos del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                        if (ra_hp_autonomas < 0) {
+                                            notificacion("Todas las horas practicas autonomas deben ser mayor o igual a cero del item III. Resultados de Aprendizajes", 'danger', 'alert');
+                                            location.href = "#alert";
+                                            return false;
+                                        }
+                                    }
+                                }
+
+
+                                if (pe_sistema_evaluacion == "") {
+                                    notificacion("Debe llenar el campo Sistema de Evaluación", 'danger', 'alert');
+                                    location.href = "#alert";
+                                    return false;
+                                }
+
                                 if (pe_biblio_fundamental == "") {
                                     notificacion("Debe ingresar la bibliografia fundamental", 'danger', 'alert');
                                     location.href = "#alert";
@@ -835,6 +955,9 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
 
                                 pe_aprendizajes_previos_edit.removeInstance('pe_aprendizajes_previos');
                                 pe_aprendizajes_previos_edit = null;
+
+                                pe_sistema_evaluacion_edit.removeInstance('pe_sistema_evaluacion');
+                                pe_sistema_evaluacion_edit = null;
 
                                 pe_biblio_fundamental_edit.removeInstance('pe_biblio_fundamental');
                                 pe_biblio_fundamental_edit = null;
@@ -900,7 +1023,14 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                 contenido_conceptual[id] = ra_contenido_con_pro_act_edit;
                                 evidencias_aprendizaje[id] = ra_evidencia_aprendizaje_edit;
                             }
-                            
+
+                            function agregarBarraHerramientaTodosLosEditoresResultadoAprendizaje() {
+                                for (var i = 0; i < resultados_de_aprendisaje.length; i++) {
+                                    if ($("#ra_resultado_aprendizaje_" + i).length > 0) {
+                                        agregarBarraHerramientaEditoresResultadoAPrendizaje(i);
+                                    }
+                                }
+                            }
                             function quitarBarraHerramientaEditoresResultadoAPrendizaje(id) {
                                 resultados_de_aprendisaje[id].removeInstance('ra_resultado_aprendizaje_' + id);
                                 resultados_de_aprendisaje[id] = null;
@@ -918,8 +1048,16 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                 evidencias_aprendizaje[id] = null;
                             }
 
+                            function quitarBarrraHerramientaTodosLosEditoresResultadoAprendizaje() {
+                                for (var i = 0; i < resultados_de_aprendisaje.length; i++) {
+                                    if ($("#ra_resultado_aprendizaje_" + i).length > 0) {
+                                        quitarBarraHerramientaEditoresResultadoAPrendizaje(i);
+                                    }
+                                }
+                            }
                             function agregarResultadoAprendizaje() {
                                 cantidad_resultados_de_aprendizaje++;
+                                $("#cantidad-resultados-aprendizaje").val(cantidad_resultados_de_aprendizaje);
 
                                 var contenido = "<div id='resultado_" + cantidad_resultados_de_aprendizaje + "' class='group-resultado'>"
                                         + "<div class='col-md-2'>"
@@ -991,16 +1129,14 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                         + "</div>";
                                 $("#resultados-de-aprendizaje").append(contenido);
 
-                                agregarBarraHerramientaEditoresResultadoAPrendizaje(cantidad_resultados_de_aprendizaje)
-                                //resultados_de_aprendisaje[cantidad_resultados_de_aprendizaje] = 
-                                /*for (i = 0; i < resultados_de_aprendisaje.length; i++) {
-                                 console.log(resultados_de_aprendisaje[i]);
-                                 }*/
+                                agregarBarraHerramientaEditoresResultadoAPrendizaje(cantidad_resultados_de_aprendizaje);
                             }
-                            
-                            function borrarResultadoAprendizaje(id){
-                                $("#resultado_"+id).remove();
+
+                            function borrarResultadoAprendizaje(id) {
+                                quitarBarraHerramientaEditoresResultadoAPrendizaje(id);
+                                $("#resultado_" + id).remove();
                             }
         </script>
     </body>
 </html>
+

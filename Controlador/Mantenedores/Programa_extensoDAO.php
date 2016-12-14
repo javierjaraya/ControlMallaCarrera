@@ -11,6 +11,20 @@ class Programa_extensoDAO {
         $this->conexion = new ConexionMySQL();
     }
 
+    public function id_disponible() {
+        $this->conexion->conectar();
+        $query = "SELECT MAX(pe_id)+1 as pe_id FROM programa_extenso";
+        $result = $this->conexion->ejecutar($query);
+        $id = 1;
+        if ($result) {
+            while ($fila = $result->fetch_row()) {
+                $id = $fila[0];
+            }
+        }
+        $this->conexion->desconectar();
+        return $id;
+    }
+
     public function delete($pe_id) {
         $this->conexion->conectar();
         $query = "DELETE FROM programa_extenso WHERE  pe_id =  " . $pe_id . " ";
@@ -18,7 +32,7 @@ class Programa_extensoDAO {
         $this->conexion->desconectar();
         return $result;
     }
-    
+
     public function deleteBorradorByAsigCodigo($asig_codigo) {
         $this->conexion->conectar();
         $query = "DELETE FROM programa_extenso WHERE pe_borrador = 1 AND asig_codigo =  " . $asig_codigo . " ";
@@ -65,6 +79,7 @@ class Programa_extensoDAO {
             $programa_extenso->setPe_fecha_modificacion($fila[27]);
             $programa_extenso->setUsu_rut($fila[28]);
             $programa_extenso->setPe_borrador($fila[29]);
+            $programa_extenso->setPe_sistema_evaluacion($fila[30]);
             $programa_extensos[$i] = $programa_extenso;
             $i++;
         }
@@ -108,6 +123,7 @@ class Programa_extensoDAO {
             $programa_extenso->setPe_fecha_modificacion($fila[27]);
             $programa_extenso->setUsu_rut($fila[28]);
             $programa_extenso->setPe_borrador($fila[29]);
+            $programa_extenso->setPe_sistema_evaluacion($fila[30]);
         }
         $this->conexion->desconectar();
         return $programa_extenso;
@@ -152,11 +168,12 @@ class Programa_extensoDAO {
                 $programa_extenso->setPe_fecha_modificacion($fila[27]);
                 $programa_extenso->setUsu_rut($fila[28]);
                 $programa_extenso->setPe_borrador($fila[29]);
+                $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres($fila[30]);
-                $programa_extenso->setUsu_apellidos($fila[31]);
-                $programa_extenso->setM_id($fila[32]);
-                $programa_extenso->setAsig_nombre($fila[33]);
+                $programa_extenso->setUsu_nombres($fila[31]);
+                $programa_extenso->setUsu_apellidos($fila[32]);
+                $programa_extenso->setM_id($fila[33]);
+                $programa_extenso->setAsig_nombre($fila[34]);
 
                 $programa_extensos[$i] = $programa_extenso;
                 $i++;
@@ -205,6 +222,7 @@ class Programa_extensoDAO {
             $programa_extenso->setPe_fecha_modificacion($fila[27]);
             $programa_extenso->setUsu_rut($fila[28]);
             $programa_extenso->setPe_borrador($fila[29]);
+            $programa_extenso->setPe_sistema_evaluacion($fila[30]);
             $programa_extensos[$i] = $programa_extenso;
             $i++;
         }
@@ -270,8 +288,8 @@ class Programa_extensoDAO {
         }
 
         $this->conexion->conectar();
-        $query = "INSERT INTO programa_extenso (pe_tipo_curso,pe_carrera,pe_departamento,pe_facultad,pe_nro_creditos,pe_horas_cronologicas,pe_horas_pedagogicas,pe_anio,pe_semestre,pe_hrs_presenciales,pe_ht_presenciales,pe_hp_presenciales,pe_hl_presenciales,pe_hrs_autonomas,pe_ht_autonomas,pe_hp_autonomas,pe_hl_autonomas,pe_presentacion,pe_descriptor_competencias,pe_aprendizajes_previos,pe_fecha_inicio,pe_fecha_fin,pe_observacion,pe_biblio_fundamental,pe_biblio_complementaria,asig_codigo,pe_fecha_modificacion,usu_rut,pe_borrador)"
-                . " VALUES ( '" . $programa_extenso->getPe_tipo_curso() . "' , '" . $programa_extenso->getPe_carrera() . "' , '" . $programa_extenso->getPe_departamento() . "' , '" . $programa_extenso->getPe_facultad() . "' ,  " . $pe_nro_creditos . " ,  " . $pe_horas_cronologicas . " ,  " . $pe_horas_pedagogicas . " ,  " . $pe_anio . " ,  " . $pe_semestre . " ,  " . $pe_hrs_presenciales . " ,  " . $pe_ht_presenciales . " ,  " . $pe_hp_presenciales . " ,  " . $pe_hl_presenciales . " ,  " . $pe_hrs_autonomas . " ,  " . $pe_ht_autonomas . " ,  " . $pe_hp_autonomas . " ,  " . $pe_hl_autonomas . " , '" . $programa_extenso->getPe_presentacion() . "' , '" . $programa_extenso->getPe_descriptor_competencias() . "' , '" . $programa_extenso->getPe_aprendizajes_previos() . "' , '" . $programa_extenso->getPe_fecha_inicio() . "' , '" . $programa_extenso->getPe_fecha_fin() . "' , '" . $programa_extenso->getPe_observacion() . "' ,  '" . $programa_extenso->getPe_biblio_fundamental() . "' ,  '" . $programa_extenso->getPe_biblio_complementaria() . "' ,  " . $programa_extenso->getAsig_codigo() . " , now() ,  " . $programa_extenso->getUsu_rut() . " ,  " . $programa_extenso->getPe_borrador() . " )";
+        $query = "INSERT INTO programa_extenso (pe_id,pe_tipo_curso,pe_carrera,pe_departamento,pe_facultad,pe_nro_creditos,pe_horas_cronologicas,pe_horas_pedagogicas,pe_anio,pe_semestre,pe_hrs_presenciales,pe_ht_presenciales,pe_hp_presenciales,pe_hl_presenciales,pe_hrs_autonomas,pe_ht_autonomas,pe_hp_autonomas,pe_hl_autonomas,pe_presentacion,pe_descriptor_competencias,pe_aprendizajes_previos,pe_fecha_inicio,pe_fecha_fin,pe_observacion,pe_biblio_fundamental,pe_biblio_complementaria,asig_codigo,pe_fecha_modificacion,usu_rut,pe_borrador,pe_sistema_evaluacion)"
+                . " VALUES ( " . $programa_extenso->getPe_id() . ",'" . $programa_extenso->getPe_tipo_curso() . "' , '" . $programa_extenso->getPe_carrera() . "' , '" . $programa_extenso->getPe_departamento() . "' , '" . $programa_extenso->getPe_facultad() . "' ,  " . $pe_nro_creditos . " ,  " . $pe_horas_cronologicas . " ,  " . $pe_horas_pedagogicas . " ,  " . $pe_anio . " ,  " . $pe_semestre . " ,  " . $pe_hrs_presenciales . " ,  " . $pe_ht_presenciales . " ,  " . $pe_hp_presenciales . " ,  " . $pe_hl_presenciales . " ,  " . $pe_hrs_autonomas . " ,  " . $pe_ht_autonomas . " ,  " . $pe_hp_autonomas . " ,  " . $pe_hl_autonomas . " , '" . $programa_extenso->getPe_presentacion() . "' , '" . $programa_extenso->getPe_descriptor_competencias() . "' , '" . $programa_extenso->getPe_aprendizajes_previos() . "' , '" . $programa_extenso->getPe_fecha_inicio() . "' , '" . $programa_extenso->getPe_fecha_fin() . "' , '" . $programa_extenso->getPe_observacion() . "' ,  '" . $programa_extenso->getPe_biblio_fundamental() . "' ,  '" . $programa_extenso->getPe_biblio_complementaria() . "' ,  " . $programa_extenso->getAsig_codigo() . " , now() ,  " . $programa_extenso->getUsu_rut() . " ,  " . $programa_extenso->getPe_borrador() . ", '" . $programa_extenso->getPe_sistema_evaluacion() . "' )";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
 
@@ -309,7 +327,8 @@ class Programa_extensoDAO {
                 . "  asig_codigo =  " . $programa_extenso->getAsig_codigo() . " ,"
                 . "  pe_fecha_modificacion = now() ,"
                 . "  usu_rut =  " . $programa_extenso->getUsu_rut() . " ,"
-                . "  pe_borrador =  " . $programa_extenso->getPe_borrador() . " "
+                . "  pe_borrador =  " . $programa_extenso->getPe_borrador() . ", "
+                . "  pe_sistema_evaluacion =  '" . $programa_extenso->getPe_sistema_evaluacion() . "' "
                 . " WHERE  pe_id =  " . $programa_extenso->getPe_id() . " ";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();

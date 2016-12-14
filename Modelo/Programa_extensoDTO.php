@@ -30,7 +30,11 @@ class Programa_extensoDTO {
     public $pe_fecha_modificacion;
     public $usu_rut;
     public $pe_borrador;
-    
+    public $pe_sistema_evaluacion;
+
+
+
+
     public $m_id;
     public $asig_nombre;
     public $usu_nombres;
@@ -309,5 +313,13 @@ class Programa_extensoDTO {
 
     function setUsu_apellidos($usu_apellidos) {
         $this->usu_apellidos = $usu_apellidos;
+    }
+    
+    function getPe_sistema_evaluacion() {
+        return $this->pe_sistema_evaluacion;
+    }
+
+    function setPe_sistema_evaluacion($pe_sistema_evaluacion) {
+        $this->pe_sistema_evaluacion = $pe_sistema_evaluacion;
     }
 }

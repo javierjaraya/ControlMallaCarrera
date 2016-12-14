@@ -37,11 +37,16 @@ if ($accion != null) {
         $pe_biblio_fundamental = $_REQUEST['pe_biblio_fundamental'];
         $pe_biblio_complementaria = $_REQUEST['pe_biblio_complementaria'];
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+        $cantidad_resultados_aprendizaje = htmlspecialchars($_REQUEST['cantidad-resultados-aprendizaje']);
+        $pe_sistema_evaluacion = htmlspecialchars($_REQUEST['pe_sistema_evaluacion']);
 
         session_start();
         $usu_rut = $_SESSION["usu_run"];
 
+        $pe_id = $control->getId_disponible_programa_extenso();
+
         $programa_extenso = new Programa_extensoDTO();
+        $programa_extenso->setPe_id($pe_id);
         $programa_extenso->setPe_tipo_curso($pe_tipo_curso);
         $programa_extenso->setPe_carrera($pe_carrera);
         $programa_extenso->setPe_departamento($pe_departamento);
@@ -70,8 +75,38 @@ if ($accion != null) {
         $programa_extenso->setAsig_codigo($asig_codigo);
         $programa_extenso->setUsu_rut($usu_rut);
         $programa_extenso->setPe_borrador(0);
+        $programa_extenso->setPe_sistema_evaluacion($pe_sistema_evaluacion);
 
         $result = $control->addPrograma_extenso($programa_extenso);
+
+        //Guardar Resultados de Aprendizaje
+        for ($i = 0; $i <= $cantidad_resultados_aprendizaje; $i++) {
+            if (isset($_REQUEST['ra_resultado_aprendizaje_' . $i])) {
+                $ra_resultado_aprendizaje = htmlspecialchars($_REQUEST['ra_resultado_aprendizaje_' . $i]);
+                $ra_metodologia = htmlspecialchars($_REQUEST['ra_metodologia_' . $i]);
+                $ra_criterios_evaluacion = htmlspecialchars($_REQUEST['ra_criterios_evaluacion_' . $i]);
+                $ra_contenido_con_pro_act = htmlspecialchars($_REQUEST['ra_contenido_con_pro_act_' . $i]);
+                $ra_evidencia_aprendizaje = htmlspecialchars($_REQUEST['ra_evidencia_aprendizaje_' . $i]);
+                $ra_ht_presenciales = htmlspecialchars($_REQUEST['ra_ht_presenciales_' . $i]);
+                $ra_hp_presenciales = htmlspecialchars($_REQUEST['ra_hp_presenciales_' . $i]);
+                $ra_ht_autonomas = htmlspecialchars($_REQUEST['ra_ht_autonomas_' . $i]);
+                $ra_hp_autonomas = htmlspecialchars($_REQUEST['ra_hp_autonomas_' . $i]);
+
+                $resultado_aprendizaje = new Resultado_aprendizajeDTO();
+                $resultado_aprendizaje->setRa_resultado_aprendizaje($ra_resultado_aprendizaje);
+                $resultado_aprendizaje->setRa_metodologia($ra_metodologia);
+                $resultado_aprendizaje->setRa_criterios_evaluacion($ra_criterios_evaluacion);
+                $resultado_aprendizaje->setRa_contenido_con_pro_act($ra_contenido_con_pro_act);
+                $resultado_aprendizaje->setRa_ht_presenciales($ra_ht_presenciales);
+                $resultado_aprendizaje->setRa_hp_presenciales($ra_hp_presenciales);
+                $resultado_aprendizaje->setRa_ht_autonomas($ra_ht_autonomas);
+                $resultado_aprendizaje->setRa_hp_autonomas($ra_hp_autonomas);
+                $resultado_aprendizaje->setRa_evidencia_aprendizaje($ra_evidencia_aprendizaje);
+                $resultado_aprendizaje->setPe_id($pe_id);
+
+                $control->addResultado_aprendizaje($resultado_aprendizaje);
+            }
+        }
 
         if ($result) {
             $control->removePrograma_extensoBorradorByAsigCodigo($asig_codigo);
@@ -112,11 +147,17 @@ if ($accion != null) {
         $pe_biblio_fundamental = $_REQUEST['pe_biblio_fundamental'];
         $pe_biblio_complementaria = $_REQUEST['pe_biblio_complementaria'];
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+        $pe_sistema_evaluacion = htmlspecialchars($_REQUEST['pe_sistema_evaluacion']);
+        
+        $cantidad_resultados_aprendizaje = htmlspecialchars($_REQUEST['cantidad-resultados-aprendizaje']);
 
         session_start();
         $usu_rut = $_SESSION["usu_run"];
 
+        $pe_id = $control->getId_disponible_programa_extenso();
+        
         $programa_extenso = new Programa_extensoDTO();
+        $programa_extenso->setPe_id($pe_id);
         $programa_extenso->setPe_tipo_curso($pe_tipo_curso);
         $programa_extenso->setPe_carrera($pe_carrera);
         $programa_extenso->setPe_departamento($pe_departamento);
@@ -145,9 +186,39 @@ if ($accion != null) {
         $programa_extenso->setAsig_codigo($asig_codigo);
         $programa_extenso->setUsu_rut($usu_rut);
         $programa_extenso->setPe_borrador(1);
+        $programa_extenso->setPe_sistema_evaluacion($pe_sistema_evaluacion);
 
         $result = $control->addPrograma_extenso($programa_extenso);
+        
+        //Guardar Resultados de Aprendizaje
+        for ($i = 0; $i <= $cantidad_resultados_aprendizaje; $i++) {
+            if (isset($_REQUEST['ra_resultado_aprendizaje_' . $i])) {
+                $ra_resultado_aprendizaje = htmlspecialchars($_REQUEST['ra_resultado_aprendizaje_' . $i]);
+                $ra_metodologia = htmlspecialchars($_REQUEST['ra_metodologia_' . $i]);
+                $ra_criterios_evaluacion = htmlspecialchars($_REQUEST['ra_criterios_evaluacion_' . $i]);
+                $ra_contenido_con_pro_act = htmlspecialchars($_REQUEST['ra_contenido_con_pro_act_' . $i]);
+                $ra_evidencia_aprendizaje = htmlspecialchars($_REQUEST['ra_evidencia_aprendizaje_' . $i]);
+                $ra_ht_presenciales = htmlspecialchars($_REQUEST['ra_ht_presenciales_' . $i]);
+                $ra_hp_presenciales = htmlspecialchars($_REQUEST['ra_hp_presenciales_' . $i]);
+                $ra_ht_autonomas = htmlspecialchars($_REQUEST['ra_ht_autonomas_' . $i]);
+                $ra_hp_autonomas = htmlspecialchars($_REQUEST['ra_hp_autonomas_' . $i]);
 
+                $resultado_aprendizaje = new Resultado_aprendizajeDTO();
+                $resultado_aprendizaje->setRa_resultado_aprendizaje($ra_resultado_aprendizaje);
+                $resultado_aprendizaje->setRa_metodologia($ra_metodologia);
+                $resultado_aprendizaje->setRa_criterios_evaluacion($ra_criterios_evaluacion);
+                $resultado_aprendizaje->setRa_contenido_con_pro_act($ra_contenido_con_pro_act);
+                $resultado_aprendizaje->setRa_ht_presenciales($ra_ht_presenciales);
+                $resultado_aprendizaje->setRa_hp_presenciales($ra_hp_presenciales);
+                $resultado_aprendizaje->setRa_ht_autonomas($ra_ht_autonomas);
+                $resultado_aprendizaje->setRa_hp_autonomas($ra_hp_autonomas);
+                $resultado_aprendizaje->setRa_evidencia_aprendizaje($ra_evidencia_aprendizaje);
+                $resultado_aprendizaje->setPe_id($pe_id);
+
+                $control->addResultado_aprendizaje($resultado_aprendizaje);
+            }
+        }
+        
         if ($result) {
             echo json_encode(array(
                 'success' => true,
