@@ -104,7 +104,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="m_id">Mallas Curriculares:</label>
-                                                <select class="form-control pull-right" id="m_id" name="m_id">
+                                                <select class="form-control pull-right" id="m_id" name="m_id" onchange="cargar()">
                                                 </select>
                                             </div>
                                         </div>
@@ -277,6 +277,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                             }
 
                             function cargar() {
+                                console.log("CASDA");
                                 var m_id = document.getElementById("m_id").value;
                                 $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_ELECTIVOS_BY_M_ID', m_id: m_id}, function (data) {
                                     var data = eval(data);
@@ -297,6 +298,8 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             $("#tbody").append(contenido);
                                         });
                                         $("#table").DataTable();
+                                    } else {
+                                        document.getElementById('row-listado-electivos').style.display = 'none';
                                     }
                                 });
                             }
