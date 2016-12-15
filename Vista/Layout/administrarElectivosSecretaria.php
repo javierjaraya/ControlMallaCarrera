@@ -82,18 +82,18 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Asignar Docentes
-                        <small>Asignaturas</small>
+                        Electivos
+                        <small>Control panel</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="active">Asignar Docentes</li>
+                        <li class="active">Electivos</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-                    <!-- CONTENIDO AQUI -->  
+                    <!-- CONTENIDO AQUI -->    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="box box-primary">
@@ -104,7 +104,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="m_id">Mallas Curriculares:</label>
-                                                <select class="form-control pull-right" id="m_id" name="m_id" onchange="cargar()">
+                                                <select class="form-control pull-right" id="m_id" name="m_id">
                                                 </select>
                                             </div>
                                         </div>
@@ -115,11 +115,11 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         </div>
                     </div>
 
-                    <div class="row" id="row-listado-asignaturas">
+                    <div class="row" id="row-listado-electivos">
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <h3 class="box-title">Listado Asignaturas</h3>
+                                    <h3 class="box-title">Listado Electivos</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
@@ -128,8 +128,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             <tr>
                                                 <th>Código</th>
                                                 <th>Nombre</th>
-                                                <th>Tipo</th>
-                                                <th>Periodo</th>
+                                                <th>Semestre</th>
                                                 <th>Creditos</th>
                                                 <th>Acción</th>
                                             </tr>
@@ -165,15 +164,14 @@ $usu_nombre = $_SESSION["usu_nombre"];
         </div>
         <!-- ./wrapper -->
 
-
         <!-- modal -->
-        <div class="modal fade" id="modalDocenteAsignatura" tabindex="-1" role="dialog">
+        <div class="modal fade" id="modalNuevaAsignatura" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form id="fm-docente" method="POST">
+                    <form id="fm-asignatura" method="POST">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Datos Asignatura</h4>
+                            <h4 class="modal-title">Datos Electivo</h4>
                         </div>
                         <div class="modal-body">
                             <div id="modal-alert"></div>
@@ -187,30 +185,20 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <label for="asig_nombre">Nombre:</label>
                                         <input type="text" class="form-control" id="asig_nombre" name="asig_nombre">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row" id="row_docentes">
-                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="button" class="btn btn-default" id="add_docente" name="add_docente" value="Agregar Docente" onclick="addDocente()">
+                                        <label for="asig_periodo">Semestre:</label>
+                                        <input type="number" class="form-control" id="asig_periodo" name="asig_periodo" min="1" value="">
                                     </div>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <td>Docente</td>
-                                                <td>Acción</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tabla_docentes">
-
-                                        </tbody>                                                
-                                    </table>
+                                    <div class="form-group">
+                                        <label for="asig_creditos">Creditos:</label>
+                                        <input type="number" class="form-control" id="asig_creditos" min="1" name="asig_creditos" value="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <input type="hidden" id="ta_id" name="ta_id" value="3">
                             <input type="hidden" id="accion" name="accion">
-                            <input type="hidden" id="n_docentes" name="n_docentes" value="0">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
@@ -220,7 +208,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
         </div><!-- /.modal -->
 
         <!-- modal -->
-        <div class="modal fade" id="modalConfirmacionEliminarDocente" tabindex="-1" role="dialog">
+        <div class="modal fade" id="modalConfirmacionEliminarElectivo" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #3c8dbc; color: #fff;" >
@@ -228,12 +216,12 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <h4 class="modal-title">Confirmación</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>¿Esta seguro de eliminar el docente?, una vez eliminado no se podra recuperrar la informacion.</h4>
+                        <h4>¿Esta seguro de eliminar el electivo?, una vez eliminado no se podra recuperrar la información.</h4>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" id="n_docentes_conf" name="n_docentes_conf" value="">
+                        <input type="hidden" name="asig_codigo_remove" id="asig_codigo_remove" value="">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-danger" onclick="confirmaEliminarDocenteGuardado()">Eliminar</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmaEliminarElectivo()">Eliminar</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -260,7 +248,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
 
         <script>
                             $(function () {
-                                document.getElementById('row-listado-asignaturas').style.display = 'none';
+                                document.getElementById('row-listado-electivos').style.display = 'none';
                                 obtenerMallasCurriculares();
                             });
 
@@ -281,7 +269,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         option.text = "Seleccionar...";
                                         option.value = -1;
                                         select.add(option);
-                                        document.getElementById('row-listado-asignaturas').style.display = 'none';
+                                        document.getElementById('row-listado-electivos').style.display = 'none';
                                     } else {
                                         cargar();
                                     }
@@ -290,21 +278,20 @@ $usu_nombre = $_SESSION["usu_nombre"];
 
                             function cargar() {
                                 var m_id = document.getElementById("m_id").value;
-                                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_BY_M_ID', m_id: m_id}, function (data) {
+                                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_ELECTIVOS_BY_M_ID', m_id: m_id}, function (data) {
                                     var data = eval(data);
                                     if (data.length > 0) {
-                                        document.getElementById('row-listado-asignaturas').style.display = 'block';
+                                        document.getElementById('row-listado-electivos').style.display = 'block';
                                         $("#thead").empty();
                                         $("#tbody").empty();
                                         $.each(data, function (k, v) {
                                             var contenido = "<tr>";
                                             contenido += "<td>" + v.asig_codigo + "</td>";
                                             contenido += "<td>" + v.asig_nombre + "</td>";
-                                            contenido += "<td>" + v.ta_nombre + "</td>";
                                             contenido += "<td>" + v.asig_periodo + "</td>";
                                             contenido += "<td>" + v.asig_creditos + "</td>";
                                             contenido += "<td>";
-                                            contenido += "<button type='button' class='btn btn-info btn-circle glyphicon glyphicon-user' onclick='asignarDocente(" + v.asig_codigo + ")'></button>";
+                                            contenido += "<a class='btn btn-success btn-circle glyphicon glyphicon-search' href='verAsignatura.php?cod=" + v.asig_codigo + "'></a>&nbsp;";
                                             contenido += "</td>";
                                             contenido += "</tr>";
                                             $("#tbody").append(contenido);
@@ -314,154 +301,20 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                 });
                             }
 
-                            function addDocente() {
-                                var n_docentes = $("#n_docentes").val();
-
-                                $.get("../Servlet/administrarUsuario.php", {accion: 'LISTADO'}, function (data) {
-                                    var data = eval(data);
-
-                                    var select_html = "<tr id='tr_" + n_docentes + "'><td><select class='form-control pull-right' id='usu_rut_" + n_docentes + "' name='usu_rut_" + n_docentes + "'></select></td><td><center><a class='btn btn-danger' onclick='removeDocente(" + n_docentes + ")'><i class='fa fa-trash'></i></a></center></td></tr>"
-                                    $("#tabla_docentes").append(select_html);
-                                    var count = 0;
-                                    var select = document.getElementById("usu_rut_" + n_docentes);
-                                    n_docentes++;
-                                    $("#n_docentes").val(n_docentes);
-                                    $.each(data, function (k, v) {
-                                        var option = document.createElement("option");
-                                        option.text = v.usu_nombres + " " + v.usu_apellidos;
-                                        option.value = v.usu_rut;
-                                        select.add(option);
-                                        count++;
-                                    });
-                                    if (count == 0) {
-                                        var option = document.createElement("option");
-                                        option.text = "Seleccionar...";
-                                        option.value = -1;
-                                        select.add(option);
-                                    }
-                                });
-                            }
-
-                            function removeDocente(n_docentes) {
-                                $("#tr_" + n_docentes).remove();
-                            }
-
-                            /* ELIMINAR PRERREQUISITO GUARDADO*/
-                            function removeDocenteGuardado(n_docentes) {
-                                $('#n_docentes_conf').val(n_docentes);
-                                $('#modalConfirmacionEliminarDocente').modal('show');
-                            }
-
-                            function confirmaEliminarDocenteGuardado() {
-                                var n_docentes = $('#n_docentes_conf').val();
-                                var usu_rut = $('#usu_rut_'+n_docentes).val();
-                                var asig_codigo = $('#asig_codigo').val();
-                                $.get("../Servlet/administrarDocente.php", {accion: 'BORRAR_BY_ASIG_CODIGO_USU_RUT', asig_codigo: asig_codigo, usu_rut: usu_rut}, function (data) {
-                                    $("#tr_" + n_docentes).remove();
-                                    $('#modalConfirmacionEliminarDocente').modal('toggle');
-                                    if (!data.success) {
-                                        notificacion(data.errorMsg, 'danger', 'alert');
-                                    } else {
-                                        notificacion(data.mensaje, 'success', 'alert');
-                                    }
-                                }, "json");
-                            }
-                            /*
-                             * Metodo para generar el modal con los datos de la asignatura.
-                             * @param {type} param                                             */
-                            function asignarDocente(asig_codigo) {
-                                document.getElementById("fm-docente").reset();
+                            function editar(asig_codigo) {
+                                document.getElementById("fm-asignatura").reset();
+                                document.getElementById("fm-asignatura").reset();
                                 document.getElementById("asig_codigo").readOnly = true;
-                                document.getElementById("asig_nombre").readOnly = true;
-                                $("#tabla_docentes").html("");
-                                $('#accion').val('AGREGAR');
+                                $('#accion').val('MODIFICAR_ELECTIVO');
 
                                 $.get("../Servlet/administrarAsignatura.php", {accion: 'BUSCAR_BY_ID', asig_codigo: asig_codigo}, function (data) {
                                     var asig_codigo = $("#asig_codigo").val(data.asig_codigo);
                                     var asig_nombre = $("#asig_nombre").val(data.asig_nombre);
                                     var asig_periodo = $("#asig_periodo").val(data.asig_periodo);
                                     var asig_creditos = $("#asig_creditos").val(data.asig_creditos);
-                                    $('#modalDocenteAsignatura').modal('show');
-                                }, 'json');
-
-                                $.get("../Servlet/administrarDocente.php", {accion: 'BUSCAR_BY_ASIG_CODIGO', asig_codigo: asig_codigo}, function (data) {
-                                    $.each(data, function (k, v) {
-                                        mostrarDocenteGuardado(v.usu_rut);
-                                    });
+                                    $('#modalNuevaAsignatura').modal('show');
                                 }, 'json');
                             }
-
-                            function mostrarDocenteGuardado(usu_rut) {
-                                var n_docentes = $("#n_docentes").val();
-
-                                var n_aux = n_docentes;
-                                n_docentes++;
-                                $("#n_docentes").val(n_docentes);
-                                $.get("../Servlet/administrarUsuario.php", {accion: 'LISTADO'}, function (data) {
-                                    var data = eval(data);
-
-                                    var select_html = "<tr id='tr_" + n_aux + "'><td><select class='form-control pull-right' id='usu_rut_" + n_aux + "' name='usu_rut_" + n_aux + "' disabled='disabled'></select></td><td><center><a class='btn btn-danger' onclick='removeDocenteGuardado(" + n_aux + ")'><i class='fa fa - trash'></i></a></center></td></tr>"
-                                    $("#tabla_docentes").append(select_html);
-
-                                    var count = 0;
-                                    var select = document.getElementById("usu_rut_" + n_aux);
-
-                                    $.each(data, function (k, v) {
-                                        var option = document.createElement("option");
-                                        option.text = v.usu_nombres + " " + v.usu_apellidos;
-                                        option.value = v.usu_rut;
-                                        select.add(option);
-                                        count++;
-                                    });
-                                    if (count == 0) {
-                                        var option = document.createElement("option");
-                                        option.text = "Seleccionar...";
-                                        option.value = -1;
-                                        select.add(option);
-                                    } else {
-                                        select.selectedIndex = usu_rut;
-                                        select.value = usu_rut;
-                                    }
-                                });
-                            }
-
-                            /*
-                             * Metodo para guardar los cambios en la asignacion de docentes.
-                             * @param {type} param                                             */
-                            $("#fm-docente").submit(function (e) {
-                                if (validar()) {
-                                    $.post("../Servlet/administrarDocente.php", $("#fm-docente").serialize(), function (data) {
-                                        if (!data.success) {
-                                            notificacion(data.errorMsg, 'danger', 'modal-alert');
-                                        } else {
-                                            notificacion(data.mensaje, 'success', 'alert');
-                                            $('#modalDocenteAsignatura').modal('toggle');
-                                            $("#fm-docente")[0].reset();
-                                            cargar();
-                                        }
-                                    }, "json");
-                                }
-                                e.preventDefault();
-                            });
-
-                            function validar() {
-                                var codigos = [];
-                                var n_docentes = $("#n_docentes").val();
-                                for (var i = 0; i <= n_docentes; i++) {
-                                    if ($("#usu_rut_" + i).val() != "undefined") {
-                                        var cod = $("#usu_rut_" + i).val();
-                                        var res = codigos.indexOf(cod);
-                                        if (res == -1) {
-                                            codigos[cod] = cod;
-                                        } else {
-                                            notificacion("No se pueden repetir los docentes.", 'danger', 'modal-alert');
-                                            return false;
-                                        }
-                                    }
-                                }
-                                return true;
-                            }
-                            /* Fin Guardar Asignacion Docente */
 
         </script>
     </body>

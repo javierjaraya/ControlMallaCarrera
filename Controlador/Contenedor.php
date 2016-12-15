@@ -318,6 +318,10 @@ class Contenedor {
     public function getPrograma_basicosByAsig_Codigo($asig_codigo) {
         return $this->programa_basicoDAO->findByAsig_Codigo($asig_codigo);
     }
+    
+    public function getPrograma_basicos_version_final_ByAsig_Codigo($asig_codigo) {
+        return $this->programa_basicoDAO->find_version_final_ByAsig_Codigo($asig_codigo);
+    }
 
     public function getPrograma_basicoLikeAtrr($cadena) {
         return $this->programa_basicoDAO->findLikeAtrr($cadena);
@@ -353,6 +357,10 @@ class Contenedor {
 
     public function getPrograma_extensosByAsig_Codigo($asig_codigo) {
         return $this->programa_extensoDAO->findByAsig_Codigo($asig_codigo);
+    }
+    
+    public function getPrograma_extensos_version_final_ByAsig_Codigo($asig_codigo) {
+        return $this->programa_extensoDAO->find_version_final_ByAsig_Codigo($asig_codigo);
     }
 
     public function getPrograma_extensoLikeAtrr($cadena) {

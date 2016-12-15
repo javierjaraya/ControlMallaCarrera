@@ -71,7 +71,7 @@ $usu_rut_editar = $_REQUEST['usu_rut'];
             } else if ($per_id == 2) {
                 include '../Menus/menu_left_default.php';
             } else if ($per_id == 3) {
-                include '../Menus/menu_left_default.php';
+                include '../Menus/menu_left_secretaria.php';
             } else {
                 include '../Menus/menu_left_default.php';
             }

@@ -41,7 +41,7 @@
                 <div id="alert"></div>
                 <form id="fmlogin" action="Vista/Servlet/login.php" method="post">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="Rut" id="usu_rut" name="usu_rut">
+                        <input type="text" class="form-control" placeholder="Rut sin digito verificador" id="usu_rut" name="usu_rut">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">

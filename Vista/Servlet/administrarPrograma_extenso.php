@@ -249,6 +249,17 @@ if ($accion != null) {
         $programa_extensos = $control->getPrograma_extensosByAsig_Codigo($asig_codigo);
         $json = json_encode($programa_extensos);
         echo $json;
+    } else if ($accion == "BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO") {
+        $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+
+        $programa_extensos = $control->getPrograma_extensos_version_final_ByAsig_Codigo($asig_codigo);
+        if($programa_extensos == null){
+            $json = json_encode(array('errorMsg' => 'No hay un programa extenso creado para esta asignatura.'));
+        }else{
+            $json = json_encode($programa_extensos);
+        }
+        
+        echo $json;
     } else if ($accion == "ACTUALIZAR") {
         $pe_id = htmlspecialchars($_REQUEST['pe_id']);
         $pe_tipo_curso = htmlspecialchars($_REQUEST['pe_tipo_curso']);

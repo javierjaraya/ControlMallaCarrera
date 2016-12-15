@@ -8,14 +8,16 @@ $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
 $usu_nombre = $_SESSION["usu_nombre"];
 
-$pb_id = $_REQUEST["pb_id"];
+$pe_id = $_REQUEST["pe_id"];
 
 include_once '../../Controlador/Contenedor.php';
 $control = Contenedor::getInstancia();
 
-$programa_extenso = $control->getPrograma_basicoByID($pb_id);
+$programa_extenso = $control->getPrograma_extensoByID($pe_id);
 
 $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
+
+$resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id);
 ?>
 <html>
     <head>
@@ -52,6 +54,17 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
         <link rel="stylesheet" href="../../Files/Complementos/template_admin_lite/plugins/bootstrap-select-1.12.1/dist/css/bootstrap-select.css">
 
         <style type="text/css">
+            .group-resultado {
+                border: 1px solid #d0d0d0;
+                padding: 10px;
+                position: relative;
+                //height: 500px;
+                overflow: auto;
+            }
+            .label-group-resultado{
+                height: 60px;
+            }
+
             .borde-div{
                 border: 1px solid #d0d0d0;
                 padding: 10px;
@@ -137,104 +150,116 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_tipo_curso">Tipo de Curso:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_tipo_curso" name="pb_tipo_curso" value="<?= $programa_extenso->getPb_tipo_curso() ?>" readonly>
+                                                    <label for="pe_tipo_curso">Tipo de Curso:</label>
+                                                    <input type="text" class="form-control pull-right" id="pe_tipo_curso" name="pe_tipo_curso" value="<?= $programa_extenso->getPe_tipo_curso() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_carrera">Carrera:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_carrera" name="pb_carrera" value="<?= $programa_extenso->getPb_carrera() ?>" readonly>
+                                                    <label for="pe_carrera">Carrera:</label>
+                                                    <input type="text" class="form-control pull-right" id="pe_carrera" name="pe_carrera" value="<?= $programa_extenso->getPe_carrera() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_departamento">Departamento:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_departamento" name="pb_departamento" value="<?= $programa_extenso->getPb_departamento() ?>" readonly>
+                                                    <label for="pe_departamento">Departamento:</label>
+                                                    <input type="text" class="form-control pull-right" id="pe_departamento" name="pe_departamento" value="<?= $programa_extenso->getPe_departamento() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_facultad">Facultad:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_facultad" name="pb_facultad" value="<?= $programa_extenso->getPb_facultad() ?>" readonly>
+                                                    <label for="pe_facultad">Facultad:</label>
+                                                    <input type="text" class="form-control pull-right" id="pe_facultad" name="pe_facultad" value="<?= $programa_extenso->getPe_facultad() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_nro_creditos">N° Créditos SCT:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_nro_creditos" name="pb_nro_creditos" value="<?= $programa_extenso->getPb_nro_creditos() ?>" readonly>
+                                                    <label for="pe_nro_creditos">N° Créditos SCT:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_nro_creditos" name="pe_nro_creditos" value="<?= $programa_extenso->getPe_nro_creditos() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_horas_cronologicas">Horas Cronológicas:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_horas_cronologicas" name="pb_horas_cronologicas" value="<?= $programa_extenso->getPb_horas_cronologicas() ?>" readonly>
+                                                    <label for="pe_horas_cronologicas">Horas Cronológicas:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_horas_cronologicas" name="pe_horas_cronologicas" value="<?= $programa_extenso->getPe_horas_cronologicas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_horas_pedagogicas">Horas Pedagógicas:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_horas_pedagogicas" name="pb_horas_pedagogicas" value="<?= $programa_extenso->getPb_horas_pedagogicas() ?>" readonly>
+                                                    <label for="pe_horas_pedagogicas">Horas Pedagógicas:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_horas_pedagogicas" name="pe_horas_pedagogicas" value="<?= $programa_extenso->getPe_horas_pedagogicas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_anio">Año:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_anio" name="pb_anio" value="<?= $programa_extenso->getPb_anio() ?>" readonly>
+                                                    <label for="pe_anio">Año:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_anio" name="pe_anio" value="<?= $programa_extenso->getPe_anio() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_semestre">Semestre:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_semestre" name="pb_semestre" value="<?= $programa_extenso->getPb_semestre() ?>" readonly>
+                                                    <label for="pe_semestre">Semestre:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_semestre" name="pe_semestre" value="<?= $programa_extenso->getPe_semestre() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_hrs_presenciales">Horas Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hrs_presenciales" name="pb_hrs_presenciales" value="<?= $programa_extenso->getPb_hrs_presenciales() ?>" readonly>
+                                                    <label for="pe_hrs_presenciales">Horas Presenciales:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_hrs_presenciales" name="pe_hrs_presenciales" value="<?= $programa_extenso->getPe_hrs_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_ht_presenciales">Horas Teoricas Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_ht_presenciales" name="pb_ht_presenciales" value="<?= $programa_extenso->getPb_ht_presenciales() ?>" readonly>
+                                                    <label for="pe_ht_presenciales">Horas Teoricas Presenciales:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_ht_presenciales" name="pe_ht_presenciales" value="<?= $programa_extenso->getPe_ht_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_hp_presenciales">Horas Practicas Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hp_presenciales" name="pb_hp_presenciales" value="<?= $programa_extenso->getPb_hp_presenciales() ?>" readonly>
+                                                    <label for="pe_hp_presenciales">Horas Practicas Presenciales:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_hp_presenciales" name="pe_hp_presenciales" value="<?= $programa_extenso->getPe_hp_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_hl_presenciales">Horas Laboratorio Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hl_presenciales" name="pb_hl_presenciales" value="<?= $programa_extenso->getPb_hl_presenciales() ?>" readonly>
+                                                    <label for="pe_hl_presenciales">Horas Laboratorio Presenciales:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_hl_presenciales" name="pe_hl_presenciales" value="<?= $programa_extenso->getPe_hl_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_hrs_autonomas">Horas Trabajo Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hrs_autonomas" name="pb_hrs_autonomas" value="<?= $programa_extenso->getPb_hrs_autonomas() ?>" readonly>
+                                                    <label for="pe_hrs_autonomas">Horas Trabajo Autónomo:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_hrs_autonomas" name="pe_hrs_autonomas" value="<?= $programa_extenso->getPe_hrs_autonomas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_ht_autonomas">Horas Teoricas Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_ht_autonomas" name="pb_ht_autonomas" value="<?= $programa_extenso->getPb_ht_autonomas() ?>" readonly>
+                                                    <label for="pe_ht_autonomas">Horas Teoricas Autónomo:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_ht_autonomas" name="pe_ht_autonomas" value="<?= $programa_extenso->getPe_ht_autonomas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_hp_autonomas">Horas Practicas Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hp_autonomas" name="pb_hp_autonomas" value="<?= $programa_extenso->getPb_hp_autonomas() ?>" readonly>
+                                                    <label for="pe_hp_autonomas">Horas Practicas Autónomo:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_hp_autonomas" name="pe_hp_autonomas" value="<?= $programa_extenso->getPe_hp_autonomas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label for="pb_hl_autonomas">Horas Laboratorio Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hl_autonomas" name="pb_hl_autonomas" value="<?= $programa_extenso->getPb_hl_autonomas() ?>" readonly>
+                                                    <label for="pe_hl_autonomas">Horas Laboratorio Autónomo:</label>
+                                                    <input type="number" class="form-control pull-right" id="pe_hl_autonomas" name="pe_hl_autonomas" value="<?= $programa_extenso->getPe_hl_autonomas() ?>" readonly> 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="pe_fecha_inicio">Fecha Inicio Periodo Valides:</label>
+                                                    <input type="date" class="form-control pull-right" id="pe_fecha_inicio" name="pe_fecha_inicio" value="<?= $programa_extenso->getPe_fecha_inicio() ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="pe_fecha_fin">Fecha Fin Periodo Valides:</label>
+                                                    <input type="date" class="form-control pull-right" id="pe_fecha_fin" name="pe_fecha_fin" value="<?= $programa_extenso->getPe_fecha_fin() ?>" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,25 +278,25 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                     <div class="box-body">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pb_presentacion">ll.1 Presentación: Relación de la Asignatura con las Competencias del Perfil de Egreso</label>
+                                                <label for="pe_presentacion">ll.1 Presentación: Relación de la Asignatura con las Competencias del Perfil de Egreso</label>
                                                 <div class="borde-div" style="height: 320px;">
-                                                    <?= $programa_extenso->getPb_presentacion() ?>
+                                                    <?= $programa_extenso->getPe_presentacion() ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pb_descriptor_competencias">ll.2 Descriptor de competencias</label>
+                                                <label for="pe_descriptor_competencias">ll.2 Descriptor de competencias</label>                                                
                                                 <div class="borde-div" style="height: 320px;">
-                                                    <?= $programa_extenso->getPb_descriptor_competencias() ?>
+                                                    <?= $programa_extenso->getPe_descriptor_competencias() ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pb_aprendizajes_previos">ll.3 Aprendizajes Previos</label>
+                                                <label for="pe_aprendizajes_previos">ll.3 Aprendizajes Previos</label>                                                
                                                 <div class="borde-div" style="height: 320px;">
-                                                    <?= $programa_extenso->getPb_aprendizajes_previos() ?>
+                                                    <?= $programa_extenso->getPe_aprendizajes_previos() ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -280,38 +305,161 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="box box-primary">
                                     <div class="box-header">
-                                        <h3 class="box-title">III. Bibliografia</h3>
+                                        <h3 class="box-title">III. Resultados de Aprendizajes</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body" id="resultados-de-aprendizaje">
+                                        <?php
+                                        foreach ($resultado_aprendizajes as $value) {
+                                            ?>
+
+                                            <div id="resultado_0" class="group-resultado">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">   
+                                                        <div class="label-group-resultado">
+                                                            <label for="ra_resultado_aprendizaje_0">Resultados de Aprendizaje</label>
+                                                        </div>
+                                                        <div class="borde-div" style="height: 320px;">
+                                                            <?= $value->getRa_resultado_aprendizaje() ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">   
+                                                        <div class="label-group-resultado">
+                                                            <label for="ra_metodologia_0">Metodologia</label>
+                                                        </div>
+                                                        <div class="borde-div" style="height: 320px;">
+                                                            <?= $value->getRa_metodologia() ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">   
+                                                        <div class="label-group-resultado">
+                                                            <label for="ra_criterios_evaluacion_0">Criterios de Evaluación</label>
+                                                        </div>
+                                                        <div class="borde-div" style="height: 320px;">
+                                                            <?= $value->getRa_criterios_evaluacion() ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">   
+                                                        <div class="label-group-resultado">
+                                                            <label for="ra_contenido_con_pro_act_0">Contenidos conceptuales, procedimentales y actitudinales</label>
+                                                        </div>
+                                                        <div class="borde-div" style="height: 320px;">
+                                                            <?= $value->getRa_contenido_con_pro_act() ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">   
+                                                        <div class="label-group-resultado">
+                                                            <label for="ra_evidencia_aprendizaje_0">Evidencias de Aprendizaje (proceso y producto)</label>
+                                                        </div>
+                                                        <div class="borde-div" style="height: 320px;">
+                                                            <?= $value->getRa_evidencia_aprendizaje() ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="label-group-resultado">
+                                                        <label>Tiempo Estimado</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="ra_ht_presenciales_0">Horas Teoricas Presenciales:</label>
+                                                        <input type="number" class="form-control pull-right" id="ra_ht_presenciales_0" name="ra_ht_presenciales_0" min="0" value="<?= $value->getRa_ht_presenciales() ?>" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="ra_hp_presenciales_0">Horas Practicas Presenciales:</label>
+                                                        <input type="number" class="form-control pull-right" id="ra_hp_presenciales_0" name="ra_hp_presenciales_0" min="0" value="<?= $value->getRa_hp_presenciales() ?>" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="ra_ht_autonomas_0">Horas Teoricas Autonomas:</label>
+                                                        <input type="number" class="form-control pull-right" id="ra_ht_autonomas_0" name="ra_ht_autonomas_0" min="0" value="<?= $value->getRa_ht_autonomas() ?>" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="ra_hp_autonomas_0">Horas Practicas Autonomas:</label>
+                                                        <input type="number" class="form-control pull-right" id="ra_hp_autonomas_0" name="ra_hp_autonomas_0" min="0" value="<?= $value->getRa_hp_autonomas() ?>" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        <?php }
+                                        ?>
+                                    </div>
+                                    <!-- ./box-body --> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">IV. Sistema de Evaluaci&oacute;n</h3>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pb_biblio_fundamental">Fundamental</label>
                                                 <div class="borde-div" style="height: 320px;">
-                                                    <?= $programa_extenso->getPb_biblio_fundamental() ?>
+                                                    <?= $programa_extenso->getPe_sistema_evaluacion() ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- ./box-body --> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">V. Bibliografia</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="pe_biblio_fundamental">Fundamental</label>                                                
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPe_aprendizajes_previos() ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="pb_biblio_complementaria">Complementaria</label>
+                                                <label for="pe_biblio_complementaria">Complementaria</label>
                                                 <div class="borde-div" style="height: 320px;">
-                                                    <?= $programa_extenso->getPb_biblio_complementaria() ?>
+                                                    <?= $programa_extenso->getPe_biblio_complementaria() ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="pe_observacion">Observación</label>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPe_observacion() ?>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- ./box-body --> 
                                     <div class="modal-footer">
-                                        <input type="hidden" id="pb_id" name="pb_id" value="<?= $pb_id ?>">
+                                        <input type="hidden" id="pe_id" name="pe_id" value="<?= $pe_id ?>">
                                         <input type="hidden" id="accion" name="accion" value="">
-                                        <a href="administrarProgramaBasicoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
-                                        <button type="button" class="btn btn-warning" onclick="editar()"><i class="glyphicon glyphicon-pencil"></i>  Editar</button>
-                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaBasicoAsignaturas.php?pb_id=<?= $pb_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
+                                        <a href="verAsignatura.php?cod=<?= $asignatura->getAsig_codigo() ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>                                        
+                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>
@@ -382,90 +530,15 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
         <script src="../../Files/js/usabilidad.js"></script>
 
         <script type="text/javascript">
-                            var pb_presentacion_edit, pb_descriptor_competencias_edit, pb_aprendizajes_previos_edit, pb_biblio_fundamental_edit, pb_biblio_complementaria_edit;
-                            //<![CDATA[
-                            bkLib.onDomLoaded(function () {
-                                cargarDatos();
-                            });
-                            //]]>
-
-                            function cargarDatos() {
-                                var pb_id = $("#pb_id").val();
-                                $.get("../Servlet/administrarPrograma_basico.php", {accion: "BUSCAR_BY_ID", pb_id: pb_id}, function (data) {
-                                    //console.log(data.pb_presentacion);
-                                    $("#pb_presentacion").html(data.pb_presentacion);
-                                    $("#pb_descriptor_competencias").html(data.pb_descriptor_competencias);
-                                    $("#pb_aprendizajes_previos").html(data.pb_aprendizajes_previos);
-                                    $("#pb_biblio_fundamental").html(data.pb_biblio_fundamental);
-                                    $("#pb_biblio_complementaria").html(data.pb_biblio_complementaria);
-                                    //agregarBarraHerramientasEditores();
-                                }, "json");
-                            }
-
-                            function crearBorradorProgramaBasico() {
-                                $("#accion").val("AGREGAR_BORRADOR");
-                                quitarBarraHerramientasEditores();
-                                var valor_pb_presentacion = document.getElementById("pb_presentacion").value;
-                                console.log(valor_pb_presentacion);
-                                $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
-                                    console.log(data);
-                                    agregarBarraHerramientasEditores();
-                                    if (data.errorMsg) {
-                                        notificacion(data.errorMsg, 'danger', 'alert');
-                                    } else {
-                                        notificacion(data.mensaje, 'success', 'alert');
-                                    }
-                                    location.href = "#alert";
-                                });
-                            }
-
-                            function crearProgramaBasicoConfirmar() {
-                                $('#modalProgramaAsignaturaConfirmar').modal('show');
-                            }
-
-                            function quitarBarraHerramientasEditores() {
-                                pb_presentacion_edit.removeInstance('pb_presentacion');
-                                pb_presentacion_edit = null;
-
-                                pb_descriptor_competencias_edit.removeInstance('pb_descriptor_competencias');
-                                pb_descriptor_competencias_edit = null;
-
-                                pb_aprendizajes_previos_edit.removeInstance('pb_aprendizajes_previos');
-                                pb_aprendizajes_previos_edit = null;
-
-                                pb_biblio_fundamental_edit.removeInstance('pb_biblio_fundamental');
-                                pb_biblio_fundamental_edit = null;
-
-                                pb_biblio_complementaria_edit.removeInstance('pb_biblio_complementaria');
-                                pb_biblio_complementaria_edit = null;
-                            }
-
-                            function agregarBarraHerramientasEditores() {
-                                if (!pb_presentacion_edit) {
-                                    pb_presentacion_edit = new nicEditor({fullPanel: true}).panelInstance('pb_presentacion', {hasPanel: true});
-                                }
-                                if (!pb_descriptor_competencias_edit) {
-                                    pb_descriptor_competencias_edit = new nicEditor({fullPanel: true}).panelInstance('pb_descriptor_competencias', {hasPanel: true});
-                                }
-                                if (!pb_aprendizajes_previos_edit) {
-                                    pb_aprendizajes_previos_edit = new nicEditor({fullPanel: true}).panelInstance('pb_aprendizajes_previos', {hasPanel: true});
-                                }
-                                if (!pb_biblio_fundamental_edit) {
-                                    pb_biblio_fundamental_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_fundamental', {hasPanel: true});
-                                }
-                                if (!pb_biblio_complementaria_edit) {
-                                    pb_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_complementaria', {hasPanel: true});
-                                }
-                            }
 
                             function editar() {
-                                var pb_id = $("#pb_id").val();
-                                window.location = "editarProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
+                                var pe_id = $("#pe_id").val();
+                                window.location = "editarProgramaExtensoAsignaturas.php?pe_id=" + pe_id;
                             }
 
                             function imprimir() {
-                                var pb_id = $("#pb_id").val();
-                                window.location = "imprimirProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
+                                var pe_id = $("#pe_id").val();
+                                window.location = "imprimirProgramaExtensoAsignaturas.php?pe_id=" + pe_id;
                             }
         </script>
     </body>

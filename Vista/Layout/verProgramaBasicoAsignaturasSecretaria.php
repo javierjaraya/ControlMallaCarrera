@@ -13,9 +13,9 @@ $pb_id = $_REQUEST["pb_id"];
 include_once '../../Controlador/Contenedor.php';
 $control = Contenedor::getInstancia();
 
-$programa_basico = $control->getPrograma_basicoByID($pb_id);
+$programa_extenso = $control->getPrograma_basicoByID($pb_id);
 
-$asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
+$asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
 ?>
 <html>
     <head>
@@ -51,12 +51,12 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
         <!-- bootstrap Select-->
         <link rel="stylesheet" href="../../Files/Complementos/template_admin_lite/plugins/bootstrap-select-1.12.1/dist/css/bootstrap-select.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <style type="text/css">
+            .borde-div{
+                border: 1px solid #d0d0d0;
+                padding: 10px;
+            }
+        </style>
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -138,103 +138,103 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_tipo_curso">Tipo de Curso:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_tipo_curso" name="pb_tipo_curso" value="<?= $programa_basico->getPb_tipo_curso() ?>" >
+                                                    <input type="text" class="form-control pull-right" id="pb_tipo_curso" name="pb_tipo_curso" value="<?= $programa_extenso->getPb_tipo_curso() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_carrera">Carrera:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_carrera" name="pb_carrera" value="<?= $programa_basico->getPb_carrera() ?>">
+                                                    <input type="text" class="form-control pull-right" id="pb_carrera" name="pb_carrera" value="<?= $programa_extenso->getPb_carrera() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_departamento">Departamento:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_departamento" name="pb_departamento" value="<?= $programa_basico->getPb_departamento() ?>">
+                                                    <input type="text" class="form-control pull-right" id="pb_departamento" name="pb_departamento" value="<?= $programa_extenso->getPb_departamento() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_facultad">Facultad:</label>
-                                                    <input type="text" class="form-control pull-right" id="pb_facultad" name="pb_facultad" value="<?= $programa_basico->getPb_facultad() ?>">
+                                                    <input type="text" class="form-control pull-right" id="pb_facultad" name="pb_facultad" value="<?= $programa_extenso->getPb_facultad() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_nro_creditos">N° Créditos SCT:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_nro_creditos" name="pb_nro_creditos" value="<?= $programa_basico->getPb_nro_creditos() ?>" >
+                                                    <input type="number" class="form-control pull-right" id="pb_nro_creditos" name="pb_nro_creditos" value="<?= $programa_extenso->getPb_nro_creditos() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_horas_cronologicas">Horas Cronológicas:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_horas_cronologicas" name="pb_horas_cronologicas" value="<?= $programa_basico->getPb_horas_cronologicas() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_horas_cronologicas" name="pb_horas_cronologicas" value="<?= $programa_extenso->getPb_horas_cronologicas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_horas_pedagogicas">Horas Pedagógicas:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_horas_pedagogicas" name="pb_horas_pedagogicas" value="<?= $programa_basico->getPb_horas_pedagogicas() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_horas_pedagogicas" name="pb_horas_pedagogicas" value="<?= $programa_extenso->getPb_horas_pedagogicas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_anio">Año:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_anio" name="pb_anio" value="<?= $programa_basico->getPb_anio() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_anio" name="pb_anio" value="<?= $programa_extenso->getPb_anio() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_semestre">Semestre:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_semestre" name="pb_semestre" value="<?= $programa_basico->getPb_semestre() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_semestre" name="pb_semestre" value="<?= $programa_extenso->getPb_semestre() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_hrs_presenciales">Horas Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hrs_presenciales" name="pb_hrs_presenciales" value="<?= $programa_basico->getPb_hrs_presenciales() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_hrs_presenciales" name="pb_hrs_presenciales" value="<?= $programa_extenso->getPb_hrs_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_ht_presenciales">Horas Teoricas Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_ht_presenciales" name="pb_ht_presenciales" value="<?= $programa_basico->getPb_ht_presenciales() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_ht_presenciales" name="pb_ht_presenciales" value="<?= $programa_extenso->getPb_ht_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_hp_presenciales">Horas Practicas Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hp_presenciales" name="pb_hp_presenciales" value="<?= $programa_basico->getPb_hp_presenciales() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_hp_presenciales" name="pb_hp_presenciales" value="<?= $programa_extenso->getPb_hp_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_hl_presenciales">Horas Laboratorio Presenciales:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hl_presenciales" name="pb_hl_presenciales" value="<?= $programa_basico->getPb_hl_presenciales() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_hl_presenciales" name="pb_hl_presenciales" value="<?= $programa_extenso->getPb_hl_presenciales() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_hrs_autonomas">Horas Trabajo Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hrs_autonomas" name="pb_hrs_autonomas" value="<?= $programa_basico->getPb_hrs_autonomas() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_hrs_autonomas" name="pb_hrs_autonomas" value="<?= $programa_extenso->getPb_hrs_autonomas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_ht_autonomas">Horas Teoricas Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_ht_autonomas" name="pb_ht_autonomas" value="<?= $programa_basico->getPb_ht_autonomas() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_ht_autonomas" name="pb_ht_autonomas" value="<?= $programa_extenso->getPb_ht_autonomas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_hp_autonomas">Horas Practicas Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hp_autonomas" name="pb_hp_autonomas" value="<?= $programa_basico->getPb_hp_autonomas() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_hp_autonomas" name="pb_hp_autonomas" value="<?= $programa_extenso->getPb_hp_autonomas() ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label for="pb_hl_autonomas">Horas Laboratorio Autónomo:</label>
-                                                    <input type="number" class="form-control pull-right" id="pb_hl_autonomas" name="pb_hl_autonomas" value="<?= $programa_basico->getPb_hl_autonomas() ?>">
+                                                    <input type="number" class="form-control pull-right" id="pb_hl_autonomas" name="pb_hl_autonomas" value="<?= $programa_extenso->getPb_hl_autonomas() ?>" readonly>
                                                 </div>
                                             </div>
                                         </div>
@@ -254,20 +254,25 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_presentacion">ll.1 Presentación: Relación de la Asignatura con las Competencias del Perfil de Egreso</label>
-                                                <textarea id="pb_presentacion" name="pb_presentacion" rows="14" class="form-control"></textarea>
-                                                <input type="hidden" id="ex" value="<?= $programa_basico->getPb_presentacion() ?>">
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_presentacion() ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_descriptor_competencias">ll.2 Descriptor de competencias</label>
-                                                <textarea id="pb_descriptor_competencias" name="pb_descriptor_competencias" rows="14" class="form-control" value="<?= $programa_basico->getPb_descriptor_competencias() ?>"></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_descriptor_competencias() ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_aprendizajes_previos">ll.3 Aprendizajes Previos</label>
-                                                <textarea id="pb_aprendizajes_previos" name="pb_aprendizajes_previos" rows="14" class="form-control" value="<?= $programa_basico->getPb_aprendizajes_previos() ?>"></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_aprendizajes_previos() ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -286,13 +291,17 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_biblio_fundamental">Fundamental</label>
-                                                <textarea id="pb_biblio_fundamental" name="pb_biblio_fundamental" rows="14" class="form-control" value="<?= $programa_basico->getPb_biblio_fundamental() ?>"></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_biblio_fundamental() ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_biblio_complementaria">Complementaria</label>
-                                                <textarea id="pb_biblio_complementaria" name="pb_biblio_complementaria" rows="14" class="form-control" value="<?= $programa_basico->getPb_biblio_complementaria() ?>"></textarea>
+                                                <div class="borde-div" style="height: 320px;">
+                                                    <?= $programa_extenso->getPb_biblio_complementaria() ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -300,9 +309,7 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                     <div class="modal-footer">
                                         <input type="hidden" id="pb_id" name="pb_id" value="<?= $pb_id ?>">
                                         <input type="hidden" id="accion" name="accion" value="">
-                                        <a href="administrarProgramaBasicoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
-                                        <button type="button" class="btn btn-info" onclick="crearBorradorProgramaBasico()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
-                                        <button type="button" class="btn btn-info" onclick="crearProgramaBasicoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
+                                        <a href="verAsignatura.php?cod=<?= $asignatura->getAsig_codigo() ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>                                        
                                         <a target="_blank" class="btn btn-success" href="imprimirProgramaBasicoAsignaturas.php?pb_id=<?= $pb_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>
                                     <!-- ./box-footer --> 
@@ -390,14 +397,17 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                     $("#pb_aprendizajes_previos").html(data.pb_aprendizajes_previos);
                                     $("#pb_biblio_fundamental").html(data.pb_biblio_fundamental);
                                     $("#pb_biblio_complementaria").html(data.pb_biblio_complementaria);
-                                    agregarBarraHerramientasEditores();
-                                },"json");
+                                    //agregarBarraHerramientasEditores();
+                                }, "json");
                             }
 
                             function crearBorradorProgramaBasico() {
                                 $("#accion").val("AGREGAR_BORRADOR");
                                 quitarBarraHerramientasEditores();
+                                var valor_pb_presentacion = document.getElementById("pb_presentacion").value;
+                                console.log(valor_pb_presentacion);
                                 $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
+                                    console.log(data);
                                     agregarBarraHerramientasEditores();
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'danger', 'alert');
@@ -405,298 +415,11 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                         notificacion(data.mensaje, 'success', 'alert');
                                     }
                                     location.href = "#alert";
-                                },"json");
+                                });
                             }
 
                             function crearProgramaBasicoConfirmar() {
-                                if (validar()) {
-                                    $('#modalProgramaAsignaturaConfirmar').modal('show');
-                                }
-                            }
-
-                            function crearProgramaBasico() {
-                                $("#accion").val("AGREGAR");
-                                quitarBarraHerramientasEditores();
-                                $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
-                                    agregarBarraHerramientasEditores();
-                                    if (data.errorMsg) {
-                                        notificacion(data.errorMsg, 'danger', 'alert');
-                                    } else {
-                                        notificacion(data.mensaje, 'success', 'alert');
-                                    }
-                                    $('#modalProgramaAsignaturaConfirmar').modal('toggle');
-                                    location.href = "#alert";
-                                }, "json");
-                            }
-
-                            function validar() {
-                                var pb_tipo_curso = $("#pb_tipo_curso").val();
-                                var pb_carrera = $("#pb_carrera").val();
-                                var pb_departamento = $("#pb_departamento").val();
-                                var pb_facultad = $("#pb_facultad").val();
-                                var pb_nro_creditos = $("#pb_nro_creditos").val();
-                                var pb_horas_cronologicas = $("#pb_horas_cronologicas").val();
-                                var pb_horas_pedagogicas = $("#pb_horas_pedagogicas").val();
-                                var pb_anio = $("#pb_anio").val();
-                                var pb_semestre = $("#pb_semestre").val();
-                                var pb_hrs_presenciales = $("#pb_hrs_presenciales").val();
-                                var pb_ht_presenciales = $("#pb_ht_presenciales").val();
-                                var pb_hp_presenciales = $("#pb_hp_presenciales").val();
-                                var pb_hl_presenciales = $("#pb_hl_presenciales").val();
-                                var pb_hrs_autonomas = $("#pb_hrs_autonomas").val();
-                                var pb_ht_autonomas = $("#pb_ht_autonomas").val();
-                                var pb_hp_autonomas = $("#pb_hp_autonomas").val();
-                                var pb_hl_autonomas = $("#pb_hl_autonomas").val();
-
-                                var pb_presentacion = $("#pb_presentacion").val();
-                                var pb_descriptor_competencias = $("#pb_descriptor_competencias").val();
-                                var pb_aprendizajes_previos = $("#pb_aprendizajes_previos").val();
-                                var pb_biblio_fundamental = $("#pb_biblio_fundamental").val();
-                                var pb_biblio_complementaria = $("#pb_biblio_complementaria").val();
-
-                                if (pb_tipo_curso == "") {
-                                    notificacion("Debe ingresar el tipo de curso", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_carrera == "") {
-                                    notificacion("Debe ingresar la carrera", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_departamento == "") {
-                                    notificacion("Debe ingresar el departamento", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_facultad == "") {
-                                    notificacion("Debe ingresar la facultad", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_nro_creditos == "") {
-                                    notificacion("Debe ingresar el numero de creditos", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_nro_creditos)) {
-                                    notificacion("El numero de creditos debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_nro_creditos <= 0) {
-                                    notificacion("El numero de creditos debe ser mayor que 0", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_horas_cronologicas == "") {
-                                    notificacion("Debe ingresar las horas cronologicas", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_horas_cronologicas)) {
-                                    notificacion("Las horas cronologicas debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_horas_cronologicas < 0) {
-                                    notificacion("Las horas cronologicas debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_horas_pedagogicas == "") {
-                                    notificacion("Debe ingresar las horas pedagogicas", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_horas_pedagogicas)) {
-                                    notificacion("Las horas pedagogicas debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_horas_pedagogicas < 0) {
-                                    notificacion("Las horas pedagogicas debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_anio == "") {
-                                    notificacion("Debe ingresar el año", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_anio)) {
-                                    notificacion("El año debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_anio <= 0) {
-                                    notificacion("El año debe ser mayor que 0", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_semestre == "") {
-                                    notificacion("Debe ingresar el semestre", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_semestre)) {
-                                    notificacion("El semestre debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_semestre <= 0) {
-                                    notificacion("El semestre debe ser mayor que 0", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hrs_presenciales == "") {
-                                    notificacion("Debe ingresar las horas presenciales", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_hrs_presenciales)) {
-                                    notificacion("Las horas presenciales debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hrs_presenciales < 0) {
-                                    notificacion("Las horas presenciales debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_ht_presenciales == "") {
-                                    notificacion("Debe ingresar las horas teoricas presenciales", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_ht_presenciales)) {
-                                    notificacion("Las horas teoricas presenciales debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_ht_presenciales < 0) {
-                                    notificacion("Las horas teoricas presenciales debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hp_presenciales == "") {
-                                    notificacion("Debe ingresar las horas practicas presenciales", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_hp_presenciales)) {
-                                    notificacion("Las horas practicas presenciales debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hp_presenciales < 0) {
-                                    notificacion("Las horas practicas presenciales debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hl_presenciales == "") {
-                                    notificacion("Debe ingresar las horas laboratorio presenciales", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_hl_presenciales)) {
-                                    notificacion("Las horas laboratorio presenciales debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hl_presenciales < 0) {
-                                    notificacion("Las horas laboratorio presenciales debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hrs_autonomas == "") {
-                                    notificacion("Debe ingresar las horas autonomas", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_hrs_autonomas)) {
-                                    notificacion("Las horas autonomas debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hrs_autonomas < 0) {
-                                    notificacion("Las horas autonomas debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_ht_autonomas == "") {
-                                    notificacion("Debe ingresar las horas teoricas autonomas", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_ht_autonomas)) {
-                                    notificacion("Las horas teoricas autonomas debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_ht_autonomas < 0) {
-                                    notificacion("Las horas teoricas autonomas debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hp_autonomas == "") {
-                                    notificacion("Debe ingresar las horas practicas autonomas", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_hp_autonomas)) {
-                                    notificacion("Las horas practicas autonomas debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hp_autonomas < 0) {
-                                    notificacion("Las horas practicas autonomas debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hl_autonomas == "") {
-                                    notificacion("Debe ingresar las horas laboratorio autonomas", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (isNaN(pb_hl_autonomas)) {
-                                    notificacion("Las horas laboratorio autonomas debe ser un valor numerico", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_hl_autonomas < 0) {
-                                    notificacion("Las horas laboratorio autonomas debe ser mayor o igual a cero", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-
-                                if (pb_presentacion == "") {
-                                    notificacion("Debe ingresar la presentación del item II. Descripción", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_descriptor_competencias == "") {
-                                    notificacion("Debe ingresar el descriptor de competencias del item II. Descripción", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_aprendizajes_previos == "") {
-                                    notificacion("Debe ingresar los aprendizajes previos del item II. Descripción", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-
-                                if (pb_biblio_fundamental == "") {
-                                    notificacion("Debe ingresar la bibliografia fundamental", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                if (pb_biblio_complementaria == "") {
-                                    notificacion("Debe ingresar la bibliografia complementaria", 'danger', 'alert');
-                                    location.href = "#alert";
-                                    return false;
-                                }
-                                return true;
+                                $('#modalProgramaAsignaturaConfirmar').modal('show');
                             }
 
                             function quitarBarraHerramientasEditores() {
@@ -732,6 +455,16 @@ $asignatura = $control->getAsignaturaById($programa_basico->getAsig_codigo());
                                 if (!pb_biblio_complementaria_edit) {
                                     pb_biblio_complementaria_edit = new nicEditor({fullPanel: true}).panelInstance('pb_biblio_complementaria', {hasPanel: true});
                                 }
+                            }
+
+                            function editar() {
+                                var pb_id = $("#pb_id").val();
+                                window.location = "editarProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
+                            }
+
+                            function imprimir() {
+                                var pb_id = $("#pb_id").val();
+                                window.location = "imprimirProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
                             }
         </script>
     </body>

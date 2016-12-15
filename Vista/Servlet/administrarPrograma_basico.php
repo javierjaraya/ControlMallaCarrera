@@ -170,6 +170,17 @@ if ($accion != null) {
         $programa_basicos = $control->getPrograma_basicosByAsig_Codigo($asig_codigo);
         $json = json_encode($programa_basicos);
         echo $json;
+    } else if ($accion == "BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO") {
+        $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+
+        $programa_basico = $control->getPrograma_basicos_version_final_ByAsig_Codigo($asig_codigo);
+        if($programa_basico == null){
+            $json = json_encode(array('errorMsg' => 'No hay un programa basico creado para esta asignatura.'));
+        }else{
+            $json = json_encode($programa_basico);
+        }
+        
+        echo $json;
     } else if ($accion == "ACTUALIZAR") {
         $pb_id = htmlspecialchars($_REQUEST['pb_id']);
         $pb_tipo_curso = htmlspecialchars($_REQUEST['pb_tipo_curso']);
