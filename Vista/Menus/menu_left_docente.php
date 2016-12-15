@@ -45,6 +45,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="administrarMisAsignaturas.php"><i class="fa fa-circle-o"></i>Mis Asignaturas</a></li>
+                </ul>
+                <ul class="treeview-menu">
                     <li><a href="administrarElectivosDocentes.php"><i class="fa fa-circle-o"></i>Electivos</a></li>
                 </ul>
             </li>

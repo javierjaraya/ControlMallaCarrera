@@ -170,7 +170,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
             });
             function cargar() {
                 $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_BY_RUT', }, function (data) {
-                    console.log(data);
                     var data = eval(data);
                     $.each(data, function (k, v) {
                         var contenido = "<tr>";
@@ -181,17 +180,13 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         contenido += "<td>" + v.m_id + "</td>";
                         contenido += "<td>" + v.ta_nombre + "</td>";
                         contenido += "<td>";
-                        //contenido += "<button type='button' class='btn btn-warning btn-circle glyphicon glyphicon-pencil'  onclick='editar(" + v.usu_rut + ")'></button>";
+                        contenido += "<a class='btn btn-success btn-circle glyphicon glyphicon-search' href='verAsignaturaDocente.php?cod=" + v.asig_codigo + "'></a>";
                         contenido += "</td>";
                         contenido += "</tr>";
                         $("#tbody").append(contenido);
                     });
                     $("#table").DataTable();
                 });
-            }
-
-            function editar(usu_rut) {
-                
             }
         </script>
     </body>
