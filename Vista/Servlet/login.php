@@ -24,7 +24,7 @@ if (($usu_run != null || $usu_run != "") && ($usu_password != null || $usu_passw
             $_SESSION["usu_nombre"] = $usuario->getUsu_nombres();
 
             if ($permiso->getPer_id() == 1) {//Docente
-                $pagina = "Vista/Layout/home.php";
+                $pagina = "Vista/Layout/administrarMallaCurricularDocentes.php";
             } else if ($permiso->getPer_id() == 2) {//Directiva
                 $pagina = "Vista/Layout/administrarMallaCurricular.php";
             } else if ($permiso->getPer_id() == 3) {//Secretaria

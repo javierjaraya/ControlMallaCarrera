@@ -117,9 +117,9 @@ $usu_nombre = $_SESSION["usu_nombre"];
             <!-- AQUI VA EL MENU LEFT-->
             <?php
             if ($per_id == 1) {
-                include '../Menus/menu_left_default.php';
+                include '../Menus/menu_left_docente.php';
             } else if ($per_id == 2) {
-                include '../Menus/menu_left_default.php';
+                include '../Menus/menu_left_directiva.php';
             } else if ($per_id == 3) {
                 include '../Menus/menu_left_secretaria.php';
             } else {
