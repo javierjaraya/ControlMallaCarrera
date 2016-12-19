@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-12-2016 a las 00:15:14
+-- Tiempo de generación: 19-12-2016 a las 22:31:00
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -56,6 +56,28 @@ INSERT INTO `asignatura` (`asig_codigo`, `asig_nombre`, `asig_periodo`, `asig_cr
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `desarrollo_programa_didactico`
+--
+
+CREATE TABLE IF NOT EXISTS `desarrollo_programa_didactico` (
+`dpd_id` int(11) NOT NULL,
+  `dpd_actividad_aprendizaje` varchar(2000) DEFAULT NULL,
+  `dpd_mediacion_enseñanza` varchar(2000) DEFAULT NULL,
+  `dpd_actividad_evaluacion` varchar(2000) DEFAULT NULL,
+  `dpd_recurso_didactivo` varchar(2000) DEFAULT NULL,
+  `dpd_hp_ht` int(11) DEFAULT NULL,
+  `dpd_hp_hp` int(11) DEFAULT NULL,
+  `dpd_hp_hl` int(11) DEFAULT NULL,
+  `dpd_ha_ht` int(11) DEFAULT NULL,
+  `dpd_ha_hp` int(11) DEFAULT NULL,
+  `dpd_ha_hl` int(11) DEFAULT NULL,
+  `ra_id` int(11) NOT NULL,
+  `pd_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `docente`
 --
 
@@ -63,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `docente` (
 `doc_id` int(11) NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `asig_codigo` int(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `docente`
@@ -72,7 +94,8 @@ CREATE TABLE IF NOT EXISTS `docente` (
 INSERT INTO `docente` (`doc_id`, `usu_rut`, `asig_codigo`) VALUES
 (2, 6482318, 240022),
 (3, 8918389, 634065),
-(1, 9658063, 634066);
+(1, 9658063, 634066),
+(4, 12970102, 634066);
 
 -- --------------------------------------------------------
 
@@ -156,12 +179,15 @@ CREATE TABLE IF NOT EXISTS `permiso_usuario` (
 
 INSERT INTO `permiso_usuario` (`usu_rut`, `per_id`) VALUES
 (6482318, 1),
+(7131066, 1),
 (8906080, 1),
 (9426145, 1),
 (9520261, 1),
+(9632094, 1),
 (9658063, 1),
 (10680002, 1),
 (12551754, 1),
+(12907510, 1),
 (12970102, 1),
 (12970221, 1),
 (13131344, 1),
@@ -170,16 +196,14 @@ INSERT INTO `permiso_usuario` (`usu_rut`, `per_id`) VALUES
 (14030436, 1),
 (15181008, 1),
 (15780544, 1),
+(16217315, 1),
 (16228622, 1),
+(16251825, 1),
+(16931250, 1),
+(17060646, 1),
 (17935210, 1),
-(7131066, 2),
 (8918389, 2),
-(9632094, 3),
-(12907510, 3),
-(16217315, 3),
-(16251825, 3),
-(16931250, 3),
-(17060646, 3);
+(17750029, 3);
 
 -- --------------------------------------------------------
 
@@ -261,6 +285,20 @@ INSERT INTO `programa_basico` (`pb_id`, `pb_tipo_curso`, `pb_carrera`, `pb_depar
 (23, 'hjlkhlkjh', 'IngenierÃ­a Civil en Informatica', 'lkjhjkhjh', 'lkjhlkjhlj', 12, 1212, 1, 21, 21, 21, 21, 21, 2, 12, 12, 12, 12, '', '', '', '', '', 240013, '2016-12-12 17:19:00', 6482318, 1),
 (24, 'hjlkhlkjh', 'IngenierÃ­a Civil en Informatica', 'lkjhjkhjh', 'lkjhlkjhlj', 12, 1212, 1, 21, 21, 21, 21, 21, 2, 12, 12, 12, 12, 'hgfhfhgf', 'dgfg', 'dfgdfg', 'dgdfg', 'dfgdfg', 240013, '2016-12-12 17:20:57', 6482318, 1),
 (25, 'sdfsdf', 'IngenierÃ­a Civil en Informatica', 'jkhkjh', 'kjhkjhk', 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 'jhhkgkhgkhg <b>erwerers</b>', '&nbsp;jkhjkhlkjh dsdf', 'jhlhgh', 'ghghjg', 'khgkhgkhg', 240012, '2016-12-13 17:06:12', 6482318, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `programa_didactico`
+--
+
+CREATE TABLE IF NOT EXISTS `programa_didactico` (
+`pd_id` int(11) NOT NULL,
+  `pe_id` int(11) NOT NULL,
+  `pd_fecha_modificacion` datetime NOT NULL,
+  `usu_rut` int(11) NOT NULL,
+  `pd_borrador` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -426,6 +464,7 @@ INSERT INTO `usuario` (`usu_rut`, `usu_nombres`, `usu_apellidos`, `usu_email`, `
 (16251825, 'SERGIO ROCA MUNOZ', 'SERGIO ROCA MUNOZ', 'sroca@ubiobio.cl', '76d284a217295c9b4a60c115689bf6fa', 0),
 (16931250, 'DANIEL EDUARDO', 'ESPINOZA NÚÑEZ', 'deespino@egresados.ubiobio.cl', '7380da0ab819043f807a29100b6e2dc0', 0),
 (17060646, 'DIEGO FELIPE', 'SEPÚLVEDA BRIONES', 'diego.felipe.sepulveda.briones@gmail.com', '1340672e0879f01fd551b8cc5adb90f2', 0),
+(17750029, 'Yaquelin Victoria', 'Badillo Castro', 'secretaria-ici-chi@ubiobio.cl', '23867bfa07b4b9590c2722e80abf03ba', 0),
 (17935210, 'CLAUDIO', 'TORRES FONSECA', 'torresfonseca.cl@gmail.com', 'b5f39fbedd69c8af64564408cf5de0c5', 1);
 
 --
@@ -437,6 +476,12 @@ INSERT INTO `usuario` (`usu_rut`, `usu_nombres`, `usu_apellidos`, `usu_email`, `
 --
 ALTER TABLE `asignatura`
  ADD PRIMARY KEY (`asig_codigo`), ADD KEY `m_idMalla` (`m_id`,`ta_id`), ADD KEY `ta_id` (`ta_id`);
+
+--
+-- Indices de la tabla `desarrollo_programa_didactico`
+--
+ALTER TABLE `desarrollo_programa_didactico`
+ ADD PRIMARY KEY (`dpd_id`), ADD KEY `ra_id` (`ra_id`), ADD KEY `pd_id` (`pd_id`);
 
 --
 -- Indices de la tabla `docente`
@@ -481,6 +526,12 @@ ALTER TABLE `programa_basico`
  ADD PRIMARY KEY (`pb_id`), ADD KEY `asig_codigo` (`asig_codigo`,`usu_rut`), ADD KEY `usu_rut` (`usu_rut`);
 
 --
+-- Indices de la tabla `programa_didactico`
+--
+ALTER TABLE `programa_didactico`
+ ADD PRIMARY KEY (`pd_id`), ADD KEY `mu_id` (`pe_id`,`usu_rut`);
+
+--
 -- Indices de la tabla `programa_extenso`
 --
 ALTER TABLE `programa_extenso`
@@ -509,10 +560,15 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `desarrollo_programa_didactico`
+--
+ALTER TABLE `desarrollo_programa_didactico`
+MODIFY `dpd_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
@@ -528,6 +584,11 @@ MODIFY `pre_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 ALTER TABLE `programa_basico`
 MODIFY `pb_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT de la tabla `programa_didactico`
+--
+ALTER TABLE `programa_didactico`
+MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `programa_extenso`
 --
@@ -553,6 +614,13 @@ MODIFY `ta_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 ALTER TABLE `asignatura`
 ADD CONSTRAINT `asignatura_ibfk_1` FOREIGN KEY (`ta_id`) REFERENCES `tipo_asignatura` (`ta_id`),
 ADD CONSTRAINT `asignatura_ibfk_2` FOREIGN KEY (`m_id`) REFERENCES `malla` (`m_id`);
+
+--
+-- Filtros para la tabla `desarrollo_programa_didactico`
+--
+ALTER TABLE `desarrollo_programa_didactico`
+ADD CONSTRAINT `desarrollo_programa_didactico_ibfk_1` FOREIGN KEY (`ra_id`) REFERENCES `resultado_aprendizaje` (`ra_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `desarrollo_programa_didactico_ibfk_2` FOREIGN KEY (`pd_id`) REFERENCES `programa_didactico` (`pd_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `docente`
@@ -587,6 +655,12 @@ ADD CONSTRAINT `prerrequisito_ibfk_2` FOREIGN KEY (`asig_codigo_prerrequisito`) 
 ALTER TABLE `programa_basico`
 ADD CONSTRAINT `programa_basico_ibfk_1` FOREIGN KEY (`usu_rut`) REFERENCES `usuario` (`usu_rut`),
 ADD CONSTRAINT `programa_basico_ibfk_2` FOREIGN KEY (`asig_codigo`) REFERENCES `asignatura` (`asig_codigo`);
+
+--
+-- Filtros para la tabla `programa_didactico`
+--
+ALTER TABLE `programa_didactico`
+ADD CONSTRAINT `programa_didactico_ibfk_1` FOREIGN KEY (`pe_id`) REFERENCES `programa_extenso` (`pe_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `programa_extenso`

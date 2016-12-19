@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Mantenedores/AsignaturaDAO.php';
+include_once 'Mantenedores/Desarrollo_programa_didacticoDAO.php';
 include_once 'Mantenedores/DocenteDAO.php';
 include_once 'Mantenedores/Grupo_electivoDAO.php';
 include_once 'Mantenedores/MallaDAO.php';
@@ -8,6 +9,7 @@ include_once 'Mantenedores/PerfilDAO.php';
 include_once 'Mantenedores/Permiso_usuarioDAO.php';
 include_once 'Mantenedores/PrerrequisitoDAO.php';
 include_once 'Mantenedores/Programa_basicoDAO.php';
+include_once 'Mantenedores/Programa_didacticoDAO.php';
 include_once 'Mantenedores/Programa_extensoDAO.php';
 include_once 'Mantenedores/Resultado_aprendizajeDAO.php';
 include_once 'Mantenedores/Tipo_asignaturaDAO.php';
@@ -17,6 +19,7 @@ class Contenedor {
 
     private static $instancia = NULL;
     private $asignaturaDAO;
+    private $desarrollo_programa_didacticoDAO;
     private $docenteDAO;
     private $grupo_electivoDAO;
     private $mallaDAO;
@@ -24,6 +27,7 @@ class Contenedor {
     private $permiso_usuarioDAO;
     private $prerrequisitoDAO;
     private $programa_basicoDAO;
+    private $programa_didacticoDAO;
     private $programa_extensoDAO;
     private $resultado_aprendizajeDAO;
     private $tipo_asignaturaDAO;
@@ -31,6 +35,7 @@ class Contenedor {
 
     public function Contenedor() {
         $this->asignaturaDAO = new AsignaturaDAO();
+        $this->desarrollo_programa_didacticoDAO = new Desarrollo_programa_didacticoDAO();
         $this->docenteDAO = new DocenteDAO();
         $this->grupo_electivoDAO = new Grupo_electivoDAO();
         $this->mallaDAO = new MallaDAO();
@@ -38,6 +43,7 @@ class Contenedor {
         $this->permiso_usuarioDAO = new Permiso_usuarioDAO();
         $this->prerrequisitoDAO = new PrerrequisitoDAO();
         $this->programa_basicoDAO = new Programa_basicoDAO();
+        $this->programa_didacticoDAO = new Programa_didacticoDAO();
         $this->programa_extensoDAO = new Programa_extensoDAO();
         $this->resultado_aprendizajeDAO = new Resultado_aprendizajeDAO();
         $this->tipo_asignaturaDAO = new Tipo_asignaturaDAO();
@@ -97,6 +103,30 @@ class Contenedor {
 
     public function getAsignaturaLikeAtrr($cadena) {
         return $this->asignaturaDAO->findLikeAtrr($cadena);
+    }
+    
+    public function getAllDesarrollo_programa_didacticos() {
+        return $this->desarrollo_programa_didacticoDAO->findAll();
+    }
+
+    public function addDesarrollo_programa_didactico($desarrollo_programa_didactico) {
+        return $this->desarrollo_programa_didacticoDAO->save($desarrollo_programa_didactico);
+    }
+
+    public function removeDesarrollo_programa_didactico($dpd_id) {
+        return $this->desarrollo_programa_didacticoDAO->delete($dpd_id);
+    }
+
+    public function updateDesarrollo_programa_didactico($desarrollo_programa_didactico) {
+        return $this->desarrollo_programa_didacticoDAO->update($desarrollo_programa_didactico);
+    }
+
+    public function getDesarrollo_programa_didacticoByID($dpd_id) {
+        return $this->desarrollo_programa_didacticoDAO->findByID($dpd_id);
+    }
+
+    public function getDesarrollo_programa_didacticoLikeAtrr($cadena) {
+        return $this->desarrollo_programa_didacticoDAO->findLikeAtrr($cadena);
     }
 
     public function getAllDocentes() {
@@ -325,6 +355,30 @@ class Contenedor {
 
     public function getPrograma_basicoLikeAtrr($cadena) {
         return $this->programa_basicoDAO->findLikeAtrr($cadena);
+    }
+    
+    public function getAllPrograma_didacticos() {
+        return $this->programa_didacticoDAO->findAll();
+    }
+
+    public function addPrograma_didactico($programa_didactico) {
+        return $this->programa_didacticoDAO->save($programa_didactico);
+    }
+
+    public function removePrograma_didactico($pd_id) {
+        return $this->programa_didacticoDAO->delete($pd_id);
+    }
+
+    public function updatePrograma_didactico($programa_didactico) {
+        return $this->programa_didacticoDAO->update($programa_didactico);
+    }
+
+    public function getPrograma_didacticoByID($pd_id) {
+        return $this->programa_didacticoDAO->findByID($pd_id);
+    }
+
+    public function getPrograma_didacticoLikeAtrr($cadena) {
+        return $this->programa_didacticoDAO->findLikeAtrr($cadena);
     }
 
     public function getId_disponible_programa_extenso() {
