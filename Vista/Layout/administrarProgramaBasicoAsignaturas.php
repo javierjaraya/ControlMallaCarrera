@@ -322,7 +322,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         document.getElementById("historico-programas").style.display = 'none';
                                         $('#modalSinProgramaAsignatura').modal('show');
                                     }
-                                }, "json");
+                                },"json");
                             }
 
                             function crearProgramaBasico() {

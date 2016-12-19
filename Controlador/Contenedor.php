@@ -320,6 +320,10 @@ class Contenedor {
     public function getAllCorrequisitosByAsig_Codigo($asig_codigo) {
         return $this->prerrequisitoDAO->findAllCorrequisitos_ByAsig_Codigo($asig_codigo);
     }
+    
+    public function getIdDisponible_programa_basico() {
+        return $this->programa_basicoDAO->getIdDisponible();
+    }
 
     public function getAllPrograma_basicos() {
         return $this->programa_basicoDAO->findAll();

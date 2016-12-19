@@ -77,7 +77,13 @@ if ($accion != null) {
             echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
         }
     } else if ($accion == "AGREGAR_BORRADOR") {
-        $pb_id = htmlspecialchars($_REQUEST['pb_id']);
+        $pb_id;
+        if(isset($_REQUEST['pb_id'])){
+            $pb_id = htmlspecialchars($_REQUEST['pb_id']);
+        }else{
+            $pb_id = $control->getIdDisponible_programa_basico();
+        }
+        
         $pb_tipo_curso = htmlspecialchars($_REQUEST['pb_tipo_curso']);
         $pb_carrera = htmlspecialchars($_REQUEST['pb_carrera']);
         $pb_departamento = htmlspecialchars($_REQUEST['pb_departamento']);
@@ -134,7 +140,12 @@ if ($accion != null) {
         $programa_basico->setUsu_rut($usu_rut);
         $programa_basico->setPb_borrador(1);
 
-        $result = $control->updatePrograma_basico($programa_basico);
+        $result;
+        if(isset($_REQUEST['pb_id'])){
+            $result = $control->updatePrograma_basico($programa_basico);
+        }else{
+            $result = $control->addPrograma_basico($programa_basico);
+        }
 
         if ($result) {
             echo json_encode(array(
@@ -167,7 +178,7 @@ if ($accion != null) {
     } else if ($accion == "BUSCAR_BY_ASIG_CODIGO") {
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
 
-        $programa_basicos = $control->getPrograma_basicosByAsig_Codigo($asig_codigo);
+        $programa_basicos = $control->getPrograma_basicosByAsig_Codigo($asig_codigo);        
         $json = json_encode($programa_basicos);
         echo $json;
     } else if ($accion == "BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO") {

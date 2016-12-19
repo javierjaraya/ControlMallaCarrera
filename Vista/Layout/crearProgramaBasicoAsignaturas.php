@@ -385,7 +385,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                         notificacion(data.mensaje, 'success', 'alert');
                                     }
                                     location.href = "#alert";
-                                });
+                                }, "json");
                             }
 
                             function crearProgramaBasicoConfirmar() {
