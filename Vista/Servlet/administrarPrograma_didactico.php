@@ -160,6 +160,23 @@ if ($accion != null) {
         $programa_didactico = $control->getPrograma_didacticoByPE_ID($pe_id);
         $json = json_encode($programa_didactico);
         echo $json;
+    } else if ($accion == "BUSCAR_BY_PE_ID_AND_ESTADO") {
+        $pe_id = htmlspecialchars($_REQUEST['pe_id']);
+        $estado = htmlspecialchars($_REQUEST['estado']);
+
+        $programa_didactico = $control->getPrograma_didacticoByPE_ID_AND_ESTADO($pe_id,$estado);
+        $json = json_encode($programa_didactico);
+        echo $json;
+    } else if ($accion == "BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO") {
+        $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+
+        $programa_didactico = $control->getPrograma_didactico_version_final_ByAsig_Codigo($asig_codigo);
+        if($programa_didactico == null){
+            $json = json_encode(array('errorMsg' => 'No hay un programa didactico creado para esta asignatura.'));
+        }else{
+            $json = json_encode($programa_didactico);
+        }
+        echo $json;
     } else if ($accion == "ACTUALIZAR") {
         $pd_id = htmlspecialchars($_REQUEST['pd_id']);
         $pe_id = htmlspecialchars($_REQUEST['pe_id']);

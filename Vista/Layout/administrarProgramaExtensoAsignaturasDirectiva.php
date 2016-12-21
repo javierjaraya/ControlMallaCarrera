@@ -14,6 +14,7 @@ include_once '../../Controlador/Contenedor.php';
 $control = Contenedor::getInstancia();
 $asignatura = $control->getAsignaturaByID($asig_codigo);
 $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
+
 ?>
 <html>
     <head>
@@ -126,10 +127,6 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                     </div>
                                 </div>
                                 <!-- ./box-body -->
-                                <div class="box-footer">                                    
-                                    <button class="btn btn-info pull-right" onclick="crearProgramaExtenso()"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo Programa</button>&nbsp;&nbsp;
-                                </div>
-                                <!-- /.box-footer -->
                             </div>
                         </div>
                     </div>
@@ -195,12 +192,11 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                         <h4 class="modal-title">Información</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>La asignatura no tiene un programa extenso creado, ¿Desea crear un nuevo programa?.</h4>
+                        <h4>La asignatura no tiene un programa extenso creado.</h4>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="asig_codigo_remove" id="asig_codigo_remove" value="">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-info" onclick="crearProgramaExtenso()">Crear</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -232,15 +228,15 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                 document.getElementById("historico-programas").style.display = 'none';
                                 buscarProgramasExtenso();
                             });
-
+                            
                             function buscarProgramasExtenso() {
                                 var asig_codigo = document.getElementById("asig_codigo").value;
-                                $.get("../Servlet/administrarPrograma_extenso.php", {accion: 'BUSCAR_BY_ASIG_CODIGO', asig_codigo: asig_codigo}, function (data) {
+                                $.get("../Servlet/administrarPrograma_extenso.php", {accion: 'BUSCAR_BY_ASIG_CODIGO_AND_ESTADO', asig_codigo: asig_codigo, estado: 0}, function (data) {
+                                    var data = eval(data);
                                     if (data.length > 0) {
                                         //AQui Cargar la tabla con los programa de la asignatura el historico
                                         $("#tbody").empty();
                                         $.each(data, function (k, v) {
-                                            console.log(v);
                                             var contenido = "";
                                             if (v.pe_borrador == 1) {
                                                 contenido = "<tr>";
@@ -280,21 +276,11 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                         document.getElementById("historico-programas").style.display = 'none';
                                         $('#modalSinProgramaAsignatura').modal('show');
                                     }
-                                }, "json");
-                            }
-
-                            function crearProgramaExtenso() {
-                                var asig_codigo = document.getElementById("asig_codigo").value;
-                                window.location = "crearProgramaExtensoAsignaturasDocente.php?asig_codigo=" + asig_codigo;
-                            }
-
-
-                            function editar(pe_id) {
-                                window.location = "editarProgramaExtensoAsignaturasDocente.php?pe_id=" + pe_id;
+                                },"json");
                             }
 
                             function ver(pe_id) {
-                                window.location = "verProgramaExtensoAsignaturasDocente.php?pe_id=" + pe_id;
+                                window.location = "verProgramaExtensoAsignaturasDirectiva.php?pe_id=" + pe_id;
                             }
         </script>
     </body>

@@ -240,7 +240,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                         <input type="hidden" id="n_prerrequisito" name="n_prerrequisito" value="">
                                         <a class="btn btn-default" onclick="verProgramaBasico()">Programa Basico</a>
                                         <a class="btn btn-default" onclick="verProgramaExtenso()">Programa Extenso</a>
-                                        <!--<a class="btn btn-default" onclick="verProgramaDidactico()">Programa Didactico</a>-->
+                                        <!--<a class="btn btn-default" onclick="verProgramaDidactico()">Programa Didáctico</a>-->
                                     </div>
                                     <!-- /.box-footer -->
                                 </form>

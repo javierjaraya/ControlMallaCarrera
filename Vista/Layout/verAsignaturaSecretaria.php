@@ -14,7 +14,6 @@ include_once '../../Controlador/Contenedor.php';
 $control = Contenedor::getInstancia();
 $asignatura = $control->getAsignaturaByID($asig_codigo);
 $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
-
 ?>
 <html>
     <head>
@@ -241,7 +240,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                         <input type="hidden" id="n_prerrequisito" name="n_prerrequisito" value="">
                                         <a class="btn btn-default" onclick="verProgramaBasico()">Programa Basico</a>
                                         <a class="btn btn-default" onclick="verProgramaExtenso()">Programa Extenso</a>
-                                        <!--<a class="btn btn-default" onclick="verProgramaDidactico()">Programa Didactico</a>-->
+                                        <a class="btn btn-default" onclick="verProgramaDidactico()">Programa Didáctico</a>
                                     </div>
                                     <!-- /.box-footer -->
                                 </form>
@@ -383,7 +382,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                     $.each(data, function (k, v) {
                                         mostrarPrerrequisitoGuardado(v.asig_codigo_prerrequisito);
                                     });
-                                },"json");
+                                }, "json");
                             }
 
                             function mostrarPrerrequisitoGuardado(asig_codigo_prerrequisito) {
@@ -395,8 +394,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                 n_prerrequisito++;
                                 $("#n_prerrequisito").val(n_prerrequisito);
                                 $.get("../Servlet/administrarAsignatura.php", {accion: 'OBTENER_POSIBLES_PRERREQUISITOS', m_id: m_id, asig_periodo: asig_periodo}, function (data) {
-                            console.log(asig_codigo_prerrequisito+ "  = "+ data);        
-        var data = eval(data);
+                                    var data = eval(data);
 
                                     var select_html = "<tr id='tr_" + n_aux + "'><td><select class='form-control pull-right' id='cod_prerrequisito_" + n_aux + "' name='cod_prerrequisito_" + n_aux + "'  disabled='disabled'></select></td></tr>"
                                     $("#tabla_prerrequisito").append(select_html);
@@ -426,27 +424,34 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                             function verProgramaBasico() {
                                 var asig_codigo = $('#asig_codigo').val();
                                 $.get("../Servlet/administrarPrograma_basico.php", {accion: 'BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO', asig_codigo: asig_codigo}, function (data) {
-                                    if(data.errorMsg){
+                                    if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'info', 'alert');
-                                    }else{
+                                    } else {
                                         window.location = "verProgramaBasicoAsignaturasSecretaria.php?pb_id=" + data.pb_id;
-                                    }     
+                                    }
                                 },"json");
                             }
 
                             function verProgramaExtenso() {
                                 var asig_codigo = $('#asig_codigo').val();
                                 $.get("../Servlet/administrarPrograma_extenso.php", {accion: 'BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO', asig_codigo: asig_codigo}, function (data) {
-                                    if(data.errorMsg){
+                                    if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'info', 'alert');
-                                    }else{
+                                    } else {
                                         window.location = "verProgramaExtensoAsignaturasSecretaria.php?pe_id=" + data.pe_id;
-                                    }     
-                                },"json");
+                                    }
+                                }, "json");
                             }
 
                             function verProgramaDidactico() {
-
+                                var asig_codigo = $('#asig_codigo').val();
+                                $.get("../Servlet/administrarPrograma_didactico.php", {accion: 'BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO', asig_codigo: asig_codigo}, function (data) {
+                                    if (data.errorMsg) {
+                                        notificacion(data.errorMsg, 'info', 'alert');
+                                    } else {
+                                        window.location = "verProgramaDidacticoAsignaturasSecretaria.php?pd_id=" + data.pd_id;
+                                    }
+                                }, "json");
                             }
 
         </script>

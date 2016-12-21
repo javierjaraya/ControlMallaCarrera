@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-12-2016 a las 04:15:53
+-- Tiempo de generación: 21-12-2016 a las 22:19:33
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -366,14 +366,15 @@ CREATE TABLE IF NOT EXISTS `programa_extenso` (
   `usu_rut` int(11) NOT NULL,
   `pe_borrador` int(1) NOT NULL,
   `pe_sistema_evaluacion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_estonian_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `programa_extenso`
 --
 
 INSERT INTO `programa_extenso` (`pe_id`, `pe_tipo_curso`, `pe_carrera`, `pe_departamento`, `pe_facultad`, `pe_nro_creditos`, `pe_horas_cronologicas`, `pe_horas_pedagogicas`, `pe_anio`, `pe_semestre`, `pe_hrs_presenciales`, `pe_ht_presenciales`, `pe_hp_presenciales`, `pe_hl_presenciales`, `pe_hrs_autonomas`, `pe_ht_autonomas`, `pe_hp_autonomas`, `pe_hl_autonomas`, `pe_presentacion`, `pe_descriptor_competencias`, `pe_aprendizajes_previos`, `pe_fecha_inicio`, `pe_fecha_fin`, `pe_observacion`, `pe_biblio_fundamental`, `pe_biblio_complementaria`, `asig_codigo`, `pe_fecha_modificacion`, `usu_rut`, `pe_borrador`, `pe_sistema_evaluacion`) VALUES
-(19, 'jhjkhlkhlkj', 'IngenierÃ­a Civil en Informatica', 'hjkhjkhkl', 'hljkhl', 545, 454, 5, 5, 45, 45, 45, 45, 45, 45, 4, 54, 54, 'texto de prueba 2', 'texto de prueba<br>', 'texto de prueba<br>', '2014-01-01', '2016-01-02', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 240012, '2016-12-20 18:38:27', 8918389, 0, 'texto de prueba<br>');
+(19, 'jhjkhlkhlkj', 'IngenierÃ­a Civil en Informatica', 'hjkhjkhkl', 'hljkhl', 545, 454, 5, 5, 45, 45, 45, 45, 45, 45, 4, 54, 54, 'texto de prueba 2', 'texto de prueba<br>', 'texto de prueba<br>', '2014-01-01', '2016-01-02', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 240012, '2016-12-20 18:38:27', 8918389, 0, 'texto de prueba<br>'),
+(21, 'Prueba', 'IngenierÃƒÂ­a Civil en Informatica', 'Prueba', 'Prueba', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', '2016-01-01', '2017-01-01', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 634066, '2016-12-21 17:09:51', 12970102, 0, 'texto de prueba<br>');
 
 -- --------------------------------------------------------
 
@@ -393,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
   `ra_hp_autonomas` int(11) DEFAULT NULL,
   `ra_evidencia_aprendizaje` varchar(1000) DEFAULT NULL,
   `pe_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `resultado_aprendizaje`
@@ -401,7 +402,8 @@ CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
 
 INSERT INTO `resultado_aprendizaje` (`ra_id`, `ra_resultado_aprendizaje`, `ra_metodologia`, `ra_criterios_evaluacion`, `ra_contenido_con_pro_act`, `ra_ht_presenciales`, `ra_hp_presenciales`, `ra_ht_autonomas`, `ra_hp_autonomas`, `ra_evidencia_aprendizaje`, `pe_id`) VALUES
 (55, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 12, 12, 12, 121, 'texto de prueba<br>', 19),
-(56, 'texto de prueba<br>', 'texto de prueba 2<br>', 'texto de prueba<br>', 'texto de prueba<br>', 12, 21, 21, 2, 'texto de prueba<br>', 19);
+(56, 'texto de prueba<br>', 'texto de prueba 2<br>', 'texto de prueba<br>', 'texto de prueba<br>', 12, 21, 21, 2, 'texto de prueba<br>', 19),
+(58, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 'texto de prueba<br>', 21);
 
 -- --------------------------------------------------------
 
@@ -596,12 +598,12 @@ MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 -- AUTO_INCREMENT de la tabla `programa_extenso`
 --
 ALTER TABLE `programa_extenso`
-MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `resultado_aprendizaje`
 --
 ALTER TABLE `resultado_aprendizaje`
-MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
+MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT de la tabla `tipo_asignatura`
 --

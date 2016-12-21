@@ -292,7 +292,7 @@ $asignatura = $control->getAsignaturaByID($asig_codigo);
                             }
 
                             function ver(pb_id) {
-                                window.location = "verProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
+                                window.location = "verProgramaBasicoAsignaturasDirectiva.php?pb_id=" + pb_id;
                             }
         </script>
     </body>

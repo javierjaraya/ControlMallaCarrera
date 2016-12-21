@@ -292,7 +292,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             contenido += "<td>" + v.asig_periodo + "</td>";
                                             contenido += "<td>" + v.asig_creditos + "</td>";
                                             contenido += "<td>";
-                                            contenido += "<a class='btn btn-success btn-circle glyphicon glyphicon-search' href='verAsignatura.php?cod=" + v.asig_codigo + "'></a>&nbsp;";
+                                            contenido += "<a class='btn btn-success btn-circle glyphicon glyphicon-search' href='verAsignaturaSecretaria.php?cod=" + v.asig_codigo + "'></a>&nbsp;";
                                             contenido += "</td>";
                                             contenido += "</tr>";
                                             $("#tbody").append(contenido);

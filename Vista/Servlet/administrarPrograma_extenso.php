@@ -248,6 +248,13 @@ if ($accion != null) {
         $programa_extensos = $control->getPrograma_extensosByAsig_Codigo($asig_codigo);
         $json = json_encode($programa_extensos);
         echo $json;
+    } else if ($accion == "BUSCAR_BY_ASIG_CODIGO_AND_ESTADO") {
+        $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
+        $estado = htmlspecialchars($_REQUEST['estado']);
+
+        $programa_extensos = $control->getPrograma_extensosByAsig_Codigo_And_Estado($asig_codigo,$estado);
+        $json = json_encode($programa_extensos);
+        echo $json;
     } else if ($accion == "BUSCAR_VERSION_FINAL_BY_ASIG_CODIGO") {
         $asig_codigo = htmlspecialchars($_REQUEST['asig_codigo']);
 

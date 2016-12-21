@@ -116,7 +116,7 @@ class Contenedor {
     public function removeDesarrollo_programa_didactico($dpd_id) {
         return $this->desarrollo_programa_didacticoDAO->delete($dpd_id);
     }
-    
+
     public function removePrograma_didacticoBorradorBy_pe_id($pe_id) {
         return $this->desarrollo_programa_didacticoDAO->delete_BorradorBy_pe_id($pe_id);
     }
@@ -128,7 +128,7 @@ class Contenedor {
     public function getDesarrollo_programa_didacticoByID($dpd_id) {
         return $this->desarrollo_programa_didacticoDAO->findByID($dpd_id);
     }
-    
+
     public function getDesarrollo_programa_didacticoBy_pd_id($pd_id) {
         return $this->desarrollo_programa_didacticoDAO->findBy_pd_id($pd_id);
     }
@@ -397,6 +397,14 @@ class Contenedor {
         return $this->programa_didacticoDAO->findByPE_ID($pe_id);
     }
 
+    public function getPrograma_didacticoByPE_ID_AND_ESTADO($pe_id, $estado) {
+        return $this->programa_didacticoDAO->findByPE_ID_AND_ESTADO($pe_id, $estado);
+    }
+
+    public function getPrograma_didactico_version_final_ByAsig_Codigo($asig_codigo) {
+        return $this->programa_didacticoDAO->find_version_final_ByAsig_Codigo($asig_codigo);
+    }
+
     public function getPrograma_didacticoLikeAtrr($cadena) {
         return $this->programa_didacticoDAO->findLikeAtrr($cadena);
     }
@@ -431,6 +439,10 @@ class Contenedor {
 
     public function getPrograma_extensosByAsig_Codigo($asig_codigo) {
         return $this->programa_extensoDAO->findByAsig_Codigo($asig_codigo);
+    }
+
+    public function getPrograma_extensosByAsig_Codigo_And_Estado($asig_codigo, $estado) {
+        return $this->programa_extensoDAO->findByAsig_Codigo_And_Estado($asig_codigo, $estado);
     }
 
     public function getPrograma_extensos_version_final_ByAsig_Codigo($asig_codigo) {

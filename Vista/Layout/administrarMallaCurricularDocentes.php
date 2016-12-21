@@ -392,7 +392,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                             if (data.asignatuas_malla[col][fila].ta_id == 3) {//Electivo
                                                                 $('#tbody').append("<td><div class='recuadro-asig'><a href='administrarElectivosSecretaria.php'>" + data.asignatuas_malla[col][fila].ge_nombre + "<br>(" + data.asignatuas_malla[col][fila].ge_codigo + ")</a></div></td>");
                                                             } else {
-                                                                $('#tbody').append("<td><div class='recuadro-asig'><a href='verAsignatura.php?cod=" + data.asignatuas_malla[col][fila].asig_codigo + "&ta_a=" + data.asignatuas_malla[col][fila].ta_id + "'>" + data.asignatuas_malla[col][fila].asig_nombre + "<br>(" + data.asignatuas_malla[col][fila].asig_codigo + ")</a></div></td>");
+                                                                $('#tbody').append("<td><div class='recuadro-asig'><a href='verAsignaturaSecretaria.php?cod=" + data.asignatuas_malla[col][fila].asig_codigo + "&ta_a=" + data.asignatuas_malla[col][fila].ta_id + "'>" + data.asignatuas_malla[col][fila].asig_nombre + "<br>(" + data.asignatuas_malla[col][fila].asig_codigo + ")</a></div></td>");
                                                             }
                                                         }
                                                     }

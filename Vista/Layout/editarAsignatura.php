@@ -241,8 +241,9 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                                     </div>
                                     <!-- /.box-body -->
                                     <div class="box-footer" style="text-align: right;" id="botonera">  
-                                        <?php if($ta_id != 3) { ?>
-                                        <a class="btn btn-default" onclick="verProgramaBasico()()">Programa Basico</a>
+                                        <?php if ($ta_id != 3) { ?>
+                                            <a class="btn btn-default" onclick="verProgramaBasico()()">Programa Basico</a>
+                                            <a class="btn btn-default" onclick="verProgramaExtenso()()">Programa Extenso</a>
                                         <?php } ?>
                                         <a class="btn btn-danger" onclick="removeAsignatura()">Eliminar</a>
                                         <a class="btn btn-info" onclick="guardarAsignatura()">Guardar</a>
@@ -603,7 +604,12 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
 
                             function verProgramaBasico() {
                                 var asig_codigo = $('#asig_codigo').val();
-                                window.location = "administrarProgramaBasicoAsignaturas.php?cod=" + asig_codigo;
+                                window.location = "administrarProgramaBasicoAsignaturasDirectiva.php?cod=" + asig_codigo;
+                            }
+
+                            function verProgramaExtenso() {
+                                var asig_codigo = $('#asig_codigo').val();
+                                window.location = "administrarProgramaExtensoAsignaturasDirectiva.php?cod=" + asig_codigo;
                             }
 
 

@@ -50,10 +50,10 @@ class Programa_basicoDAO {
         while ($fila = $result->fetch_row()) {
             $programa_basico = new Programa_basicoDTO();
             $programa_basico->setPb_id($fila[0]);
-            $programa_basico->setPb_tipo_curso($fila[1]);
-            $programa_basico->setPb_carrera($fila[2]);
-            $programa_basico->setPb_departamento($fila[3]);
-            $programa_basico->setPb_facultad($fila[4]);
+            $programa_basico->setPb_tipo_curso(utf8_encode($fila[1]));
+            $programa_basico->setPb_carrera(utf8_encode($fila[2]));
+            $programa_basico->setPb_departamento(utf8_encode($fila[3]));
+            $programa_basico->setPb_facultad(utf8_encode($fila[4]));
             $programa_basico->setPb_nro_creditos($fila[5]);
             $programa_basico->setPb_horas_cronologicas($fila[6]);
             $programa_basico->setPb_horas_pedagogicas($fila[7]);
@@ -131,10 +131,10 @@ class Programa_basicoDAO {
             while ($fila = $result->fetch_row()) {
                 $programa_basico = new Programa_basicoDTO();
                 $programa_basico->setPb_id($fila[0]);
-                $programa_basico->setPb_tipo_curso($fila[1]);
-                $programa_basico->setPb_carrera($fila[2]);
-                $programa_basico->setPb_departamento($fila[3]);
-                $programa_basico->setPb_facultad($fila[4]);
+                $programa_basico->setPb_tipo_curso(utf8_encode($fila[1]));
+                $programa_basico->setPb_carrera(utf8_encode($fila[2]));
+                $programa_basico->setPb_departamento(utf8_encode($fila[3]));
+                $programa_basico->setPb_facultad(utf8_encode($fila[4]));
                 $programa_basico->setPb_nro_creditos($fila[5]);
                 $programa_basico->setPb_horas_cronologicas($fila[6]);
                 $programa_basico->setPb_horas_pedagogicas($fila[7]);
@@ -158,7 +158,7 @@ class Programa_basicoDAO {
                 $programa_basico->setUsu_rut($fila[25]);
                 $programa_basico->setPb_borrador($fila[26]);
 
-                $programa_basico->setUsu_nombres($fila[27]);
+                $programa_basico->setUsu_nombres(utf8_encode($fila[27]));
                 $programa_basico->setUsu_apellidos(utf8_encode($fila[28]));
                 $programa_basico->setM_id($fila[29]);
                 $programa_basico->setAsig_nombre($fila[30]);
@@ -179,10 +179,10 @@ class Programa_basicoDAO {
         while ($fila = $result->fetch_row()) {
             $programa_basico = new Programa_basicoDTO();
             $programa_basico->setPb_id($fila[0]);
-            $programa_basico->setPb_tipo_curso($fila[1]);
-            $programa_basico->setPb_carrera($fila[2]);
-            $programa_basico->setPb_departamento($fila[3]);
-            $programa_basico->setPb_facultad($fila[4]);
+            $programa_basico->setPb_tipo_curso(utf8_encode($fila[1]));
+            $programa_basico->setPb_carrera(utf8_encode($fila[2]));
+            $programa_basico->setPb_departamento(utf8_encode($fila[3]));
+            $programa_basico->setPb_facultad(utf8_encode($fila[4]));
             $programa_basico->setPb_nro_creditos($fila[5]);
             $programa_basico->setPb_horas_cronologicas($fila[6]);
             $programa_basico->setPb_horas_pedagogicas($fila[7]);
@@ -206,8 +206,8 @@ class Programa_basicoDAO {
             $programa_basico->setUsu_rut($fila[25]);
             $programa_basico->setPb_borrador($fila[26]);
 
-            $programa_basico->setUsu_nombres($fila[27]);
-            $programa_basico->setUsu_apellidos($fila[28]);
+            $programa_basico->setUsu_nombres(utf8_encode($fila[27]));
+            $programa_basico->setUsu_apellidos(utf8_encode($fila[28]));
             $programa_basico->setM_id($fila[29]);
             $programa_basico->setAsig_nombre($fila[30]);
         }
@@ -224,10 +224,10 @@ class Programa_basicoDAO {
         while ($fila = $result->fetch_row()) {
             $programa_basico = new Programa_basicoDTO();
             $programa_basico->setPb_id($fila[0]);
-            $programa_basico->setPb_tipo_curso($fila[1]);
-            $programa_basico->setPb_carrera($fila[2]);
-            $programa_basico->setPb_departamento($fila[3]);
-            $programa_basico->setPb_facultad($fila[4]);
+            $programa_basico->setPb_tipo_curso(utf8_encode($fila[1]));
+            $programa_basico->setPb_carrera(utf8_encode($fila[2]));
+            $programa_basico->setPb_departamento(utf8_encode($fila[3]));
+            $programa_basico->setPb_facultad(utf8_encode($fila[4]));
             $programa_basico->setPb_nro_creditos($fila[5]);
             $programa_basico->setPb_horas_cronologicas($fila[6]);
             $programa_basico->setPb_horas_pedagogicas($fila[7]);

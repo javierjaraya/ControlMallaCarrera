@@ -35,7 +35,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="crearMallaCurricular.php"><i class="fa fa-circle-o"></i>Crear malla</a></li><!-- class="active" -->
-                    <li><a href="administrarMallaCurricular.php"><i class="fa fa-circle-o"></i>Ver Malla Curricular</a></li>
+                    <li><a href="administrarMallaCurricularDirectiva.php"><i class="fa fa-circle-o"></i>Ver Malla Curricular</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -47,21 +47,21 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="administrarMisAsignaturas.php"><i class="fa fa-circle-o"></i>Mis Asignaturas</a></li><!-- class="active" -->
-                    <li><a href="administrarElectivos.php"><i class="fa fa-circle-o"></i>Electivos</a></li>
+                    <li><a href="administrarElectivosDirectiva.php"><i class="fa fa-circle-o"></i>Electivos</a></li>
                     <li><a href="administrarAsignarDocenteAsignatura.php"><i class="fa fa-circle-o"></i>Asignar Docente</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Programa Asignaturas</span>
+                    <i class="fa fa-dashboard"></i> <span>Revisar Programa Asig.</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <!--<li><a href="#"><i class="fa fa-circle-o"></i>Programa Basico</a></li><!-- class="active" -->
-                    <li><a href="administrarProgramaExtensoAsignaturas.php"><i class="fa fa-circle-o"></i>Programa Extenso</a></li>
-                    <!--<li><a href="administrarProgramaDidacticoAsignaturas.php"><i class="fa fa-circle-o"></i>Programa Didáctico</a></li>-->
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Programa Basico</a></li><!-- class="active" -->
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Programa Extenso</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Programa Didáctico</a></li>
                 </ul>
             </li>
             <li><a href="administrarPermisosUsuarios.php"><i class="fa fa-book"></i> <span>Permisos Usuarios</span></a></li>
