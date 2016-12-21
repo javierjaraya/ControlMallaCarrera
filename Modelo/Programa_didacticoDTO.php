@@ -5,6 +5,10 @@ class Programa_didacticoDTO {
     public $pd_fecha_modificacion;
     public $usu_rut;
     public $pd_borrador;
+    
+    public $programa_extenso;
+    public $asignatura;
+    public $autor;
 
     public function Programa_didacticoDTO(){
     }
@@ -47,6 +51,30 @@ class Programa_didacticoDTO {
 
     function setPd_borrador($pd_borrador) {
         return $this->pd_borrador = $pd_borrador;
+    }
+    
+    function getPrograma_extenso() {
+        return $this->programa_extenso;
+    }
+
+    function setPrograma_extenso($programa_extenso) {
+        $this->programa_extenso = $programa_extenso;
+    }
+
+    function getAsignatura() {
+        return $this->asignatura;
+    }
+
+    function getAutor() {
+        return $this->autor;
+    }
+
+    function setAsignatura($asignatura) {
+        $this->asignatura = $asignatura;
+    }
+
+    function setAutor($autor) {
+        $this->autor = $autor;
     }
 
 }

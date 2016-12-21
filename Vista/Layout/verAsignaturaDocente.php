@@ -427,6 +427,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                                     if (data.errorMsg) {
                                         notificacion(data.errorMsg, 'info', 'alert');
                                     } else {
+                                        console.log(data);
                                         window.location = "verProgramaBasicoAsignaturasSecretaria.php?pb_id=" + data.pb_id;
                                     }
                                 }, "json");

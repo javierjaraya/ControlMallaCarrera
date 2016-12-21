@@ -574,7 +574,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         notificacion(data.mensaje, 'success', 'alert');
                                     }
                                     location.href = "#alert";
-                                }, "json");
+                                },"json");
                             }
 
                             function crearProgramaExtensoConfirmar() {

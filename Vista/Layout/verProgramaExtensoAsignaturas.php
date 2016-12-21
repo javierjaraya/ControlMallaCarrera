@@ -106,13 +106,13 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Programa Basico
+                        Programa Extenso
                         <small>Asignaturas</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li><a href="administrarProgramaBasicoAsignaturas.php">Programa Basico</a></li>
-                        <li class="active">Editar Programa Basico</li>
+                        <li><a href="administrarProgramaBasicoAsignaturas.php">Programa Extenso</a></li>
+                        <li class="active">Ver Programa Extenso</li>
                     </ol>
                 </section>
 
@@ -459,6 +459,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                         <input type="hidden" id="pe_id" name="pe_id" value="<?= $pe_id ?>">
                                         <input type="hidden" id="accion" name="accion" value="">
                                         <a href="administrarProgramaExtensoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
+                                        <a href="administrarProgramaDidacticoAsignaturas.php?pe_id=<?= $pe_id ?>" class="btn btn-default" ><i class="glyphicon glyphicon-search"></i> Guia Didactica</a>
                                         <button type="button" class="btn btn-warning" onclick="editar()"><i class="glyphicon glyphicon-pencil"></i>  Editar</button>
                                         <a target="_blank" class="btn btn-success" href="imprimirProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>

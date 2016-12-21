@@ -30,7 +30,7 @@ if ($accion != null) {
             $desarrollo_programa_didactico = new Desarrollo_programa_didacticoDTO();
             $desarrollo_programa_didactico->setDpd_id($dpd_id);
             $desarrollo_programa_didactico->setDpd_actividad_aprendizaje($dpd_actividad_aprendizaje);
-            $desarrollo_programa_didactico->setDpd_mediacion_enseñanza($dpd_mediacion_enseñanza);
+            $desarrollo_programa_didactico->setDpd_mediacion_ensenianza($dpd_mediacion_enseñanza);
             $desarrollo_programa_didactico->setDpd_actividad_evaluacion($dpd_actividad_evaluacion);
             $desarrollo_programa_didactico->setDpd_recurso_didactivo($dpd_recurso_didactivo);
             $desarrollo_programa_didactico->setDpd_hp_ht($dpd_hp_ht);
@@ -93,7 +93,7 @@ if ($accion != null) {
             $desarrollo_programa_didactico = new Desarrollo_programa_didacticoDTO();
             $desarrollo_programa_didactico->setDpd_id($dpd_id);
             $desarrollo_programa_didactico->setDpd_actividad_aprendizaje($dpd_actividad_aprendizaje);
-            $desarrollo_programa_didactico->setDpd_mediacion_enseñanza($dpd_mediacion_enseñanza);
+            $desarrollo_programa_didactico->setDpd_mediacion_ensenianza($dpd_mediacion_enseñanza);
             $desarrollo_programa_didactico->setDpd_actividad_evaluacion($dpd_actividad_evaluacion);
             $desarrollo_programa_didactico->setDpd_recurso_didactivo($dpd_recurso_didactivo);
             $desarrollo_programa_didactico->setDpd_hp_ht($dpd_hp_ht);

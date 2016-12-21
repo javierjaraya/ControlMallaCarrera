@@ -2,15 +2,17 @@
 class Desarrollo_programa_didacticoDTO {
     public $dpd_id;
     public $dpd_actividad_aprendizaje;
-    public $dpd_mediacion_enseñanza;
+    public $dpd_mediacion_ensenianza;
     public $dpd_actividad_evaluacion;
     public $dpd_recurso_didactivo;
     public $dpd_hp_ht;
     public $dpd_hp_hp;
     public $dpd_hp_hl;
+    public $dpd_hp_ha;
     public $dpd_ha_ht;
     public $dpd_ha_hp;
     public $dpd_ha_hl;
+    public $dpd_ha_ha;
     public $ra_id;
     public $pd_id;
 
@@ -33,12 +35,12 @@ class Desarrollo_programa_didacticoDTO {
         return $this->dpd_actividad_aprendizaje = $dpd_actividad_aprendizaje;
     }
 
-    function getDpd_mediacion_enseñanza() {
-        return $this->dpd_mediacion_enseñanza;
+    function getDpd_mediacion_ensenianza() {
+        return $this->dpd_mediacion_ensenianza;
     }
 
-    function setDpd_mediacion_enseñanza($dpd_mediacion_enseñanza) {
-        return $this->dpd_mediacion_enseñanza = $dpd_mediacion_enseñanza;
+    function setDpd_mediacion_ensenianza($dpd_mediacion_ensenianza) {
+        return $this->dpd_mediacion_ensenianza = $dpd_mediacion_ensenianza;
     }
 
     function getDpd_actividad_evaluacion() {
@@ -119,6 +121,22 @@ class Desarrollo_programa_didacticoDTO {
 
     function setPd_id($pd_id) {
         return $this->pd_id = $pd_id;
+    }
+    
+    function getDpd_hp_ha() {
+        return $this->dpd_hp_ha;
+    }
+
+    function getDpd_ha_ha() {
+        return $this->dpd_ha_ha;
+    }
+
+    function setDpd_hp_ha($dpd_hp_ha) {
+        $this->dpd_hp_ha = $dpd_hp_ha;
+    }
+
+    function setDpd_ha_ha($dpd_ha_ha) {
+        $this->dpd_ha_ha = $dpd_ha_ha;
     }
 
 }

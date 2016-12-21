@@ -309,7 +309,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                     <div class="modal-footer">
                                         <input type="hidden" id="pb_id" name="pb_id" value="<?= $pb_id ?>">
                                         <input type="hidden" id="accion" name="accion" value="">
-                                        <a href="administrarProgramaBasicoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
+                                        <a href="administrarProgramaBasicoAsignaturas.php?cod=<?= $asignatura->getAsig_codigo() ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-warning" onclick="editar()"><i class="glyphicon glyphicon-pencil"></i>  Editar</button>
                                         <a target="_blank" class="btn btn-success" href="imprimirProgramaBasicoAsignaturas.php?pb_id=<?= $pb_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>

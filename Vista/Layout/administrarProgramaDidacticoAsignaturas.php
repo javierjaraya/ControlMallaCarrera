@@ -7,6 +7,17 @@ if ($_SESSION['autentificado'] != "SI") {
 $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
 $usu_nombre = $_SESSION["usu_nombre"];
+
+$pe_id = htmlspecialchars($_REQUEST['pe_id']);
+
+include_once '../../Controlador/Contenedor.php';
+$control = Contenedor::getInstancia();
+
+$programa_extenso = $control->getPrograma_extensoByID($pe_id);
+
+$asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
+
+$resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id);
 ?>
 <html>
     <head>
@@ -84,12 +95,12 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Programa Extenso
+                        Programa Didáctico
                         <small>Asignaturas</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="active">Programa Extenso</li>
+                        <li class="active">Programa Didáctico</li>
                     </ol>
                 </section>
 
@@ -106,23 +117,23 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="m_id">Mallas Curricular:</label>
-                                                <select class="form-control pull-right selectpicker" data-live-search="true" id="m_id" name="m_id" onchange="obtenerAsignaturas()">
-                                                </select>
+                                                <input type="text" class="form-control pull-right" id="m_id" name="m_id" value="<?= $asignatura->getM_id() ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="asig_codigo">Asignatura:</label>
-                                                <select class="form-control pull-right selectpicker" data-live-search="true" id="asig_codigo" name="asig_codigo">
-                                                </select>
+                                                <input type="hidden" class="form-control pull-right" id="asig_codigo" name="asig_codigo" value="<?= $asignatura->getAsig_codigo() ?>">
+                                                <input type="text" class="form-control pull-right" id="asig_nombre" name="asig_nombre" value="<?= $asignatura->getAsig_nombre() ?>" readonly>
+                                                <input type="hidden" class="form-control pull-right" id="pe_id" name="pe_id" value="<?= $pe_id ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- ./box-body -->
-                                <div class="box-footer">                                    
-                                    <button class="btn btn-info pull-right" onclick="crearProgramaExtenso()"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo Programa</button>&nbsp;&nbsp;
-                                    <button class="btn btn-info pull-right" onclick="buscarProgramasExtenso()" style="margin-right: 10px;"><i class="glyphicon glyphicon-search"></i> Buscar Programas</button>&nbsp;&nbsp;
+                                <div class="box-footer">                                                                        
+                                    <button class="btn btn-info pull-right" onclick="crearProgramaDidactico()"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo Programa</button>&nbsp;&nbsp;
+                                    <a href="verProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>" style="margin-right: 10px;" class="btn btn-default pull-right"><i class="glyphicon glyphicon-arrow-left"></i> Volver Atras</a>&nbsp;&nbsp;
                                 </div>
                                 <!-- /.box-footer -->
                             </div>
@@ -132,7 +143,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Historico: Programas Extenso</h3>
+                                    <h3 class="box-title">Historico: Programas Didáctico</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
@@ -190,12 +201,12 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <h4 class="modal-title">Información</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>La asignatura no tiene un programa extenso creado, ¿Desea crear un nuevo programa?.</h4>
+                        <h4>La asignatura no tiene un programa didáctico creado, ¿Desea crear un nuevo programa?.</h4>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="asig_codigo_remove" id="asig_codigo_remove" value="">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-info" onclick="crearProgramaExtenso()">Crear</button>
+                        <button type="button" class="btn btn-info" onclick="crearProgramaDidactico()">Crear</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -225,93 +236,44 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <script>
                             $(function () {
                                 document.getElementById("historico-programas").style.display = 'none';
-                                obtenerMallasCurriculares();
+                                buscarProgramasDidactico();
                             });
-                            function obtenerMallasCurriculares() {
-                                $.get("../Servlet/administrarMalla.php", {accion: 'LISTADO'}, function (data) {
-                                    var data = eval(data);
-                                    $('#m_id').empty();
-                                    var select = document.getElementById("m_id");
-                                    var count = 0;
-                                    $.each(data, function (k, v) {
-                                        var option = document.createElement("option");
-                                        option.text = v.m_id;
-                                        option.value = v.m_id;
-                                        select.add(option);
-                                        count++;
-                                    });
-                                    if (count == 0) {
-                                        var option = document.createElement("option");
-                                        option.text = "Seleccionar...";
-                                        option.value = -1;
-                                        select.add(option);
-                                    } else {
-                                        obtenerAsignaturas();
-                                    }
-                                    $('#m_id').selectpicker('refresh');
-                                });
-                            }
 
-                            function obtenerAsignaturas() {
-                                var m_id = document.getElementById("m_id").value;
-                                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_BY_M_ID', m_id: m_id}, function (data) {
-                                    var data = eval(data);
-                                    $('#asig_codigo').empty();
-                                    var select = document.getElementById("asig_codigo");
-                                    var count = 0;
-                                    $.each(data, function (k, v) {
-                                        var option = document.createElement("option");
-                                        option.text = v.asig_nombre;
-                                        option.value = v.asig_codigo;
-                                        select.add(option);
-                                        count++;
-                                    });
-                                    if (count == 0) {
-                                        var option = document.createElement("option");
-                                        option.text = "Seleccionar...";
-                                        option.value = -1;
-                                        select.add(option);
-                                    }
-                                    $('#asig_codigo').selectpicker('refresh');
-                                });
-                            }
-
-                            function buscarProgramasExtenso() {
-                                var asig_codigo = document.getElementById("asig_codigo").value;
-                                $.get("../Servlet/administrarPrograma_extenso.php", {accion: 'BUSCAR_BY_ASIG_CODIGO', asig_codigo: asig_codigo}, function (data) {
-                                    var data = eval(data);
+                            function buscarProgramasDidactico() {
+                                var pe_id = $('#pe_id').val();
+                                $.get("../Servlet/administrarPrograma_didactico.php", {accion: 'BUSCAR_BY_PE_ID', pe_id: pe_id}, function (data) {
                                     if (data.length > 0) {
                                         //AQui Cargar la tabla con los programa de la asignatura el historico
                                         $("#tbody").empty();
                                         $.each(data, function (k, v) {
                                             var contenido = "";
-                                            if (v.pe_borrador == 1) {
+                                            if (v.pd_borrador == 1) {
                                                 contenido = "<tr>";
                                             } else {
                                                 contenido = "<tr class='success'>";
                                             }
-                                            contenido += "<td>" + v.pe_id + "</td>";
-                                            contenido += "<td>" + v.pe_fecha_modificacion + "</td>";
-                                            contenido += "<td>" + v.m_id + "</td>";
-                                            if (v.pe_semestre == null) {
+                                            contenido += "<td>" + v.pd_id + "</td>";
+                                            contenido += "<td>" + v.pd_fecha_modificacion + "</td>";
+                                            contenido += "<td>" + v.asignatura.m_id + "</td>";
+                                            if (v.programa_extenso.pe_semestre == null) {
                                                 contenido += "<td></td>";
                                             } else {
-                                                contenido += "<td>" + v.pe_semestre + "</td>";
+                                                contenido += "<td>" + v.programa_extenso.pe_semestre + "</td>";
                                             }
-                                            contenido += "<td>" + v.asig_nombre + "</td>";
-                                            contenido += "<td>" + v.pe_carrera + "</td>";
-                                            contenido += "<td>" + v.pe_facultad + "</td>";
-                                            contenido += "<td>" + v.usu_nombres + " " + v.usu_apellidos + "</td>";
+                                            contenido += "<td>" + v.asignatura.asig_nombre + "</td>";
+                                            contenido += "<td>" + v.programa_extenso.pe_carrera + "</td>";
+                                            contenido += "<td>" + v.programa_extenso.pe_facultad + "</td>";
+                                            contenido += "<td>" + v.autor + "</td>";
                                             if (v.pe_borrador == 1) {
                                                 contenido += "<td>Borrador</td>";
                                             } else {
                                                 contenido += "<td>Finalizado</td>";
                                             }
                                             contenido += "<td>";
-                                            if (v.pe_borrador == 1) {
-                                                contenido += "<button type='button' class='btn btn-warning btn-circle glyphicon glyphicon-pencil'  onclick='editar(" + v.pe_id + ")'></button>";
+                                            if (v.pd_borrador == 1) {
+                                                contenido += "<button type='button' class='btn btn-warning btn-circle glyphicon glyphicon-pencil'  onclick='editar(" + v.pd_id + ")'></button>";
                                             } else {
-                                                contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='ver(" + v.pe_id + ")'></button>";
+                                                contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='ver(" + v.pd_id + ")'></button>";
                                             }
                                             contenido += "</td>";
                                             contenido += "</tr>";
@@ -323,22 +285,23 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         document.getElementById("historico-programas").style.display = 'none';
                                         $('#modalSinProgramaAsignatura').modal('show');
                                     }
-                                },"json");
+                                }, "json");
                             }
 
-                            function crearProgramaExtenso() {
-                                var asig_codigo = document.getElementById("asig_codigo").value;
-                                window.location = "crearProgramaExtensoAsignaturas.php?asig_codigo=" + asig_codigo;
+                            function crearProgramaDidactico() {
+                                var pe_id = document.getElementById("pe_id").value;
+                                window.location = "crearProgramaDidacticoAsignaturas.php?pe_id=" + pe_id;
                             }
 
 
-                            function editar(pe_id) {
-                                window.location = "editarProgramaExtensoAsignaturas.php?pe_id=" + pe_id;
+                            function editar(pd_id) {
+                                window.location = "editarProgramaDidacticoAsignaturas.php?pd_id=" + pd_id;
                             }
 
-                            function ver(pe_id) {
-                                window.location = "verProgramaExtensoAsignaturas.php?pe_id=" + pe_id;
+                            function ver(pd_id) {
+                                window.location = "verProgramaDidacticoAsignaturas.php?pd_id=" + pd_id;
                             }
         </script>
     </body>
 </html>
+

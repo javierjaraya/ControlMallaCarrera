@@ -7,6 +7,12 @@ if ($_SESSION['autentificado'] != "SI") {
 $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
 $usu_nombre = $_SESSION["usu_nombre"];
+
+$asig_codigo = htmlspecialchars($_REQUEST['cod']);
+
+include_once '../../Controlador/Contenedor.php';
+$control = Contenedor::getInstancia();
+$asignatura = $control->getAsignaturaByID($asig_codigo);
 ?>
 <html>
     <head>
@@ -106,15 +112,14 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="m_id">Mallas Curricular:</label>
-                                                <select class="form-control pull-right selectpicker" data-live-search="true" id="m_id" name="m_id" onchange="obtenerAsignaturas()">
-                                                </select>
+                                                <input type="text" class="form-control pull-right" id="m_id" name="m_id" value="<?= $asignatura->getM_id()?>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="asig_codigo">Asignatura:</label>
-                                                <select class="form-control pull-right selectpicker" data-live-search="true" id="asig_codigo" name="asig_codigo">
-                                                </select>
+                                                <input type="hidden" class="form-control pull-right" id="asig_codigo" name="asig_codigo" value="<?= $asignatura->getAsig_codigo()?>">
+                                                <input type="text" class="form-control pull-right" id="asig_nombre" name="asig_nombre" value="<?= $asignatura->getAsig_nombre()?>" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -122,7 +127,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                 <!-- ./box-body -->
                                 <div class="box-footer">                                    
                                     <button class="btn btn-info pull-right" onclick="crearProgramaBasico()"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo Programa</button>&nbsp;&nbsp;
-                                    <button class="btn btn-info pull-right" onclick="buscarProgramasBasico()" style="margin-right: 10px;"><i class="glyphicon glyphicon-search"></i> Buscar Programas</button>&nbsp;&nbsp;
                                 </div>
                                 <!-- /.box-footer -->
                             </div>
@@ -225,56 +229,8 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <script>
                             $(function () {
                                 document.getElementById("historico-programas").style.display = 'none';
-                                obtenerMallasCurriculares();
+                                buscarProgramasBasico();    
                             });
-                            function obtenerMallasCurriculares() {
-                                $.get("../Servlet/administrarMalla.php", {accion: 'LISTADO'}, function (data) {
-                                    var data = eval(data);
-                                    $('#m_id').empty();
-                                    var select = document.getElementById("m_id");
-                                    var count = 0;
-                                    $.each(data, function (k, v) {
-                                        var option = document.createElement("option");
-                                        option.text = v.m_id;
-                                        option.value = v.m_id;
-                                        select.add(option);
-                                        count++;
-                                    });
-                                    if (count == 0) {
-                                        var option = document.createElement("option");
-                                        option.text = "Seleccionar...";
-                                        option.value = -1;
-                                        select.add(option);
-                                    } else {
-                                        obtenerAsignaturas();
-                                    }
-                                    $('#m_id').selectpicker('refresh');
-                                });
-                            }
-
-                            function obtenerAsignaturas() {
-                                var m_id = document.getElementById("m_id").value;
-                                $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_BY_M_ID', m_id: m_id}, function (data) {
-                                    var data = eval(data);
-                                    $('#asig_codigo').empty();
-                                    var select = document.getElementById("asig_codigo");
-                                    var count = 0;
-                                    $.each(data, function (k, v) {
-                                        var option = document.createElement("option");
-                                        option.text = v.asig_nombre;
-                                        option.value = v.asig_codigo;
-                                        select.add(option);
-                                        count++;
-                                    });
-                                    if (count == 0) {
-                                        var option = document.createElement("option");
-                                        option.text = "Seleccionar...";
-                                        option.value = -1;
-                                        select.add(option);
-                                    }
-                                    $('#asig_codigo').selectpicker('refresh');
-                                });
-                            }
 
                             function buscarProgramasBasico() {
                                 var asig_codigo = document.getElementById("asig_codigo").value;

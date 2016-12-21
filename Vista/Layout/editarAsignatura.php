@@ -241,6 +241,9 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                                     </div>
                                     <!-- /.box-body -->
                                     <div class="box-footer" style="text-align: right;" id="botonera">  
+                                        <?php if($ta_id != 3) { ?>
+                                        <a class="btn btn-default" onclick="verProgramaBasico()()">Programa Basico</a>
+                                        <?php } ?>
                                         <a class="btn btn-danger" onclick="removeAsignatura()">Eliminar</a>
                                         <a class="btn btn-info" onclick="guardarAsignatura()">Guardar</a>
                                     </div>
@@ -598,6 +601,10 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                             }
                             /* ./Fin Guardar asignatura */
 
+                            function verProgramaBasico() {
+                                var asig_codigo = $('#asig_codigo').val();
+                                window.location = "administrarProgramaBasicoAsignaturas.php?cod=" + asig_codigo;
+                            }
 
 
         </script>

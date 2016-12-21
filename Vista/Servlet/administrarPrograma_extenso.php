@@ -214,7 +214,6 @@ if ($accion != null) {
                 $control->addResultado_aprendizaje($resultado_aprendizaje);
             }
         }
-        
         if ($result) {
             echo json_encode(array(
                 'success' => true,

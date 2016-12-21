@@ -18,7 +18,9 @@ class Programa_extensoDAO {
         $id = 1;
         if ($result) {
             while ($fila = $result->fetch_row()) {
-                $id = $fila[0];
+                if($fila[0] != null){
+                    $id = $fila[0];
+                }
             }
         }
         $this->conexion->desconectar();
@@ -170,8 +172,8 @@ class Programa_extensoDAO {
                 $programa_extenso->setPe_borrador($fila[29]);
                 $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres($fila[31]);
-                $programa_extenso->setUsu_apellidos($fila[32]);
+                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
+                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
                 $programa_extenso->setM_id($fila[33]);
                 $programa_extenso->setAsig_nombre($fila[34]);
 
