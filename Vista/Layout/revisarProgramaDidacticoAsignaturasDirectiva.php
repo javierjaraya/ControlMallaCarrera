@@ -8,12 +8,8 @@ $per_id = $_SESSION["per_id"];
 $per_nombre = $_SESSION["per_nombre"];
 $usu_nombre = $_SESSION["usu_nombre"];
 
-$asig_codigo = htmlspecialchars($_REQUEST['cod']);
-
 include_once '../../Controlador/Contenedor.php';
 $control = Contenedor::getInstancia();
-$asignatura = $control->getAsignaturaByID($asig_codigo);
-$tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
 ?>
 <html>
     <head>
@@ -91,53 +87,24 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Programa Extenso
+                        Programa Didáctico
                         <small>Asignaturas</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="active">Programa Extenso</li>
+                        <li>Revisar Programas</li>
+                        <li class="active">Programa Didáctico</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
                     <!-- CONTENIDO AQUI -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="box box-primary">
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <div id="alert"></div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="m_id">Mallas Curricular:</label>
-                                                <input type="text" class="form-control" id="m_id" name="m_id" value="<?= $asignatura->getM_id()?>"onchange="obtenerAsignaturas()" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="asig_codigo">Asignatura:</label>
-                                                <input type="hidden" id="asig_codigo" name="asig_codigo" value="<?= $asignatura->getAsig_codigo()?>">
-                                                <input type="text" class="form-control" id="asig_codigo" name="asig_codigo" value="<?= $asignatura->getAsig_nombre()?>" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./box-body -->
-                                <div class="box-footer">                                    
-                                    <button class="btn btn-info pull-right" onclick="crearProgramaExtenso()"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo Programa</button>&nbsp;&nbsp;
-                                </div>
-                                <!-- /.box-footer -->
-                            </div>
-                        </div>
-                    </div>
                     <div class="row" id="historico-programas">
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Historico: Programas Extenso</h3>
+                                    <h3 class="box-title">Pendientes por revisión: Programas Didáctico</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
@@ -195,12 +162,11 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
                         <h4 class="modal-title">Información</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>La asignatura no tiene un programa extenso creado, ¿Desea crear un nuevo programa?.</h4>
+                        <h4>La asignatura no tiene un programa didáctico pendiente por revisar.</h4>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="asig_codigo_remove" id="asig_codigo_remove" value="">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-info" onclick="crearProgramaExtenso()">Crear</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -228,87 +194,67 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($asignatura->getTa_id());
         <script src="../../Files/js/usabilidad.js"></script>
 
         <script>
-                            $(function () {
-                                document.getElementById("historico-programas").style.display = 'none';
-                                buscarProgramasExtenso();
-                            });
+            $(function () {
+                buscarProgramasDidactico();
+            });
 
-                            function buscarProgramasExtenso() {
-                                var asig_codigo = document.getElementById("asig_codigo").value;
-                                $.get("../Servlet/administrarPrograma_extenso.php", {accion: 'BUSCAR_BY_ASIG_CODIGO', asig_codigo: asig_codigo}, function (data) {
-                                    if (data.length > 0) {
-                                        //AQui Cargar la tabla con los programa de la asignatura el historico
-                                        $("#tbody").empty();
-                                        $.each(data, function (k, v) {
-                                            var contenido = "";
-                                            if (v.pe_borrador == 0) {
-                                                contenido = "<tr class='success'>";
-                                            } else if (v.pe_borrador == 1) {
-                                                contenido = "<tr>";
-                                            } else if (v.pe_borrador == 2) {
-                                                contenido = "<tr class='warning'>";
-                                            } else if (v.pe_borrador == 3) {
-                                                contenido = "<tr class='danger'>";
-                                            }
-                                            contenido += "<td>" + v.pe_id + "</td>";
-                                            contenido += "<td>" + v.pe_fecha_modificacion + "</td>";
-                                            contenido += "<td>" + v.m_id + "</td>";
-                                            if (v.pe_semestre == null) {
-                                                contenido += "<td></td>";
-                                            } else {
-                                                contenido += "<td>" + v.pe_semestre + "</td>";
-                                            }
-                                            contenido += "<td>" + v.asig_nombre + "</td>";
-                                            contenido += "<td>" + v.pe_carrera + "</td>";
-                                            contenido += "<td>" + v.pe_facultad + "</td>";
-                                            contenido += "<td>" + v.usu_nombres + " " + v.usu_apellidos + "</td>";
-                                            
-                                            if (v.pe_borrador == 0) {
-                                                contenido += "<td>Aprobada</td>";
-                                            } else if (v.pe_borrador == 1) {
-                                                contenido += "<td>Borrador</td>";
-                                            } else if (v.pe_borrador == 2) {
-                                                contenido += "<td>Pendiente de Revizar</td>";
-                                            } else if (v.pe_borrador == 3) {
-                                                contenido += "<td>Rechazada</td>";
-                                            }
-                                            contenido += "<td>";
-                                            console.log(v.pe_borrador);
-                                            if (v.pe_borrador == 0) {
-                                                contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='ver(" + v.pe_id + ")'></button>";
-                                            } else if (v.pe_borrador == 1) {
-                                                contenido += "<button type='button' class='btn btn-warning btn-circle glyphicon glyphicon-pencil'  onclick='editar(" + v.pe_id + ")'></button>";
-                                            } else if (v.pe_borrador == 2) {
-                                                contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='ver(" + v.pe_id + ")'></button>";
-                                            } else if (v.pe_borrador == 3) {
-                                                contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='ver(" + v.pe_id + ")'></button>";
-                                            }
-                                            contenido += "</td>";
-                                            contenido += "</tr>";
-                                            $("#tbody").append(contenido);
-                                        });
-                                        $("#table").DataTable();
-                                        document.getElementById("historico-programas").style.display = 'block';
-                                    } else {
-                                        document.getElementById("historico-programas").style.display = 'none';
-                                        $('#modalSinProgramaAsignatura').modal('show');
-                                    }
-                                }, "json");
+            function buscarProgramasDidactico() {
+                var pe_id = $('#pe_id').val();
+                $.get("../Servlet/administrarPrograma_didactico.php", {accion: 'LISTADO_BY_ESTADO', estado: 2}, function (data) {
+                    if (data.length > 0) {
+                        //AQui Cargar la tabla con los programa de la asignatura el historico
+                        $("#tbody").empty();
+                        $.each(data, function (k, v) {
+                            var contenido = "";
+                            if (v.pd_borrador == 0) {
+                                contenido = "<tr class='success'>";
+                            } else if (v.pd_borrador == 1) {
+                                contenido = "<tr>";
+                            } else if (v.pd_borrador == 2) {
+                                contenido = "<tr class='warning'>";
+                            } else if (v.pd_borrador == 3) {
+                                contenido = "<tr class='danger'>";
                             }
 
-                            function crearProgramaExtenso() {
-                                var asig_codigo = document.getElementById("asig_codigo").value;
-                                window.location = "crearProgramaExtensoAsignaturasDocente.php?asig_codigo=" + asig_codigo;
+                            contenido += "<td>" + v.pd_id + "</td>";
+                            contenido += "<td>" + v.pd_fecha_modificacion + "</td>";
+                            contenido += "<td>" + v.asignatura.m_id + "</td>";
+                            if (v.programa_extenso.pe_semestre == null) {
+                                contenido += "<td></td>";
+                            } else {
+                                contenido += "<td>" + v.programa_extenso.pe_semestre + "</td>";
+                            }
+                            contenido += "<td>" + v.asignatura.asig_nombre + "</td>";
+                            contenido += "<td>" + v.programa_extenso.pe_carrera + "</td>";
+                            contenido += "<td>" + v.programa_extenso.pe_facultad + "</td>";
+                            contenido += "<td>" + v.autor + "</td>";
+                            if (v.pd_borrador == 0) {
+                                contenido += "<td>Aprobado</td>";
+                            } else if (v.pd_borrador == 1) {
+                                contenido += "<td>Borrador</td>";
+                            } else if (v.pd_borrador == 2) {
+                                contenido += "<td>Pendiente de Revisión</td>";
+                            } else if (v.pd_borrador == 3) {
+                                contenido += "<td>Rechazado</td>";
                             }
 
+                            contenido += "<td>";
+                            contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='ver(" + v.pd_id + ")'></button>";
+                            contenido += "</td>";
+                            contenido += "</tr>";
+                            $("#tbody").append(contenido);
+                        });
+                        $("#table").DataTable();
+                    } else {
+                        $('#modalSinProgramaAsignatura').modal('show');
+                    }
+                }, "json");
+            }
 
-                            function editar(pe_id) {
-                                window.location = "editarProgramaExtensoAsignaturasDocente.php?pe_id=" + pe_id;
-                            }
-
-                            function ver(pe_id) {
-                                window.location = "verProgramaExtensoAsignaturasDocente.php?pe_id=" + pe_id;
-                            }
+            function ver(pd_id) {
+                window.location = "revisarVerProgramaDidacticoAsignaturasDirectiva.php?pd_id=" + pd_id;
+            }
         </script>
     </body>
 </html>
+

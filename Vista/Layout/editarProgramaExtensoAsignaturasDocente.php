@@ -427,8 +427,8 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <input type="hidden" id="cantidad-resultados-aprendizaje" name="cantidad-resultados-aprendizaje" value="">
                                         <a href="administrarProgramaExtensoAsignaturasDocente.php?cod=<?= $asignatura->getAsig_codigo() ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaExtenso()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
-                                        <button type="button" class="btn btn-info" onclick="crearProgramaExtensoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
-                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
+                                        <button type="button" class="btn btn-success" onclick="crearProgramaExtensoConfirmar()"><i class="glyphicon glyphicon-ok"></i>  Enviar a Revisión</button>
+                                        <a target="_blank" class="btn btn-default" href="imprimirProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>
@@ -469,7 +469,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cacelar</button>
-                        <button type="button" class="btn btn-info" onclick="crearProgramaExtenso()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Programa</button>
+                        <button type="button" class="btn btn-success" onclick="crearProgramaExtenso()"><i class="glyphicon glyphicon-ok"></i>  Enviar Programa a Revisión</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -520,6 +520,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                             function cargarDatos() {
                                 var pe_id = $("#pe_id").val();
                                 $.get("../Servlet/administrarPrograma_extenso.php", {accion: "BUSCAR_BY_ID", pe_id: pe_id}, function (data) {
+                                    console.log(data);
                                     $("#pe_presentacion").html(data.pe_presentacion);
                                     $("#pe_descriptor_competencias").html(data.pe_descriptor_competencias);
                                     $("#pe_aprendizajes_previos").html(data.pe_aprendizajes_previos);

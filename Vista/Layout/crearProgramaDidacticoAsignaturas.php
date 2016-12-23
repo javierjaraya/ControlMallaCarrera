@@ -404,9 +404,9 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                         <input type="hidden" id="accion" name="accion" value="">
                                         <input type="hidden" id="cantidad-resultados-aprendizaje" name="cantidad-resultados-aprendizaje" value="<?= ($i - 1) ?>">
                                         <input type="hidden" id="pe_id" name="pe_id" value="<?= $pe_id ?>">
-                                        <a href="administrarProgramaDidacticoAsignaturas.php?pe_id=<?= $pe_id ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
+                                        <a href="administrarProgramaDidacticoAsignaturasDocente.php?pe_id=<?= $pe_id ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaDidactico()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
-                                        <button type="button" class="btn btn-info" onclick="crearProgramaDidacticoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
+                                        <button type="button" class="btn btn-success" onclick="crearProgramaDidacticoConfirmar()"><i class="glyphicon glyphicon-ok"></i>  Enviar Programa a Revisión</button>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>
@@ -447,7 +447,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cacelar</button>
-                        <button type="button" class="btn btn-info" onclick="crearProgramaDidactico()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Programa</button>
+                        <button type="button" class="btn btn-success" onclick="crearProgramaDidactico()"><i class="glyphicon glyphicon-ok"></i>  Enviar Programa a Revisión</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-12-2016 a las 22:19:33
+-- Tiempo de generación: 23-12-2016 a las 04:22:26
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `desarrollo_programa_didactico` (
   `dpd_ha_ha` int(11) DEFAULT NULL,
   `ra_id` int(11) NOT NULL,
   `pd_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `desarrollo_programa_didactico`
@@ -101,7 +101,11 @@ INSERT INTO `desarrollo_programa_didactico` (`dpd_id`, `dpd_actividad_aprendizaj
 (33, 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 1, 1, 1, 1, 1, 1, 1, 1, 55, 13),
 (34, 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 1, 1, 1, 1, 1, 1, 1, 1, 56, 13),
 (35, 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 1, 1, 1, 1, 1, 1, 1, 1, 55, 14),
-(36, 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 1, 1, 1, 1, 1, 1, 1, 1, 56, 14);
+(36, 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 'texto de prueba 2<br>', 1, 1, 1, 1, 1, 1, 1, 1, 56, 14),
+(37, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 1, 1, 1, 1, 61, 15),
+(38, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 1, 1, 1, 1, 61, 16),
+(39, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 1, 1, 1, 1, 61, 17),
+(40, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 1, 1, 1, 1, 61, 18);
 
 -- --------------------------------------------------------
 
@@ -296,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `programa_basico` (
 --
 
 INSERT INTO `programa_basico` (`pb_id`, `pb_tipo_curso`, `pb_carrera`, `pb_departamento`, `pb_facultad`, `pb_nro_creditos`, `pb_horas_cronologicas`, `pb_horas_pedagogicas`, `pb_anio`, `pb_semestre`, `pb_hrs_presenciales`, `pb_ht_presenciales`, `pb_hp_presenciales`, `pb_hl_presenciales`, `pb_hrs_autonomas`, `pb_ht_autonomas`, `pb_hp_autonomas`, `pb_hl_autonomas`, `pb_presentacion`, `pb_descriptor_competencias`, `pb_aprendizajes_previos`, `pb_biblio_fundamental`, `pb_biblio_complementaria`, `asig_codigo`, `pb_fecha_modificacion`, `usu_rut`, `pb_borrador`) VALUES
-(2, 'Obligatorio, FormaciÃ³n BÃ¡sica ', 'IngenierÃ­a Civil en Informatica', 'Ciencias BÃ¡sicas, MatemÃ¡tica', 'Ciencias', 5, 150, 225, 2, 2, 108, 4, 2, 0, 117, 4, 3, 0, 'hola mundo', '<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"="">Resolver problemas\r\nrelativos a la Ciencias de la IngenierÃ­a utilizando como herramienta de\r\nmodelamiento las ecuaciones diferenciales ordinarias. &nbsp;<o:p></o:p></span></p>\r\n\r\n<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"=""><o:p>&nbsp;</o:p></span></p>\r\n\r\n<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"="">Resultados de\r\naprendizaje:<o:p></o:p></span></p>\r\n\r\n<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"=""><o:p>&nbsp;</o:p></span></p>\r\n\r\n<ol style="margin-top:0cm" start="1" type="1">\r\n <li class="MsoNormal" style="text-align:justify;mso-list:l0 level1 lfo1"><span lang="ES" style="font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:\r\n     " arial",sans-serif"="">Fundamenta la aplicaciÃ³n de un determinado mÃ©todo segÃºn\r\n     tipo de ecuaciÃ³n diferencial ordinaria para la resoluciÃ³n de problemas que\r\n     involucran ecuaciones diferenciales ordinarias.<o:p></o:p></span></li>\r\n <li class="MsoNormal" style="text-align:justify;mso-list:l0 level1 lfo1"><span lang="ES" style="font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:\r\n     " arial",sans-serif"="">Aplica mÃ©todos de resoluciÃ³n de ecuaciones\r\n     diferenciales ordinarias de orden superior con coeficientes constantes,\r\n     coeficientes variables y sistemas de ecuaciones diferenciales ordinarias\r\n     para modelar y fundamentar fenÃ³menos fÃ­sicos.<o:p></o:p></span></li>\r\n <li class="MsoNormal" style="text-align:justify;mso-list:l0 level1 lfo1"></li></ol>', 'aprendisajes previos pruenta', '<p class="MsoNormal"><br></p>\r\n\r\n<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none"><span lang="ES-MX" style="font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:" arial",sans-serif;mso-bidi-font-family:"times="" new="" roman";="" mso-ansi-language:es-mx"="">Toledo, F. (2002). <i>Ecuaciones\r\nDiferenciales</i>. ChillÃ¡n: Universidad del BÃ­o-BÃ­o</span>&', '<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none"><span style="font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:" arial",sans-serif;mso-bidi-font-family:"times="" new="" roman";="" mso-ansi-language:es-cl"="">Campbell, S. L, y Haberman, R. </span></p>', 240012, '2016-12-20 17:49:45', 8918389, 0);
+(2, 'Obligatorio, Formacion Basica ', 'Ingenieri­a Civil en Informatica', 'Ciencias Basicas, Matematica', 'Ciencias', 5, 150, 225, 2, 2, 108, 4, 2, 0, 117, 4, 3, 0, 'hola mundo', '<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"="">Resolver problemas\r\nrelativos a la Ciencias de la IngenierÃ­a utilizando como herramienta de\r\nmodelamiento las ecuaciones diferenciales ordinarias. &nbsp;<o:p></o:p></span></p>\r\n\r\n<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"=""><o:p>&nbsp;</o:p></span></p>\r\n\r\n<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"="">Resultados de\r\naprendizaje:<o:p></o:p></span></p>\r\n\r\n<p class="MsoNormal" style="text-align:justify"><span lang="ES" style="font-size:\r\n10.0pt;mso-bidi-font-size:14.0pt;font-family:" arial",sans-serif"=""><o:p>&nbsp;</o:p></span></p>\r\n\r\n<ol style="margin-top:0cm" start="1" type="1">\r\n <li class="MsoNormal" style="text-align:justify;mso-list:l0 level1 lfo1"><span lang="ES" style="font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:\r\n     " arial",sans-serif"="">Fundamenta la aplicaciÃ³n de un determinado mÃ©todo segÃºn\r\n     tipo de ecuaciÃ³n diferencial ordinaria para la resoluciÃ³n de problemas que\r\n     involucran ecuaciones diferenciales ordinarias.<o:p></o:p></span></li>\r\n <li class="MsoNormal" style="text-align:justify;mso-list:l0 level1 lfo1"><span lang="ES" style="font-size:10.0pt;mso-bidi-font-size:14.0pt;font-family:\r\n     " arial",sans-serif"="">Aplica mÃ©todos de resoluciÃ³n de ecuaciones\r\n     diferenciales ordinarias de orden superior con coeficientes constantes,\r\n     coeficientes variables y sistemas de ecuaciones diferenciales ordinarias\r\n     para modelar y fundamentar fenÃ³menos fÃ­sicos.<o:p></o:p></span></li>\r\n <li class="MsoNormal" style="text-align:justify;mso-list:l0 level1 lfo1"></li></ol>', 'aprendisajes previos pruenta', '<p class="MsoNormal"><br></p>\r\n\r\n<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none"><span lang="ES-MX" style="font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:" arial",sans-serif;mso-bidi-font-family:"times="" new="" roman";="" mso-ansi-language:es-mx"="">Toledo, F. (2002). <i>Ecuaciones\r\nDiferenciales</i>. ChillÃ¡n: Universidad del BÃ­o-BÃ­o</span>&', '<p class="MsoNormal" style="margin-top:0cm;margin-right:0cm;margin-bottom:12.0pt;\r\nmargin-left:18.0pt;text-align:justify;mso-pagination:none;mso-layout-grid-align:\r\nnone;text-autospace:none"><span style="font-size:10.0pt;mso-bidi-font-size:\r\n11.0pt;font-family:" arial",sans-serif;mso-bidi-font-family:"times="" new="" roman";="" mso-ansi-language:es-cl"="">Campbell, S. L, y Haberman, R. </span></p>', 240012, '2016-12-20 17:49:45', 8918389, 0);
 
 -- --------------------------------------------------------
 
@@ -310,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `programa_didactico` (
   `pd_fecha_modificacion` datetime NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `pd_borrador` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `programa_didactico`
@@ -326,7 +330,11 @@ INSERT INTO `programa_didactico` (`pd_id`, `pe_id`, `pd_fecha_modificacion`, `us
 (11, 19, '2016-12-20 22:05:22', 8918389, 1),
 (12, 19, '2016-12-20 23:05:50', 8918389, 0),
 (13, 19, '2016-12-20 23:06:07', 8918389, 0),
-(14, 19, '2016-12-20 23:07:09', 8918389, 0);
+(14, 19, '2016-12-20 23:07:09', 8918389, 0),
+(15, 24, '2016-12-23 00:09:48', 12970102, 3),
+(16, 24, '2016-12-23 00:17:39', 12970102, 3),
+(17, 24, '2016-12-23 00:19:07', 12970102, 1),
+(18, 24, '2016-12-23 00:19:31', 12970102, 0);
 
 -- --------------------------------------------------------
 
@@ -366,15 +374,18 @@ CREATE TABLE IF NOT EXISTS `programa_extenso` (
   `usu_rut` int(11) NOT NULL,
   `pe_borrador` int(1) NOT NULL,
   `pe_sistema_evaluacion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_estonian_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `programa_extenso`
 --
 
 INSERT INTO `programa_extenso` (`pe_id`, `pe_tipo_curso`, `pe_carrera`, `pe_departamento`, `pe_facultad`, `pe_nro_creditos`, `pe_horas_cronologicas`, `pe_horas_pedagogicas`, `pe_anio`, `pe_semestre`, `pe_hrs_presenciales`, `pe_ht_presenciales`, `pe_hp_presenciales`, `pe_hl_presenciales`, `pe_hrs_autonomas`, `pe_ht_autonomas`, `pe_hp_autonomas`, `pe_hl_autonomas`, `pe_presentacion`, `pe_descriptor_competencias`, `pe_aprendizajes_previos`, `pe_fecha_inicio`, `pe_fecha_fin`, `pe_observacion`, `pe_biblio_fundamental`, `pe_biblio_complementaria`, `asig_codigo`, `pe_fecha_modificacion`, `usu_rut`, `pe_borrador`, `pe_sistema_evaluacion`) VALUES
-(19, 'jhjkhlkhlkj', 'IngenierÃ­a Civil en Informatica', 'hjkhjkhkl', 'hljkhl', 545, 454, 5, 5, 45, 45, 45, 45, 45, 45, 4, 54, 54, 'texto de prueba 2', 'texto de prueba<br>', 'texto de prueba<br>', '2014-01-01', '2016-01-02', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 240012, '2016-12-20 18:38:27', 8918389, 0, 'texto de prueba<br>'),
-(21, 'Prueba', 'IngenierÃƒÂ­a Civil en Informatica', 'Prueba', 'Prueba', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', '2016-01-01', '2017-01-01', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 634066, '2016-12-21 17:09:51', 12970102, 0, 'texto de prueba<br>');
+(19, 'jhjkhlkhlkj', 'Ingenieria Civil en Informatica', 'hjkhjkhkl', 'hljkhl', 545, 454, 5, 5, 45, 45, 45, 45, 45, 45, 4, 54, 54, 'texto de prueba 2', 'texto de prueba<br>', 'texto de prueba<br>', '2014-01-01', '2016-01-02', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 240012, '2016-12-20 18:38:27', 8918389, 0, 'texto de prueba<br>'),
+(21, 'Prueba', 'Ingenieria Civil en Informatica', 'Prueba', 'Prueba', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', '2016-01-01', '2017-01-01', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 634066, '2016-12-21 17:09:51', 12970102, 0, 'texto de prueba<br>'),
+(22, 'Prueba', 'Ingenieria Civil en Informatica', 'Prueba', 'Prueba', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', '2016-01-01', '2017-01-01', '<br>', 'texto de prueba<br>', 'texto de prueba<br>', 634066, '2016-12-22 22:57:37', 12970102, 3, 'texto de prueba<br>'),
+(23, 'Prueba', 'Ingenieri­a Civil en Informatica', 'Prueba', 'Prueba', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', '2016-01-01', '2017-01-01', '<br>', 'texto de prueba<br>', 'texto de prueba<br>', 634066, '2016-12-22 23:42:33', 12970102, 2, 'texto de prueba<br>'),
+(24, 'Prueba', 'Ingenieria Civil en Informatica', 'Prueba', 'Prueba', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'texto de prueba', 'texto de prueba<br>', 'texto de prueba<br>', '2016-01-01', '2017-01-01', '<br>', 'texto de prueba<br>', 'texto de prueba<br>', 634066, '2016-12-22 23:45:22', 12970102, 0, 'texto de prueba<br>');
 
 -- --------------------------------------------------------
 
@@ -394,7 +405,7 @@ CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
   `ra_hp_autonomas` int(11) DEFAULT NULL,
   `ra_evidencia_aprendizaje` varchar(1000) DEFAULT NULL,
   `pe_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `resultado_aprendizaje`
@@ -403,7 +414,10 @@ CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
 INSERT INTO `resultado_aprendizaje` (`ra_id`, `ra_resultado_aprendizaje`, `ra_metodologia`, `ra_criterios_evaluacion`, `ra_contenido_con_pro_act`, `ra_ht_presenciales`, `ra_hp_presenciales`, `ra_ht_autonomas`, `ra_hp_autonomas`, `ra_evidencia_aprendizaje`, `pe_id`) VALUES
 (55, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 12, 12, 12, 121, 'texto de prueba<br>', 19),
 (56, 'texto de prueba<br>', 'texto de prueba 2<br>', 'texto de prueba<br>', 'texto de prueba<br>', 12, 21, 21, 2, 'texto de prueba<br>', 19),
-(58, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 'texto de prueba<br>', 21);
+(58, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 'texto de prueba<br>', 21),
+(59, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 'texto de prueba<br>', 22),
+(60, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 'texto de prueba<br>', 23),
+(61, 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 'texto de prueba<br>', 1, 1, 1, 1, 'texto de prueba<br>', 24);
 
 -- --------------------------------------------------------
 
@@ -568,7 +582,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `desarrollo_programa_didactico`
 --
 ALTER TABLE `desarrollo_programa_didactico`
-MODIFY `dpd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `dpd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT de la tabla `docente`
 --
@@ -593,17 +607,17 @@ MODIFY `pb_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT de la tabla `programa_didactico`
 --
 ALTER TABLE `programa_didactico`
-MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `programa_extenso`
 --
 ALTER TABLE `programa_extenso`
-MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `resultado_aprendizaje`
 --
 ALTER TABLE `resultado_aprendizaje`
-MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT de la tabla `tipo_asignatura`
 --

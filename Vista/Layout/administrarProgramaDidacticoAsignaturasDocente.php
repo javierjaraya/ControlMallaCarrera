@@ -247,10 +247,14 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                         $("#tbody").empty();
                                         $.each(data, function (k, v) {
                                             var contenido = "";
-                                            if (v.pd_borrador == 1) {
-                                                contenido = "<tr>";
-                                            } else {
+                                            if (v.pd_borrador == 0) {
                                                 contenido = "<tr class='success'>";
+                                            } else if (v.pd_borrador == 1) {
+                                                contenido = "<tr>";
+                                            } else if (v.pd_borrador == 2) {
+                                                contenido = "<tr class='warning'>";
+                                            } else if (v.pd_borrador == 3) {
+                                                contenido = "<tr class='danger'>";
                                             }
                                             contenido += "<td>" + v.pd_id + "</td>";
                                             contenido += "<td>" + v.pd_fecha_modificacion + "</td>";
@@ -264,10 +268,14 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                             contenido += "<td>" + v.programa_extenso.pe_carrera + "</td>";
                                             contenido += "<td>" + v.programa_extenso.pe_facultad + "</td>";
                                             contenido += "<td>" + v.autor + "</td>";
-                                            if (v.pe_borrador == 1) {
+                                            if (v.pd_borrador == 0) {
+                                                contenido += "<td>Aprobado</td>";
+                                            } else if (v.pd_borrador == 1) {
                                                 contenido += "<td>Borrador</td>";
-                                            } else {
-                                                contenido += "<td>Finalizado</td>";
+                                            } else if (v.pd_borrador == 2) {
+                                                contenido += "<td>Pendiente de Revisión</td>";
+                                            } else if (v.pd_borrador == 3) {
+                                                contenido += "<td>Rechazado</td>";
                                             }
                                             contenido += "<td>";
                                             if (v.pd_borrador == 1) {

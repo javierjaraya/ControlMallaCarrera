@@ -10,6 +10,11 @@ if ($accion != null) {
         $programa_didacticos = $control->getAllPrograma_didacticos();
         $json = json_encode($programa_didacticos);
         echo $json;
+    } else if ($accion == "LISTADO_BY_ESTADO") {
+        $estado = htmlspecialchars($_REQUEST['estado']);
+        $programa_didacticos = $control->getAllPrograma_didacticos_by_estado($estado);
+        $json = json_encode($programa_didacticos);
+        echo $json;
     } else if ($accion == "AGREGAR") {
         $pd_id = $control->getId_disponible_programa_didatico();
 
@@ -23,7 +28,7 @@ if ($accion != null) {
         $programa_didactico->setPd_id($pd_id);
         $programa_didactico->setPe_id($pe_id);
         $programa_didactico->setUsu_rut($usu_rut);
-        $programa_didactico->setPd_borrador(0);
+        $programa_didactico->setPd_borrador(2);
 
         $result = $control->addPrograma_didactico($programa_didactico);
 
@@ -196,6 +201,38 @@ if ($accion != null) {
             echo json_encode(array(
                 'success' => true,
                 'mensaje' => "Programa_didactico actualizada correctamente"
+            ));
+        } else {
+            echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+        }
+    } else if ($accion == "APROBAR") {
+        $pd_id = htmlspecialchars($_REQUEST['pd_id']);
+        
+        $programa_didactico = $control->getPrograma_didacticoByID($pd_id);
+        $programa_didactico->setPd_borrador(0);
+        
+         $result = $control->updatePrograma_didactico($programa_didactico);
+         
+        if ($result) {
+            echo json_encode(array(
+                'success' => true,
+                'mensaje' => "Programa didactico aprobada correctamente"
+            ));
+        } else {
+            echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+        }
+    } else if ($accion == "RECHAZAR") {
+        $pd_id = htmlspecialchars($_REQUEST['pd_id']);
+        
+        $programa_didactico = $control->getPrograma_didacticoByID($pd_id);
+        $programa_didactico->setPd_borrador(3);
+        
+         $result = $control->updatePrograma_didactico($programa_didactico);
+         
+        if ($result) {
+            echo json_encode(array(
+                'success' => true,
+                'mensaje' => "Programa didactico rechazado correctamente"
             ));
         } else {
             echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));

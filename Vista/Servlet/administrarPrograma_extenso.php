@@ -10,6 +10,11 @@ if ($accion != null) {
         $programa_extensos = $control->getAllPrograma_extensos();
         $json = json_encode($programa_extensos);
         echo $json;
+    } else if ($accion == "LISTADO_BY_ESTADO") {
+        $estado = htmlspecialchars($_REQUEST['estado']);
+        $programa_extensos = $control->getAllPrograma_extensos_by_estado($estado);
+        $json = json_encode($programa_extensos);
+        echo $json;
     } else if ($accion == "AGREGAR") {
         $pe_tipo_curso = htmlspecialchars($_REQUEST['pe_tipo_curso']);
         $pe_carrera = htmlspecialchars($_REQUEST['pe_carrera']);
@@ -74,7 +79,7 @@ if ($accion != null) {
         $programa_extenso->setPe_biblio_complementaria($pe_biblio_complementaria);
         $programa_extenso->setAsig_codigo($asig_codigo);
         $programa_extenso->setUsu_rut($usu_rut);
-        $programa_extenso->setPe_borrador(0);
+        $programa_extenso->setPe_borrador(2);//0 = Aprobada; 1 = Borrador; 2 = En revision; 3 = Rechazada
         $programa_extenso->setPe_sistema_evaluacion($pe_sistema_evaluacion);
 
         $result = $control->addPrograma_extenso($programa_extenso);
@@ -155,7 +160,7 @@ if ($accion != null) {
         $programa_extenso = new Programa_extensoDTO();
         $programa_extenso->setPe_id($pe_id);
         $programa_extenso->setPe_tipo_curso($pe_tipo_curso);
-        $programa_extenso->setPe_carrera($pe_carrera);
+        $programa_extenso->setPe_carrera(utf8_decode($pe_carrera));
         $programa_extenso->setPe_departamento($pe_departamento);
         $programa_extenso->setPe_facultad($pe_facultad);
         $programa_extenso->setPe_nro_creditos($pe_nro_creditos);
@@ -181,7 +186,7 @@ if ($accion != null) {
         $programa_extenso->setPe_biblio_complementaria($pe_biblio_complementaria);
         $programa_extenso->setAsig_codigo($asig_codigo);
         $programa_extenso->setUsu_rut($usu_rut);
-        $programa_extenso->setPe_borrador(1);
+        $programa_extenso->setPe_borrador(1);//0 = Aprobada; 1 = Borrador; 2 = En revision; 3 = Rechazada
         $programa_extenso->setPe_sistema_evaluacion($pe_sistema_evaluacion);
 
         $result = $control->addPrograma_extenso($programa_extenso);
@@ -335,6 +340,42 @@ if ($accion != null) {
             echo json_encode(array(
                 'success' => true,
                 'mensaje' => "Programa_extenso actualizada correctamente"
+            ));
+        } else {
+            echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+        }
+    } else if ($accion == "APROBAR") {
+        $pe_id = htmlspecialchars($_REQUEST['pe_id']);
+        $pe_observacion = $_REQUEST['pe_observacion'];
+        
+        $programa_extenso = $control->getPrograma_extensoByID($pe_id);
+        $programa_extenso->setPe_observacion($pe_observacion);
+        $programa_extenso->setPe_borrador(0);
+        
+         $result = $control->updatePrograma_extenso($programa_extenso);
+         
+        if ($result) {
+            echo json_encode(array(
+                'success' => true,
+                'mensaje' => "Programa extenso aprobada correctamente"
+            ));
+        } else {
+            echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
+        }
+    } else if ($accion == "RECHAZAR") {
+        $pe_id = htmlspecialchars($_REQUEST['pe_id']);
+        $pe_observacion = $_REQUEST['pe_observacion'];
+        
+        $programa_extenso = $control->getPrograma_extensoByID($pe_id);
+        $programa_extenso->setPe_observacion($pe_observacion);
+        $programa_extenso->setPe_borrador(3);
+        
+         $result = $control->updatePrograma_extenso($programa_extenso);
+         
+        if ($result) {
+            echo json_encode(array(
+                'success' => true,
+                'mensaje' => "Programa extenso rechazado correctamente"
             ));
         } else {
             echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));

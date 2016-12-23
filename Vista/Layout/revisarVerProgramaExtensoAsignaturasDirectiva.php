@@ -111,7 +111,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li><a href="administrarProgramaExtensoAsignaturasDocente.php?cod=<?= $asignatura->getAsig_codigo() ?>">Programa Extenso</a></li>
+                        <li><a href="administrarProgramaBasicoAsignaturas.php">Programa Extenso</a></li>
                         <li class="active">Ver Programa Extenso</li>
                     </ol>
                 </section>
@@ -448,9 +448,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pe_observacion">Observación</label>
-                                                <div class="borde-div" style="height: 320px;">
-                                                    <?= $programa_extenso->getPe_observacion() ?>
-                                                </div>
+                                                <textarea id="pe_observacion" name="pe_observacion" rows="14" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -458,12 +456,10 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                     <div class="modal-footer">
                                         <input type="hidden" id="pe_id" name="pe_id" value="<?= $pe_id ?>">
                                         <input type="hidden" id="accion" name="accion" value="">
-                                        <a href="administrarProgramaExtensoAsignaturasDocente.php?cod=<?= $asignatura->getAsig_codigo() ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
-                                        <?php if ($programa_extenso->getPe_borrador() == 0) { ?>
-                                            <a href="administrarProgramaDidacticoAsignaturasDocente.php?pe_id=<?= $pe_id ?>" class="btn btn-default" ><i class="glyphicon glyphicon-search"></i> Guia Didactica</a>
-                                        <?php } ?>
-                                        <button type="button" class="btn btn-warning" onclick="editar()"><i class="glyphicon glyphicon-pencil"></i>  Editar</button>
-                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
+                                        <a href="revisarProgramaExtensoAsignaturasDirectiva.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
+                                        <a class="btn btn-danger" onclick="rechazarPrograma()"><i class="glyphicon glyphicon-remove"></i> Rechazar</a>
+                                        <a class="btn btn-success" onclick="aprobarPrograma()"><i class="glyphicon glyphicon-ok"></i> Aprobar</a>
+                                        <a target="_blank" class="btn btn-default" href="imprimirProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>
@@ -504,7 +500,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cacelar</button>
-                        <button type="button" class="btn btn-info" onclick="crearProgramaBasico()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Programa</button>
+                        <button type="button" class="btn btn-info" onclick=""><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Programa</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -534,16 +530,65 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
         <script src="../../Files/js/usabilidad.js"></script>
 
         <script type="text/javascript">
+                                            var pe_observacion_edit;
 
-                            function editar() {
-                                var pe_id = $("#pe_id").val();
-                                window.location = "editarProgramaExtensoAsignaturasDocente.php?pe_id=" + pe_id;
-                            }
+                                            //<![CDATA[
+                                            bkLib.onDomLoaded(function () {
+                                                agregarBarraHerramientasEditores();
+                                            });
+                                            //]]>
 
-                            function imprimir() {
-                                var pe_id = $("#pe_id").val();
-                                window.location = "imprimirProgramaExtensoAsignaturas.php?pe_id=" + pe_id;
-                            }
+
+                                            function imprimir() {
+                                                var pe_id = $("#pe_id").val();
+                                                window.location = "imprimirProgramaExtensoAsignaturas.php?pe_id=" + pe_id;
+                                            }
+
+                                            function rechazarPrograma() {
+                                                quitarBarraHerramientasEditores();
+                                                if (validar()) {
+                                                    agregarBarraHerramientasEditores();
+                                                    var pe_id = $("#pe_id").val();
+                                                    var pe_observacion = $("#pe_observacion").val();
+                                                    $.post("../Servlet/administrarPrograma_extenso.php", {accion: "RECHAZAR", pe_id: pe_id, pe_observacion: pe_observacion}, function (data) {
+                                                        agregarBarraHerramientasEditores();
+                                                        window.location = "revisarProgramaExtensoAsignaturasDirectiva.php";
+                                                    }, "json");
+                                                }
+                                            }
+
+                                            function aprobarPrograma() {
+                                                quitarBarraHerramientasEditores();
+                                                if (validar()) {
+                                                    var pe_id = $("#pe_id").val();
+                                                    var pe_observacion = $("#pe_observacion").val();
+                                                    $.post("../Servlet/administrarPrograma_extenso.php", {accion: "APROBAR", pe_id: pe_id, pe_observacion: pe_observacion}, function (data) {
+                                                        agregarBarraHerramientasEditores();
+                                                        window.location = "revisarProgramaExtensoAsignaturasDirectiva.php";
+                                                    }, "json");
+                                                }
+                                            }
+
+                                            function validar() {
+                                                var pe_observacion = $("#pe_observacion").val();
+                                                if (pe_observacion == "") {
+                                                    notificacion("Debe ingresar una observación", 'danger', 'alert');
+                                                    location.href = "#alert";
+                                                    return false;
+                                                }
+                                                return true;
+                                            }
+
+                                            function quitarBarraHerramientasEditores() {
+                                                pe_observacion_edit.removeInstance('pe_observacion');
+                                                pe_observacion_edit = null;
+                                            }
+
+                                            function agregarBarraHerramientasEditores() {
+                                                if (!pe_observacion_edit) {
+                                                    pe_observacion_edit = new nicEditor({fullPanel: true}).panelInstance('pe_observacion', {hasPanel: true});
+                                                }
+                                            }
         </script>
     </body>
 </html>

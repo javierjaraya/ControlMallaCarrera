@@ -422,7 +422,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                         <input type="hidden" id="cantidad-resultados-aprendizaje" name="cantidad-resultados-aprendizaje" value="">
                                         <a href="administrarProgramaExtensoAsignaturasDocente.php?cod=<?= $asignatura->getAsig_codigo() ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaExtenso()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
-                                        <button type="button" class="btn btn-info" onclick="crearProgramaExtensoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
+                                        <button type="button" class="btn btn-success" onclick="crearProgramaExtensoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Versión Final</button>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>

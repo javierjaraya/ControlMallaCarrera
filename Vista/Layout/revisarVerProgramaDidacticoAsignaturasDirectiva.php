@@ -414,10 +414,11 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                     <div class="modal-footer">
                                         <input type="hidden" id="accion" name="accion" value="">
                                         <input type="hidden" id="cantidad-resultados-aprendizaje" name="cantidad-resultados-aprendizaje" value="<?= ($i - 1) ?>">
-                                        <input type="hidden" id="pe_id" name="pe_id" value="<?= $pe_id ?>">
-                                        <a href="administrarProgramaDidacticoAsignaturasDocente.php?pe_id=<?= $pe_id ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
-                                        <button type="button" class="btn btn-warning" onclick="editar(<?= $pd_id ?>)"><i class="glyphicon glyphicon-pencil"></i>  Editar</button>
-                                        <a target="_blank" class="btn btn-success" href="imprimirProgramaDidacticoAsignaturas.php?pd_id=<?= $pd_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
+                                        <input type="hidden" id="pd_id" name="pd_id" value="<?= $pd_id ?>">
+                                        <a href="revisarProgramaDidacticoAsignaturasDirectiva.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
+                                        <a class="btn btn-danger" onclick="rechazarPrograma()"><i class="glyphicon glyphicon-remove"></i> Rechazar</a>
+                                        <a class="btn btn-success" onclick="aprobarPrograma()"><i class="glyphicon glyphicon-ok"></i> Aprobar</a>
+                                        <a target="_blank" class="btn btn-default" href="imprimirProgramaDidacticoAsignaturas.php?pd_id=<?= $pd_id ?>"><i class="glyphicon glyphicon-print"></i>  Imprimir</a>
 
                                     </div>
                                     <!-- ./box-footer --> 
@@ -492,6 +493,20 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
 
                             function editar(pd_id) {
                                 window.location = "editarProgramaDidacticoAsignaturas.php?pd_id=" + pd_id;
+                            }
+
+                            function rechazarPrograma() {
+                                var pd_id = $("#pd_id").val();
+                                $.post("../Servlet/administrarPrograma_didactico.php", {accion: "RECHAZAR", pd_id: pd_id}, function (data) {
+                                    window.location = "revisarProgramaDidacticoAsignaturasDirectiva.php";
+                                });
+                            }
+
+                            function aprobarPrograma() {
+                                var pd_id = $("#pd_id").val();
+                                $.post("../Servlet/administrarPrograma_didactico.php", {accion: "APROBAR", pd_id: pd_id}, function (data) {
+                                    window.location = "revisarProgramaDidacticoAsignaturasDirectiva.php";
+                                }, "json");
                             }
 
 

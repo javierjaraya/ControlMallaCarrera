@@ -376,6 +376,10 @@ class Contenedor {
     public function getAllPrograma_didacticos() {
         return $this->programa_didacticoDAO->findAll();
     }
+    
+    public function getAllPrograma_didacticos_by_estado($estado) {
+        return $this->programa_didacticoDAO->findAll_by_estado($estado);
+    }
 
     public function addPrograma_didactico($programa_didactico) {
         return $this->programa_didacticoDAO->save($programa_didactico);
@@ -415,6 +419,10 @@ class Contenedor {
 
     public function getAllPrograma_extensos() {
         return $this->programa_extensoDAO->findAll();
+    }
+
+    public function getAllPrograma_extensos_by_estado($estado) {
+        return $this->programa_extensoDAO->findAll_by_estado($estado);
     }
 
     public function addPrograma_extenso($programa_extenso) {

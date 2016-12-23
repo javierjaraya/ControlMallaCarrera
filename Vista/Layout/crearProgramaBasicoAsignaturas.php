@@ -294,9 +294,9 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     <!-- ./box-body --> 
                                     <div class="modal-footer">
                                         <input type="hidden" id="accion" name="accion" value="">
-                                        <a href="administrarProgramaBasicoAsignaturas.php" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
+                                        <a href="administrarProgramaBasicoAsignaturasDirectiva.php?cod=<?= $asignatura->getAsig_codigo() ?>" class="btn btn-default" ><i class="glyphicon glyphicon-arrow-left"></i>  Volver Atras</a>
                                         <button type="button" class="btn btn-info" onclick="crearBorradorProgramaBasico()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Borrador</button>
-                                        <button type="button" class="btn btn-info" onclick="crearProgramaBasicoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar</button>
+                                        <button type="button" class="btn btn-success" onclick="crearProgramaBasicoConfirmar()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Versión Final</button>
                                     </div>
                                     <!-- ./box-footer --> 
                                 </div>
@@ -337,7 +337,7 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cacelar</button>
-                        <button type="button" class="btn btn-info" onclick="crearProgramaBasico()"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar Programa</button>
+                        <button type="button" class="btn btn-success" onclick="crearProgramaBasico()"><i class="glyphicon glyphicon-ok"></i>  Guardar Versión Final</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
