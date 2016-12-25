@@ -184,6 +184,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                     <div class="box-footer">                                    
                                         <a onclick="guardarMalla()" class="btn btn-success pull-right"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar cambios</a>
                                         <button onclick="generarPlanDeEstudio()" class="btn btn-default pull-right" style="margin-right: 10px;"><i class="glyphicon glyphicon-print"></i> Generar Plan de Estudio</button>
+                                        <a href="programasAsignaturasAprobadosDirectiva.php" class="btn btn-default pull-right" style="margin-right: 10px;"><i class="glyphicon glyphicon-search"></i> Programas de Asignaturas Aprobados</a>
                                     </div>
                                     <!-- /.box-footer -->
                                     <input type="hidden" name="accion" id="accion" value="ACTUALIZAR">
@@ -420,7 +421,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                     notificacion("Debe ingresar una fecha de termino.", 'danger', 'alert');
                                                     return false;
                                                 } else if (m_fechaInicio > m_fechaFin) {
-                                                    notificacion("La fecha de incio debe ser mayor a la de termino.", 'danger', 'alert');
+                                                    notificacion("La fecha de incio debe ser menor a la de termino.", 'danger', 'alert');
                                                     return false;
                                                 } else if (m_fechaInicio == m_fechaFin) {
                                                     notificacion("La fecha de termino no puede ser igual a la de inicio.", 'danger', 'alert');

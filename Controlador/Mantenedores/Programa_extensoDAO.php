@@ -98,41 +98,41 @@ class Programa_extensoDAO {
         while ($fila = $result->fetch_row()) {
             $programa_extenso = new Programa_extensoDTO();
             $programa_extenso->setPe_id($fila[0]);
-                $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-                $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-                $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-                $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
-                $programa_extenso->setPe_nro_creditos($fila[5]);
-                $programa_extenso->setPe_horas_cronologicas($fila[6]);
-                $programa_extenso->setPe_horas_pedagogicas($fila[7]);
-                $programa_extenso->setPe_anio($fila[8]);
-                $programa_extenso->setPe_semestre($fila[9]);
-                $programa_extenso->setPe_hrs_presenciales($fila[10]);
-                $programa_extenso->setPe_ht_presenciales($fila[11]);
-                $programa_extenso->setPe_hp_presenciales($fila[12]);
-                $programa_extenso->setPe_hl_presenciales($fila[13]);
-                $programa_extenso->setPe_hrs_autonomas($fila[14]);
-                $programa_extenso->setPe_ht_autonomas($fila[15]);
-                $programa_extenso->setPe_hp_autonomas($fila[16]);
-                $programa_extenso->setPe_hl_autonomas($fila[17]);
-                $programa_extenso->setPe_presentacion($fila[18]);
-                $programa_extenso->setPe_descriptor_competencias($fila[19]);
-                $programa_extenso->setPe_aprendizajes_previos($fila[20]);
-                $programa_extenso->setPe_fecha_inicio($fila[21]);
-                $programa_extenso->setPe_fecha_fin($fila[22]);
-                $programa_extenso->setPe_observacion($fila[23]);
-                $programa_extenso->setPe_biblio_fundamental($fila[24]);
-                $programa_extenso->setPe_biblio_complementaria($fila[25]);
-                $programa_extenso->setAsig_codigo($fila[26]);
-                $programa_extenso->setPe_fecha_modificacion($fila[27]);
-                $programa_extenso->setUsu_rut($fila[28]);
-                $programa_extenso->setPe_borrador($fila[29]);
-                $programa_extenso->setPe_sistema_evaluacion($fila[30]);
+            $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
+            $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
+            $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
+            $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+            $programa_extenso->setPe_nro_creditos($fila[5]);
+            $programa_extenso->setPe_horas_cronologicas($fila[6]);
+            $programa_extenso->setPe_horas_pedagogicas($fila[7]);
+            $programa_extenso->setPe_anio($fila[8]);
+            $programa_extenso->setPe_semestre($fila[9]);
+            $programa_extenso->setPe_hrs_presenciales($fila[10]);
+            $programa_extenso->setPe_ht_presenciales($fila[11]);
+            $programa_extenso->setPe_hp_presenciales($fila[12]);
+            $programa_extenso->setPe_hl_presenciales($fila[13]);
+            $programa_extenso->setPe_hrs_autonomas($fila[14]);
+            $programa_extenso->setPe_ht_autonomas($fila[15]);
+            $programa_extenso->setPe_hp_autonomas($fila[16]);
+            $programa_extenso->setPe_hl_autonomas($fila[17]);
+            $programa_extenso->setPe_presentacion($fila[18]);
+            $programa_extenso->setPe_descriptor_competencias($fila[19]);
+            $programa_extenso->setPe_aprendizajes_previos($fila[20]);
+            $programa_extenso->setPe_fecha_inicio($fila[21]);
+            $programa_extenso->setPe_fecha_fin($fila[22]);
+            $programa_extenso->setPe_observacion($fila[23]);
+            $programa_extenso->setPe_biblio_fundamental($fila[24]);
+            $programa_extenso->setPe_biblio_complementaria($fila[25]);
+            $programa_extenso->setAsig_codigo($fila[26]);
+            $programa_extenso->setPe_fecha_modificacion($fila[27]);
+            $programa_extenso->setUsu_rut($fila[28]);
+            $programa_extenso->setPe_borrador($fila[29]);
+            $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
-                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
-                $programa_extenso->setM_id($fila[33]);
-                $programa_extenso->setAsig_nombre($fila[34]);
+            $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
+            $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+            $programa_extenso->setM_id($fila[33]);
+            $programa_extenso->setAsig_nombre($fila[34]);
             $programa_extensos[$i] = $programa_extenso;
             $i++;
         }
@@ -283,6 +283,65 @@ class Programa_extensoDAO {
                 $programa_extenso->setM_id($fila[33]);
                 $programa_extenso->setAsig_nombre($fila[34]);
 
+                $programa_extensos[$i] = $programa_extenso;
+                $i++;
+            }
+        }
+        $this->conexion->desconectar();
+
+        return $programa_extensos;
+    }
+
+    public function find_aprobados_By_M_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin) {
+        $this->conexion->conectar();
+        $query = "SELECT pe.*, u.usu_nombres, u.usu_apellidos, a.m_id, a.asig_nombre "
+                . " FROM programa_extenso pe "
+                . " JOIN asignatura a ON pe.asig_codigo = a.asig_codigo "
+                . " JOIN usuario u ON u.usu_rut = pe.usu_rut "
+                . " WHERE a.m_id = '$m_id' AND pe.pe_borrador = 0 AND pe.pe_fecha_modificacion >= '$m_fechaInicio' AND pe.pe_fecha_modificacion <= '$m_fechaFin' ";
+        $result = $this->conexion->ejecutar($query);
+        $i = 0;
+        $programa_extensos = array();
+        if ($result) {
+            while ($fila = $result->fetch_row()) {
+                $programa_extenso = new Programa_extensoDTO();
+                $programa_extenso->setPe_id($fila[0]);
+                $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
+                $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
+                $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
+                $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+                $programa_extenso->setPe_nro_creditos($fila[5]);
+                $programa_extenso->setPe_horas_cronologicas($fila[6]);
+                $programa_extenso->setPe_horas_pedagogicas($fila[7]);
+                $programa_extenso->setPe_anio($fila[8]);
+                $programa_extenso->setPe_semestre($fila[9]);
+                $programa_extenso->setPe_hrs_presenciales($fila[10]);
+                $programa_extenso->setPe_ht_presenciales($fila[11]);
+                $programa_extenso->setPe_hp_presenciales($fila[12]);
+                $programa_extenso->setPe_hl_presenciales($fila[13]);
+                $programa_extenso->setPe_hrs_autonomas($fila[14]);
+                $programa_extenso->setPe_ht_autonomas($fila[15]);
+                $programa_extenso->setPe_hp_autonomas($fila[16]);
+                $programa_extenso->setPe_hl_autonomas($fila[17]);
+                $programa_extenso->setPe_presentacion($fila[18]);
+                $programa_extenso->setPe_descriptor_competencias($fila[19]);
+                $programa_extenso->setPe_aprendizajes_previos($fila[20]);
+                $programa_extenso->setPe_fecha_inicio($fila[21]);
+                $programa_extenso->setPe_fecha_fin($fila[22]);
+                $programa_extenso->setPe_observacion($fila[23]);
+                $programa_extenso->setPe_biblio_fundamental($fila[24]);
+                $programa_extenso->setPe_biblio_complementaria($fila[25]);
+                $programa_extenso->setAsig_codigo($fila[26]);
+                $programa_extenso->setPe_fecha_modificacion($fila[27]);
+                $programa_extenso->setUsu_rut($fila[28]);
+                $programa_extenso->setPe_borrador($fila[29]);
+                $programa_extenso->setPe_sistema_evaluacion($fila[30]);
+
+                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
+                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+                $programa_extenso->setM_id($fila[33]);
+                $programa_extenso->setAsig_nombre($fila[34]);
+                
                 $programa_extensos[$i] = $programa_extenso;
                 $i++;
             }

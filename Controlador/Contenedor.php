@@ -368,6 +368,10 @@ class Contenedor {
     public function getPrograma_basicos_version_final_ByAsig_Codigo($asig_codigo) {
         return $this->programa_basicoDAO->find_version_final_ByAsig_Codigo($asig_codigo);
     }
+    
+    public function getPrograma_basicos_aprobados_By_m_id_and_periodo($m_id, $fechaInicio, $fechaTermino) {
+        return $this->programa_basicoDAO->findByM_id_And_Periodo_Aprobados($m_id, $fechaInicio, $fechaTermino);
+    }
 
     public function getPrograma_basicoLikeAtrr($cadena) {
         return $this->programa_basicoDAO->findLikeAtrr($cadena);
@@ -407,6 +411,10 @@ class Contenedor {
 
     public function getPrograma_didacticoByPE_ID_AND_ESTADO($pe_id, $estado) {
         return $this->programa_didacticoDAO->findByPE_ID_AND_ESTADO($pe_id, $estado);
+    }
+    
+    public function getPrograma_didacticos_aprobados_By_m_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin) {
+        return $this->programa_didacticoDAO->find_aprobados_By_m_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin);
     }
 
     public function getPrograma_didactico_version_final_ByAsig_Codigo($asig_codigo) {
@@ -455,6 +463,10 @@ class Contenedor {
 
     public function getPrograma_extensosByAsig_Codigo_And_Estado($asig_codigo, $estado) {
         return $this->programa_extensoDAO->findByAsig_Codigo_And_Estado($asig_codigo, $estado);
+    }
+    
+    public function getPrograma_extensos_aprobados_By_m_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin) {
+        return $this->programa_extensoDAO->find_aprobados_By_M_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin);
     }
 
     public function getPrograma_extensos_version_final_ByAsig_Codigo($asig_codigo) {

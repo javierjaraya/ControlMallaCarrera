@@ -34,7 +34,7 @@ if ($accion != null) {
             } else {
                 echo json_encode(array('errorMsg' => 'Ha ocurrido un error.'));
             }
-        }else{
+        } else {
             echo json_encode(array('errorMsg' => 'El código ingresado ya esta asociado a una malla, intente nuevamente.'));
         }
     } else if ($accion == "BORRAR") {
@@ -79,7 +79,6 @@ if ($accion != null) {
         $m_id = htmlspecialchars($_REQUEST['m_id']);
         $m_fechaInicio = htmlspecialchars($_REQUEST['m_fechaInicio']);
         $m_fechaFin = htmlspecialchars($_REQUEST['m_fechaFin']);
-        $m_fechaFin = htmlspecialchars($_REQUEST['m_fechaFin']);
         $m_cantidadSemestres = htmlspecialchars($_REQUEST['m_cantidadSemestres']);
 
         $maxPerido = $control->maxPeriodoUtilizadoByM_Id($m_id);
@@ -103,5 +102,46 @@ if ($accion != null) {
         } else {
             echo json_encode(array('errorMsg' => 'No puede eliminar un semestre utilizado.'));
         }
+    } else if ($accion == "OBTENER_PROGRAMAS_APROBADOS_PERIODO") {
+        $m_id = htmlspecialchars($_REQUEST['m_id']);
+        $m_fechaInicio = htmlspecialchars($_REQUEST['m_fechaInicio']);
+        $m_fechaFin = htmlspecialchars($_REQUEST['m_fechaFin']);
+
+        $programa_basicos = $control->getPrograma_basicos_aprobados_By_m_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin);
+        $programa_extenso = $control->getPrograma_extensos_aprobados_By_m_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin);
+        $programa_didactico = $control->getPrograma_didacticos_aprobados_By_m_id_and_periodo($m_id, $m_fechaInicio, $m_fechaFin);
+
+        $asignaturas = $control->getAllAsignaturasBy_m_id($m_id);
+
+        $programas_asignaturas = array();
+
+        $i = 0;
+        foreach ($asignaturas as $asignatura) {
+            $codigo = $asignatura->getAsig_codigo();
+            
+            foreach ($programa_basicos as $basico) {
+                if ($codigo == $basico->getAsig_codigo()) {
+                    $programas_asignaturas[$i] = array("pb" => true, "pe" => false, "pd" => false, "programa" => $basico);
+                    $i++;
+                }
+            }
+            
+            foreach ($programa_extenso as $extenso) {
+                if ($codigo == $extenso->getAsig_codigo()) {
+                    $programas_asignaturas[$i] = array("pb" => false, "pe" => true, "pd" => false, "programa" => $extenso);
+                    $i++;
+                }
+            }
+            
+            foreach ($programa_didactico as $didactico) {
+                $asignatura_p_didactico = $didactico->getAsignatura();
+                if ($codigo == $asignatura_p_didactico->getAsig_codigo()) {
+                    $programas_asignaturas[$i] = array("pb" => false, "pe" => false, "pd" => true, "programa" => $didactico);
+                    $i++;
+                }
+            }
+        }
+        
+        echo json_encode($programas_asignaturas);
     }
 }
