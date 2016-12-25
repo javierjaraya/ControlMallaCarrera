@@ -8,6 +8,8 @@ class AsignaturaDTO {
     public $ta_id;
     
     public $ta_nombre;
+    
+    public $programa_basico;
 
     public function AsignaturaDTO(){
     }
@@ -66,5 +68,13 @@ class AsignaturaDTO {
 
     function setTa_nombre($ta_nombre) {
         $this->ta_nombre = $ta_nombre;
+    }
+    
+    function getPrograma_basico() {
+        return $this->programa_basico;
+    }
+
+    function setPrograma_basico($programa_basico) {
+        $this->programa_basico = $programa_basico;
     }
 }

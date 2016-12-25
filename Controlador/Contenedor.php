@@ -104,6 +104,10 @@ class Contenedor {
     public function getAsignaturaLikeAtrr($cadena) {
         return $this->asignaturaDAO->findLikeAtrr($cadena);
     }
+    
+    public function getAsignaturasAndProgramaBasicoByM_id_And_asig_periodo($m_id,$n_semestre) {
+        return $this->asignaturaDAO->findAsigAndProgBasicoByM_id_And_asig_periodo($m_id,$n_semestre);
+    }
 
     public function getAllDesarrollo_programa_didacticos() {
         return $this->desarrollo_programa_didacticoDAO->findAll();

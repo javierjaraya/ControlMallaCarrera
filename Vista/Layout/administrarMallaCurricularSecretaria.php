@@ -180,6 +180,11 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- ./box-body -->
+                                    <div class="box-footer">                                    
+                                        <button onclick="generarPlanDeEstudio()" class="btn btn-default pull-right" style="margin-right: 10px;"><i class="glyphicon glyphicon-print"></i> Generar Plan de Estudio</button>
+                                    </div>
+                                    <!-- /.box-footer -->
                                 </form>
                             </div>
                         </div>
@@ -398,6 +403,16 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                     }
                                                     $('#tbody').append("</tr>");
                                                 }
+                                            }
+                                            
+                                            function generarPlanDeEstudio() {
+                                                var m_id = $("#m_id").val();
+                                                //window.location = "generarPlanDeEstudioPDF.php?m_id=" + m_id;
+                                                //window.location = "generarPlanDeEstudioPDF.php?m_id=" + m_id;
+                                                var a = document.createElement("a");
+                                                a.target = "_blank";
+                                                a.href = "generarPlanDeEstudioPDF.php?m_id=" + m_id;
+                                                a.click();
                                             }
         </script>
     </body>

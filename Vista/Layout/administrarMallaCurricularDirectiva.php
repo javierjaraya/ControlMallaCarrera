@@ -149,7 +149,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <!-- /.box-header -->
-                                <form id="fm" method="POST">
+                                <form id="fm" action="" method="POST">
                                     <div class="box-body">
                                         <div id="alert"></div>
                                         <div class="row">
@@ -182,7 +182,8 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                     </div>
                                     <!-- ./box-body -->
                                     <div class="box-footer">                                    
-                                        <button type="submit" class="btn btn-info pull-right"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar cambios</button>
+                                        <a onclick="guardarMalla()" class="btn btn-success pull-right"><i class="glyphicon glyphicon-floppy-disk"></i>  Guardar cambios</a>
+                                        <button onclick="generarPlanDeEstudio()" class="btn btn-default pull-right" style="margin-right: 10px;"><i class="glyphicon glyphicon-print"></i> Generar Plan de Estudio</button>
                                     </div>
                                     <!-- /.box-footer -->
                                     <input type="hidden" name="accion" id="accion" value="ACTUALIZAR">
@@ -393,7 +394,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                 }, "json");
                                             }
                                             /* Guardar Malla/. */
-                                            $("#fm").submit(function (e) {
+                                            function guardarMalla() {
                                                 if (validar()) {
                                                     $.post("../Servlet/administrarMalla.php", $("#fm").serialize(), function (data) {
                                                         if (!data.success) {
@@ -406,8 +407,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                         }
                                                     }, "json");
                                                 }
-                                                e.preventDefault();
-                                            });
+                                            }
 
                                             function validar() {
                                                 var m_fechaInicio = document.getElementById("m_fechaInicio").value;
@@ -607,6 +607,16 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                                     $('#n_prerrequisito').val(0);
                                                     $('#tabla_prerrequisito').html("");
                                                 }
+                                            }
+
+                                            function generarPlanDeEstudio() {
+                                                var m_id = $("#m_id").val();
+                                                //window.location = "generarPlanDeEstudioPDF.php?m_id=" + m_id;
+                                                //window.location = "generarPlanDeEstudioPDF.php?m_id=" + m_id;
+                                                var a = document.createElement("a");
+                                                a.target = "_blank";
+                                                a.href = "generarPlanDeEstudioPDF.php?m_id=" + m_id;
+                                                a.click();
                                             }
         </script>
     </body>
