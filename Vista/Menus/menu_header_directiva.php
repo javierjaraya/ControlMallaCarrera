@@ -85,17 +85,17 @@
                     programa = "basico"
                     id = v.programa.pb_id;
                     asignatura = v.programa.asig_nombre;
-                    contenidoNotificacion = "<li><a href='verProgramaBasicoAsignaturasDirectiva.php?pb_id=" + id + "'><i class='fa fa-warning text-yellow'></i> Programa " + programa + " por vencer el proximo semestre</a></li>";
+                    contenidoNotificacion = "<li><a href='verProgramaBasicoAsignaturasDirectiva.php?pb_id=" + id + "'><i class='fa fa-warning text-yellow'></i> Programa " + programa + " por caducar el próximo semestre</a></li>";
                 } else if (v.pe) {
                     programa = "extenso"
                     id = v.programa.pe_id;
                     asignatura = v.programa.asig_nombre;
-                    contenidoNotificacion = "<li><a href='verProgramaExtensoAsignaturasDirectiva.php?pe_id=" + id + "'><i class='fa fa-warning text-yellow'></i> Programa " + programa + " por vencer el proximo semestre</a></li>";
+                    contenidoNotificacion = "<li><a href='verProgramaExtensoAsignaturasDirectiva.php?pe_id=" + id + "'><i class='fa fa-warning text-yellow'></i> Programa " + programa + " por caducar el próximo semestre</a></li>";
                 } else if (v.pd) {
-                    programa = "didactico"
+                    programa = "didáctico"
                     id = v.programa.pd_id;
                     asignatura = v.programa.asignatura.asig_nombre;
-                    contenidoNotificacion = "<li><a href='verProgramaDidacticoAsignaturasDirectiva.php?pd_id=" + id + "'><i class='fa fa-warning text-yellow'></i> Programa " + programa + " por vencer el proximo semestre</a></li>";
+                    contenidoNotificacion = "<li><a href='verProgramaDidacticoAsignaturasDirectiva.php?pd_id=" + id + "'><i class='fa fa-warning text-yellow'></i> Programa guía " + programa + " por caducar el próximo semestre</a></li>";
                 }
                 
                 $("#notificacionesDescripcion").append(contenidoNotificacion);

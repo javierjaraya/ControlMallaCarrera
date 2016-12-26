@@ -104,13 +104,13 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Programa Didáctico
+                        Programa Guia Didáctico
                         <small>Asignaturas</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li>Programa Didáctico</li>
-                        <li class="active">Editar Programa Didáctico</li>
+                        <li>Programa Guia Didáctico</li>
+                        <li class="active">Editar Programa Guia Didáctico</li>
                     </ol>
                 </section>
 

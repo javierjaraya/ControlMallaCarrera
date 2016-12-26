@@ -83,12 +83,12 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 <section class="content-header">
                     <h1>
                         Programas Asignaturas
-                        <small>Por Finalizar</small>
+                        <small>Por Caducar</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                         <li><a href="administrarMallaCurricularDirectiva.php">Malla Curricular</a></li>
-                        <li class="active">Programas Asignaturas Por Finalizar</li>
+                        <li class="active">Programas Asignaturas Por Caducar</li>
                     </ol>
                 </section>
 
@@ -99,7 +99,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Programas Basicos, Extensos y Didacticos (Finalizan el proximo semestre)</h3>
+                                    <h3 class="box-title">Programas Básicos, Extensos y Didácticos que Finalizan el próximo semestre.</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">

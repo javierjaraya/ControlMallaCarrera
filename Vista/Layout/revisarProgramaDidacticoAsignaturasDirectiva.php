@@ -87,13 +87,13 @@ $control = Contenedor::getInstancia();
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Programa Didáctico
+                        Programa Guia Didáctico
                         <small>Asignaturas</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                         <li>Revisar Programas</li>
-                        <li class="active">Programa Didáctico</li>
+                        <li class="active">Programa Guia Didáctico</li>
                     </ol>
                 </section>
 
@@ -104,7 +104,7 @@ $control = Contenedor::getInstancia();
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Pendientes por revisión: Programas Didáctico</h3>
+                                    <h3 class="box-title">Pendientes por revisión: Programas Guia Didáctico</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
@@ -162,7 +162,7 @@ $control = Contenedor::getInstancia();
                         <h4 class="modal-title">Información</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>La asignatura no tiene un programa didáctico pendiente por revisar.</h4>
+                        <h4>La asignatura no tiene un programa guia didáctico pendiente por revisar.</h4>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="asig_codigo_remove" id="asig_codigo_remove" value="">

@@ -95,12 +95,12 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Programa Didáctico
+                        Programa Guia Didáctico
                         <small>Asignaturas</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="active">Programa Didáctico</li>
+                        <li class="active">Programa Guia Didáctico</li>
                     </ol>
                 </section>
 
@@ -143,7 +143,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                         <div class="col-md-12">
                             <div class="box box-primary">
                                 <div class="box-header">
-                                    <h3 class="box-title">Historico: Programas Didáctico</h3>
+                                    <h3 class="box-title">Historico: Programas Guia Didáctico</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
@@ -201,7 +201,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                         <h4 class="modal-title">Información</h4>
                     </div>
                     <div class="modal-body">
-                        <h4>La asignatura no tiene un programa didáctico creado, ¿Desea crear un nuevo programa?.</h4>
+                        <h4>La asignatura no tiene un programa guia didáctico creado, ¿Desea crear un nuevo programa?.</h4>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="asig_codigo_remove" id="asig_codigo_remove" value="">

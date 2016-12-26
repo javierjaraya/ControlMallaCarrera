@@ -60,7 +60,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="revisarProgramaExtensoAsignaturasDirectiva.php"><i class="fa fa-circle-o"></i>Programa Extenso</a></li>
-                    <li><a href="revisarProgramaDidacticoAsignaturasDirectiva.php"><i class="fa fa-circle-o"></i>Programa Didáctico</a></li>
+                    <li><a href="revisarProgramaDidacticoAsignaturasDirectiva.php"><i class="fa fa-circle-o"></i>Programa guia Didáctico</a></li>
                 </ul>
             </li>
             <li><a href="administrarPermisosUsuarios.php"><i class="fa fa-book"></i> <span>Permisos Usuarios</span></a></li>
