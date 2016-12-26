@@ -57,9 +57,9 @@ $control = Contenedor::getInstancia();
             <!-- AQUI VA EL MENU SUPERIROR-->
             <?php
             if ($per_id == 1) {
-                include '../Menus/menu_header_default.php';
+                include '../Menus/menu_header_docente.php';
             } else if ($per_id == 2) {
-                include '../Menus/menu_header_default.php';
+                include '../Menus/menu_header_directiva.php';
             } else if ($per_id == 3) {
                 include '../Menus/menu_header_default.php';
             } else {

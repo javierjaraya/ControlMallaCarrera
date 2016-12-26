@@ -55,7 +55,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 include '../Menus/menu_header_docente.php';
             } else if ($per_id == 2) {
                 include '../Menus/menu_header_directiva.php';
-            } else if ($per_id == 3) {//SECRETARIA
+            } else if ($per_id == 3) {
                 include '../Menus/menu_header_default.php';
             } else {
                 include '../Menus/menu_header_default.php';
@@ -65,11 +65,11 @@ $usu_nombre = $_SESSION["usu_nombre"];
 
             <!-- AQUI VA EL MENU LEFT-->
             <?php
-            if ($per_id == 1) {//DOCENTE
+            if ($per_id == 1) {
                 include '../Menus/menu_left_docente.php';
-            } else if ($per_id == 2) {//DIRECTIVA
+            } else if ($per_id == 2) {
                 include '../Menus/menu_left_directiva.php';
-            } else if ($per_id == 3) {//SECRETARIA
+            } else if ($per_id == 3) {
                 include '../Menus/menu_left_secretaria.php';
             } else {
                 include '../Menus/menu_left_default.php';
@@ -82,19 +82,51 @@ $usu_nombre = $_SESSION["usu_nombre"];
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Dashboard
-                        <small>Control panel</small>
+                        Programas Asignaturas
+                        <small>Por Finalizar</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        <li><a href="administrarMallaCurricularDirectiva.php">Malla Curricular</a></li>
+                        <li class="active">Programas Asignaturas Por Finalizar</li>
                     </ol>
                 </section>
 
                 <!-- Main content -->
                 <section class="content">
-                <!-- CONTENIDO AQUI -->    
+                    <!-- CONTENIDO AQUI -->    
+                    <div class="row" id="historico-programas">
+                        <div class="col-md-12">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Programas Basicos, Extensos y Didacticos (Finalizan el proximo semestre)</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="table" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Programa</th>
+                                                <th>Fecha Modificación</th>
+                                                <th>Cód. Malla</th>
+                                                <th>Semestre</th>
+                                                <th>Asignatura</th>
+                                                <th>Carrera</th>
+                                                <th>Facultad</th>
+                                                <th>Autor</th>
+                                                <th>Estado</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <!-- /.content -->
             </div>
@@ -120,10 +152,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <script src="../../Files/Complementos/template_admin_lite/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="../../Files/Complementos/template_admin_lite/dist/js/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        <script>
-            $.widget.bridge('uibutton', $.ui.button);
-        </script>
         <!-- Bootstrap 3.3.6 -->
         <script src="../../Files/Complementos/template_admin_lite/bootstrap/js/bootstrap.min.js"></script>
         <!-- Morris.js charts -->
@@ -153,5 +181,107 @@ $usu_nombre = $_SESSION["usu_nombre"];
         <!--<script src="../../Files/Complementos/template_admin_lite/dist/js/pages/dashboard.js"></script>-->
         <!-- AdminLTE for demo purposes -->
         <script src="../../Files/Complementos/template_admin_lite/dist/js/demo.js"></script>
+        <!-- Usabilidad -->
+        <script src="../../Files/js/usabilidad.js"></script>
+
+        <script>
+            $(function () {
+                buscarProgramasPorVencer();
+            });
+
+            function buscarProgramasPorVencer() {
+                $("#tbody").empty();
+                $.get("../Servlet/administrarMalla.php", {accion: 'OBTENER_PROGRAMAS_POR_VENCER'}, function (data) {
+                    var data = eval(data);
+                    var count = 0;
+                    $.each(data, function (k, v) {
+                        var programa;
+                        var id;
+                        var fechaModificacion;
+                        var codigoMalla;
+                        var semestre;
+                        var asignatura;
+                        var carrera;
+                        var facultad;
+                        var autor;
+                        var estado;
+                        if (v.pb) {
+                            programa = "Basico"
+                            id = v.programa.pb_id;
+                            fechaModificacion = v.programa.pb_fecha_modificacion;
+                            codigoMalla = v.programa.m_id;
+                            semestre = v.programa.pb_semestre;
+                            asignatura = v.programa.asig_nombre;
+                            carrera = v.programa.pb_carrera;
+                            facultad = v.programa.pb_facultad;
+                            autor = v.programa.usu_nombres;
+                            estado = "Aprobado";
+                        } else if (v.pe) {
+                            programa = "Extenso"
+                            id = v.programa.pe_id;
+                            fechaModificacion = v.programa.pe_fecha_modificacion;
+                            codigoMalla = v.programa.m_id;
+                            semestre = v.programa.pe_semestre;
+                            asignatura = v.programa.asig_nombre;
+                            carrera = v.programa.pe_carrera;
+                            facultad = v.programa.pe_facultad;
+                            autor = v.programa.usu_nombres + " " + v.programa.usu_apellidos;
+                            estado = "Aprobado";
+                        } else if (v.pd) {
+                            programa = "Didactico"
+                            id = v.programa.pd_id;
+                            fechaModificacion = v.programa.pd_fecha_modificacion;
+                            codigoMalla = v.programa.asignatura.m_id;
+                            semestre = v.programa.programa_extenso.pe_semestre;
+                            asignatura = v.programa.asignatura.asig_nombre;
+                            carrera = v.programa.programa_extenso.pe_carrera;
+                            facultad = v.programa.programa_extenso.pe_facultad;
+                            autor = v.programa.autor;
+                            estado = "Aprobado";
+                        }
+
+                        var contenido = "<tr>";
+                        contenido += "<td>" + programa + "</td>";
+                        contenido += "<td>" + fechaModificacion + "</td>";
+                        contenido += "<td>" + codigoMalla + "</td>";
+                        contenido += "<td>" + semestre + "</td>";
+                        contenido += "<td>" + asignatura + "</td>";
+                        contenido += "<td>" + carrera + "</td>";
+                        contenido += "<td>" + facultad + "</td>";
+                        contenido += "<td>" + autor + "</td>";
+                        contenido += "<td>" + estado + "</td>";
+                        contenido += "<td>";
+                        if (v.pb) {
+                            contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='verProgramaBasico(" + id + ")'></button>";
+                        } else if (v.pe) {
+                            contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='verProgramaExtenso(" + id + ")'></button>";
+                        } else if (v.pd) {
+                            contenido += "<button type='button' class='btn btn-success btn-circle glyphicon glyphicon-search'  onclick='verProgramaDidactico(" + id + ")'></button>";
+                        }
+                        contenido += "</td>";
+                        contenido += "</tr>";
+                        $("#tbody").append(contenido);
+
+                        count++;
+                    });
+                    if (count == 0) {
+                        $('#modalSinProgramaAsignatura').modal('show');
+                    }
+                });
+
+            }
+
+
+            function verProgramaBasico(id) {
+                window.location = "verProgramaBasicoAsignaturasDirectiva.php?pb_id=" + id;
+            }
+            function verProgramaExtenso(id) {
+                window.location = "verProgramaExtensoAsignaturasDirectiva.php?pe_id=" + id;
+            }
+            function verProgramaDidactico(id) {
+                window.location = "verProgramaDidacticoAsignaturasDirectiva.php?pd_id=" + id;
+            }
+
+        </script>
     </body>
 </html>

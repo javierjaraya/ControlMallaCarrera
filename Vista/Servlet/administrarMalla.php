@@ -143,5 +143,80 @@ if ($accion != null) {
         }
         
         echo json_encode($programas_asignaturas);
+    } else if ($accion == "OBTENER_PROGRAMAS_POR_VENCER") {
+        
+        $hoy = getdate();
+        $dia = $hoy['mday'];
+        $mes = $hoy['mon'];
+        $anio = $hoy['year'];
+        
+        $fechaActual = $anio."-".$mes."-".$dia;
+        
+        /*PRIMER SEMESTRE AÑO ACUTAL*/
+        $inicioPrimerSemestre = $anio."-01-01";
+        $finPrimerSemestre = $anio."-06-30";
+        /*SEGUNDO SEMESTRE AÑO ACUTAL*/
+        $inicioSegundoSemestre = $anio."-07-01";
+        $finSegundoSemestre = $anio."-12-31";
+        /*PRIMER SEMESTRE PROXIMO AÑO*/
+        $inicioPrimerSemestreProximoAnio = ($anio+1)."-01-01";
+        $finPrimerSemestreProximoAnio = ($anio+1)."-06-30";
+        
+        $fecha_actual = strtotime($fechaActual);
+        
+        $fechaInicio;
+        $fechaFin;
+        if($fechaActual >= $inicioPrimerSemestre && $fechaActual <= $finPrimerSemestre) {
+            $fechaInicio = $inicioSegundoSemestre;
+            $fechaFin = $finSegundoSemestre;
+        }else if($fechaActual >= $inicioSegundoSemestre && $fechaActual <= $finSegundoSemestre) {
+            $fechaInicio = $inicioPrimerSemestreProximoAnio;
+            $fechaFin = $finPrimerSemestreProximoAnio;
+        }
+        
+        $programa_basicos = $control->getPrograma_basicos_por_vencer_en_periodo($fechaInicio, $fechaFin);
+        $programa_extenso = $control->getPrograma_extensos_por_vencer_en_periodo($fechaInicio, $fechaFin);
+        $programa_didactico = $control->getPrograma_didacticos_por_vencer_en_periodo($fechaInicio, $fechaFin);
+        
+        $asignaturas = $control->getAllAsignaturas();
+
+        $programas_asignaturas = array();
+
+        $countPB = 0;
+        $countPE = 0;
+        $countPD = 0;
+        
+        $i = 0;
+        foreach ($asignaturas as $asignatura) {
+            $codigo = $asignatura->getAsig_codigo();
+            
+            foreach ($programa_basicos as $basico) {
+                if ($codigo == $basico->getAsig_codigo()) {
+                    $programas_asignaturas[$i] = array("pb" => true, "pe" => false, "pd" => false, "programa" => $basico);
+                    $i++;
+                    $countPB++;
+                }
+            }
+            
+            foreach ($programa_extenso as $extenso) {
+                if ($codigo == $extenso->getAsig_codigo()) {
+                    $programas_asignaturas[$i] = array("pb" => false, "pe" => true, "pd" => false, "programa" => $extenso);
+                    $i++;
+                    $countPE++;
+                }
+            }
+            
+            foreach ($programa_didactico as $didactico) {
+                $asignatura_p_didactico = $didactico->getAsignatura();
+                if ($codigo == $asignatura_p_didactico->getAsig_codigo()) {
+                    $programas_asignaturas[$i] = array("pb" => false, "pe" => false, "pd" => true, "programa" => $didactico);
+                    $i++;
+                    $countPD++;
+                }
+            }
+        }
+        
+        echo json_encode($programas_asignaturas);  
     }
 }
+
