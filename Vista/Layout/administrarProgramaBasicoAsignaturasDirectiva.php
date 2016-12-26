@@ -288,7 +288,7 @@ $asignatura = $control->getAsignaturaByID($asig_codigo);
 
 
                             function editar(pb_id) {
-                                window.location = "editarProgramaBasicoAsignaturas.php?pb_id=" + pb_id;
+                                window.location = "editarProgramaBasicoAsignaturasDirectiva.php?pb_id=" + pb_id;
                             }
 
                             function ver(pb_id) {
