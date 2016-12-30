@@ -277,7 +277,6 @@ $usu_nombre = $_SESSION["usu_nombre"];
                             }
 
                             function cargar() {
-                                console.log("CASDA");
                                 var m_id = document.getElementById("m_id").value;
                                 $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_ELECTIVOS_BY_M_ID', m_id: m_id}, function (data) {
                                     var data = eval(data);

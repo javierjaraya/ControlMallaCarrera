@@ -520,7 +520,6 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                             function cargarDatos() {
                                 var pe_id = $("#pe_id").val();
                                 $.get("../Servlet/administrarPrograma_extenso.php", {accion: "BUSCAR_BY_ID", pe_id: pe_id}, function (data) {
-                                    console.log(data);
                                     $("#pe_presentacion").html(data.pe_presentacion);
                                     $("#pe_descriptor_competencias").html(data.pe_descriptor_competencias);
                                     $("#pe_aprendizajes_previos").html(data.pe_aprendizajes_previos);
@@ -530,7 +529,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                     $('#pe_observacion').html(data.pe_observacion);
 
                                     agregarBarraHerramientasEditores();
-                                }, "json");
+                                },"json");
                             }
 
                             function cargarResultadosAprendizaje() {

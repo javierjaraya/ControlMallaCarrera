@@ -94,6 +94,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
             }
             .recuadro-asig a{
                 color: black;
+                font-size: 12px;
             }
         </style>
 

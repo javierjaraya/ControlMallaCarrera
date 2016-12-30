@@ -170,6 +170,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
             });
             function cargar() {
                 $.get("../Servlet/administrarAsignatura.php", {accion: 'LISTADO_BY_RUT', }, function (data) {
+                    console.log(data);
                     var data = eval(data);
                     $.each(data, function (k, v) {
                         var contenido = "<tr>";

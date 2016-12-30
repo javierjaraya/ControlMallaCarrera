@@ -160,7 +160,7 @@ if ($accion != null) {
         $programa_extenso = new Programa_extensoDTO();
         $programa_extenso->setPe_id($pe_id);
         $programa_extenso->setPe_tipo_curso($pe_tipo_curso);
-        $programa_extenso->setPe_carrera(utf8_decode($pe_carrera));
+        $programa_extenso->setPe_carrera($pe_carrera);
         $programa_extenso->setPe_departamento($pe_departamento);
         $programa_extenso->setPe_facultad($pe_facultad);
         $programa_extenso->setPe_nro_creditos($pe_nro_creditos);

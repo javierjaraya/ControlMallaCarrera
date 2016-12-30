@@ -52,10 +52,10 @@ class Programa_extensoDAO {
         while ($fila = $result->fetch_row()) {
             $programa_extenso = new Programa_extensoDTO();
             $programa_extenso->setPe_id($fila[0]);
-            $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-            $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-            $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-            $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+            $programa_extenso->setPe_tipo_curso($fila[1]);
+            $programa_extenso->setPe_carrera($fila[2]);
+            $programa_extenso->setPe_departamento($fila[3]);
+            $programa_extenso->setPe_facultad($fila[4]);
             $programa_extenso->setPe_nro_creditos($fila[5]);
             $programa_extenso->setPe_horas_cronologicas($fila[6]);
             $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -98,10 +98,10 @@ class Programa_extensoDAO {
         while ($fila = $result->fetch_row()) {
             $programa_extenso = new Programa_extensoDTO();
             $programa_extenso->setPe_id($fila[0]);
-            $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-            $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-            $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-            $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+            $programa_extenso->setPe_tipo_curso($fila[1]);
+            $programa_extenso->setPe_carrera($fila[2]);
+            $programa_extenso->setPe_departamento($fila[3]);
+            $programa_extenso->setPe_facultad($fila[4]);
             $programa_extenso->setPe_nro_creditos($fila[5]);
             $programa_extenso->setPe_horas_cronologicas($fila[6]);
             $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -129,8 +129,8 @@ class Programa_extensoDAO {
             $programa_extenso->setPe_borrador($fila[29]);
             $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-            $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
-            $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+            $programa_extenso->setUsu_nombres($fila[31]);
+            $programa_extenso->setUsu_apellidos($fila[32]);
             $programa_extenso->setM_id($fila[33]);
             $programa_extenso->setAsig_nombre($fila[34]);
             $programa_extensos[$i] = $programa_extenso;
@@ -143,14 +143,15 @@ class Programa_extensoDAO {
     public function findByID($pe_id) {
         $this->conexion->conectar();
         $query = "SELECT * FROM programa_extenso WHERE pe_id =  " . $pe_id . " ";
+        //var_dump($query);
         $result = $this->conexion->ejecutar($query);
         $programa_extenso = new Programa_extensoDTO();
         while ($fila = $result->fetch_row()) {
             $programa_extenso->setPe_id($fila[0]);
-            $programa_extenso->setPe_tipo_curso(utf8_decode($fila[1]));
-            $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-            $programa_extenso->setPe_departamento(utf8_decode($fila[3]));
-            $programa_extenso->setPe_facultad(utf8_decode($fila[4]));
+            $programa_extenso->setPe_tipo_curso($fila[1]);
+            $programa_extenso->setPe_carrera($fila[2]);
+            $programa_extenso->setPe_departamento($fila[3]);
+            $programa_extenso->setPe_facultad($fila[4]);
             $programa_extenso->setPe_nro_creditos($fila[5]);
             $programa_extenso->setPe_horas_cronologicas($fila[6]);
             $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -192,10 +193,10 @@ class Programa_extensoDAO {
             while ($fila = $result->fetch_row()) {
                 $programa_extenso = new Programa_extensoDTO();
                 $programa_extenso->setPe_id($fila[0]);
-                $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-                $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-                $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-                $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+                $programa_extenso->setPe_tipo_curso($fila[1]);
+                $programa_extenso->setPe_carrera($fila[2]);
+                $programa_extenso->setPe_departamento($fila[3]);
+                $programa_extenso->setPe_facultad($fila[4]);
                 $programa_extenso->setPe_nro_creditos($fila[5]);
                 $programa_extenso->setPe_horas_cronologicas($fila[6]);
                 $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -223,8 +224,8 @@ class Programa_extensoDAO {
                 $programa_extenso->setPe_borrador($fila[29]);
                 $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
-                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+                $programa_extenso->setUsu_nombres($fila[31]);
+                $programa_extenso->setUsu_apellidos($fila[32]);
                 $programa_extenso->setM_id($fila[33]);
                 $programa_extenso->setAsig_nombre($fila[34]);
 
@@ -247,10 +248,10 @@ class Programa_extensoDAO {
             while ($fila = $result->fetch_row()) {
                 $programa_extenso = new Programa_extensoDTO();
                 $programa_extenso->setPe_id($fila[0]);
-                $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-                $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-                $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-                $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+                $programa_extenso->setPe_tipo_curso($fila[1]);
+                $programa_extenso->setPe_carrera($fila[2]);
+                $programa_extenso->setPe_departamento($fila[3]);
+                $programa_extenso->setPe_facultad($fila[4]);
                 $programa_extenso->setPe_nro_creditos($fila[5]);
                 $programa_extenso->setPe_horas_cronologicas($fila[6]);
                 $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -278,8 +279,8 @@ class Programa_extensoDAO {
                 $programa_extenso->setPe_borrador($fila[29]);
                 $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
-                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+                $programa_extenso->setUsu_nombres($fila[31]);
+                $programa_extenso->setUsu_apellidos($fila[32]);
                 $programa_extenso->setM_id($fila[33]);
                 $programa_extenso->setAsig_nombre($fila[34]);
 
@@ -306,10 +307,10 @@ class Programa_extensoDAO {
             while ($fila = $result->fetch_row()) {
                 $programa_extenso = new Programa_extensoDTO();
                 $programa_extenso->setPe_id($fila[0]);
-                $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-                $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-                $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-                $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+                $programa_extenso->setPe_tipo_curso($fila[1]);
+                $programa_extenso->setPe_carrera($fila[2]);
+                $programa_extenso->setPe_departamento($fila[3]);
+                $programa_extenso->setPe_facultad($fila[4]);
                 $programa_extenso->setPe_nro_creditos($fila[5]);
                 $programa_extenso->setPe_horas_cronologicas($fila[6]);
                 $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -337,8 +338,8 @@ class Programa_extensoDAO {
                 $programa_extenso->setPe_borrador($fila[29]);
                 $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
-                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+                $programa_extenso->setUsu_nombres($fila[31]);
+                $programa_extenso->setUsu_apellidos($fila[32]);
                 $programa_extenso->setM_id($fila[33]);
                 $programa_extenso->setAsig_nombre($fila[34]);
 
@@ -365,10 +366,10 @@ class Programa_extensoDAO {
             while ($fila = $result->fetch_row()) {
                 $programa_extenso = new Programa_extensoDTO();
                 $programa_extenso->setPe_id($fila[0]);
-                $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-                $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-                $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-                $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+                $programa_extenso->setPe_tipo_curso($fila[1]);
+                $programa_extenso->setPe_carrera($fila[2]);
+                $programa_extenso->setPe_departamento($fila[3]);
+                $programa_extenso->setPe_facultad($fila[4]);
                 $programa_extenso->setPe_nro_creditos($fila[5]);
                 $programa_extenso->setPe_horas_cronologicas($fila[6]);
                 $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -396,8 +397,8 @@ class Programa_extensoDAO {
                 $programa_extenso->setPe_borrador($fila[29]);
                 $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
-                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+                $programa_extenso->setUsu_nombres($fila[31]);
+                $programa_extenso->setUsu_apellidos($fila[32]);
                 $programa_extenso->setM_id($fila[33]);
                 $programa_extenso->setAsig_nombre($fila[34]);
 
@@ -419,10 +420,10 @@ class Programa_extensoDAO {
             while ($fila = $result->fetch_row()) {
                 $programa_extenso = new Programa_extensoDTO();
                 $programa_extenso->setPe_id($fila[0]);
-                $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-                $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-                $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-                $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+                $programa_extenso->setPe_tipo_curso($fila[1]);
+                $programa_extenso->setPe_carrera($fila[2]);
+                $programa_extenso->setPe_departamento($fila[3]);
+                $programa_extenso->setPe_facultad($fila[4]);
                 $programa_extenso->setPe_nro_creditos($fila[5]);
                 $programa_extenso->setPe_horas_cronologicas($fila[6]);
                 $programa_extenso->setPe_horas_pedagogicas($fila[7]);
@@ -450,8 +451,8 @@ class Programa_extensoDAO {
                 $programa_extenso->setPe_borrador($fila[29]);
                 $programa_extenso->setPe_sistema_evaluacion($fila[30]);
 
-                $programa_extenso->setUsu_nombres(utf8_encode($fila[31]));
-                $programa_extenso->setUsu_apellidos(utf8_encode($fila[32]));
+                $programa_extenso->setUsu_nombres($fila[31]);
+                $programa_extenso->setUsu_apellidos($fila[32]);
                 $programa_extenso->setM_id($fila[33]);
                 $programa_extenso->setAsig_nombre($fila[34]);
             }
@@ -470,10 +471,10 @@ class Programa_extensoDAO {
         while ($fila = $result->fetch_row()) {
             $programa_extenso = new Programa_extensoDTO();
             $programa_extenso->setPe_id($fila[0]);
-            $programa_extenso->setPe_tipo_curso(utf8_encode($fila[1]));
-            $programa_extenso->setPe_carrera(utf8_encode($fila[2]));
-            $programa_extenso->setPe_departamento(utf8_encode($fila[3]));
-            $programa_extenso->setPe_facultad(utf8_encode($fila[4]));
+            $programa_extenso->setPe_tipo_curso($fila[1]);
+            $programa_extenso->setPe_carrera($fila[2]);
+            $programa_extenso->setPe_departamento($fila[3]);
+            $programa_extenso->setPe_facultad($fila[4]);
             $programa_extenso->setPe_nro_creditos($fila[5]);
             $programa_extenso->setPe_horas_cronologicas($fila[6]);
             $programa_extenso->setPe_horas_pedagogicas($fila[7]);

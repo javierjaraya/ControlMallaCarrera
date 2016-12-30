@@ -111,7 +111,7 @@ class Programa_didacticoDAO {
             $asignatura->setM_id($fila[40]);
             $asignatura->setTa_id($fila[41]);
 
-            $autor = utf8_encode($fila[43]) . " " . utf8_encode($fila[44]);
+            $autor = $fila[43] . " " . $fila[44];
 
             $programa_didactico->setPrograma_extenso($programa_extenso);
             $programa_didactico->setAsignatura($asignatura);
@@ -195,7 +195,7 @@ class Programa_didacticoDAO {
             $asignatura->setM_id($fila[40]);
             $asignatura->setTa_id($fila[41]);
 
-            $autor = utf8_encode($fila[43]) . " " . utf8_encode($fila[44]);
+            $autor = $fila[43] . " " . $fila[44];
 
             $programa_didactico->setPrograma_extenso($programa_extenso);
             $programa_didactico->setAsignatura($asignatura);
@@ -263,7 +263,7 @@ class Programa_didacticoDAO {
             $asignatura->setM_id($fila[40]);
             $asignatura->setTa_id($fila[41]);
 
-            $autor = utf8_encode($fila[43]) . " " . utf8_encode($fila[44]);
+            $autor = $fila[43] . " " . $fila[44];
 
             $programa_didactico->setPrograma_extenso($programa_extenso);
             $programa_didactico->setAsignatura($asignatura);
@@ -336,7 +336,7 @@ class Programa_didacticoDAO {
             $asignatura->setM_id($fila[40]);
             $asignatura->setTa_id($fila[41]);
 
-            $autor = utf8_encode($fila[43]) . " " . utf8_encode($fila[44]);
+            $autor = $fila[43] . " " . $fila[44];
 
             $programa_didactico->setPrograma_extenso($programa_extenso);
             $programa_didactico->setAsignatura($asignatura);
@@ -409,7 +409,7 @@ class Programa_didacticoDAO {
             $asignatura->setM_id($fila[40]);
             $asignatura->setTa_id($fila[41]);
 
-            $autor = utf8_encode($fila[43]) . " " . utf8_encode($fila[44]);
+            $autor = $fila[43] . " " . $fila[44];
 
             $programa_didactico->setPrograma_extenso($programa_extenso);
             $programa_didactico->setAsignatura($asignatura);
@@ -476,7 +476,7 @@ class Programa_didacticoDAO {
             $asignatura->setM_id($fila[40]);
             $asignatura->setTa_id($fila[41]);
 
-            $autor = utf8_encode($fila[43]) . " " . utf8_encode($fila[44]);
+            $autor = $fila[43] . " " . $fila[44];
 
             $programa_didactico->setPrograma_extenso($programa_extenso);
             $programa_didactico->setAsignatura($asignatura);
