@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-12-2016 a las 04:43:50
+-- Tiempo de generación: 30-12-2016 a las 04:47:46
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -339,13 +339,6 @@ CREATE TABLE IF NOT EXISTS `programa_basico` (
   `pb_borrador` int(1) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `programa_basico`
---
-
-INSERT INTO `programa_basico` (`pb_id`, `pb_tipo_curso`, `pb_carrera`, `pb_departamento`, `pb_facultad`, `pb_nro_creditos`, `pb_horas_cronologicas`, `pb_horas_pedagogicas`, `pb_anio`, `pb_semestre`, `pb_hrs_presenciales`, `pb_ht_presenciales`, `pb_hp_presenciales`, `pb_hl_presenciales`, `pb_hrs_autonomas`, `pb_ht_autonomas`, `pb_hp_autonomas`, `pb_hl_autonomas`, `pb_presentacion`, `pb_descriptor_competencias`, `pb_aprendizajes_previos`, `pb_biblio_fundamental`, `pb_biblio_complementaria`, `asig_codigo`, `pb_fecha_modificacion`, `usu_rut`, `pb_borrador`) VALUES
-(7, 'prueba', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 5, 1, 1, 2011, 2, 1, 1, 1, 1, 1, 1, 1, 1, 'prueba<br>', 'prueba<br>', 'prueba<br>', 'prueba<br>', 'prueba', 240012, '2016-12-29 22:23:28', 12970102, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -400,13 +393,6 @@ CREATE TABLE IF NOT EXISTS `programa_extenso` (
   `pe_sistema_evaluacion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_estonian_ci DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `programa_extenso`
---
-
-INSERT INTO `programa_extenso` (`pe_id`, `pe_tipo_curso`, `pe_carrera`, `pe_departamento`, `pe_facultad`, `pe_nro_creditos`, `pe_horas_cronologicas`, `pe_horas_pedagogicas`, `pe_anio`, `pe_semestre`, `pe_hrs_presenciales`, `pe_ht_presenciales`, `pe_hp_presenciales`, `pe_hl_presenciales`, `pe_hrs_autonomas`, `pe_ht_autonomas`, `pe_hp_autonomas`, `pe_hl_autonomas`, `pe_presentacion`, `pe_descriptor_competencias`, `pe_aprendizajes_previos`, `pe_fecha_inicio`, `pe_fecha_fin`, `pe_observacion`, `pe_biblio_fundamental`, `pe_biblio_complementaria`, `asig_codigo`, `pe_fecha_modificacion`, `usu_rut`, `pe_borrador`, `pe_sistema_evaluacion`) VALUES
-(3, 'prueba 2', 'IngenierÃ­a Civil en Informatica', 'prueba', 'prueba', 5, 1, 1, 2012, 1, 1, 1, 1, 1, 1, 1, 1, 1, 'texto de prueba 2', 'texto de prueba&nbsp;2<br>', 'texto de prueba&nbsp;2<br>', '2016-01-02', '2017-01-01', '<br>', 'texto de prueba&nbsp;2<br>', 'texto de prueba&nbsp;2<br>', 634066, '2016-12-30 00:08:05', 9426145, 0, 'texto de prueba&nbsp;2<br>');
-
 -- --------------------------------------------------------
 
 --
@@ -426,13 +412,6 @@ CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
   `ra_evidencia_aprendizaje` varchar(1000) DEFAULT NULL,
   `pe_id` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `resultado_aprendizaje`
---
-
-INSERT INTO `resultado_aprendizaje` (`ra_id`, `ra_resultado_aprendizaje`, `ra_metodologia`, `ra_criterios_evaluacion`, `ra_contenido_con_pro_act`, `ra_ht_presenciales`, `ra_hp_presenciales`, `ra_ht_autonomas`, `ra_hp_autonomas`, `ra_evidencia_aprendizaje`, `pe_id`) VALUES
-(66, 'texto de prueba&nbsp;2<br>', 'texto de prueba&nbsp;2<br>', 'texto de prueba&nbsp;2<br>', 'texto de prueba&nbsp;2<br>', 1, 1, 1, 1, 'texto de prueba&nbsp;2<br>', 3);
 
 -- --------------------------------------------------------
 
