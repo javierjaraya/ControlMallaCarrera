@@ -26,8 +26,8 @@ class UsuarioDAO{
         while ($fila = $result->fetch_row()) {
             $usuario = new UsuarioDTO();
             $usuario->setUsu_rut($fila[0]);
-            $usuario->setUsu_nombres($fila[1]);
-            $usuario->setUsu_apellidos($fila[2]);
+            $usuario->setUsu_nombres(utf8_decode($fila[1]));
+            $usuario->setUsu_apellidos(utf8_decode($fila[2]));
             $usuario->setUsu_email($fila[3]);
             $usuario->setUsu_password($fila[4]);
             $usuario->setUsu_docente($fila[5]);
@@ -47,8 +47,8 @@ class UsuarioDAO{
         $usuario = new UsuarioDTO();
         while ($fila = $result->fetch_row()) {
             $usuario->setUsu_rut($fila[0]);
-            $usuario->setUsu_nombres($fila[1]);
-            $usuario->setUsu_apellidos($fila[2]);
+            $usuario->setUsu_nombres(utf8_decode($fila[1]));
+            $usuario->setUsu_apellidos(utf8_decode($fila[2]));
             $usuario->setUsu_email($fila[3]);
             $usuario->setUsu_password($fila[4]);
             $usuario->setUsu_docente($fila[5]);
@@ -68,8 +68,8 @@ class UsuarioDAO{
         while ($fila = $result->fetch_row()) {
             $usuario = new UsuarioDTO();
             $usuario->setUsu_rut($fila[0]);
-            $usuario->setUsu_nombres($fila[1]);
-            $usuario->setUsu_apellidos($fila[2]);
+            $usuario->setUsu_nombres(utf8_decode($fila[1]));
+            $usuario->setUsu_apellidos(utf8_decode($fila[2]));
             $usuario->setUsu_email($fila[3]);
             $usuario->setUsu_password($fila[4]);
             $usuario->setUsu_docente($fila[5]);

@@ -158,8 +158,8 @@ class Programa_basicoDAO {
                 $programa_basico->setUsu_rut($fila[25]);
                 $programa_basico->setPb_borrador($fila[26]);
 
-                $programa_basico->setUsu_nombres($fila[27]);
-                $programa_basico->setUsu_apellidos($fila[28]);
+                $programa_basico->setUsu_nombres(utf8_decode($fila[27]));
+                $programa_basico->setUsu_apellidos(utf8_decode($fila[28]));
                 $programa_basico->setM_id($fila[29]);
                 $programa_basico->setAsig_nombre($fila[30]);
 
@@ -211,8 +211,8 @@ class Programa_basicoDAO {
                 $programa_basico->setUsu_rut($fila[25]);
                 $programa_basico->setPb_borrador($fila[26]);
 
-                $programa_basico->setUsu_nombres($fila[27]);
-                $programa_basico->setUsu_apellidos($fila[28]);
+                $programa_basico->setUsu_nombres(utf8_decode($fila[27]));
+                $programa_basico->setUsu_apellidos(utf8_decode($fila[28]));
                 $programa_basico->setM_id($fila[29]);
                 $programa_basico->setAsig_nombre($fila[30]);
 
@@ -265,8 +265,8 @@ class Programa_basicoDAO {
                 $programa_basico->setUsu_rut($fila[25]);
                 $programa_basico->setPb_borrador($fila[26]);
 
-                $programa_basico->setUsu_nombres($fila[27]);
-                $programa_basico->setUsu_apellidos($fila[28]);
+                $programa_basico->setUsu_nombres(utf8_decode($fila[27]));
+                $programa_basico->setUsu_apellidos(utf8_decode($fila[28]));
                 $programa_basico->setM_id($fila[29]);
                 $programa_basico->setAsig_nombre($fila[30]);
 
@@ -313,8 +313,8 @@ class Programa_basicoDAO {
             $programa_basico->setUsu_rut($fila[25]);
             $programa_basico->setPb_borrador($fila[26]);
 
-            $programa_basico->setUsu_nombres($fila[27]);
-            $programa_basico->setUsu_apellidos($fila[28]);
+            $programa_basico->setUsu_nombres(utf8_decode($fila[27]));
+            $programa_basico->setUsu_apellidos(utf8_decode($fila[28]));
             $programa_basico->setM_id($fila[29]);
             $programa_basico->setAsig_nombre($fila[30]);
         }
