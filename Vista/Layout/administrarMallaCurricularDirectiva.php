@@ -94,7 +94,32 @@ $usu_nombre = $_SESSION["usu_nombre"];
             }
             .recuadro-asig a{
                 color: black;
-                font-size: 12px;
+            }
+
+            @media screen and (max-width: 1900px) {
+                .recuadro-asig a {
+                    font-size: 12px;
+                }
+            }
+            @media screen and (max-width: 1560px) {
+                .recuadro-asig a {
+                    font-size: 10px;
+                }
+            }
+            @media screen and (max-width: 1070px) {
+                .recuadro-asig a {
+                    font-size: 9px;
+                }
+            }
+            @media screen and (max-width: 730px) {
+                .recuadro-asig a {
+                    font-size: 9px;
+                }
+            }
+            @media screen and (max-width: 401px) {
+                .recuadro-asig a {
+                    font-size: 6px;
+                }
             }
         </style>
 
