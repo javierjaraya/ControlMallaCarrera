@@ -389,24 +389,29 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                             }
 
                             function crearProgramaBasicoConfirmar() {
-                                if (validar()) {
-                                    $('#modalProgramaAsignaturaConfirmar').modal('show');
-                                }
+                                $('#modalProgramaAsignaturaConfirmar').modal('show');
+
                             }
 
                             function crearProgramaBasico() {
-                                $("#accion").val("AGREGAR");
                                 quitarBarraHerramientasEditores();
-                                $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
+                                if (validar()) {
+                                    $("#accion").val("AGREGAR");
+
+                                    $.post("../Servlet/administrarPrograma_basico.php", $("#fm-programa").serialize(), function (data) {
+                                        agregarBarraHerramientasEditores();
+                                        if (data.errorMsg) {
+                                            notificacion(data.errorMsg, 'danger', 'alert');
+                                        } else {
+                                            notificacion(data.mensaje, 'success', 'alert');
+                                        }
+                                        $('#modalProgramaAsignaturaConfirmar').modal('toggle');
+                                        location.href = "#alert";
+                                    }, "json");
+                                } else {
                                     agregarBarraHerramientasEditores();
-                                    if (data.errorMsg) {
-                                        notificacion(data.errorMsg, 'danger', 'alert');
-                                    } else {
-                                        notificacion(data.mensaje, 'success', 'alert');
-                                    }
                                     $('#modalProgramaAsignaturaConfirmar').modal('toggle');
-                                    location.href = "#alert";
-                                }, "json");
+                                }
                             }
 
                             function validar() {
@@ -650,28 +655,28 @@ $asignatura = $control->getAsignaturaById($asig_codigo);
                                     return false;
                                 }
 
-                                if (pb_presentacion == "") {
+                                if (pb_presentacion == "" || pb_presentacion == "<br>") {
                                     notificacion("Debe ingresar la presentación del item II. Descripción", 'danger', 'alert');
                                     location.href = "#alert";
                                     return false;
                                 }
-                                if (pb_descriptor_competencias == "") {
+                                if (pb_descriptor_competencias == "" || pb_descriptor_competencias == "<br>") {
                                     notificacion("Debe ingresar el descriptor de competencias del item II. Descripción", 'danger', 'alert');
                                     location.href = "#alert";
                                     return false;
                                 }
-                                if (pb_aprendizajes_previos == "") {
+                                if (pb_aprendizajes_previos == "" || pb_aprendizajes_previos == "<br>") {
                                     notificacion("Debe ingresar los aprendizajes previos del item II. Descripción", 'danger', 'alert');
                                     location.href = "#alert";
                                     return false;
                                 }
 
-                                if (pb_biblio_fundamental == "") {
+                                if (pb_biblio_fundamental == "" || pb_biblio_fundamental == "<br>") {
                                     notificacion("Debe ingresar la bibliografia fundamental", 'danger', 'alert');
                                     location.href = "#alert";
                                     return false;
                                 }
-                                if (pb_biblio_complementaria == "") {
+                                if (pb_biblio_complementaria == "" || pb_biblio_complementaria == "<br>") {
                                     notificacion("Debe ingresar la bibliografia complementaria", 'danger', 'alert');
                                     location.href = "#alert";
                                     return false;

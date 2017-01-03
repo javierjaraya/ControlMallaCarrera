@@ -6,7 +6,9 @@ class AsignaturaDTO {
     public $asig_creditos;
     public $m_id;
     public $ta_id;
-    
+    public $asig_correquisitos;
+
+
     public $ta_nombre;
     
     public $programa_basico;
@@ -76,5 +78,13 @@ class AsignaturaDTO {
 
     function setPrograma_basico($programa_basico) {
         $this->programa_basico = $programa_basico;
+    }
+    
+    function getAsig_correquisitos() {
+        return $this->asig_correquisitos;
+    }
+
+    function setAsig_correquisitos($asig_correquisitos) {
+        $this->asig_correquisitos = $asig_correquisitos;
     }
 }

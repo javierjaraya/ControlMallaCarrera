@@ -10,7 +10,6 @@ $programa_extenso = $control->getPrograma_basicoByID($pb_id);
 $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
 
 $perrequisitos = $control->getAllPerrequisitosByAsig_Codigo($programa_extenso->getAsig_codigo());
-$correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->getAsig_codigo());
 ?>
 <html>
     <head>
@@ -153,14 +152,8 @@ $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($programa_extenso->g
                 </td>
                 <td colspan="3" class="align-top-vert"><b>Correquisitos:</b><br>
                     <?php
-                    if (count($correquisitos) > 0) {
-                        foreach ($correquisitos as $value) {
-                            echo "<br>";
-                            echo "Asignatura: " . utf8_decode($value->getAsig_nombre());
-                            echo "<br>";
-                            echo "C&oacute;digo: " . utf8_decode($value->getAsig_codigo());
-                            echo "<br><br>";
-                        }
+                    if ($asignatura->getAsig_correquisitos() != "" && $asignatura->getAsig_correquisitos() != "<br>") {
+                            echo utf8_decode($asignatura->getAsig_correquisitos());
                     } else {
                         echo "No Tiene";
                     }

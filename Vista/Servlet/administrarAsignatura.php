@@ -37,6 +37,7 @@ if ($accion != null) {
         $asig_nombre = htmlspecialchars($_REQUEST['asig_nombre']);
         $asig_periodo = htmlspecialchars($_REQUEST['asig_periodo']);
         $asig_creditos = htmlspecialchars($_REQUEST['asig_creditos']);
+        $asig_correquisito = htmlspecialchars($_REQUEST['asig_correquisitos']);
         $m_id = htmlspecialchars($_REQUEST['m_id']);
         $ta_id = htmlspecialchars($_REQUEST['ta_id']);
         $n_prerrequisito = 0;
@@ -54,6 +55,7 @@ if ($accion != null) {
                 $asignatura->setAsig_nombre($asig_nombre);
                 $asignatura->setAsig_periodo($asig_periodo);
                 $asignatura->setAsig_creditos($asig_creditos);
+                $asignatura->setAsig_correquisitos($asig_correquisito);
                 $asignatura->setM_id($m_id);
                 $asignatura->setTa_id($ta_id);
 
@@ -77,6 +79,7 @@ if ($accion != null) {
                 $asignatura->setAsig_nombre($asig_nombre);
                 $asignatura->setAsig_periodo($asig_periodo);
                 $asignatura->setAsig_creditos($asig_creditos);
+                $asignatura->setAsig_correquisitos($asig_correquisito);
                 $asignatura->setM_id($m_id);
                 $asignatura->setTa_id($ta_id);
 
@@ -159,6 +162,7 @@ if ($accion != null) {
         $asig_nombre = htmlspecialchars($_REQUEST['asig_nombre']);
         $asig_periodo = htmlspecialchars($_REQUEST['asig_periodo']);
         $asig_creditos = htmlspecialchars($_REQUEST['asig_creditos']);
+        $asig_correquisito = htmlspecialchars($_REQUEST['asig_correquisitos']);
         $m_id = htmlspecialchars($_REQUEST['m_id']);
         $ta_id = htmlspecialchars($_REQUEST['ta_id']);
         $n_prerrequisito = 0;
@@ -173,6 +177,7 @@ if ($accion != null) {
             $asignatura->setAsig_nombre($asig_nombre);
             $asignatura->setAsig_periodo($asig_periodo);
             $asignatura->setAsig_creditos($asig_creditos);
+            $asignatura->setAsig_correquisitos($asig_correquisito);
             $asignatura->setM_id($m_id);
             $asignatura->setTa_id($ta_id);
 
@@ -196,6 +201,7 @@ if ($accion != null) {
             $asignatura->setAsig_nombre($asig_nombre);
             $asignatura->setAsig_periodo($asig_periodo);
             $asignatura->setAsig_creditos($asig_creditos);
+            $asignatura->setAsig_correquisitos($asig_correquisito);
             $asignatura->setM_id($m_id);
             $asignatura->setTa_id($ta_id);
 

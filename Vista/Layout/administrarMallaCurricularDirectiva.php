@@ -291,6 +291,10 @@ $usu_nombre = $_SESSION["usu_nombre"];
                                         <label for="asig_creditos">Creditos:</label>
                                         <input type="number" class="form-control" id="asig_creditos" min="1" name="asig_creditos" value="">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="asig_correquisitos">Correquisitos:</label>
+                                        <textarea class="form-control" id="asig_correquisitos" name="asig_correquisitos" value=""></textarea>
+                                    </div>
                                 </div>
                             </div>     
                             <div class="row" id="row_prerrequisitos">

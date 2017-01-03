@@ -208,6 +208,12 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                                                             <input type="number" class="col-sm-6 col-xs-12" min="1" id="asig_creditos" name="asig_creditos" value="">                                                        
                                                         </div>
                                                     </div>
+                                                    <div class="col-xs-12 col-lg-6" id="asig_correquisitos_div">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 col-xs-12 blue" for="asig_correquisitos">Correquisitos</label>
+                                                            <textarea class="col-sm-6 col-xs-12" id="asig_correquisitos" name="asig_correquisitos"></textarea>                                                 
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <hr>
@@ -380,6 +386,7 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                                         $('#asig_periodo').val(data.asig_periodo);
                                         $('#text_m_id').html(data.m_id);
                                         $('#m_id').val(data.m_id);
+                                        $('#asig_correquisitos').val(data.asig_correquisitos);
                                         habilitarCampos();
                                     }, "json");
                                 }
@@ -391,15 +398,18 @@ $tipo_asignatura = $control->getTipo_asignaturaByID($ta_id);
                                 var ta_id = $('#ta_id').val();
                                 if (ta_id == 1) {//Normal
                                     document.getElementById("row_prerrequisitos").style.display = 'block';
+                                    document.getElementById("asig_correquisitos_div").style.display = 'block';
                                     $('#n_prerrequisito').val(0);
                                     $('#tabla_prerrequisito').html("");
                                     obtenerPrerrequisitos();
                                 } else if (ta_id == 2) {//Formación Integral
                                     document.getElementById("row_prerrequisitos").style.display = 'none';
+                                    document.getElementById("asig_correquisitos_div").style.display = 'block';
                                     $('#n_prerrequisito').val(0);
                                     $('#tabla_prerrequisito').html("");
                                 } else if (ta_id == 3) {//Electivo
                                     document.getElementById("row_prerrequisitos").style.display = 'none';
+                                    document.getElementById("asig_correquisitos_div").style.display = 'none';
                                     $('#n_prerrequisito').val(0);
                                     $('#tabla_prerrequisito').html("");
                                 }

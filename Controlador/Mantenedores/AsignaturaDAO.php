@@ -64,7 +64,7 @@ class AsignaturaDAO {
 
     public function findAllBy_usu_rut($usu_rut) {
         $this->conexion->conectar();
-        $query = "SELECT A.asig_codigo,A.asig_nombre,A.asig_periodo,A.asig_creditos,A.m_id,A.ta_id,T.ta_nombre FROM asignatura A JOIN tipo_asignatura T ON A.ta_id = T.ta_id JOIN docente D ON A.asig_codigo = D.asig_codigo WHERE D.usu_rut = " . $usu_rut . " ";        
+        $query = "SELECT A.asig_codigo,A.asig_nombre,A.asig_periodo,A.asig_creditos,A.m_id,A.ta_id,T.ta_nombre FROM asignatura A JOIN tipo_asignatura T ON A.ta_id = T.ta_id JOIN docente D ON A.asig_codigo = D.asig_codigo WHERE D.usu_rut = " . $usu_rut . " ";
         $result = $this->conexion->ejecutar($query);
         $i = 0;
         $asignaturas = array();
@@ -161,6 +161,7 @@ class AsignaturaDAO {
                 $asignatura->setAsig_creditos($fila[3]);
                 $asignatura->setM_id($fila[4]);
                 $asignatura->setTa_id($fila[5]);
+                $asignatura->setAsig_correquisitos($fila[6]);
             }
         }
         $this->conexion->desconectar();
@@ -264,8 +265,8 @@ class AsignaturaDAO {
 
     public function save($asignatura) {
         $this->conexion->conectar();
-        $query = "INSERT INTO asignatura (asig_codigo,asig_nombre,asig_periodo, asig_creditos, m_id,ta_id)"
-                . " VALUES ( " . $asignatura->getAsig_codigo() . " , '" . $asignatura->getAsig_nombre() . "' ,  " . $asignatura->getAsig_periodo() . ", " . $asignatura->getAsig_creditos() . " ,  '" . $asignatura->getM_id() . "' ,  " . $asignatura->getTa_id() . " )";
+        $query = "INSERT INTO asignatura (asig_codigo,asig_nombre,asig_periodo, asig_creditos, m_id,ta_id,asig_correquisito)"
+                . " VALUES ( " . $asignatura->getAsig_codigo() . " , '" . $asignatura->getAsig_nombre() . "' ,  " . $asignatura->getAsig_periodo() . ", " . $asignatura->getAsig_creditos() . " ,  '" . $asignatura->getM_id() . "' ,  " . $asignatura->getTa_id() . ",'" . $asignatura->getAsig_correquisitos() . "' )";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
         return $result;
@@ -278,7 +279,8 @@ class AsignaturaDAO {
                 . "  asig_periodo =  " . $asignatura->getAsig_periodo() . " ,"
                 . "  asig_creditos =  " . $asignatura->getAsig_creditos() . " ,"
                 . "  m_id =  '" . $asignatura->getM_id() . "' ,"
-                . "  ta_id =  " . $asignatura->getTa_id() . " "
+                . "  ta_id =  " . $asignatura->getTa_id() . " ,"
+                . "  asig_correquisito = '" . $asignatura->getAsig_correquisitos() . "' "
                 . " WHERE  asig_codigo =  " . $asignatura->getAsig_codigo() . " ";
         $result = $this->conexion->ejecutar($query);
         $this->conexion->desconectar();
