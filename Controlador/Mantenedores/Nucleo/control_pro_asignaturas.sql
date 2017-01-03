@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-12-2016 a las 05:00:36
+-- Tiempo de generación: 03-01-2017 a las 21:53:47
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -33,14 +33,14 @@ CREATE TABLE IF NOT EXISTS `asignatura` (
   `asig_creditos` int(11) NOT NULL,
   `m_id` varchar(11) NOT NULL,
   `ta_id` int(11) NOT NULL,
-  `correquisito` varchar(1000) DEFAULT NULL
+  `asig_correquisito` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `asignatura`
 --
 
-INSERT INTO `asignatura` (`asig_codigo`, `asig_nombre`, `asig_periodo`, `asig_creditos`, `m_id`, `ta_id`, `correquisito`) VALUES
+INSERT INTO `asignatura` (`asig_codigo`, `asig_nombre`, `asig_periodo`, `asig_creditos`, `m_id`, `ta_id`, `asig_correquisito`) VALUES
 (240012, 'CALCULO I', 1, 5, '2957-1', 1, NULL),
 (240013, 'ALGEBRA I', 1, 5, '2957-1', 1, NULL),
 (240035, 'CALCULO II', 2, 5, '2957-1', 1, NULL),
@@ -68,7 +68,7 @@ INSERT INTO `asignatura` (`asig_codigo`, `asig_nombre`, `asig_periodo`, `asig_cr
 (632080, 'SISTEMAS FINANCIEROS', 6, 4, '2957-1', 1, NULL),
 (634055, 'INGENIERIA DEL SOFTWARE', 8, 4, '2957-1', 1, NULL),
 (634065, 'INTRODUCCION A LA INGENIERIA', 1, 3, '2957-1', 1, NULL),
-(634066, 'INTRODUCCION A LA PROGRAMACION', 1, 5, '2957-1', 1, NULL),
+(634066, 'INTRODUCCION A LA PROGRAMACION', 1, 5, '2957-1', 1, 'coorequisito de prueba'),
 (634067, 'ESTRUCTURAS DISCRETAS CS. COMPUTACION', 2, 4, '2957-1', 1, NULL),
 (634068, 'DISENO Y CONSTRUCCION ', 2, 4, '2957-1', 1, NULL),
 (634069, 'ESTRUCTURA DE DATOS', 3, 5, '2957-1', 1, NULL),
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `desarrollo_programa_didactico` (
   `dpd_ha_ha` int(11) DEFAULT NULL,
   `ra_id` int(11) NOT NULL,
   `pd_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -126,13 +126,14 @@ CREATE TABLE IF NOT EXISTS `docente` (
 `doc_id` int(11) NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `asig_codigo` int(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `docente`
 --
 
 INSERT INTO `docente` (`doc_id`, `usu_rut`, `asig_codigo`) VALUES
+(9, 8918389, 634066),
 (8, 9426145, 634066),
 (6, 9520261, 634066),
 (7, 9658063, 634066);
@@ -257,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `prerrequisito` (
 `pre_id` int(11) NOT NULL,
   `asig_codigo` int(6) NOT NULL,
   `asig_codigo_prerrequisito` int(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `prerrequisito`
@@ -337,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `programa_basico` (
   `pb_fecha_modificacion` datetime NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `pb_borrador` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -351,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `programa_didactico` (
   `pd_fecha_modificacion` datetime NOT NULL,
   `usu_rut` int(11) NOT NULL,
   `pd_borrador` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -391,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `programa_extenso` (
   `usu_rut` int(11) NOT NULL,
   `pe_borrador` int(1) NOT NULL,
   `pe_sistema_evaluacion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_estonian_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -411,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `resultado_aprendizaje` (
   `ra_hp_autonomas` int(11) DEFAULT NULL,
   `ra_evidencia_aprendizaje` varchar(1000) DEFAULT NULL,
   `pe_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -576,12 +577,12 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `desarrollo_programa_didactico`
 --
 ALTER TABLE `desarrollo_programa_didactico`
-MODIFY `dpd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+MODIFY `dpd_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `perfil`
 --
@@ -591,27 +592,27 @@ MODIFY `per_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `prerrequisito`
 --
 ALTER TABLE `prerrequisito`
-MODIFY `pre_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+MODIFY `pre_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT de la tabla `programa_basico`
 --
 ALTER TABLE `programa_basico`
-MODIFY `pb_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `pb_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `programa_didactico`
 --
 ALTER TABLE `programa_didactico`
-MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `programa_extenso`
 --
 ALTER TABLE `programa_extenso`
-MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `resultado_aprendizaje`
 --
 ALTER TABLE `resultado_aprendizaje`
-MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
+MODIFY `ra_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tipo_asignatura`
 --
