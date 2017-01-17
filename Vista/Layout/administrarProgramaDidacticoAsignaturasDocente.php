@@ -133,7 +133,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                 <!-- ./box-body -->
                                 <div class="box-footer">                                                                        
                                     <button class="btn btn-info pull-right" onclick="crearProgramaDidactico()"><i class="glyphicon glyphicon-plus"></i> Crear Nuevo Programa</button>&nbsp;&nbsp;
-                                    <a href="verProgramaExtensoAsignaturas.php?pe_id=<?= $pe_id ?>" style="margin-right: 10px;" class="btn btn-default pull-right"><i class="glyphicon glyphicon-arrow-left"></i> Volver Atras</a>&nbsp;&nbsp;
+                                    <a href="verProgramaExtensoAsignaturasDocente.php?pe_id=<?= $pe_id ?>" style="margin-right: 10px;" class="btn btn-default pull-right"><i class="glyphicon glyphicon-arrow-left"></i> Volver Atras</a>&nbsp;&nbsp;
                                 </div>
                                 <!-- /.box-footer -->
                             </div>

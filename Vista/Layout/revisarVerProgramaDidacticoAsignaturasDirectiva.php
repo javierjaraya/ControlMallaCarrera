@@ -278,7 +278,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                         <?php
                                         $i = 0;
                                         foreach ($resultado_aprendizajes as $value) {
-                                            $desarrollo_pd = $control->getDesarrollo_programa_didacticoBy_pd_id($pd_id);
+                                            $desarrollo_pd = $control->getDesarrollo_programa_didacticoBy_ra_id($value->getRa_id());
                                             ?>
                                             <div class="group-resultado">
                                                 <div class="col-md-4">

@@ -17,17 +17,6 @@
         <!-- iCheck -->
         <link rel="stylesheet" href="Files/Complementos/template_admin_lite/plugins/iCheck/square/blue.css">
 
-
-<!--<script type="text/javascript" src="Files/Complementos/template_admin_lite/plugins/jquery-easyui-1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="Files/Complementos/template_admin_lite/plugins/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="Files/Complementos/template_admin_lite/plugins/jquery-easyui-1.4.2/plugins/jquery.datagrid.js"></script>-->
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -76,34 +65,34 @@
         <script src="Files/Complementos/template_admin_lite/bootstrap/js/bootstrap.min.js"></script>
         <!-- iCheck -->
         <script src="Files/Complementos/template_admin_lite/plugins/iCheck/icheck.min.js"></script>
-        
+
         <!-- Usabilidad -->
         <script src="Files/js/usabilidad.js"></script>
         <script>
-                                $(function () {
-                                    $('input').iCheck({
-                                        checkboxClass: 'icheckbox_square-blue',
-                                        radioClass: 'iradio_square-blue',
-                                        increaseArea: '20%' // optional
-                                    });
-                                });
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' // optional
+                });
+            });
 
-                                $("#fmlogin").submit(function (e) {
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "Vista/Servlet/login.php",
-                                        data: $("#fmlogin").serialize(),
-                                        success: function (result){
-                                            var result = eval('(' + result + ')');
-                                            if (!result.success) {
-                                                notificacion(result.mensaje, 'danger','alert')
-                                            } else {
-                                                location.href = result.pagina;
-                                            }
-                                        }
-                                    });
-                                    e.preventDefault();
-                                });
+            $("#fmlogin").submit(function (e) {
+                $.ajax({
+                    type: "POST",
+                    url: "Vista/Servlet/login.php",
+                    data: $("#fmlogin").serialize(),
+                    success: function (result) {
+                        var result = eval('(' + result + ')');
+                        if (!result.success) {
+                            notificacion(result.mensaje, 'danger', 'alert')
+                        } else {
+                            location.href = result.pagina;
+                        }
+                    }
+                });
+                e.preventDefault();
+            });
         </script>
     </body>
 </html>

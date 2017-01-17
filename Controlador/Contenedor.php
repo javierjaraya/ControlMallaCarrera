@@ -136,6 +136,10 @@ class Contenedor {
     public function getDesarrollo_programa_didacticoBy_pd_id($pd_id) {
         return $this->desarrollo_programa_didacticoDAO->findBy_pd_id($pd_id);
     }
+    
+    public function getDesarrollo_programa_didacticoBy_ra_id($ra_id) {
+        return $this->desarrollo_programa_didacticoDAO->findBy_ra_id($ra_id);
+    }
 
     public function getDesarrollo_programa_didacticoLikeAtrr($cadena) {
         return $this->desarrollo_programa_didacticoDAO->findLikeAtrr($cadena);

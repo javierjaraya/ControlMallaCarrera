@@ -83,7 +83,7 @@ class Desarrollo_programa_didacticoDAO{
     
     public function findBy_pd_id($pd_id) {
         $this->conexion->conectar();
-        $query = "SELECT * FROM desarrollo_programa_didactico WHERE  pd_id =  ".$pd_id." ";
+        $query = "SELECT * FROM desarrollo_programa_didactico WHERE pd_id =  ".$pd_id." ";
         $result = $this->conexion->ejecutar($query);
         $desarrollo_programa_didactico = new Desarrollo_programa_didacticoDTO();
         while ($fila = $result->fetch_row()) {
@@ -107,6 +107,32 @@ class Desarrollo_programa_didacticoDAO{
         return $desarrollo_programa_didactico;
     }
 
+    public function findBy_ra_id($ra_id) {
+        $this->conexion->conectar();
+        $query = "SELECT * FROM desarrollo_programa_didactico WHERE ra_id =  ".$ra_id." ";
+        $result = $this->conexion->ejecutar($query);
+        $desarrollo_programa_didactico = new Desarrollo_programa_didacticoDTO();
+        while ($fila = $result->fetch_row()) {
+            $desarrollo_programa_didactico->setDpd_id($fila[0]);
+            $desarrollo_programa_didactico->setDpd_actividad_aprendizaje($fila[1]);
+            $desarrollo_programa_didactico->setDpd_mediacion_ensenianza($fila[2]);
+            $desarrollo_programa_didactico->setDpd_actividad_evaluacion($fila[3]);
+            $desarrollo_programa_didactico->setDpd_recurso_didactivo($fila[4]);
+            $desarrollo_programa_didactico->setDpd_hp_ht($fila[5]);
+            $desarrollo_programa_didactico->setDpd_hp_hp($fila[6]);
+            $desarrollo_programa_didactico->setDpd_hp_hl($fila[7]);
+            $desarrollo_programa_didactico->setDpd_hp_ha($fila[8]);
+            $desarrollo_programa_didactico->setDpd_ha_ht($fila[9]);
+            $desarrollo_programa_didactico->setDpd_ha_hp($fila[10]);
+            $desarrollo_programa_didactico->setDpd_ha_hl($fila[11]);
+            $desarrollo_programa_didactico->setDpd_ha_ha($fila[12]);
+            $desarrollo_programa_didactico->setRa_id($fila[13]);
+            $desarrollo_programa_didactico->setPd_id($fila[14]);
+        }
+        $this->conexion->desconectar();
+        return $desarrollo_programa_didactico;
+    }
+    
     public function findLikeAtrr($cadena) {
         $this->conexion->conectar();
         $query = "SELECT * FROM desarrollo_programa_didactico WHERE  upper(dpd_id) LIKE upper('%".$cadena."%')  OR  upper(dpd_actividad_aprendizaje) LIKE upper('%".$cadena."%')  OR  upper(dpd_mediacion_enseñanza) LIKE upper('%".$cadena."%')  OR  upper(dpd_actividad_evaluacion) LIKE upper('%".$cadena."%')  OR  upper(dpd_recurso_didactivo) LIKE upper('%".$cadena."%')  OR  upper(dpd_hp_ht) LIKE upper('%".$cadena."%')  OR  upper(dpd_hp_hp) LIKE upper('%".$cadena."%')  OR  upper(dpd_hp_hl) LIKE upper('%".$cadena."%')  OR  upper(dpd_ha_ht) LIKE upper('%".$cadena."%')  OR  upper(dpd_ha_hp) LIKE upper('%".$cadena."%')  OR  upper(dpd_ha_hl) LIKE upper('%".$cadena."%')  OR  upper(ra_id) LIKE upper('%".$cadena."%')  OR  upper(pd_id) LIKE upper('%".$cadena."%') ";

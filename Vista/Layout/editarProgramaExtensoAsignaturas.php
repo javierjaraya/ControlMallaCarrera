@@ -543,7 +543,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         $("#cantidad-resultados-aprendizaje").val(i);
                                         cantidad_resultados_de_aprendizaje = i;
                                         //LLenar datos
-                                        $("#ra_resultado_aprendizaje_"+i).html(v.ra_contenido_con_pro_act);
+                                        $("#ra_resultado_aprendizaje_"+i).html(v.ra_resultado_aprendizaje);
                                         $("#ra_metodologia_"+i).html(v.ra_metodologia);
                                         $("#ra_criterios_evaluacion_"+i).html(v.ra_criterios_evaluacion);
                                         $("#ra_contenido_con_pro_act_"+i).html(v.ra_contenido_con_pro_act);

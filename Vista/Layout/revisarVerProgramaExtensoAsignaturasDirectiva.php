@@ -433,7 +433,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                             <div class="form-group">
                                                 <label for="pe_biblio_fundamental">Fundamental</label>                                                
                                                 <div class="borde-div" style="height: 320px;">
-                                                    <?= $programa_extenso->getPe_aprendizajes_previos() ?>
+                                                    <?= $programa_extenso->getPe_biblio_fundamental() ?>
                                                 </div>
                                             </div>
                                         </div>
