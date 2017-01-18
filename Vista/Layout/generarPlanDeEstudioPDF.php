@@ -116,9 +116,12 @@ $m_cantidadSemestres = $malla->getM_cantidadSemestres();
                     }
 
                     $correquisitos = $control->getAllCorrequisitosByAsig_Codigo($value->getAsig_codigo());
+                    
                     $textoCorrequisitos = "";
-                    foreach ($correquisitos as $cor) {
-                        $textoCorrequisitos = $textoCorrequisitos . "- " . utf8_decode($cor->getAsig_nombre()) . "<br>";
+                    if ($value->getAsig_correquisitos() != "" && $value->getAsig_correquisitos() != "<br>") {
+                            $textoCorrequisitos = utf8_decode($value->getAsig_correquisitos());
+                    } else {
+                        $textoCorrequisitos =  "No Tiene";
                     }
                     
                     $countCreditos = (int)$countCreditos + (int)$value->getAsig_creditos();

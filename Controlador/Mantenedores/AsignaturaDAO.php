@@ -33,6 +33,7 @@ class AsignaturaDAO {
             $asignatura->setAsig_creditos($fila[3]);
             $asignatura->setM_id($fila[4]);
             $asignatura->setTa_id($fila[5]);
+            $asignatura->setAsig_correquisitos($fila[6]);
             $asignaturas[$i] = $asignatura;
             $i++;
         }
@@ -98,6 +99,7 @@ class AsignaturaDAO {
             $asignatura->setAsig_creditos($fila[3]);
             $asignatura->setM_id($fila[4]);
             $asignatura->setTa_id($fila[5]);
+            $asignatura->setAsig_correquisitos($fila[6]);
             $asignaturas[$i] = $asignatura;
             $i++;
         }
@@ -141,6 +143,7 @@ class AsignaturaDAO {
             $asignatura->setAsig_creditos($fila[3]);
             $asignatura->setM_id($fila[4]);
             $asignatura->setTa_id($fila[5]);
+            $asignatura->setAsig_correquisitos($fila[6]);
             $asignaturas[$i] = $asignatura;
             $i++;
         }
@@ -182,6 +185,7 @@ class AsignaturaDAO {
             $asignatura->setAsig_creditos($fila[3]);
             $asignatura->setM_id($fila[4]);
             $asignatura->setTa_id($fila[5]);
+            $asignatura->setAsig_correquisitos($fila[6]);
             $asignaturas[$i] = $asignatura;
             $i++;
         }
@@ -203,6 +207,7 @@ class AsignaturaDAO {
             $asignatura->setAsig_creditos($fila[3]);
             $asignatura->setM_id($fila[4]);
             $asignatura->setTa_id($fila[5]);
+            $asignatura->setAsig_correquisitos($fila[6]);
             $asignaturas[$i] = $asignatura;
             $i++;
         }
@@ -213,6 +218,7 @@ class AsignaturaDAO {
     public function findAsigAndProgBasicoByM_id_And_asig_periodo($m_id, $asig_periodo) {
         $this->conexion->conectar();
         $query = "SELECT * FROM asignatura a LEFT JOIN programa_basico pb ON a.asig_codigo = pb.asig_codigo WHERE a.ta_id = 1 AND a.m_id = '$m_id' AND asig_periodo = $asig_periodo ";
+        var_dump($query);
         $result = $this->conexion->ejecutar($query);
         $i = 0;
         $asignaturas = array();
@@ -224,35 +230,36 @@ class AsignaturaDAO {
             $asignatura->setAsig_creditos($fila[3]);
             $asignatura->setM_id($fila[4]);
             $asignatura->setTa_id($fila[5]);
+            $asignatura->setAsig_correquisitos($fila[6]);
 
             $programa_basico = new Programa_basicoDTO();
-            $programa_basico->setPb_id($fila[6]);
-            $programa_basico->setPb_tipo_curso($fila[7]);
-            $programa_basico->setPb_carrera($fila[8]);
-            $programa_basico->setPb_departamento($fila[9]);
-            $programa_basico->setPb_facultad($fila[10]);
-            $programa_basico->setPb_nro_creditos($fila[11]);
-            $programa_basico->setPb_horas_cronologicas($fila[12]);
-            $programa_basico->setPb_horas_pedagogicas($fila[13]);
-            $programa_basico->setPb_anio($fila[14]);
-            $programa_basico->setPb_semestre($fila[15]);
-            $programa_basico->setPb_hrs_presenciales($fila[16]);
-            $programa_basico->setPb_ht_presenciales($fila[17]);
-            $programa_basico->setPb_hp_presenciales($fila[18]);
-            $programa_basico->setPb_hl_presenciales($fila[19]);
-            $programa_basico->setPb_hrs_autonomas($fila[20]);
-            $programa_basico->setPb_ht_autonomas($fila[21]);
-            $programa_basico->setPb_hp_autonomas($fila[22]);
-            $programa_basico->setPb_hl_autonomas($fila[23]);
-            $programa_basico->setPb_presentacion($fila[24]);
-            $programa_basico->setPb_descriptor_competencias($fila[25]);
-            $programa_basico->setPb_aprendizajes_previos($fila[26]);
-            $programa_basico->setPb_biblio_fundamental($fila[27]);
-            $programa_basico->setPb_biblio_complementaria($fila[28]);
-            $programa_basico->setAsig_codigo($fila[29]);
-            $programa_basico->setPb_fecha_modificacion($fila[30]);
-            $programa_basico->setUsu_rut($fila[31]);
-            $programa_basico->setPb_borrador($fila[32]);
+            $programa_basico->setPb_id($fila[7]);
+            $programa_basico->setPb_tipo_curso($fila[8]);
+            $programa_basico->setPb_carrera($fila[9]);
+            $programa_basico->setPb_departamento($fila[19]);
+            $programa_basico->setPb_facultad($fila[11]);
+            $programa_basico->setPb_nro_creditos($fila[12]);
+            $programa_basico->setPb_horas_cronologicas($fila[13]);
+            $programa_basico->setPb_horas_pedagogicas($fila[14]);
+            $programa_basico->setPb_anio($fila[15]);
+            $programa_basico->setPb_semestre($fila[16]);
+            $programa_basico->setPb_hrs_presenciales($fila[17]);
+            $programa_basico->setPb_ht_presenciales($fila[18]);
+            $programa_basico->setPb_hp_presenciales($fila[19]);
+            $programa_basico->setPb_hl_presenciales($fila[20]);
+            $programa_basico->setPb_hrs_autonomas($fila[21]);
+            $programa_basico->setPb_ht_autonomas($fila[22]);
+            $programa_basico->setPb_hp_autonomas($fila[23]);
+            $programa_basico->setPb_hl_autonomas($fila[24]);
+            $programa_basico->setPb_presentacion($fila[25]);
+            $programa_basico->setPb_descriptor_competencias($fila[26]);
+            $programa_basico->setPb_aprendizajes_previos($fila[27]);
+            $programa_basico->setPb_biblio_fundamental($fila[28]);
+            $programa_basico->setPb_biblio_complementaria($fila[29]);
+            $programa_basico->setAsig_codigo($fila[30]);
+            $programa_basico->setPb_fecha_modificacion($fila[31]);
+            $programa_basico->setUsu_rut($fila[32]);
+            $programa_basico->setPb_borrador($fila[33]);
 
             $asignatura->setPrograma_basico($programa_basico);
 
