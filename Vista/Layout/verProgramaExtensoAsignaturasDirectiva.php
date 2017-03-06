@@ -324,7 +324,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                                         <div class="label-group-resultado">
                                                             <label for="ra_resultado_aprendizaje_0">Resultados de Aprendizaje</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;" >
                                                             <?= $value->getRa_resultado_aprendizaje() ?>
                                                         </div>
                                                     </div>
@@ -334,7 +334,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                                         <div class="label-group-resultado">
                                                             <label for="ra_metodologia_0">Metodologia</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                             <?= $value->getRa_metodologia() ?>
                                                         </div>
                                                     </div>
@@ -344,7 +344,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                                         <div class="label-group-resultado">
                                                             <label for="ra_criterios_evaluacion_0">Criterios de Evaluación</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                             <?= $value->getRa_criterios_evaluacion() ?>
                                                         </div>
                                                     </div>
@@ -354,7 +354,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                                         <div class="label-group-resultado">
                                                             <label for="ra_contenido_con_pro_act_0">Contenidos conceptuales, procedimentales y actitudinales</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                             <?= $value->getRa_contenido_con_pro_act() ?>
                                                         </div>
                                                     </div>
@@ -364,7 +364,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($pe_id
                                                         <div class="label-group-resultado">
                                                             <label for="ra_evidencia_aprendizaje_0">Evidencias de Aprendizaje (proceso y producto)</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                             <?= $value->getRa_evidencia_aprendizaje() ?>
                                                         </div>
                                                     </div>
