@@ -424,7 +424,7 @@ class Programa_didacticoDAO {
 
     public function find_version_final_ByAsig_Codigo($asig_codigo) {
         $this->conexion->conectar();
-        $query = "SELECT * FROM programa_didactico pd JOIN programa_extenso pe ON pd.pe_id = pe.pe_id JOIN asignatura a ON pe.asig_codigo = a.asig_codigo  JOIN usuario u ON pe.usu_rut = u.usu_rut WHERE a.asig_codigo  = " . $asig_codigo . " ORDER BY pd.pd_id DESC LIMIT 0,1";
+        $query = "SELECT * FROM programa_didactico pd JOIN programa_extenso pe ON pd.pe_id = pe.pe_id JOIN asignatura a ON pe.asig_codigo = a.asig_codigo  JOIN usuario u ON pe.usu_rut = u.usu_rut WHERE a.asig_codigo  = " . $asig_codigo . " AND pd.pd_borrador = 0 ORDER BY pd.pd_id DESC LIMIT 0,1";
         $result = $this->conexion->ejecutar($query);
         $programa_didactico = null;
         while ($fila = $result->fetch_row()) {
