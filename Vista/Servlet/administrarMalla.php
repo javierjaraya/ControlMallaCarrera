@@ -147,7 +147,13 @@ if ($accion != null) {
         
         $hoy = getdate();
         $dia = $hoy['mday'];
+        if($dia < 10){
+            $dia = "0".$dia;
+        }
         $mes = $hoy['mon'];
+        if($mes < 10){
+            $mes = "0".$mes;
+        }
         $anio = $hoy['year'];
         
         $fechaActual = $anio."-".$mes."-".$dia;
