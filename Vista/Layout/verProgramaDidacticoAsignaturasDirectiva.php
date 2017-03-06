@@ -286,7 +286,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="ra_resultado_aprendizaje_0">Resultados de Aprendizaje</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                             <?= $value->getRa_resultado_aprendizaje() ?>
                                                         </div>
                                                     </div>
@@ -296,7 +296,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="ra_contenido_con_pro_act_0">Contenidos conceptuales, procedimentales y actitudinales</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                             <?= $value->getRa_contenido_con_pro_act() ?>
                                                         </div>
                                                     </div>
@@ -306,7 +306,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="ra_criterios_evaluacion_0">Criterios de Evaluación</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 320px;">
+                                                        <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                             <?= $value->getRa_criterios_evaluacion() ?>
                                                         </div>
                                                     </div>
@@ -316,7 +316,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="ra_metodologia_0">Metodologia</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 120px;">
+                                                        <div class="borde-div" style="height: 120px; overflow: scroll;">
                                                             <?= $value->getRa_metodologia() ?>
                                                         </div>
                                                     </div>
@@ -328,7 +328,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="dpd_actividad_aprendizaje_<?= $i ?>">Actividad de Aprendizaje (del estudiante)</label>
                                                         </div>                                                        
-                                                        <div class="borde-div" style="height: 450px;">
+                                                        <div class="borde-div" style="height: 450px; overflow: scroll;">
                                                             <?= $desarrollo_pd->getDpd_actividad_aprendizaje() ?>
                                                         </div>
                                                     </div>
@@ -338,7 +338,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="dpd_mediacion_ensenianza_<?= $i ?>">Mediación de la Enseñanza (Gestión del docente)</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 450px;">
+                                                        <div class="borde-div" style="height: 450px; overflow: scroll;">
                                                             <?= $desarrollo_pd->getDpd_mediacion_ensenianza() ?>
                                                         </div>
                                                     </div>
@@ -348,7 +348,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="dpd_actividad_evaluacion_<?= $i ?>">Actividad de Evaluación (proceso y producto)</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 450px;">
+                                                        <div class="borde-div" style="height: 450px; overflow: scroll;">
                                                             <?= $desarrollo_pd->getDpd_actividad_evaluacion() ?>
                                                         </div>
                                                     </div>
@@ -358,7 +358,7 @@ $resultado_aprendizajes = $control->getAllResultado_aprendizajes_By_pe_id($progr
                                                         <div class="label-group-resultado">
                                                             <label for="dpd_recurso_didactivo_<?= $i ?>">Recurso Didáctico</label>
                                                         </div>
-                                                        <div class="borde-div" style="height: 450px;">
+                                                        <div class="borde-div" style="height: 450px; overflow: scroll;">
                                                             <?= $desarrollo_pd->getDpd_recurso_didactivo() ?>
                                                         </div>
                                                     </div>

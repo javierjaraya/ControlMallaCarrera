@@ -254,7 +254,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_presentacion">ll.1 Presentación: Relación de la Asignatura con las Competencias del Perfil de Egreso</label>
-                                                <div class="borde-div" style="height: 320px;">
+                                                <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                     <?= $programa_extenso->getPb_presentacion() ?>
                                                 </div>
                                             </div>
@@ -262,7 +262,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_descriptor_competencias">ll.2 Descriptor de competencias</label>
-                                                <div class="borde-div" style="height: 320px;">
+                                                <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                     <?= $programa_extenso->getPb_descriptor_competencias() ?>
                                                 </div>
                                             </div>
@@ -270,7 +270,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_aprendizajes_previos">ll.3 Aprendizajes Previos</label>
-                                                <div class="borde-div" style="height: 320px;">
+                                                <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                     <?= $programa_extenso->getPb_aprendizajes_previos() ?>
                                                 </div>
                                             </div>
@@ -291,7 +291,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_biblio_fundamental">Fundamental</label>
-                                                <div class="borde-div" style="height: 320px;">
+                                                <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                     <?= $programa_extenso->getPb_biblio_fundamental() ?>
                                                 </div>
                                             </div>
@@ -299,7 +299,7 @@ $asignatura = $control->getAsignaturaById($programa_extenso->getAsig_codigo());
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="pb_biblio_complementaria">Complementaria</label>
-                                                <div class="borde-div" style="height: 320px;">
+                                                <div class="borde-div" style="height: 320px; overflow: scroll;">
                                                     <?= $programa_extenso->getPb_biblio_complementaria() ?>
                                                 </div>
                                             </div>
