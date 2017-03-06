@@ -46,14 +46,10 @@
 
                             <p>
                                 <?php echo $usu_nombre . " - " . $per_nombre; ?>
-                                <small>Member since Nov. 2012</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                            </div>
                             <div class="pull-right">
                                 <a href="../Servlet/loginOFF.php" class="btn btn-default btn-flat">Cerrar Sesion</a>
                             </div>

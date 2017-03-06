@@ -9,7 +9,6 @@
             </div>
             <div class="pull-left info">
                 <p><?php echo $usu_nombre;?></p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- search form -->
