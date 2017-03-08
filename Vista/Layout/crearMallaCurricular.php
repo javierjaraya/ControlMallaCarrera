@@ -210,7 +210,7 @@ $usu_nombre = $_SESSION["usu_nombre"];
                             notificacion(data.errorMsg, 'danger','alert');
                         } else {
                             notificacion(data.mensaje, 'success','alert');
-                            location.href = 'administrarMallaCurricular.php';
+                            location.href = 'administrarMallaCurricularDirectiva.php';
                         }
                     }, "json");
                 }
